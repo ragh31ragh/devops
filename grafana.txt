@@ -1,0 +1,9 @@
+#############14-Feb-2025#############
+DevOps LifeCycle :
+Continuous Development 
+Continuous Ingegration 
+Continuous Testing 
+Continuous Deployment 
+Continuous Monotoring 
+
+ 
