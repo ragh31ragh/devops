@@ -908,6 +908,9 @@ ctrl r - reverse search command ---important command
 
 cd ~ switch to home directory 
 
+########14-Feb####
+########15-Feb####
+
 
 
 
