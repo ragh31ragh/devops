@@ -1,0 +1,361 @@
+Stage 1: Initialize (terraform init) → Prepare Terraform
+Stage 2: Plan (terraform plan) → Preview changes
+Stage 3: Apply (terraform apply) → Deploy infrastructure
+Stage 4: Validate (terraform validate) → Check syntax
+Stage 5: Destroy (terraform destroy) → Cleanup (if needed)
+
+Infra as code 
+Deploy applications 
+
+Diff between ansible and terraform 
+
+ansible 
+- config mgmt tool 
+
+Replicating Infrastructure 
+
+terraform connecting to aws and other cloud providers 
+
+Terraform architecture:
+2 input sources : 
+
+TF config + state 
+CORE
+current state - > desired state 
+
+AWS , AZURE { iaas}
+Kubernetes [paas] 
+
+Example configuration files - Terraform 
+Configure kubernetes and aws 
+
+Delcarative vs Imperative 
+Imperitive - defining what exactly to do in all steps 
+
+refresh to get current state 
+plan - create execution plan 
+apply 
+destroy 
+
+init - apply - destroy 
+
+resource "aws_instance" "webserver"{
+ami = "ami-02324234"
+instance_type="t2.micro"
+}
+
+Hashicorp Corporation Language 
+
+wget - htpps ///.zip file 
+unzip 
+mv to usr/local/bin 
+
+
+
+<block> <parameter>{
+key=value
+key=value
+}
+
+main.tf 
+variables.tf 
+terraform.tfvars 
+variable.auto.tfvars
+terraform -apply -var -
+terraform.tfstate - no manual edits here.
+
+terraform show 
+terraform providers 
+terraform validate 
+terraform graph 
+
+Mutable infrastructure - inplace deployment
+Immutable infrastructure - commplete diff hardware from v2 to v3 
+
+
+lifecycle rule
+prevent changes
+ignore changes 
+
+Declarative language 
+meta arguments - depends on 
+
+####30 Jan ####
+
+Tool for Infratructure profisioning 
+
+1.private network space 
+2.ec2 servers 
+3.install dockers and other services 
+4.security 
+
+prepare infrastructure 
+deploy applications 
+
+
+-create vpc
+-spin up servers 
+-create AWS users and permissions
+-install docker 
+
+
+-in correct order
+
+diff ansible and terraform 
+
+will do changes to infrastructure 
+
+-replicating infrastructure 
+-dev to prod env
+
+How does terraform work ?
+
+How does terraform connect to AWS platform 
+
+
+###Terraform Architecture 
+2 main components
+---input sources - core 
+TF config 
+TF State 
+
+what needs to be created /updated / destroyed ?
+
+current state vs desired state (config file ) 
+
+current state ---> desired state 
+
+---Providers ( AWS , azure etc ) 
+
+over 100 providers 
+over 1000 resources 
+k8s also provider 
+
+
+###Declarative vs Imperative 
+
+adjust old config file and reajust 
+
+refresh - query infra provider to get the current state 
+terraform will know current state
+plan - create execution plan 
+apply - execute the plan 
+destoy - 
+
+.tf files
+declarative language 
+terraform.tfstate
+
+-set path in widows to use terraform 
+-terraform version 1.8.5 
+
+-set up aws account 
+=aws user set up 
+-aws iam user creation and permission assignment 
+-aws cli on mac or windows 
+-aws configure
+-aws list iam users
+-create access key for aws cli 
+
+access key similar to username
+secret access key similar to password 
+set env variables 
+aws export access_key= afda
+aws export access_key_secret = dafadsaf
+aws default region = 
+
+source .env 
+Terraform - First config to create ec2 Instance 
+
+-Add hashicord extension to vs code to get help 
+block for providers
+
+main.tf 
+navigate to this file location 
+execute command 
+terraform init 
+initializing backend -
+like git init 
+
+-terraform plan
+some properties will be known after apply 
+-terraform apply 
+
+###Resource Change 
+change instance type = t3.micro to t3.nano
+change ami id = from amazonlinux to ubuntu 
+
+##Resource Destroy 
+terraform destroy 
+
+
+terraform validate 
+
+to verify the config of file 
+
+###More about terraform config 
+
+state management
+terraform.tfstate
+
+statefile can be stored locally or remotely 
+
+
+##Terraform variables 
+
+
+like region
+
+
+variables block
+providers block
+resources block 
+
+var.region
+
+variables.tf
+
+import not required 
+it should be same folder where we have initialized terraform 
+
+###Terraform output block ###2-Feb-2025
+aws instance public IP 
+
+terraform apply 
+
+
+###AWS S3 Bucket using terraform config 
+
+aws_s3 folder 
+main.tf 
+
+current directory ./myfile.txt 
+uploading file to S3 
+
+###Terraform Random provider 
+Add one more random provider block below aws provider 
+use output block to check how random id is generated
+
+
+###Terraform remote state management
+apply .tfstate file gets created
+destroy .tfstate file gets deleted 
+
+tf-backend folder creation
+configure s3 as backend 
+key = backend.tfstate - file which will be stored in S3
+
+terraform init
+terraform apply 
+
+###Static Website host 
+Deploy static website on AWS S3 
+index.html
+styles.css 
+-create bucket with public access 
+-Need to add public read policy and associate to s3 bucket .
+
+-Provider configuration 
+-bucket creation 
+-public access
+-website creation 
+-File uploads
+-website endpoint 
+
+--bucketname.region - will be website url
+--output website endpoint 
+
+summary : 
+
+resource "aws_s3_bucket" "my_webapp_bucket"
+resource "aws_s3_bucket_public_access_block" "example"
+resource "aws_s3_bucket_policy" "my_web_app"
+resource "aws_s3_bucket_website_configuration" "mywebapp"
+resource "aws_s3_object" "index_html"
+resource "aws_s3_object" "css_style"
+output "name"
+
+###AWS VPC Explained 
+To securely isolate and control network environments
+
+VPC CIDR Block 
+When you create a VPC , you specify a CIDR block that defined the IP Address range for the Entire VPC 
+For Example  : 
+
+10.0.0.0/16
+This blocks allows for 65536 IP Addresses, But in reality 65,531 are usable addresses
+CIDR [Classless InterDomain Routing] is a method for allocating IP Addresses and routing Internet protocol packets 
+
+A subnet is a smaller , segmented part of a larger network that isolates and organizes devices within a specific IP address range 
+
+instances will be created inside subnet 
+
+public subnet 10.0.0.0/24
+private subnet 10.0.1.0/24
+
+subnet will be created in AZ 
+
+Subnet CIDR Blocks 
+
+Routing Table 
+Routing table is set of rules called routes .that are used to dertermine whether network traffic from your subnets or gateway is directed 
+Each subnet from your VPC  must be associated with a route table , which controls ther routing of the subnet .
+
+Internet Gateway : 
+An Internet gateway is a component that allows communication between instances in your VPC and the internet .
+
+Security Groups:-works on instance level 
+Network firewall rules that control inbound and outbound traffic for instances .
+
+Security group contains inbound and outbound rules 
+inbound - enable http and https 
+
+Network ACLs ( Access Control Lists)- works on subnet level 
+Optional layer of security for your VPC that acts as a firewall for controlling traffic in and out of one or more subnets 
+
+Allow or Deny Rule 
+
+NAT ( Network Address Translator ) Gateway :
+Enables instances in a private subnet to connect to the internet or other AWS Services .but prevents the internet from initiating 
+connection to those instances 
+
+VPC Peering 
+A networking connection between 2 VPCs that enables you to route traffic between them privately 
+
+VPC Endpoints 
+Allows you to privately connect your VPC to supported AWS services and VPC endpoint services powered by AWS Private Link 
+
+Bastion Hosts : 
+A special purpose instance that provides secure access to your instances in private subnet 
+
+
+Elastic IP Addresses : 
+Static IP Addresses designed for dynamic cloud computing 
+
+VPC Flow Logs : 
+Captures Information about the IP Traffic going to and from network interfaces in your VPC 
+
+Direct Connect : 
+Establishes a dedicated network connection from your premises to AWS 
+
+AWS Client VPN : 
+Managed VPN service that enables secure remote access to AWS resurces and on premise networks using Open VPN based clients 
+
+####Manual VPC Cretion 
+Create new VPC
+created 2 subnets
+1 public and another private .
+
+Create route table 
+Create Internet Gateway 
+
+####VPC Creation using TF
+A VPC with CIDR Block of 10.0.0.0/16
+One public subnet with CIDR block of 10.0.1.0/24
+One private subnet with CIDR block of 10.0.2.0/24 
+One Internet Gateway 
+One public route table with a route to the Internet Gateway , and the correct association between public subnet and public route table 
+
+everything will be created in aws-vpc folder 
+In new folder will perform terraform init 
+

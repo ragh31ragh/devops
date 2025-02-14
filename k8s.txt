@@ -1,0 +1,949 @@
+k8s:
+Open source container orchestration tool to manage 100s and 1000s of containers 
+
+###Features:
+High Avaialbility or no downtime.
+Scalablity or high performance 
+Disaster recovery - backup and restore 
+
+###k8s components : 21-Jan 
+--Node and Pod 
+-Pod -Smallest unit of k8s
+-Abstraction over container 
+-Usually 1 application per pod 
+-Each pod get its own ip address 
+-New IP address on recreation 
+
+--Service and Ingress :
+-permanent ip address for pod 
+-lifecycle of pod and service not connected 
+-evenif pod dies service and ip address will stay 
+
+Service [ External and Internal ]
+External web app - : Internal - database 
+
+Ingress - IP to domain mapping 
+
+--Configmap and Secret :
+Database URL usually in the build application 
+-External configuration of your application 
+DB_URL = mongo_db_service 
+urls might change 
+db passwords might change 
+
+--secret 
+-used to store secret data 
+-base 64 encoded 
+
+##covered pod, service, ingress , config map and secret 
+
+volumes :
+	data storage 
+	it can be local or remote 
+	##k8s doesnot manage data persistance 
+	
+Deployment and statefulset : 
+	Replica - One more node that contains another pod 
+		Service has 2 fucntionalities 
+		--permanent IP
+		--load balancer 
+		
+define blueprint of pods - will define how many replicas we need 
+
+Deployment : 
+	blueprint for myapp pods 
+	you create deployments 
+	deployement is abstraction of pods 
+	in practical we work with deployments and not with pods 
+	
+DB cant be replicated via deployment 
+Avoid data inconsistencies 
+
+--Statefulset another k8s component 
+---for stateful app like databases ( mysql, elastic etc ) 
+---statefulset for stateful app or databases 
+
+Deploying stateful set is not easy 
+
+DBs are often hosted outside of k8s cluster 
+
+-abstraction of containers - pod 
+-communicaion -service 
+-route traffic into cluster - ingress 
+-external configuration - config map 
+-secrets 
+-data persistancy - volumes 
+
+-deployment and statefulsets 
+
+
+##k8s architecture 
+Master and Slave Node 
+
+Worker Machine in k8s cluster :
+-each node has multiple pods on it
+-3 process must be installed on every Node (container runtime,kubelet,kubeproxy)
+-Worker node do the actual work 
+
+
+1-Container runtime 
+2-kubelet 
+-kublet interacts with both container and node 
+
+kubelet start the pod with container inside 
+Communication via services 
+3-kubeproxy - forwards the requests 
+
+how to interact with cluster : 
+-schecule pod ?
+-monitor , reschedule and restart pod ?
+-join a new node 
+ 
+ 
+#Managing process done by master node 
+
+4 process run on every master node 
+
+1.api server
+ - cluster gateway 
+ - acts as gatekeeper for authentication 
+ 
+ some request - api server - validates request - other process -pod 
+ 
+2.scheduer 
+schedule new pod 
+where to put the pod 
+30% used - 60% used 
+Schdueler just decides on which Node new pod should be schedueled .
+
+3.control manager - detects state changes 
+-it detects if pod dies 
+
+4.etcd 
+etcd  is cluster brain !
+Cluster changes gets stored in key value store 
+-what resources are avialabe?
+-did the cluster state change ?
+-is cluster healthy ?
+
+Application data is not stored in etcd .
+it is only clusters information .
+
+Example cluster set up :
+
+2 Master Nodes 
+3 Slave Nodes 
+you can make it 3M and 6 Slave also 
+
+- Add new master  / node server 
+1.get the bare server 
+2.install the master / worker node processes 
+3.add it to the cluster 
+
+kubeadm init and kubeadm join as best-practice “fast paths” for creating Kubernetes clusters.
+https://dev.to/preethamsathyamurthy/set-up-a-kubernetes-master-slave-architecture-using-kubeadm-9b3
+
+kubeadm join <control-plane-host>:<control-plane-port> --token <token> --discovery-token-ca-cert-hash sha256:<hash>
+kubeadm we shuold use to set up master slave node 
+
+
+Minikube and kubectl commands 
+Production set up 
+-Multiple Master and Worker Nodes 
+-Creation in laptop - minikube .
+master process - worker process - and docker containers running in one node for testing 
+
+minikube 
+-creates virtual box on your laptop 
+-node runs in that virtual box 
+-1 node k8s cluster 
+-for testing purposes 
+
+
+what is kubectl 
+
+kubectl interacting with nodes 
+-command line tool for k8s cluster 
+Master process -Api server - enables interaction with cluster 
+
+api serverver - ways to talk ( ui, api, cli -kubectl)
+
+Master processes and worker process 
+
+create pods ,destroy pod ,create services 
+
+
+##Installation and create minikube cluster (23-Jan -2025)
+mac os - 
+brew 
+hyperkit is virtualizer 
+need virtualer for minikube 
+minikube start --vm-driver--hyperkit - to start k8s cluster 
+
+kubectl get nodes 
+kubectl version 
+-it will give client and server version 1.32 
+
+#main kubectl commands 
+###CRUD Commands 
+kubectl create deployment [name]
+kubectl edit deployment [name]
+kubectl delete deployment [name]
+
+###Status of different K8 components 
+kubectl get nodes | pod | services | replicaset | deployment 
+kubectl get pod
+kubectl get services 
+kubectl get replicaset
+kubectl get deployment
+
+
+###debugging pods 
+kubectl logs podname 
+kubectl exec-it [pod name ] --bin/bash 
+
+Horizontal Scaling : if the bottleneck is CPU or memory , I would scale the application horizontally by increasing the number of replicas 
+using a Horizontal pod autoscaling 
+
+Vertical scaing : if the bottleneck is resource specific , I would scale the application upgrading the resources allocated to each pod .
+
+
+
+kubectl get nodes
+one master node of minikube is ready 
+
+
+kubectl create -h 
+help command for create function 
+we can use it to create pods 
+
+kubectl create deployment nginx-deployment --image=nginx 
+
+now you do kubectl get deployment
+it will have - pod with name of deployment - followed by hash 
+
+kubectl get replicaset 
+
+Layers of abstraction : 
+Deployment manages a replicaset manages a pod manages a container 
+
+kubectl edit deployment nginx-depl 
+edit the deployment to pull nginx 1:16 version 
+
+
+we can see old pod with default nginx version is gone and a new pod with 1:16 version is created 
+
+##Debugging pods 
+
+kubectl logs podname[nginx something ] 
+kubectl exec-it mongodb --bin/bash
+ls 
+logs into file system of linux 
+
+###deleting 
+kubectl delete deployment mongodb 
+
+##creating deployments using file :
+kubectl apply -f config-file.yml
+
+use vim editor to edit config file to change the replicas to 2 
+and run again apply command
+
+
+####k8s Yaml Configuration file : 
+will refer yaml file of nginx deployment and nginx service yml file 
+every config file has 3 parts 
+--name / metadata 
+--specification 
+--status -- it is automatically generated and added by k8s 
+desired and actual ---basics of self healing feature that k8s will provide 
+it will get this information from etcd 
+etcd hold the current status of any k8s components 
+
+
+specifications will be specific to kind of component / deployment / service 
+we can use yaml online validator for checking indentation and errors in yaml 
+
+store the yaml config file with your code 
+or we can have own git repo for config files 
+
+
+spec 
+---template : it has its own metadata and specs 
+
+templates configuration applies to pod 
+this will be blueprint for pod 
+
+
+Connecting componenets - labels and selectors 
+##24-Jan#####
+ Templates inside spec : 
+ port - image name 
+ 
+ Connection is established using labels and selectors 
+ metadata part contains - labels 
+ and spec part contains selectors  
+ labels : 
+	app:nginx
+	
+ selectors:
+	matchLabels :
+		app : nginx 
+		
+label - deployment 
+selector - service 
+
+Ports in service and pod
+container port  : 
+target port : 
+
+now create 
+deployment and service for nginx
+now will have 2 services 
+- one is cluster ip - default kubernetes service 
+- other is nginx service 
+
+kubectl get pod -o wide - will get the IP address
+kubectl describe service 
+get details of nginx sercive
+which 2 pods - what is selector name 
+and what are the pod ip and port it is connected to
+
+now we will see how k8s generates status
+this is third part of config file
+1.metadata , selector and status 
+
+kubectl get deployment nginx-deployment -o yaml 
+it resides in etcd (status)
+
+how to save output in file .
+kubectl get deployment nginx-deployment -o yaml > abs.yaml 
+
+we need to clean some content from deployment and use it for new nginx deployment 
+
+we can use co
+
+#####Complete Demo Project : 24-Jan (1 :17 ) 
+we will deploy mongo db and mongo express 
+Overview of k8 components 
+-2 deployment
+-2 service 
+1 configmap
+1 secret 
+
+mongo db - will create internal service - only components inside cluster can talk to it 
+DB - url to connect - this will go inside config map 
+DB user and pw - to authenticate -this will go inside secret 
+
+mongo express - url 
+url will be IP address and port 
+
+request - mongo express externa service - > pod - mongo -express -> mongo db internal service -> pod mongo db - config map -secret 
+
+will create whole set up using this config file 
+
+
+kubectl get all 
+cluster is empty with only k8s service 
+
+
+in VS editor will create mongodb deployment config file .
+
+in docker hub check configuration of mongo db image 
+
+in template - container deatils 
+mention container port number 27017 
+env variables like username and passowkd of db 
+
+we will create secret from where will refer values : 
+as we cannot store that in config files : 1:22 
+
+################25-Jan-2025#################################
+Secrets live in k8s and no will will have access using repo
+kind: Secret
+metadata:
+  name: mongodb-secret
+  
+  There are multiple type of secrates one is opage.
+  TLS . ssl etc 
+  
+type opaque : 
+key value pair 
+mongo root user name: 
+
+username and password will be base64 encoded
+echo -n 'username' | base64
+output value will be base 64 encoded 
+in linux shell 
+
+secret should be created before the deployment 
+
+mongosecret.yaml 
+
+navigate to cd k8s configuration folder 
+
+kubectl apply mongosecret.yaml 
+secret will be created post this command 
+
+
+if we execute 'kubectl get secret'
+we can see the secret created 
+
+now secret can be referenced inside deployment .
+
+value from:
+	secret key ref :
+		name : mongodbsecret
+		key : mongorootusername 
+		
+now we can appply this deployment mongodb.yaml 
+
+Next is creating internal service so that other components can talk to mongo db (1:28)
+
+--- ( syntax for document separation in yaml ) 
+vs code is used to edit yaml 
+in mongopod deployment yaml file only we are creating service .
+
+kind : service 
+metadata /name : a random name 
+selector : to connect to pod through label 
+
+ports :
+	port : Service port 
+	target port : Container port of Deployment 
+	
+	
+service mainly it has port and selector information to connect to mongo db pod 
+
+kubectl apply -f mongo.yaml
+-deployment unchanged 
+-service created 
+
+kubectl get service 
+you can see the service now 
+it will listen at 27017 
+cluster IP 
+pod IP : port 
+
+Now we have created mongo db service and deployment .
+
+kubectl get all | grep mongodb 
+
+###Now we will create mongo express deployment and service config map (1:33)
+
+
+################26Jan-2025#################################
+Create new file for mongo express deployment 
+metadata
+spec contains details about pod 
+you can check details in docker hub 
+
+which db to connect 
+and we need to give credentials 
+
+mongo url - server username and server password 
+
+inside pod we can open multiple ports 
+
+spec : 
+add env varialble for connectivity 
+
+we will create config map to store mongo db server url
+at thi moment will keep deployment incomplete 
+
+kind : config map
+
+Config map should be already in cluster before referencing it 
+
+ConfigMapRefKey 
+
+in k8s configuration folder
+execute command 
+kubectl apply -f mongo-configmap.yaml 
+and 
+kubectl apply -f mongo-express.yaml 
+
+now kubectl get pod 
+we can see mongo express and mongo db 2 pods 
+
+
+kubectl logs mongo-express 
+to see the logs 
+
+#To access mongo express from browser :
+create mongo express service in same file as deployment 
+
+
+How to make it external service ?
+type:loadbalancer : assigns service and external IP address and so accepts external request 
+
+
+will provide node port apart from container port and target port  , to make the service external 
+node port range : 30000 - 32000 
+
+now apply - kubectl apply kubectl mangoexpress agian 
+we can see deployment unchanged . but service created.
+
+mongodb-service will have cluster IP 
+and 
+monggo-express service will have LoadBalancer type IP 
+Load balancer will also give internal IP(cluster IP) -in addition it will give external IP address also 
+will have ports for both internal and external IP : 
+
+command:
+minikube service mongo-express-service 
+command will create external IP 
+1:46 diagram 
+how the request traversed to db
+example of creating test DB 
+
+###K8s Namespaces explained #### (1:46 ) 
+1:46:16 - Organizing your components with K8s Namespaces
+###27-Jan-2025  #### (1:46 ) 
+ 
+Virtual cluster inside k8s cluster 
+-for organizing resources 
+
+4 namespaces default 
+
+kubectl get namespace :
+-default 
+-kube-node-lease (about node availability ) 
+-kube-public (Public data like config map)
+-kube-system ( system namespace - we should not do anything here ) 
+-kubernetes dashboard (specific to minikube)
+
+kubectl create namespace my_namespace 
+we can also create namespace using config file 
+preferred way is using config file 
+
+everything in default namespace - difficut to manage 
+
+-database namespace 
+-monitoring namespace 
+-elastic stack namespace 
+-nginx ingress 
+
+
+smaller projects and upto 10 users no need to use namespace .
+
+usecases for namespaces 
+1.two teams working on same cluster
+if deploy my-app deployment they might overright each other deplyment 
+
+
+Project A namespace
+Project B namespace
+ 
+2.
+Another usecase - hosting staging and production deployment in same cluster 
+
+3.Blue green deployment - sharing same resources 
+
+common resources link ngingx controller and elastic stack 
+
+4. Access and resource limits on namespaces 
+
+giving access to only thier namespaces 
+
+Limit the resources that each namespace consume .
+
+Characteristics of namespace
+you cant access most resources from another namespace .
+
+Ex : config map of project A cannot be used in projecb b namespace .
+secret also should be created separately 
+
+
+service can be shared across namespaces .
+
+Components which can't be created within namespace 
+-persistant volume or node 
+kubectl api resources -namespaced=false 
+kubectl api resources -namespaced=true
+
+How to create components in namespace 
+if no namespace is provided. component will be created in default namespace .
+
+kubectl apply -f config-file.yml --namespace=mynamespace
+to create component in defined namespace 
+  
+in metadata also we can specify namespace .
+
+change active nampespace where you are working 
+
+Change the active namespace with kubens!
+
+brew install kubectx 
+kubens mynamespace
+it will change to mynamespace  default namespace 
+
+####k8s Ingress explained 28-Jan #######2:01 - 2:24 
+-what is ingress ?
+-ingress YAML configuration 
+-when do you need Ingress ?
+-Ingress controller 
+
+external service vs ingress 
+external service - IPAddress:Port 
+
+we need secure connection + proper domain name(http or https )
+https//myapp.com 
+my app pod
+my app service 
+my app ingress 
+
+Example YAML file : External Service (Node Port )
+Example YAML file : Ingress Service 
+	kind : Ingress 
+		Routing rules 
+		host : myapp.com 
+redirect to myappinternal service 
+
+Ingress and Internal service Integration 
+Host - it should be valid domain address 
+
+map domain to IP address of one of the node
+
+How to configure Ingress in your cluster 
+
+Only creation is not enough for ingress 
+You need implementation also 
+Implementaion is called ingress controller 
+Ingress controller pod - evaluates and process ingress rules 
+
+ingress controller ?
+-evaluate rules 
+-manage redirections
+-entrypoint to cluster 
+-k8s Nginx Ingress controller - and many 3rd party controllers are available 
+
+Environment on which your cluster runs 
+Cloud service provider have out of box k8s solution 
+own virtualized load balacer 
+
+cloud load balancer will redirect request to ingress controller 
+Advantages - you dont have to implement load balancer when you use cloud provider 
+
+Baremetal - you need to configure some of the entry point 
+Externalproxy server - software or hardware solution - loadbalancer for the cluster 
+
+-separate server 
+-give public IP address and open the ports
+-entrypoint to the cluster 
+
+No servers in k8s cluster is accessible from outside world
+-good security practice 
+
+-all requests comes to proxy server - then ingress - then ingress will decide where to send 
+Ingress controller checks ingress rules 
+
+--Configure ingress in minikube . 2:12:21 
+Install ingress controller in minikube
+minikube addons enable ingress 
+
+-automatically starts the k8s Nginx implementation of Ingress controller 
+
+kubectl get pod -n kube-system 
+you can see nginx controller now 
+
+once controller is available , we will create ingress rule 
+
+we have kubernetes dashboard , which is not accesible externally 
+now we will change it 
+
+we will configure ingress rule for kuberneters dashboard 
+already we have k8s dashboard pod and k8s dashboard service now we can create ingress 
+
+create dashboard ingress.yaml 
+metadata and spec 
+spec rules - host : 
+dashboard.com 
+backed service name k8s dashboard 
+ingress config for forwarding every request 
+
+kubectl apply -f dashboard_ingress.yml 
+
+vim /etc/hosts file 
+map ip address to dashaboard.com
+192.34.33.45 dashboard.com
+
+open the dashboard.com from browser now 
+
+###Ingress default backend 
+
+
+Custom error message when page is not found 
+
+Configure default backend in ingress 
+
+Mutliple path for same hosts
+/analytics
+/shopping services 
+
+Example Googel 
+myapp.com/analytics 
+analytics service 
+analytics pod 
+
+shopping service 
+shopping pod 
+
+Mutilple subdomains or domains
+instead off --myapp.analytics 
+create subdomain analytics.myapp 
+
+Instead of 1 host and multiple path .
+now we have multiple hosts with 1 path 
+Each hosts reporesents a subdomain
+
+####Configuring TLS certificate 
+we need to give attribute TLS
+and secret name 
+base64 encoded cert and key 
+
+data keys 
+tls.cert 
+tks.key 
+
+-Secret component must be in the same namespace of ingress component 
+#########Helm - Package Manager 30-Jan#########
+What is helm ?
+package manager for k8s
+like apt you homebrew 
+
+###To package YAML files 
+and distribute them in public and private registry 
+Addition of elastic stack logging in existing cluster (my app mango ) (my app express)
+we need to create statefulset, config map , secret , services ,k8s users with permissions 
+
+Bundle of YAML files is called Helm charts
+Helm repo 
+
+we can share helm charts as well 
+helm search <keyword> to find relevent yaml files 
+helm hub 
+public and private registry for helm charts 
+
+###Second features :
+Templating engine 
+
+Deployment and Service configurations are almost same 
+
+application name and versions might be different 
+
+1)Define a common blueprint 
+2)Dynamic values are replaced by placeholders 
+
+template file 
+values.container name 
+
+we can provide values using 
+Values.YAML 
+{{.Values}} object 
+
+Another use case for helm features 
+
+Same application across different environments 
+
+Helm Chart Structure 
+mychart/
+	charts.yml
+	values.yaml
+	charts/
+	templats/
+	
+templates will be filled with the values from values.yaml 
+
+--Values injection into template files 
+
+
+imagename
+port
+version 
+
+we can override the default values 
+
+helm install --values=myvalues.yaml <chartname>
+
+new .values file will be created with updated values 
+
+
+###Third feature :
+Release management 
+
+Helm version 2 vs 3 
+client (helm cli) - Server (Tiller) 
+
+Tiller has too much power inside K8s cluster 
+create  ,update and delete component 
+
+in Helm 3 Tiller got removed 
+
+######k8s volume explained 4-Feb 2025 
+persistant data 
+PV
+PVC
+Storage Class 
+
+Need Storage that does not depend on pod life cycle 
+we dont know on which node ,the pod restarts 
+
+Persistant volume 
+- a custer resource 
+- created via YAML file 
+
+spec 
+--storage 
+
+A single application can contain multiple type of storage 
+
+Ex of NFS Storage backend yaml file 
+
+2:42 
+read write or read only 	
+
+k8s supports more than 25 storage backends
+
+Persistant volumes are not namespaced 
+
+Local vs Remote volume type 
+
+who creates persistance volume ?
+k8 admins - role 
+they will make sure resources are available 
+
+k8s user deploys application in cluster 
+
+
+dev - we need a google cloud storage 
+Application has to claim that volume storage 
+
+kind:Persistance Volume Claim 
+pods specs volumes we need to define volume - which pvc 
+
+pods - pvc cliam - storage 
+claims must be in same namespace 
+
+volume is mounted into the container 
+volume is mounted into the pod 
+pods contain multiple containers
+
+why so many abstractions for using volume 
+
+admin provisions PV
+user creeates PVC
+
+deploying applications easier for developers
+
+
+two volume types are - configmap and secrets
+-local volumes
+-not created via pv or pvc 
+-managed by k8s 
+
+-create config map / secret 
+-mount into container or pod 
+Apps can access the mounted data here / var / www /html 
+
+multiple containers . we will decide which container will get access to storage
+
+Different volume types in pod
+	 mount for config, secret and data
+	 three mount path 
+	 /var/lib/data 
+	 
+storage Class : 
+Admins configure storage 
+create persistant volumes 
+k8s users claims PV using PVCs 
+
+Storage Class provisions persistant volume dynamically 
+Storage can also be created using config file 
+
+via provisioner attribute in config file 
+kubernetes.ip / aws-ebs 
+
+in pvc we mention storage class name 
+
+-pod claims storage via pvc
+-PVC requests storage from SC
+-SC creates PV that meets the nees of the claim 
+
+
+#######Deploying Stateful Apps with StatefulSet
+
+
+
+
+
+
+
+
+
+###k8s interview questions 
+Different types of services in k8s :
+4
+cluster IP - Exposes the service on a cluster internal IP . accessible only within the cluser
+NodePort - Exposes the service on a static port on each node in the cluseter ,making it accessible from outside the cluster 
+Load Balancer - Provision an external load balancer in the cloud infrastructure , directing traffic to the k8s service 
+and exposing it to internet 
+External Name - Maps the service to external DNS name . enabling referencing of external services by name from within the cluster 
+
+init containers - the purpose is to perform initialization tasks or setup procedures that are not present in application container images 
+
+GitOps for deployment - similar to jenkins 
+
+GitOps is a practice where all k8s configuration , including the manifests and helmcharts is stored in git repo .changes to the configuration trigger automated deployment pipelines ,ensuring the clusters desired state matches the code in the repo.
+this approach streamlines mgmt ,promotes collaboration and provides as clear audit trail for k8s deployments 
+
+Security measures k8s :
+RBAC
+Network policies 
+Container seucrity
+Secret managemetn 
+Audit logging 
+Update and patching 
+
+Maintanance on k8s nodes 
+kubectl cardon - to make node unschedulable 
+Evicts pod gracefully with kubectl drain --ignore daemonsets 
+optionally reboot the node 
+kubectl uncardon 
+verify kubectl get nodes 
+
+Daemon sets ensure that specific pod runs on every nodes in a k8s cluster .They are used for system level tasks like logging or monitoring that need to be deployed on all nodes . each matching nodes has exactly one instance of the pod created by the Daemon set running on it 
+
+Ex fluentd 
+
+Config map ideally stores application configuration in a plain text format whereas sectrests store sensitive data like password in an encrypted format . both config map and secrets can be used as volume and mounted inside pod though pod defnition file 
+
+Operators:
+
+memory exceeds OOMKilled - pod 
+
+liveliness probe - whether container is running 
+
+k8s upgrade 
+
+
+CrashLoopBackOff
+The CrashLoopBackOff message indicates that Kubernetes was unable to schedule a given pod on a node. This error occurs when the node lacks the necessary resources to run the pod, or the required volumes failed to mount.
+
+Resolving the error
+
+Here are some of the main causes of the CrashLoopBackOff error and how to address them:
+
+Lack of resources: If the node lacks the required resources, you can manually eject some of its existing pods from or scale up the cluster to ensure more nodes are available for the pods.
+Volume mounting errors: If there was a problem when mounting the storage volume, you can check the volume’s manifest to ensure its definition is correct. You should also verify that a storage volume exists matching this definition.
+Pods bound to a hostPort: When using a hostPort, only one node can be scheduled for each node. You can usually avoid this by using a Service object instead of a hostPort to enable the pod to communicate.
+
+ImagePullBackOff
+This status indicates that the pod could not start on the specified node and Kubernetes was unable to pull the container image (thus the status refers to ImagePull). The BackOff element in the message indicates that Kubernetes will continue to try and pull the image.
+
+https://lumigo.io/kubernetes-troubleshooting/#:~:text=The%20CrashLoopBackOff%20message%20indicates%20that,required%20volumes%20failed%20to%20mount.&text=You%20can%20identify%20this%20error%20by%20using%20the%20kubectl%20get%20pods%20command.
+
+Kubernetes Node Not Ready
+A node displays a NotReady status when it shuts down or crashes and the stateful pods inside it are unavailable. If this error persists for longer than five minutes, the status of the scheduled pods will become Unknown. Kubernetes will then attempt to reschedule the pods on a different node, assigning it a status of
+
+

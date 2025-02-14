@@ -1,0 +1,24 @@
+Anisble - 
+Tool to automate IT Tasks 
+updating docker versions on 10 servers .
+need to ssh and peform operations 
+Anisble is agentless - it just require ssh access 
+can be only instaled in control machine 
+Ansible Modules 
+Module - one small specific task 
+Ansible uses YAML 
+Module 
+Arguments - 
+Description of task 
+yum module to install nginx 
+hosts - databases 
+users - which need to be executed 
+Strict indentation 
+
+which task  -which host - which user ---> playbook 
+
+1 playbook 
+one or more plays 
+
+playbook orchestrates module execution 
+anible inventory : host ip mapping 

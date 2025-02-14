@@ -1,0 +1,914 @@
+OS : 
+https://dev.to/preethamsathyamurthy/set-up-a-kubernetes-master-slave-architecture-using-kubeadm-9b3
+
+Step 3 Initializing the control plane or making the node as master
+centos , ubuntu , amazon linux 2 3 
+Step 1: Installing Docker as the container runtime Interface
+#update the repository
+sudo apt-get update
+
+#uninstall any old Docker software
+sudo apt-get remove docker docker-engine docker.io
+
+#Install docker
+sudo apt install docker.io
+
+#Start and automate docker to start at run time
+sudo systemctl start docker
+sudo systemctl enable docker
+
+#verify docker installation
+docker container ls
+CONTAINER ID        IMAGE                     COMMAND                  CREATED             STATUS              PORTS               NAMES
+
+Step 2: Installing kubeadm tool
+#add the required repository for kubeadm
+sudo apt-get update && sudo apt-get install -y apt-transport-https curl
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+cat <<EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list
+deb https://apt.kubernetes.io/ kubernetes-xenial main
+EOF
+
+#update the repository
+$ sudo apt-get update
+
+#installing kubelet, kubeadm and kubectl
+sudo apt-get install -y kubelet kubeadm kubectl
+
+#setting apt-mark
+sudo apt-mark hold kubelet kubeadm kubectl
+
+kubeadm init will initialize this machine to make it as master.
+
+$ kubeadm init --pod-network-cidr 10.13.0.0/16
+kubeadm join <control-plane-host>:<control-plane-port> --token <token> --discovery-token-ca-cert-hash sha256:<hash>
+
+export KUBECONFIG=/etc/kubernetes/admin.conf
+
+#####4-Feb-2025
+Redhad RHEL - RedHat Enterprize linux 
+Suse 
+Debian
+
+Types of Hypervisor 
+1.Bare Metal 2. Hosted 
+1.Bare Metal 
+VM Ware - Citrix 
+Used by Cloud Providers 
+
+
+###VirtualBox Setup - Linux Ubuntu & CentOS on Windows
+Installing CentOs on Windows 
+7.0.2.0 
+CentOS Stream 9 
+-Virtual box download and install
+-CentOS ISO download and install 
+root/root
+ragh/ragh
+
+####Access Linux Server Remotely Using SSH - Putty | Windows CMD | GitBash | MobaXterm|| 4-Feb-2025 
+putty is terminal
+used to remote access server via ssh 
+
+ifconfig of linux server ip 
+change from NAT To bridge adapter in VM 
+
+WinSCP 
+A free SFTP, SCP and FTP client for windows that allows secure file transfer between your local machine and a remote server 
+
+###Transfer files between linux servers :
+SCP - Secure Copy Protocol 
+scp /local/file username@remote_host:/path/
+
+GREP [Global Regular Expression Print ] 
+grep option pattern file 
+grep kara users.csv 
+grep -i kara users.csv 
+i ignore case 
+grep -v kara users.csv 
+Search everything except kara 
+
+print how many times given keyword present
+grep -c keyword users.csv 
+
+grep -iw exactmatch users.csv 
+
+ragh
+
+########5-Feb-2025 
+/ 
+is root directory 
+
+OS store and manage data on disk or partitions using a structure called filesystem 
+FileSystem include files , directories and related permissions 
+
+There is no issue with extension in linux  you can store file with anyname 
+case sensitive 
+
+Types of file system :
+1.ext3
+2.ext4
+3.XFS
+4.BtrFs
+5.FAT 
+
+How to check your filesystem 
+lsblk -f
+df -Th ( check for filesystem)
+cat /etc/fstab 
+
+XFS vs EXT4 
+-Optimized for large files and volumes,offering superior performance and scalability 
+
+EXT4
+-performs well across various file sizes but less efficient with extremely large files 
+
+What is inode ?
+Linux datastructure that stores metadata about file directory 
+
+ls -li 
+inode number 
+
+Filesystem structure : 
+forward slash / root directory 
+############6-Feb-2025
+/bin: contains essential user binaries (executables ) such as common commands like ls,cp etc 
+all commands and logic of commands 
+
+
+/etc 
+Holds the system configuration files 
+User , Network services , System Apps 
+
+/home 
+contains personal directory of all users 
+
+/root 
+the home directory of root user 
+
+/var -logs 
+where variable data such as logs and databases are stored
+
+
+/boot 
+holds files needed for system bootup ,including the linux kernel .
+An initial RAM Disk image, bootloader configuration like (GRUB)
+
+/dev -devices 
+The directory contains device files which represent and provide access 
+to hardware devices such as hard drives, sound devices , etc .
+
+/lib /lib64
+contains esssential shared libraries and kernel modules that are needed 
+to boot the system and run the commands
+
+/media
+this is mount point for removable media 
+
+/mnt 
+this is traditional mount point where system administrator can mount temporary file systems 
+while using or configuring them 
+
+/opt 
+intended for the installation of add on application software packages.
+Large software packages that are not of the default installation can be placed here to avoid 
+cluttering the system directories 
+
+/proc 
+A virtual and dynamic directory as it only exists in memory .It does not use disk space .it contains information 
+about system resources , hardware and running process ,Its a pseudo filesystem that provides and interface to 
+kernel data structures 
+
+cpu info
+mem info
+
+/run 
+A temporary file system that stores transient state files ,like process ids or lock files , since it is cleared
+and recreated at every boot 
+
+/sbin 
+contains binary(Executable) files that are mostly needed by the system administrator, these include system management commands like 
+fdisk , shutdown , ip etc 
+
+/srv 
+contains data which servers hosted on the system may need ,such as web pages started by  a web server 
+
+/sys 
+similar to proc ,this is virtual file system that provides an interface to the kernel , it contains information and settings 
+about the system devices , drivers and some kernel features 
+
+/usr - Unix system resource 
+which is not a user 
+Conisedered the secondary hierarchy becuase it contains all user applications and
+variety of other things for day to day operations , including libraries , documentation and much more 
+Subdirectories include /usr/bin,user/sbin,usr/local,usr/share among others 
+
+
+
+###Change ownership 
+chown 
+chgrp 
+
+user, group , other user 
+rw rw rw 
+
+chown -c nick testfile 
+chgrp -c nick testfile 
+ 
+
+####FTP###7 Feb 2025 
+The file transfer protocol is a comminication protocol user for transfer of computer files between a 
+client and server on a computer network 
+Uses TCP IP 
+
+-to upload and download files from servers 
+client -ftp 
+server - vsftpd 
+above files are required 
+
+##Remote server ftp set up : 
+-Need root access 
+-install vsftpd service (if not already )
+-yum install vsftpd
+
+Config 
+/etc/vfstpd/vfstpd.conf 
+
+Client server ftp set up 
+-Need root access
+-install ftp service if not already
+-yum install ftp 
+
+ftp 192.4.4.4.
+username/password
+put filename 
+
+it will get copied to home directory in server 
+
+multiple files
+mput file 1 file 2
+
+use get command to download file 
+
+###Linux - user account management :
+#####7 - feb 2025 ######
+you should be root user 
+useradd shan
+in home directory 
+
+-id shan 
+
+How to create a user in Linux with useradd command
+useradd <username>
+useradd -g <groupname>  -s /bin/bash -c "description 
+-m -d /home/<username> <username> 
+
+How to delete a user in Linux with userdel command
+userdel <name of user>
+userdel -r (will remove home dierectory)
+userdel -f (force delete even if the user logged in)
+
+How to modify a user in LInux with usermod command
+TO add user to new group, default group will remain same 
+usermod -G <groupname> <username>
+
+to change default group 
+usermod -g <groupname> <username>
+How to create a group in Linux
+
+group add 
+
+How to delete a group in Linux
+
+How to assign a group to a user in Linux
+
+
+useradd
+userdel
+usermod
+groupadd
+groupdel
+
+To get more info about users and groups
+/etc/passwd file
+/etc/shadow file
+/etc/group file
+
+passwd paul 
+enter password 
+	
+	
+###File types in linux 
+-Regular 
+d directory 
+l Link
+c Device file 
+s sockert
+p FIFO or Named pipe 
+d Block Device 
+
+s - socket file
+special file to enable communication between 2 sockets 
+
+p FIFO or Named pipe 
+Sends data from one process to another so that the recieving process reads the data in 
+first in first out order 
+canbe created usign mkfifo command 
+
+find . / type p
+
+b block device file 
+c character device file 
+
+
+9 ####Most frequetly used linuc commands 
+-File and Directory Management 
+-Network Mangemetn 
+-Process mgmt commands
+user mgmt commands
+system control commands
+application mgmt commands
+environment variables commands
+console and output mgmt commands 
+
+-File and Directory Management 
+cd,cp , less ,more , vi ,cat ,mkdir ,rm 
+mv , pwd , ls find 
+grep tar 
+gzip gunzio 
+
+
+-Network Mangemetn 
+curl , wget 
+ip ifconfig 
+netstat 
+ssh 
+ftp 
+ping 
+telnet 
+
+Process mgmt commands
+ps
+kill 
+
+kill 
+
+user mgmt commands
+id 
+whoami
+passwd
+su 
+
+application mgmt commands
+which 
+yum 
+ctl 
+
+environment variables commands
+env 
+printenv 
+export 
+source 
+
+
+
+console and output mgmt commands 
+cat 
+clear 
+echo 
+
+system control commands
+poweroff
+reboot 
+
+some other useful commands
+systemctl
+df
+du 
+free
+chmod 
+awk,cut,sed
+ln - hardlink , softlink 
+nohup 
+crontab 
+
+
+####Linux hard and soft links 
+ln - linkname command 
+A connection between filename and actual data on disk 
+
+file in long locaion 
+cat mul/dir1/dir2/dir3/dir4 
+ln -s pathtofile newname 
+we can read using shortcut file 
+
+we can create multiple links for file softlink 
+
+SoftLink - Link will be removed if original file is deleted or removed 
+we can edit file using softlink 
+
+inode number will be different for softlink files 
+if we delete original file. softlink will be broken 
+
+HardLink: 
+Deleting renaming or removing the original file will not effect the link 
+
+ln myfile my_file_hardlink 
+
+only -s is missing 
+inode will be same 
+filename is not of type l 
+
+if we delete orinal file also in hardlink , linked file will not get deleted
+
+Usecase - config.xml 
+we will change config version links 
+as configs will be changing 
+
+
+###File permissions
+rwx - read, write , executable 
+
+(user)(group)(other)
+
+How to modify permissions of file ?
+#chmod a+rwx file.txt
+#chmod a-rwx file.txt
+u user
+g group 
+o other 
+a all 
+chmod u+x script.sh 
+chmod u=rwx,g=rw,o=r file.txt
+
+Recursively upate the file permissions
+chmod -R u+x mydir 
+
+Numerical Method (Octal ) 
+#chmod 777 file.txt 
+#chmod 644 file.txt 
+
+000 no permissions 
+every number has a meaning 
+0 -7 
+1-execute only 
+7 read , write and execute (4+2+1)
+
+###Manange ownership 
+chown user:group filename 
+chown paul:QA file.txt 
+chgrp paul rfile.txt 
+
+###File permissions with access control list 
+why we need ACL ?
+as we have chmod , chgrp ,chown 
+
+what is ACL ?
+It allows you to give more specific set of permission to a file or directory without 
+changing the base ownership and permissions .
+commands : setfacl & getfacl
+setfile acl 
+getfacl testfile 
+
+ex : setfact -m u:nick:rw testfile 
+
++ indicates ACL is used 
+
+###ps command 
+process status command
+ps 
+
+pid 
+terminal type of user logged in 
+cpu time 
+
+ps -ef | more 
+ps aux | more 
+
+ps -ef | grep httpd
+
+ps -u username
+ps -G groupname 
+
+process tree 
+ps -ejH 
+
+###kill command 
+used to terminate procee manaually 
+kill signal no pid 
+kill -9 PID
+restrt,
+kill
+15 gracefully terminate 
+
+Terminated 
+
+
+###disk size commands
+8-Feb 2025 
+df -h
+du -h /home/paul/scripts 
+free  command 
+Display amount of free and used memory in the system 
+free -h 
+free -h 10sec
+Keep refreshing after 10 secs 
+
+free means RAM
+du means physical memory
+
+####service management 
+sudo systemctl start/stop <service_name>
+-start of stop a service 
+
+-to check status 
+sudo systemctl status <service_name>
+
+-to restart service 
+sudo systemctl restart <service_name>
+
+-to enable and start at same time
+sudo systemctl enable -new sshd 
+
+###sticky bit 
+Restricted deletion flag or sticky bit 
+Only file owner , directory owner can delete or rename a file or directory 
+
+
+t or T 
+
+chmod o+t filename
+
+it will not allow user to delete file 
+
+###How to change default file permissions ( 8 -Feb -2025) 
+
+umask : 
+0022
+Permission = 0777 - 0022 = 755 
+
+umask -S 
+
+change default permission using command
+umask u+rw,g+w,o+wx 
+
+once we logout , the umask gets reverted to default permissions
+
+To change the default permission permanently 
+Add the permission in .bashrc file 
+
+make change in .bashrc file
+and souce .bashrc file 
+
+This is how we will change default ownership fo user .
+
+
+####netstat - network monitoring and troubleshooting 
+network statistics 
+-network connections for tcp udp
+-routing tabes 
+-a number of network interface 
+-network protocol statistics
+
+Case1 :port is not open - so he kill the process running on 12345 port 
+and now he can connect 
+
+netstat -an | grep 12345 
+
+
+Case2 : Apache webserver is down 
+
+Case 3 : to identify number of connections on a given port 
+netstat -putan | grep <port/IP> 	
+
+process, udp , tcp , all , numerrc 
+
+netstat -putan | grep :22 
+check for ssh 
+
+
+
+#######9-Feb-2025 #########
+Alias in Linux to boost productivity :
+A custom shortcut that represents 
+a longer command
+series of commands 
+alias shortname="your command"
+alias l =  ls
+
+alias -p
+lists all alias commands 
+
+tar -czvf backup1.tar.gz arc/ 
+
+rm -i filedelete
+i means interactive 
+
+aliases are temporary 
+
+ to make it permanent 
+ save in .bash_profile 
+ 
+ to immediately make it work 
+ use source command
+ 
+ to make it global change update in 
+ /etc/bashrc 
+ 
+Benefits of using alias 
+-save times and efforts
+-increase productivity 
+-reduce risk of errors 
+-improved readability 
+
+#######10-Feb-2025 #########
+Wildcard and Regex 
+
+ls *.xml 
+to find only xml files 
+
+Wildcards are special characters that respresent one or more special characters 
+in filenames or commands allowing users to select multiple files at once 
+
+1.* Matches any number of characters including none
+*txt 
+
+2. ? matches exactly one character 
+file?.txt matches file1.txt and file2.txt 
+
+3.[] matches one of the enclosed characters 
+file[12].txt matches file1.txt and file2.txt 
+
+4.Matches a group of patterns 
+file{12}.txt matches file1.txt and file2.txt 
+
+
+-How to find all the xml files in a directory 
+-create 20 files like file1,file2----file20 
+touch file{1..10}
+
+wildcards can be used with any commands 
+
+-Find all the files with name _123(where _ can be any character 
+ls ?123
+? - means single character 
+
+-Find all the files whose name is exactly four characters 
+ls ????
+
+-Find files which name starts with a,b or c 
+ls [abc]* 
+
+-Find files whose name included numeric value 
+ls *[1-9]*
+ls *[a-z]*
+ls *[A-Z]*
+
+ls | grep -v 'e'
+files which does not contain e 
+
+#######sed command - stream editor  #########
+How to show only a given line or range of lines?
+sed -n '1p' file_name
+sed -n '1,5p' file_name
+sed -n '$p' file_name
+$ - meaning last line
+p means print 
+s means substitute 
+g means global 
+i to insert in a file 
+d - for deleting a line in a file , use d 
+deleting empty line in a file 
+content wrap using sd 
+adding line 
+inserting line 
+
+
+How to see all the users from India Country?
+sed -n '/India/p' file_name
+
+
+How to use multiple expression in sed command?
+Example: If you wanna only see 2 and 5th line
+sed -n -e '2p' -e '5p' file_name
+
+How to see all the users from India and Germany?
+sed -n -e '/India/p' -e '/Germany/p' file_name
+
+
+How to see next 4 lines from 2nd line?
+sed -n ‘2,+4p’ file_name
+
+How to see every 2nd line from first line?
+sed -n ‘1~2p’ file_name
+
+How to read expression from external file?
+sed -f ex_file file_name
+
+How to replace a word in a file and show?
+sed 's/<string_to_change>/<new_string>/g' file_name
+
+How to replace a word in a file and show except a given line or only in given line?
+sed '5 s/<string_to_change>/<new_string>/g' file_name
+sed '5! s/<string_to_change>/<new_string>/g' file_name
+
+How to replace a word and and edit in your file?
+sed -i's/<string_to_change>/<new_string>/g' file_name
+
+How to change salary or country of a user (Paul)?
+sed '/Paul/ s/25000/35000/g' file_name
+sed '/Paul/ s/India/US/g' file_name
+
+
+How to delete a line?
+sed '1d' file_name                                    (to delete first line)
+sed '1,2d' file_name
+sed '$d' file_name
+
+How to delete user from India country?
+sed ‘/India/d’ file_name
+
+How to delete empty line?
+sed '/^$/d' file_name
+
+How to replace tab with space?
+sed 's/\t/ /g' file_name
+
+How to copy output of sed command in separate file?
+sed -n ‘/India/ w new_file_name’ file_name
+
+How to add new line after a given line no.?
+sed '5 a new_text' file_name
+
+How to add new line after a given string, so it will add text after Paul?
+sed '/Paul/ a new_text' file_name
+
+How to edit existing line instead of adding new line?
+sed '5 c new_text' file_name (it will add text at line 5)
+
+How to add new line before a given string, so it will add text before Paul?
+sed '/Paul/ i new_text' file_name
+
+How to see the hidden characters?
+sed -n 'l' file_name
+
+How to wrap your file content with given no. of characters?
+sed -n 'l 50' file_name
+
+How to read content from a file and use in our command?
+sed '3 r externalfile' file_name
+
+How to stop execution of sed command as soon as first occurance found?
+sed ‘/India/ q’ file_name
+sed ‘5 q’ file_name  (stop execution at line 5)
+
+How to provide exit status for your sed command?
+sed ‘/India/ q 100’ file_name
+
+
+How to execute external command line date in your expression?
+sed '2 e date' file_name
+
+How to see the line number in file?
+sed '=' file_name
+
+
+
+
+SED Regular Expressions
+
+^   start of line
+$   end of line
+.   single character
+[]  match character set
+[^] exclusive Set 
+*   zero or more occurance
+
+examples:
+
+sed -n '/^2/p' file_name
+sed -n '/ia$/p' file_name
+
+How to find a 5 letter name which start with S and end with a?
+sed -n '/^S...a$/p' names
+
+How to find names start with V?
+sed -n '/^V/p' names
+
+How to find names end with a?
+sed -n '/a$/p' names
+
+How to use wild card?
+ls -ltr *.txt
+
+How to see names start with only A and C?
+sed -n '/[AC]/p' names
+sed -n '/[AC]/p' names
+
+
+How to see names start with only A to D?
+sed -n '/^[A-D]/p' names
+
+
+
+POSIX Classes
+
+Example: sed -n ‘/[[:alpha:]]/p’ posix
+
+[:alnum:]
+[:alpha:]
+[:digit:]
+[:blank:]
+[:lower:]
+[:upper:]
+[:punct:]
+[:space:]
+
+############11-Feb-2025#############
+Linux package management 
+yum | dnf | rpm 
+
+tools :
+yum 
+dnf
+rpm
+apt 
+
+upgrade and update
+rollback patches or update 
+
+package management : 
+-installing 
+-upgrading
+-deleting 
+-view package info 
+-packages config 
+
+Manage software using yum/dnf and RPM for your redhat based linux systems like CentOS
+
+APT for debian based , ubuntu , kali  linux etc
+
+YUM - yellow dog Updater modified 
+
+yum install nginx -y 
+yum remove nginx 
+
+nginx -v 
+to verify package 
+
+yum upgrade/update nginx 
+
+diff update and upgrade :
+upgrade - will delete the old packages 
+update - keep the old packages , we can rollback 
+
+yum options
+
+yum check-updates  
+
+package rollback : 10:03 
+
+yum history 
+
+yum history undo | redo id 
+
+RPM cannot manage dependency resolution like yum 
+rpm maintains a database of installed packages , which enables powerful and fast queries 
+
+rpm -i package file
+rpm -U package file 
+
+wget https ---.rpm 
+
+DNF - dandified yum 
+
+apt install package name 
+apt uninstall package name 
+
+########13-Feb####
+use less command for reading big files 
+live monitoring of file use tail command 
+tail -f | grep "error"
+
+to record all commands in file
+script commands.txt
+exit 
+to record all commands in file 
+
+
+calculator | binary calculator
+bc
+
+ctrl a and e to move cursor to start and end 
+
+ctrl u - erase
+ctrl y 
+
+ctrl r - reverse search command ---important command 
+
+cd ~ switch to home directory 
+
+
+
+
+

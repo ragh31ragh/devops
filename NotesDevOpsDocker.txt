@@ -1,0 +1,187 @@
+https://github.com/ragh31ragh/twofive.git
+
+container technologies
+
+Docker , Google Kubernetes Engine,Openshift -Redhat 
+
+docker vs virtual machines
+
+container - container config, dependencies etc 
+Docker - Virtualization Tool 
+
+How is OS made up 
+OS Kernel 
+OS Applications Layer 
+
+docker virtualizes applicaiton layer 
+
+VM has its own kernerl - not docker .it virtualizes complete OS 
+
+10-Jan-2025 :
+Docker can be installed on desktop - windows os also
+
+docker cli - docker ui avaialbe 
+
+KAOps
+
+docker hub 
+docker official images 
+docker images
+docker ps
+docker pull nginx:1.23
+
+docker run nginx:1.23 
+
+if name is not provided to container docker will give name like "volsome_holard"
+
+docker run -d nginx:1.23
+-d detach mode .
+
+
+docker logs id/container name 
+
+
+we can directly run docker command
+
+docker pulls image automatically , if it doesnot find locally 
+
+Port Binding : 
+Container Port vs host port 
+
+docker run -d -p 9000:80 nignx:1.23 
+
+
+
+mysql 3306:3306 
+
+docker run 
+creates a new conainer doesnot use previous one .
+
+docker run --name devops -d -p 9000:80 ngingx:1.23 
+
+need to authenticate before using private registry 
+
+docker registry / vs repository 
+
+registr - a service providing storage
+-collection of repository
+repos 
+-collection of related images with same name but diff versions
+
+Building our own docker images 
+
+Docker - Build instruction :
+Dockerfile is text document that contains command to assemble an image
+docker can build an image by reading those instructions 
+
+starts with base image
+FROM node:19-alpine
+COPY package.json /app/
+COPY src /app/
+WORKDIR 
+RUN npm install 
+
+cd is WORKDIR here 
+
+
+docker build -t nodeapp:1.0 
+
+Docker in completer software development lifecycle 
+
+
+
+###AWS VPC Explained 
+To securely isolate and control network environments
+
+VPC CIDR Block 
+When you create a VPC , you specify a CIDR block that defined the IP Address range for the Entire VPC 
+For Example  : 
+
+10.0.0.0/16
+This blocks allows for 65536 IP Addresses, But in reality 65,531 are usable addresses
+CIDR [Classless InterDomain Routing] is a method for allocating IP Addresses and routing Internet protocol packets 
+
+A subnet is a smaller , segmented part of a larger network that isolates and organizes devices within a specific IP address range 
+
+instances will be created inside subnet 
+
+public subnet 10.0.0.0/24
+private subnet 10.0.1.0/24
+
+subnet will be created in AZ 
+
+Subnet CIDR Blocks 
+
+Routing Table 
+Routing table is set of rules called routes .that are used to dertermine whether network traffic from your subnets or gateway is directed 
+Each subnet from your VPC  must be associated with a route table , which controls ther routing of the subnet .
+
+Internet Gateway : 
+An Internet gateway is a component that allows communication between instances in your VPC and the internet .
+
+Security Groups:-works on instance level 
+Network firewall rules that control inbound and outbound traffic for instances .
+
+Security group contains inbound and outbound rules 
+inbound - enable http and https 
+
+Network ACLs ( Access Control Lists)- works on subnet level 
+Optional layer of security for your VPC that acts as a firewall for controlling traffic in and out of one or more subnets 
+
+Allow or Deny Rule 
+
+NAT ( Network Address Translator ) Gateway :
+Enables instances in a private subnet to connect to the internet or other AWS Services .but prevents the internet from initiating 
+connection to those instances 
+
+VPC Peering 
+A networking connection between 2 VPCs that enables you to route traffic between them privately 
+
+VPC Endpoints 
+Allows you to privately connect your VPC to supported AWS services and VPC endpoint services powered by AWS Private Link 
+
+Bastion Hosts : 
+A special purpose instance that provides secure access to your instances in private subnet 
+
+
+Elastic IP Addresses : 
+Static IP Addresses designed for dynamic cloud computing 
+
+VPC Flow Logs : 
+Captures Information about the IP Traffic going to and from network interfaces in your VPC 
+
+Direct Connect : 
+Establishes a dedicated network connection from your premises to AWS 
+
+AWS Client VPN : 
+Managed VPN service that enables secure remote access to AWS resurces and on premise networks using Open VPN based clients 
+
+####Manual VPC Cretion 
+Create new VPC
+created 2 subnets
+1 public and another private .
+
+Create route table 
+Create Internet Gateway 
+
+####VPC Creation using TF
+A VPC with CIDR Block of 10.0.0.0/16
+One public subnet with CIDR block of 10.0.1.0/24
+One private subnet with CIDR block of 10.0.2.0/24 
+One Internet Gateway 
+One public route table with a route to the Internet Gateway , and the correct association between public subnet and public route table 
+
+everything will be created in aws-vpc folder 
+In new folder will perform terraform init 
+
+
+Services used : 
+Computing : EC2, Lambda , ECS 
+Database : RDS , Dyanamo DB, Aurora
+Networking : Route 53 
+Load Balancers 4 : ALB, NLB , Gateway Classic 
+Monitoring  : Cloud watch dashboard
+Storage : s3, EBS,EFS 
+Security : Guardduty , Inspector, Firewas, Detective 
+Serverless: Elastic Beanstak , Lambda,API Gateway 
+Config , Athena ,  

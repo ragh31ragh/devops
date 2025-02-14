@@ -1,0 +1,365 @@
+https://www.youtube.com/watch?v=6fcoYGqvg6o
+
+
+
+I:\Learnings\Raghavendra\Jenkins
+java -jar jenkins.war httpPort=9090 
+http://localhost:8080/
+Jenkins - admin-da8a1223a4794359a5418f2aec806e38
+
+raghavendra/raghavendra
+raksha/raksha
+
+Github actions 
+--Running jenkins 
+go to location 
+run command
+java -jar jenkins -war -httpport=8081 
+tomat server : port 5050 
+login to jenkins 
+admin - admin 
+
+-Manager jenkins 
+check for available plugins 
+deploy 
+
+pom.xml 
+Need to create a job 
+package is war 
+
+spring framework package
+
+springboot job
+fresstyple project 
+--Sourcecode managemt - git , bit bucket 
+credentials 
+
+---build triggers 
+
+* * * * * - every minute 
+poll for github changes 
+
+--build environment
+delete workspace 
+Invoke top level maven targets 
+maven goal
+***clean compile package 
+
+
+--Post build actions 
+deploy plugin 
+
+Deploy war to container - depends on plugin installation 
+
+containers : 
+
+Glassfish , Jboss , Tomcat conatinter 
+
+Add the required credentials 
+
+URL 
+
+Build now to run jenkins job 
+
+runnig job 
+jeniks workspace will be deleted 
+
+now war file will be available in web apps folder 
+
+
+Step 1: Install & Configure Jenkins
+2.Install Plugins
+Pipeline
+Git
+Docker
+Kubernetes
+SonarQube Scanner
+JFrog Artifactory
+Slack Notification
+Email Extension Plugin
+Blue Ocean (for pipeline visualization)
+Step 3: Jenkinsfile (Pipeline Script)
+
+Step 4: Integrating Additional Tools
+
+Step 5: Trigger Automation
+Git Webhooks: Automatically trigger builds on code changes
+Cron Jobs: Schedule builds at specific times
+Manual Triggers: Start pipeline manually when required
+
+Step 6: Monitor & Optimize
+Use Jenkins Blue Ocean for pipeline visualization
+Monitor logs in Jenkins Console Output
+Enable Jenkins Dashboard Metrics
+Optimize with parallel stages and caching dependencies
+
+By following these steps, you can create a fully automated CI/CD pipeline in Jenkins integrating Git, Docker, Kubernetes, SonarQube, JFrog, Slack, Email, and more. You can customize this based on your project's needs.
+
+#####23-Jan ####
+Nana : 
+What is Jenkins file ?
+pipeline as a code 
+agent - windows or linux node 
+stages and steps : 
+build stage , test stage - deploy stage .
+java script - npm install ,npm build in build stage 
+multi branch pipeline - freestyle project 
+branch - select git repo 
+credentials 
+
+post build 
+condition - always -success - failure 
+like sending build or something 
+Env variables - branch name = dev 
+
+localhost:8080/env-variables.html 
+credentials binding plugin 
+
+Global credentials 
+
+#Using Tools attribute for making build tools available
+maven, gradle or yarn 
+gradle, maven and jdk 
+
+
+#Using Parameters for a Parameterized Build
+Android - apk 
+java - .jar file 
+writing code - compiling to form a build 
+
+
+ stage('Checkout Code') 
+ stage('Build Docker Image') 
+ stage('Push to Docker Hub') 
+ stage('Deploy to Amazon Linux') 
+ 
+ #####jenkins ############5-Feb-2025
+ 
+ https://www.youtube.com/watch?v=QaDNk1a8xFU&list=PLEiEAq2VkUUKGrfcoNYRgqam5YBERN8xa&index=4
+1. Prerequisites and installation
+2. Jenkins typical configurations
+3. Create new users and manage permissions
+4. Build freestyle jobs and auto-schedule its run
+https://www.slideshare.net/slideshow/jenkins-tutorial-for-beginners-jenkins-tutorial-jenkins-continuous-integration-simplilearn/118975008
+
+ 
+plugins is heart and soul of jenkins 
+ 
+Web application written in java - can be installed in 3 ways : 
+ -Windows or Linux unix services 
+ -Generic war file 
+ -Install on any Java bases web servers - Apache TomCat
+ 
+ pre-requuisite ;
+ jdk - 
+ 2GB RAM 
+ JAVA HOME Env variable 
+ 
+ -Install suggested plugins 
+ -first time login 
+ 
+###default plugins 
+git -repo 
+svn
+github 
+ant 
+email extension 
+groovy 
+gradle 
+mailer 
+Folders 
+
+Create admin and other users 
+Jenkins will be ready now 
+
+First time configurations : 
+
+#####Manage Jenkins : 
+Number of executors : how many threads can be run in this particular system 
+
+SMTP Server details 
+to send emails 
+email id we can set up for jenkin server 
+Test configuration of email 
+
+#Global Tool configurations -Conitnuous integration system 
+JDK 
+git 
+Gradle 
+Maven 
+
+
+##GLobal Security 
+LDAP Server ?
+Authentication server - AD 
+
+Will create new job now 
+-General 
+-SourceCodeManagement-
+-Build Triggers 
+-Build Environment
+-Build 
+-PostBuildActions 
+
+Execute windows batch command
+
+Second Job :
+Build Triggers - > Build periodically 
+
+###Role Based Access Plugin - to create few roles 
+Manage Jenkins  - Manage Plugins 
+it will be available in global security 
+Enable it 
+manage and assign roles 
+this option we can see only after installing the plugin 
+
+Roles _ Global role,project role , slave roles 
+Jenkins is owned or controlled by QA guys 
+Little permission for developer role 
+Created Global role called developer 
+
+Manager jenkins - manage users 
+Assign developer role to newly created user 
+
+logout and login with developer user 
+
+
+5. Integrate GitHub with Jenkins
+6. SMTP configuration for sending emails
+7. Deploy Maven based web-app to Tomcat server
+8. Distributed build: Master-slave configuration and set-up
+9. Backing up Jenkins
+
+
+#############Plugins 
+-maven and java 
+-MSBuild
+-Github
+-AWS 
+-Docker 
+-SonarQube -static code anaysis 
+
+Git repo
+Configure url to pull code 
+provide credentials 
+exeucte windows batch command
+java -c hellojava 
+java hello 
+
+
+maven build tool next 
+mvn 
+tomcat webserver 
+maven should be download and path should be set in Jenkins box 
+it can be our laptop as well 
+
+download and install apache tomcat server 
+Configure the port to run in other than port 8080 
+by editing server.xml file 
+create tomcat users 
+start the tomcat server 
+
+New job creation - 3rd Job 
+Mvn_web_app
+
+mvn package 
+it is a target 
+warfile will get generated in a location 
+
+grap this war file and deploy it to tomcat server 
+
+Download Deploy to conatainer plugin 
+
+Now we will add post build step : 
+Tomcat is a container ( you can check the list in jenkins ) 
+
+URL of tomcat 
+localhost:8081 
+
+if we give diff IP , build will be copied to that server and deployed 
+
+###Distributed build --Master Slave ###6-Feb-2025 ###
+Master
+Windows 
+Linux 
+Mac 
+
+JNLB - Java Network Lauch protocol - to talk to slave Jenkins 
+enable TCP - JNLB port 
+
+Manage Nodes : 
+New Node - Windows Node 
+# of executores : 2 
+label expressions matching the node 
+
+run some command from agent command line 
+agent.jar 
+
+status shows connected now : 
+it will create workspace in root folder - agent/slave 
+create delegate to agent job 
+how to run on agent ?
+restrict where this project can be run 
+
+#####9. Backing up Jenkins
+-back up program files - jenkins folder
+or use plugin 
+Manage jenking 
+- install one of backup plugin 
+backup - restrore hudson configuration 
+
+######jenkins interview questions 
+Popular Open Source Automation Server 
+
+-Jenkins master pulls the code from github repo everytime there is a code commit
+-It distributes the workload to all Jenkin slaves
+-on request from jenkins master ,the slaves carry out builds and tests and produce the reports 
+
+Jenkins File : 
+Text file that contains defnition of Jenkins file and checked into source control repo 
+-allows code review and itertion on pipeline
+-permits audit trail for the pipeline
+-there is a single source of truth for the pipeline which can be viewed and edited
+
+java -jar jenkins.war 
+
+key aspects 
+-pipeline: user defined model of cd pipeline .pipelines code define entire build process .
+-node
+-step : a single task that tells jenkins what to do at a particular point in time 
+-stage : defines a conceptually distinct subset of tasks performed through the entire pipeline ( build,test,deploy ) stages
+
+2 types of pipeline 
+- scripting [ groovy script ] 
+- delclarative 
+
+3 . Backu up Jenkins_Home directory 
+or back up plugin 
+
+4. How to copy job from one server to other ?
+copy the jobs directory from old server to new one 
+
+4.Security mecahaism to authencate jenkins user 
+-it uses internal DB to store credentials
+-LDAP server 
+-authentication mechanism of application server 
+
+5. Hot to deploy custom build of core plugin 
+
+temorarily we can disable jenkins security 
+
+--ways in which build can be scheduled in jenkins 
+-by source code management commits 
+-after completion of other builds-
+-schedule to run at specific times
+-manual build requests 
+
+jenkins restart
+force and safe restart 
+
+21
+
+Rebuild, using the Rebuilder plugin allows a completed job to be re-executed while allowing you to change the parameters, assuming your job is parameterized.
+
+Replay does something similar, except it doesn't show you parameters. Instead, it shows the pipeline code directly. This is helpful when wanting to test changes iteratively as you can click Replay, change one or two lines of code, then let it execute. The job will run using the same parameters as it did the first time it ran/completed.
+

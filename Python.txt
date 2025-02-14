@@ -1,0 +1,434 @@
+Course 3.9.1 
+2025 - Jan 3.13.1 
+Local - 3.12.3 
+
+-Download python
+-Install Python IDE 
+
+##Strings and Numbers 
+Datatype 
+
+"String "
+or
+'String'
+
+integer and float 
+integer 1,2,3 
+float 2.3, 5.6.
+
+Arithmetic operations 
+
+
+#String Concatenation 
+print(1);
+print(12);
+print(12);
+print ( 30*23);
+print ("20 days are "+str(40)+"Minumtes");
+
+print (f"20 days are {20*24*60} Minumtes");
+
+
+#Variables 
+
+
+#Functions 
+A function is used using def keyword 
+-Block of code which runs only when it is called 
+
+#Function Parameters
+
+
+
+to_seconds = 24 * 60 * 60;
+name_of_unit = "seconds";
+
+def days_to_units(num_of_days,custom_message):
+    print(f"{num_of_days} days are {num_of_days * to_seconds} {name_of_unit}");
+    print("All good");
+
+days_to_units(35,"This is 1")
+days_to_units(20,"Good")
+days_to_units(50,"Third")
+days_to_units(110,"very good")
+
+
+#Scope 
+Global variables and local variables 
+variable created inside function 
+
+
+#input 
+to ask the input for a function  
+input()-Built in function 
+
+
+#Return values of functions 
+
+#casting . turning one datatype into another 
+int(user_input)
+converting string to integer 
+
+#Conditions - -if else and boolean data type 
+
+
+#validation of user input 
+#conditions 
+
+#operators 
+comparision and arithmetic operators 
+
+#boolean data type - TRUE or false 
+
+#if 
+elif 
+else
+
+Nubmer of days > 0 , negative and positive 
+
+#More user input validation 
+what if user enters text now 
+still not validating float and string 
+
+#clean up your code 
+
+making use of functions 
+#Nested if else : 	1:43 
+
+
+#Error handling with try except 
+
+##try except 24-Jan 
+block 
+ try:
+        user_input_days_int = int(user_input_days);
+        if (user_input_days_int > 0 ):
+            total_hours = days * 24
+            return (f"total hours {total_hours} from function")
+        elif (days == 0):
+            print("you entered 0 . pls enter valid number  ")
+
+        user_input_days_to_int = int(user_input_days)
+        output_of_calculate_hours = calculate_hours(user_input_days_to_int)
+        print("output_of_calculate_hours")
+        print(output_of_calculate_hours)
+    #except :
+    except ValueError:
+        print("your input is not a number ")
+		
+#while loop 
+
+#lists and for loop (25-Jan-2024)
+
+##Data types learned till now 
+String 
+int 
+float 
+boolean 
+spilit we used .
+
+
+#Basic list operations 
+
+#Thanks Jetbrains 
+2:21 
+
+#Comments 2:23 (26-Jan-2025)
+
+###
+
+mutliline 
+
+###	
+
+#Sets [26-Jan-2025 ]  
+-another built in data type
+-but will not allow duplicate 
+
+##Nested function :
+
+##Basic set operations and syntax 
+no defined order 
+cant be refered by index 
+cannot be changed , only added or removed 
+
+#Built in functions 
+print()
+input()
+set()
+int()
+
+#Built in functions on data type 
+"2,3".split()
+
+##Dictionary data type ### 2:44 ###27 Jan 
+key value pari 
+
+
+###Modules 
+helper.py 
+
+
+###Built in pyton modules
+math, os ,datetime 
+
+##Time till deadline project 
+
+####Packages 27-Jan-2024############
+Built in vs Third Party 
+pandas,numpy,pytorch , plotty 
+not part of installation 
+you need to install third party packages 
+web development - django 
+
+where to find and how to install ?
+pyPI is python packages repo 
+python package index 
+
+Module vs Package 
+Any pyhton file is module .
+Package is collection of modules 
+ 
+ http email json are modules 
+ package has __init__ file 
+ 
+ pypi is repo for 3rd party packages 
+ around 3M package
+ 
+--pip 
+
+package manager tool 
+
+pip install django 
+java - maven or gradle
+javascript - npm 
+3+ python version 
+pip is default 
+
+install and uninstall pip 
+
+
+Python packages tool window 
+install and uninstall packages from pycharm only 
+we can do it 
+
+
+###### Project: Automation with Python (Working with Spreadsheets)
+
+######28 -Jan 
+
+
+####30 Jan
+python oops 
+
+class- blueprint
+object - specific implementation of class 
+--init-- is constructor function .
+self refers to current instance of class 
+
+Creating an object 
+
+###Example of linkedin user 
+class User:
+    def __init__(self,user_email,user_name,password,current_job_title):
+        self.email = user_email
+        self.name = user_name
+        self.password =password
+        self.current_job_title = current_job_title
+
+    def change_password(self,password):
+        self.password = password
+
+    def change_job_title(self,new_job_title):
+        self.current_job_title =  new_job_title
+
+    def getUserInfo(self):
+        print(f"user {self.name} cureently works as {self.current_job_title} and you can contact them at {self.email}")
+
+app_user_one = User("rd@rd.com","raghavendra","password","devOpsEngineer")
+app_user_one.getUserInfo()
+app_user_one.change_job_title("DevOpsTrainer")
+app_user_one.getUserInfo()
+app_user_two = User("nana@rd.com","nana","password","devOpsEngineer")
+app_user_two.getUserInfo()
+
+
+
+###Functions belong to a class are called methods :
+###in real world will have hundred of users and hundred of methods 
+
+using a class from a module
+user.User
+
+##Create another class and objects 
+
+
+##Object oriented programming 
+
+#In python everything is object 
+
+###Project ::: API request to gitlab
+
+why tuple uses more memory 
+why tuple is slow as compared to list
+
+Project API requests with Python 
+
+requests - Lib 
+import requests
+
+response = requests.get("https://gitlab.com/api/v4/users/nanuchi/projects")
+#https://gitlab/api/v4/users/nanuchi/projects
+print(response.text)
+
+json - light weight 
+often used to send data over web 
+
+
+Project Name : python-automation-chatgpt Project URL : https://gitlab.com/nanuchi/python-automation-chatgpt
+Project Name : docker-in-1-hour Project URL : https://gitlab.com/nanuchi/docker-in-1-hour
+Project Name : IT-beginners-course Project URL : https://gitlab.com/nanuchi/it-beginners-course
+Project Name : vue-js-test Project URL : https://gitlab.com/nanuchi/vue-js-test
+Project Name : gitlab-cicd-crash-course Project URL : https://gitlab.com/nanuchi/gitlab-cicd-crash-course
+Project Name : mymicroservice-cicd Project URL : https://gitlab.com/nanuchi/mymicroservice-cicd
+Project Name : mynodeapp-cicd Project URL : https://gitlab.com/nanuchi/mynodeapp-cicd-project
+Project Name : go-full-course-youtube Project URL : https://gitlab.com/nanuchi/go-full-course-youtube
+Project Name : argocd-app-config Project URL : https://gitlab.com/nanuchi/argocd-app-config
+Project Name : K8s-in-1-hour Project URL : https://gitlab.com/nanuchi/k8s-in-1-hour
+Project Name : java-app-efk Project URL : https://gitlab.com/nanuchi/java-app-efk
+Project Name : online-shop-microservices-deployment Project URL : https://gitlab.com/nanuchi/online-shop-microservices-deployment
+Project Name : devops-tool-of-month Project URL : https://gitlab.com/nanuchi/devops-tool-of-month
+Project Name : python-automation Project URL : https://gitlab.com/nanuchi/python-automation
+Project Name : python-programming Project URL : https://gitlab.com/nanuchi/python-programming
+Project Name : Java-App-DTOM Project URL : https://gitlab.com/nanuchi/java-app-dtom
+Project Name : bootcamp-kubernetes Project URL : https://gitlab.com/nanuchi/bootcamp-kubernetes
+Project Name : developing-with-docker Project URL : https://gitlab.com/nanuchi/developing-with-docker
+Project Name : terraform-learn Project URL : https://gitlab.com/nanuchi/terraform-learn
+Project Name : jenkins-shared-library Project URL : https://gitlab.com/nanuchi/jenkins-shared-library
+
+##################9-Feb-2025###########
+3:54:06 - Project: Automation with Python (Working with Spreadsheets)
+
+Lib used : openpyxl 
+use of dictionay and accing data 
+
+Different ways to work with files : 
+-Python has several built in functions for handling files in general
+io module - create , read and write 
+
+-python package to work with spreadsheets specifically 
+-more practical functions for spreadheets specificatlly 
+-easiar to use 
+openpyxl 
+
+Module = 1 .py file 
+package = collection of modules .must contain init.py file 
+
+Library = collection of packages 
+
+
+##Implementation 
+
+##Exercise 1 
+List each company with respective product count 
+End Result = company name and number of products 
+
+range()
+creates a sequence of numbers
+starting from 0 by default 
+range(75)
+
+import openpyxl
+inv_file = openpyxl.load_workbook("inventory.xlsx")
+product_list =  inv_file["Sheet1"]
+products_per_supplier = {}
+#print (product_list.max_row)
+for product_row in range(2,product_list.max_row+1):
+    supplier_name = product_list.cell(product_row,4).value
+    if supplier_name in products_per_supplier:
+        current_num_products = products_per_supplier[supplier_name]
+        products_per_supplier[supplier_name] = current_num_products + 1
+    else:
+        print("adding a new supplier")
+        products_per_supplier[supplier_name] = 1
+print(products_per_supplier)
+
+adding a new supplier
+adding a new supplier
+adding a new supplier
+{'AAA Company': 43, 'BBB Company': 17, 'CCC Company': 14}
+
+
+
+##Exercise 2 
+
+List each company with 	respective total inventory value 
+
+    #total value of inventory per supplier
+    if supplier_name in total_value_per_supplier:
+        current_value_total = total_value_per_supplier.get(supplier_name)
+        total_value_per_supplier[supplier_name] = current_value_total + inventory * price
+    else:
+        total_value_per_supplier[supplier_name] = inventory * price
+		
+
+{'AAA Company': 43, 'BBB Company': 17, 'CCC Company': 14}
+{'AAA Company': 10969059.95, 'BBB Company': 2375499.47, 'CCC Company': 8114363.62}
+
+##Exercise 3 
+List products with inventory less than 10 
+
+##Exercise 4
+Write to spreadsheet : Calculate and write inventory value for each product into spreadsheet 
+
+#####10-Feb-2025#####
+Python Collections (Arrays)
+There are four collection data types in the Python programming language:
+
+List is a collection which is ordered and changeable. Allows duplicate members.
+Tuple is a collection which is ordered and unchangeable. Allows duplicate members.
+Set is a collection which is unordered, unchangeable*, and unindexed. No duplicate members.
+Dictionary is a collection which is ordered** and changeable. No duplicate members.
+
+*Set items are unchangeable, but you can remove and/or add items whenever you like.
+
+**As of Python version 3.7, dictionaries are ordered. In Python 3.6 and earlier, dictionaries are unordered.
+
+Rishi :
+20-May-2024-50k
+15-May-2024-50k
+9-May-2024-40k
+6-May-2024-40k
+
+
+
+pytest :12-Feb-2025
+
+pytest --version 
+
+list , tuple , set , dict are like collections in other languages 
+Robot Framework _ Acceptance test drivern
+Cucumber - Business Driven 
+
+pycharm - intellibot plugin [ for creating scripts in robot framework ] 
+pip gets installed along with python 
+ 
+*args (Non-Keyword Arguments)
+**kwargs (Keyword Arguments)
+
+py.test -k mytest -v
+
+substring match - k 
+@pytest.mark.one
+py.test -m one 
+
+markers 
+fixtures 
+assertions
+
+@pytest.fixture 
+running some code before each test 
+@pytest.mark.parameterize 
+
+@pytest.fixture 
+@pytest.mark.skip 

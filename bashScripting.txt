@@ -1,0 +1,5 @@
+free -mt | grep "Total" | awk '{print $4}'
+
+declare -A myArray
+myArray = ([name]=Paul [age]=20)
+echo "${myarray[name]}"
