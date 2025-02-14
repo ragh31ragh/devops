@@ -911,7 +911,38 @@ cd ~ switch to home directory
 ########14-Feb####
 ########15-Feb####
 
+#########################su sudo commands#################################
+#########################14-Feb #################################
+How to provide sudo access for a user 
+su - paul
+switch user 
 
+su - home folder
+su user 
+same directory where user is logged in 
+
+su - 
+for root user login 
+super user DO 
+sudo 
+it is way to temporarily grant a user administrative rights 
+
+not every user will have sudo access 
+nick user does not have sudo access 
+
+Details of sudo is present under 
+/etc/sudoers
+
+we can edit the above file using 
+#visudo 
+wheel group 
+sudo group 
+can run all commands 
+paul was a part of wheel group 
+usermod -aG wheel nick 
+
+we can also give limited access to sudo 
+nick ALL=locate 
 
 
 
