@@ -1,9 +1,69 @@
 #############14-Feb-2025#############
 DevOps LifeCycle :
 Continuous Development 
-Continuous Ingegration 
-Continuous Testing 
+Continuous Ingegration [Github commits]
+Continuous Testing [Junit, Selenium ] 
 Continuous Deployment 
 Continuous Monotoring 
 
+ why we need continuous monitoring ?
+ -better network visisbliliy and transparency 
+ -facilitates rapid responses 
+ -Minimizes system downtime 
+ -Assists with healty business performance 
  
+ It is automated proces by which one can observe and detect complaince issues and security threats during each phase of devops pipeline 
+ 
+ Continuous monitoring tools in devops 
+ -Monitoring tools 
+ -Sensui , Negios ,  Prometheus - pull method 
+ 
+ Cofiguration Management tools 
+ -Ansible, chef , puppet 
+ 
+ Alerting tools 
+ -pager duty , service now , slack 
+ 
+ Metric storage 
+ -influx db , aws , splunk 
+ 
+ Visualization Tools 
+ - Grafana 
+ 
+ 
+ ###############Intro to Grafana ##################
+ Grafana is multiplatform open source analytics and interactive visualization web application .it provides 
+ -charts
+ -graphs 
+ -alerts 
+ 
+ Grafana has plethora of visualization options to help you understand your data beutifully 
+ 
+ Alert - 
+ Grafana supports dozens of database natively , Mix them together in same dashboard 
+ Open source - backed by broader community 
+ hundreds of dashboard as plugin 
+ collaboration 
+ 
+ 
+ ###############Getting started with Grafana ##################
+ Install grafana on ubuntu
+ wget 
+ yum install 
+ start and enable grafana server using 
+ systemctl command 
+ start and enable 
+ 
+ localhost : 3000 grafana server will be running here 
+ timerange to view data
+ 100s of plugins
+ database connect 
+ 
+ Exploring 
+ Alerting 
+ Configuration - Adding data source into grafana 
+ Teams creation 
+ user and groups creation 
+ 
+ Adding new API keys 
+ Server Admin 
