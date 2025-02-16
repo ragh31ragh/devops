@@ -183,6 +183,7 @@ minikube start --vm-driver--hyperkit - to start k8s cluster
 kubectl get nodes 
 kubectl version 
 -it will give client and server version 1.32 
+Latest Release:1.32.2 (released: 2025-02-11)
 
 #main kubectl commands 
 ###CRUD Commands 
@@ -338,7 +339,7 @@ DB user and pw - to authenticate -this will go inside secret
 mongo express - url 
 url will be IP address and port 
 
-request - mongo express externa service - > pod - mongo -express -> mongo db internal service -> pod mongo db - config map -secret 
+request - mongo express external service - > pod - mongo -express -> mongo db internal service -> pod mongo db - config map -secret 
 
 will create whole set up using this config file 
 
@@ -432,7 +433,7 @@ kubectl get all | grep mongodb
 ###Now we will create mongo express deployment and service config map (1:33)
 
 
-################26Jan-2025#################################
+################26-Jan-2025#################################
 Create new file for mongo express deployment 
 metadata
 spec contains details about pod 
