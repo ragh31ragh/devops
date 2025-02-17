@@ -245,7 +245,9 @@ git stash - u
 if you have untracked files then will not be included in git stash 
 Fortunately , you can use -u option to tell git stash to include those untracked files 
 
-git stash list 
+git stash list #my halfwaydone feature ,not quite ready to commit yet
 git stash apply@{2}
 
 git stash clear 
+
+#####
