@@ -225,3 +225,27 @@ and all all the files which you want to ignore
 *.log 	
 added something
 
+###########git stash ###########
+git provides an easy way of stashing these uncommited changes so that we can return to them  later 
+, without having to make unneccasary commits 
+git stash 
+git stash save 
+(both staged and unstaged )
+WIP 
+stashed 
+
+Use git stash pop to remove the most recently stashed changes in your stash and reapply them to  your working copy 
+
+stash apply 
+you can use git stash apply to apply whatever is stashed away , without removing it from the stash 
+This can be useful if you want to apply stashed changes to multiple branches .
+
+
+git stash - u 
+if you have untracked files then will not be included in git stash 
+Fortunately , you can use -u option to tell git stash to include those untracked files 
+
+git stash list 
+git stash apply@{2}
+
+git stash clear 
