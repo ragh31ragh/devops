@@ -134,7 +134,7 @@ k8s also provider
 
 ###Declarative vs Imperative 
 
-adjust old config file and reajust 
+adjust old config file and readjust 
 
 refresh - query infra provider to get the current state 
 terraform will know current state
@@ -146,7 +146,7 @@ destoy -
 declarative language 
 terraform.tfstate
 
--set path in widows to use terraform 
+-set path in windows to use terraform 
 -terraform version 1.8.5 
 
 -set up aws account 
@@ -157,8 +157,8 @@ terraform.tfstate
 -aws list iam users
 -create access key for aws cli 
 
-access key similar to username
-secret access key similar to password 
+		access key similar to username
+secret 	access key similar to password 
 set env variables 
 aws export access_key= afda
 aws export access_key_secret = dafadsaf
@@ -180,7 +180,7 @@ like git init
 -terraform plan
 some properties will be known after apply 
 -terraform apply 
-
+###15-Feb-2025###
 ###Resource Change 
 change instance type = t3.micro to t3.nano
 change ami id = from amazonlinux to ubuntu 

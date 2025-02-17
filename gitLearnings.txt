@@ -1,0 +1,253 @@
+git config --globlal user.name "StudentApnaCollage"s
+git config --global user.email " officialEmaid@id.com"
+git config --list 
+
+##---while pulling code from repo 
+git clone 
+git status - 
+
+remote - local 
+
+untracked , modified , staged , unmodified 
+
+git add and commit 
+commit - is the record of change 
+
+push - upload local repo content to remote repo 
+
+git push origin main
+
+-ask for permission if pushing for first time 
+
+
+##--while uploading code from local repo
+git init 
+
+git remote add origin "URL"
+git remote -v 
+git push -u origin main 
+
+##Always prefer creating project in github and then clone
+dont go with local folder first 
+
+Git branch 
+
+git branch ( to check branch)
+git branch - M main ( ro rename branch)
+git checkout <branchname> (to navigate)
+git checkout -b < new branchname >
+
+git branch -d < -branch name > 
+
+git merge - branch name 
+git merge main
+Pull Request 
+
+Resolving merge conflicts .
+
+An event that take place when Git is unable to automatically resolve differences in code between two commits .
+
+Undoing changes 
+
+
+git reset filename .
+
+git reset <hash>
+
+git fork means - rough copy 
+
+############13-Feb-2025######
+hidden files - ls -a 
+
+modifiy files - git add .
+git commit 
+
+local repo :
+I:\Learnings\Raghavendra\gitdemo\rdtestrepo
+remote repo :
+https://github.com/ragh31ragh/rdtestrepo
+
+untracked - new files that git doesnt track yet 
+modified - changed
+staged - file is ready to be commited
+unmodified - unchanged 
+add - add new or changed files in your working directory to the git staging area
+commit- it is record of the change 
+git commit -m "message"
+
+push - upload local repo content to remote repo 
+
+git push origin main
+
+origin is just name , we can also name  anything else 
+
+############
+if we are creating repo from scratch use init command in local repo 
+init - used to create new git repo 
+
+git remote add origin https://github.com/ragh31ragh/devops.git
+git branch -M main
+git push -u origin main
+
+
+git remote add origin <link>
+git remote add origin https://github.com/ragh31ragh/localrepo.git
+
+git remote -v ( to verify remote)
+origin  https://github.com/ragh31ragh/localrepo.git (fetch)
+origin  https://github.com/ragh31ragh/localrepo.git (push)
+
+
+
+git branch (to check branch)
+git branch -M main ( to rename branch)
+git branch -M feature2
+
+git push origin main 
+git push -u orgin main 
+
+-u to set upstream 
+
+
+local repo 
+I:\Learnings\Raghavendra\gitdemo\localRepoRD
+you can open using vs code also 
+
+if we see .git folder - then it is a git repo 
+
+add some files 
+
+
+Create new repo where you want to put local code 
+
+
+############Workflow ##############
+Local git 
+github repo - clone -changes - add - commit - push 
+
+############Git branches  ##############
+Branch commands 
+git branch (to checkout branch )
+git branch -M main ( to rename branch)
+
+git checkout branchname (to navigate)
+git checkout -b <new branchname> (to create new branch)
+git checkout -b feature2
+
+git branch -d <-branchname > (to delete branch) 
+
+we cannot delete the same branch which we are working 
+
+git push origin feature1
+
+############Merging code   ##############
+Way 1 
+git diff <branchname> (to compare commits,branches, files and more)
+consider if we in feature1 branch , then execute command
+gitt diff main 
+so we can compare code with main branch
+
+git merge <branchname> (to merge 2 branches )
+
+Way 1
+Create a PR 
+Pull request 
+-It lets you tell others about changes you have pushed to a branch in a repo in github 
+
+After merging we need to execute pull command 
+to retrieve the new features
+
+
+pull command 
+
+git pull origin main 
+
+############Resolving Merge confilicts ##############
+in same index file 
+<p>This is new repo</p>
+<p>This is a new feature (dropdown)</p>
+
+add button in main branch
+and add dropdown in feature branch 
+
+now we will do 
+git diff main
+git merge 
+
+Incoming change - main branch 
+current change - feature1 branch 
+
+we can merge feature1 changes to main using command
+switch to main 
+then 
+git merge feature1
+
+############undoing changes #############
+
+Case 1 : Staged Changes 
+git reset <filename>
+git reset 
+
+Case 2 : commited changes (for one commit )
+git reset HEAD~1
+
+Case 3 : commited changes (for many commits)
+git reset <commit hash>
+git reset --hard <commit hash> 
+
+last commit screnshot is head1
+
+git log 
+to check all commits history 
+
+
+############Fork  #############
+A fork is new repo that shares code and visibility settings with the original "upstream" repo.
+Fork is a rough copy 
+
+to contribute for open source 
+https://github.com/expressjs/express
+
+copying code of some other account to our account 
+update 
+and create new pull request 
+
+
+References :
+Apna collage 
+Sharaddha
+https://www.youtube.com/watch?v=Ez8F0nW6S-w
+
+
+############Ignoring files  #############
+create .gitignore files 
+and all all the files which you want to ignore 
+*.log 	
+added something
+
+###########git stash ###########
+git provides an easy way of stashing these uncommited changes so that we can return to them  later 
+, without having to make unneccasary commits 
+git stash 
+git stash save 
+(both staged and unstaged )
+WIP 
+stashed 
+
+Use git stash pop to remove the most recently stashed changes in your stash and reapply them to  your working copy 
+
+stash apply 
+you can use git stash apply to apply whatever is stashed away , without removing it from the stash 
+This can be useful if you want to apply stashed changes to multiple branches .
+
+
+git stash - u 
+if you have untracked files then will not be included in git stash 
+Fortunately , you can use -u option to tell git stash to include those untracked files 
+
+git stash list #my halfwaydone feature ,not quite ready to commit yet
+git stash apply@{2}
+
+git stash clear 
+
+#####

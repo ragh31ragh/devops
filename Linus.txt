@@ -321,9 +321,9 @@ b block device file
 c character device file 
 
 
-9 ####Most frequetly used linuc commands 
+9 ####Most frequetly used linux commands 
 -File and Directory Management 
--Network Mangemetn 
+-Network Mangement
 -Process mgmt commands
 user mgmt commands
 system control commands
@@ -908,7 +908,59 @@ ctrl r - reverse search command ---important command
 
 cd ~ switch to home directory 
 
+########14-Feb####
+########15-Feb####
 
+#########################su sudo commands#################################
+#########################14-Feb #################################
+How to provide sudo access for a user 
+su - paul
+switch user 
+
+su - home folder
+su user 
+same directory where user is logged in 
+
+su - 
+for root user login 
+super user DO 
+sudo 
+it is way to temporarily grant a user administrative rights 
+
+not every user will have sudo access 
+nick user does not have sudo access 
+
+Details of sudo is present under 
+/etc/sudoers
+
+we can edit the above file using 
+#visudo 
+wheel group 
+sudo group 
+can run all commands 
+paul was a part of wheel group 
+usermod -aG wheel nick 
+
+we can also give limited access to sudo 
+nick ALL=locate 
+
+
+#########################17-Feb #################################
+grep sara users.csv
+to find sara in users.csv file 
+
+egrep - searching multiple words 
+egrep 'sara|luch|candy' users.csv 
+
+pgrep 
+to get only process id 
+
+fgrep hello.buddy example.txt 
+
+to find in zipped file user command
+zgrep Sara users.csv.gz 
+
+pdfgrep "dummy" dummy.pdf
 
 
 
