@@ -321,9 +321,9 @@ b block device file
 c character device file 
 
 
-9 ####Most frequetly used linuc commands 
+9 ####Most frequetly used linux commands 
 -File and Directory Management 
--Network Mangemetn 
+-Network Mangement
 -Process mgmt commands
 user mgmt commands
 system control commands
@@ -943,6 +943,24 @@ usermod -aG wheel nick
 
 we can also give limited access to sudo 
 nick ALL=locate 
+
+
+#########################17-Feb #################################
+grep sara users.csv
+to find sara in users.csv file 
+
+egrep - searching multiple words 
+egrep 'sara|luch|candy' users.csv 
+
+pgrep 
+to get only process id 
+
+fgrep hello.buddy example.txt 
+
+to find in zipped file user command
+zgrep Sara users.csv.gz 
+
+pdfgrep "dummy" dummy.pdf
 
 
 
