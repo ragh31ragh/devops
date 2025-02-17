@@ -5,6 +5,7 @@ https://www.youtube.com/watch?v=6fcoYGqvg6o
 I:\Learnings\Raghavendra\Jenkins
 java -jar jenkins.war httpPort=9090 
 http://localhost:8080/
+http://localhost:9090/
 Jenkins - admin-da8a1223a4794359a5418f2aec806e38
 
 raghavendra/raghavendra
@@ -78,6 +79,7 @@ JFrog Artifactory
 Slack Notification
 Email Extension Plugin
 Blue Ocean (for pipeline visualization)
+
 Step 3: Jenkinsfile (Pipeline Script)
 
 Step 4: Integrating Additional Tools
