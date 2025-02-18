@@ -1,3 +1,11 @@
 lambda 
 versions 
 aliases 
+test
+
+dev alias 
+test alias
+prod alias 
+weithted alias 
+to send weithed traffic 
+
