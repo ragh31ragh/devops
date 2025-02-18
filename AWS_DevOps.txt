@@ -1,0 +1,3969 @@
+C:\RD\Projects\Beroe\Releases\Rel_3_4_0\DevOps
+S1.Course Overview - AWS Certified DevOps Engineer 
+CCP: AWS Certified Cloud Practitioner
+
+SAA: AWS Certified Solutions Architect Associate
+
+DVA: AWS Certified Developer Associate
+
+SOA: AWS Certified SysOps Administrator Associate
+
+SAP: AWS Certified Solutions Architect Professional
+
+S2.Code and Slide Downloads.
+
+Practice Exam : 
+https://courses.datacumulus.com/downloads/certified-devops-engineer-professional-h3e/
+
+S3 :Domain 1 : SDLC Automation (7-
+100 pages 
+
+5.Introduction to CICD in AWS 
+CICD – Introduction-7
+CICD – Introduction-8
+Continuous Integration (CI)-9
+Continuous Delivery (CD)-10
+Technology Stack for CICD -11
+Continuous Integration - Continiuous code push 
+Build Server 
+
+Technology Stack 
+
+Code - AWS Code Commit, Github, Bitbucket 
+Build+Test  - AWS Code Build , Jenkins Ci 
+Deploy - AWS Code Deploy 
+
+All of this orchestration - AWS Code Pipeline .
+END
+
+6.Code Commit - Overview 
+AWS Code Commit 
+Git Repo - underlying technology 
+
+7.Code Commit - ##########Hands on############## Part 1 
+Can view code commit UI here .
+Create repo - my_nodejs_app
+Connection Steps - ssh - https 
+if we are using root we will not see SSH 
+-Upload a index.html file to repo 
+-provide author name , email address and first commit message .
+master - main 
+options - pull request 
+Compare commit 
+Branch - Create - dev branch from master 
+Creating Notifications.
+Setting up Notifications 
+AWS SNS 
+
+8.Code Commit - ##########Hands on############## Part 2
+Go to IAM and generate HTTPS Git Credentials .
+Download the file
+Install git on mac or windows 
+git --version 
+git clone https://-----/---/
+enter username and password
+
+Now will have ne folder my_nodejs_app 
+in master branch we can see index.html file.
+
+Now we established connectivity to git repository code commit and our computer.
+Copy the required files to the directory 
+use cp command.
+
+git status
+
+few files not added 
+
+git add
+git commit
+git push 
+
+git merge 
+git revert commit hash 
+
+9.Code Commit - Advanced.
+Monitoring with Event Bridge 
+Invoke SNS- Labmda or CodePipeline 
+
+Migrate git repo to code commit .
+
+Code Commit - Cross Region Replication .
+
+Event Bridge - ECS Task 
+
+Seniour Devolopers only can push the code to produciton . 
+
+
+10.Code Pipeline - Overview 
+AWS CodePipeline -21 
+-Source - Build - Test - Deploy - Invoke 
+CodePipeline Troubleshooting 
+
+11.Code Pipeline - ##########Hands on############## Prerequisite.
+
+in beanstalk 
+creat one web app 
+Platform - Node js 
+
+Create another environment prod.
+Node js platform
+
+Elastic Beanstalk - More Info Needed .
+
+12.Code Pipeline - ##########Hands on############## 
+AWS CodePipline 
+Create a new pipeline 
+Code Pipeline required new service role - as it connects s3,beanstalk,ec2 ,code commit etc.
+
+Sources -? AWS CodeCommit , Amazon ECR , Amazon S3 ,Github 
+
+Select repo name
+branch name 
+
+Buid stage - AWS CodeBuild or Jenkins 
+
+We will skip build stage here .(explained very well in code build)
+
+Deploy - [ Cloud Formation , Code Deploy ,Elastic Beanstalk , Serice catalogue , ecs, ecs blue/green, s3 
+
+here use beanstalk
+
+will deploy in test env 
+
+Will create pipeline.
+
+Once Deployed in web app - color changes from green to blue .
+
+Now will add one more step to code pipline
+deploy - deploy to prod env 
+
+Stages have multiple action group ** 
+
+Change background color from blue to red in index.html 
+commit the change.
+
+REview and provide manual approval to deploy in prod.
+
+Red code will be deployed to prod now.
+
+13.Code Pipeline - Extras 
+CodePipeline – Artifacts -23
+CodePipeline –Troubleshooting -24 
+CodePipeline – Events vs.Webhooks vs. Polling -25 
+CodePipeline – Action Types Constraints for 
+Artifacts -26 
+CodePipeline – Manual Approval Stage -27 
+Events - Webhooks - Polling 
+Events are recommended way to start code pipline 
+
+14.Code Pipeline - Cloud Formation as a Target .
+Create and Destroy infrastructure as part of pipeline.
+CodePipeline – CloudFormation as a Target 28
+CodePipeline – CloudFormation Integration -29 
+CodePipeline – CloudFormation as a Target -30
+
+15.Code Pipeline - Best Practices 
+Event Bridge detects changes in code pipeline
+CodePipeline – Best Practices -31
+CodePipeline & EventBridge-32
+CodePipeline – Invoke Action -33
+CodePipeline – Multi Region -34
+CodePipeline – CloudFormation Multi Region-35
+
+Code Pipeline - Multi Region 
+Code Pipeline -Cloud Formation Multi Region .
+
+16. Code Build - Overview (36)
+buildspec.yml
+Completed till 37 page.
+
+17.Code Build - ##########Hands on############## Part 1 
+Code Build - Create first code build project .
+
+Source - code commit - repo - my_nodejs_app
+-main branch 
+
+Environment 
+Managed Image - Ubuntu 
+OS - Ubuntu 
+Environment type - Linux 
+Use latest image 
+New Service Role
+Set timeout .
+Select VPC 
+Compute Power 
+
+Build Spec 
+Default buildspec.yml file 
+
+Artifacts - Push to amazon s3 or no artifacts 
+
+Logs - Cloudwatch or s3 
+
+Create Build project and start it .
+
+In code repo , will add build spec. yml file. 
+
+18.Code Build - ##########Hands on############## Part 2
+Code Build - Create buildspec.yml file in source code repo.
+key value type of file.
+
+version : 0.2
+phases :
+	install :
+		runtime versions : 
+			nodejs : 10 0r latest 
+		commands : 
+			-echo "installing something"
+			
+			
+			prebuild :
+			build:
+			postbuild : 
+			
+Add build spec file and cmmit 
+
+Post this again start a new build from code build 
+
+View Logs from Cloud Watch UI 
+
+Now in Code Pipeline we will integrate Code Build and Test 
+Simulate failure by changing congratulations message to horrible .
+
+Again Fix and run the code pipeline 
+Now build will pass and we can deploy 
+
+19.Code Build - Environment Variables.
+Code Build - Security -44
+Code Build - Badges -45
+Code Build - Triggers -46
+Code Build - Validate Pull Requests -47 
+Code Build - Test Reports 
+
+20.AWS Code Deploy (51)
+appspec.yml 
+code deploy agent .
+CodeDeploy – Lambda Platform -56 
+CodeDeploy – ECS Platform 57
+
+21. Code Deploy - EC2 Deep Dive 
+C:\RD\Projects\Beroe\Releases\Rel_3_4_0\DevOps
+Code Deploy Inplace Deployments -58
+Code Deploy - InplaceDeployment Hooks -59
+Code Deploy - EC2 Deployment Hooks -60
+Code Deploy - Deployment Hooks Example - 
+Code Deploy - Blue Green Deployments -  62 
+Code Deploy - Blue Green Intance Temination -63 
+Code Deploy - Blue Green Deployment Hooks -64
+Code Deploy - Deployment configurations - 65
+Code Deploy - Triggers 66
+
+22.Code Deploy - ECS Deep Dive-11-july-2024
+Code Deploy - Deployment to ECS -67
+Code Deploy - Deployment to ECS -68
+Code Deploy - Deployment to ECS -69
+Code Deploy - ECS Deployment Hooks - 70
+
+23.Code Deploy - Lambda deep dive 11-july-2024
+Code Deploy - Deployment to Lambda -71
+Lambda and code Deploy - Appspec.yml -72
+Code Deploy - Deployment to Lambda - 73 
+Code Deploy - Deployment to Lambda - 74 
+Code Deploy - Lambda Deployment Hooks (Blue - Green ) -75 
+
+
+24.Code Deploy - Rollbacks and Troubleshooting 11-july-2024
+Code Deploy - Redeploy and Rollbacks -76 
+Code Deploy - Troubleshooting - 77 
+Code Deploy - Troubleshooting -78
+Code Deploy - Troubleshooting -79
+Code Deploy - Troubleshooting -80
+
+25.Code Artifact -Overview (July 12,2024)
+AWS Code Artifact -81 
+AWS Code Artifact -82 
+AWS Code Artifact Event Bridge Integration -83 
+AWS Code Artifact Resource Policy  -84
+
+
+26.Code Artifact -Upstream Repositories and Domains 
+
+Code Artifact -Upstream Repositories-85
+Code Artifact -External connection-86
+Code Artifact - Retention - 87 
+Code Artifact - Domains  - 87 
+
+
+27. Code Artifact - ##########Hands on############## [July 13,2024]
+Create repo specifying domain, upstream and KMS key .
+-Code Artifact - Create Repository
+-Upstream - pypi store 
+-Domain - my company domain
+- AWS KMS for encryption 
+-Create Repo 
+- will see demo and upstream repo
+-we can add multiple upstream repos  by editing it .
+
+AWS cloudshell 
+-cofigure repo to fetch artifacts from repo
+-pip3 
+-pip3 install response 
+-response and dependent packages will be downloaded.
+-both the repo will contain this packages .
+-Now install previous version 0.4.0 and 0.5.0 
+-delete repo and domain .
+
+28.Code Guru - Overview .
+Amazon CodeGuru - 89
+Amazon CodeGuru Reviewer - 90
+Amazon CodeGuru Profiler - 91 
+
+29. Code Guru Extras
+
+Amazon CodeGuru Reviewer- Extras -92 
+Amazon CodeGuru Profiler Extras - 93 
+
+
+30. EC2 Image Builder - 16 July 2024
+
+EC2 Image Builder -94 
+EC2 Image Builder CI - CD Architecture -95
+
+31. EC2 Image Builder - Extras 
+ EC2 Image Builder- Sharing using RAM - 96 
+ Resource Access Manager 
+ EC2 Image Builder- Tracking Latest AMIs - 97 
+ 
+ 
+32.AWS Amplify 
+AWS Amplify- Web and Mobile Applications - 98
+
+33. AWS Amplify - Extras 
+AWS Amplify - COntinuous deployment - 99 
+
+
+Section 4 : Domain 2 : Configuation Management and IAC 
+[101-246] - 150 pages 
+34.Cloud Formation Overview 
+AWS Cloud Formation -101
+Cloud Formation Template Example - 102 
+Benefits of AWS Cloud Formaion -103 (1 /2 ) 
+Benefits of AWS Cloud Formaion -104 (2 /2 ) 
+How Cloud formation works -105 
+Deploying Cloud Formation Templates - 106 
+Cloud Formation Building blocks - 107 
+
+
+35.Cloud Formation - Create Stack - ##########Hands on############## 
+N . Vergenial US EAST 1 - Cloud Formation ( This region has all templates)
+Sample Template 
+WordPress Blog 
+
+##just ec2.yaml
+ec2 instance name 
+region 
+size 
+ami id 
+
+Upload template file .
+Stack name ec2 instance demo .
+
+36.Cloud Formation - Update and Delete Stack - ##########Hands on############## 
+
+Update 
+Replace current template.
+##ec2 with sg eip .yaml 
+Change set preview 
+Replacement - True - ec2 
+SSH security group 
+Server Security group 
+Delete this stack 
+all the resources created from cloud formation will be deleted.
+
+37. YAML Crash Cources 
+YAML Crash Course - 109 
+service-provider::service-name::data-type-name
+
+
+38.Cloud Formation -Resources -July 17,2024
+CloudFormation – Resources-110
+How do I find 
+Resources documentation?-111
+Analysis of CloudFormation Template-112
+CloudFormation – Resources FAQ-113
+
+39. Cloud Formation - Parameters 
+CloudFormation – Parameters-114
+When should you use a Parameter?-115
+CloudFormation – Parameters Settings-116
+CloudFormation – Parameters Example-117
+How to Reference a Parameter?-118
+CloudFormation – Pseudo Parameters-119
+
+40.Cloud Formation - Mappings 
+CloudFormation – Mappings-120
+Accessing Mapping Values (Fn::FindInMap)-121
+When would you use Mappings vs. Parameters?-122
+
+41.Cloud Formation - Outputs and Exports 
+CloudFormation – Outputs 123
+CloudFormation – Outputs 124
+CloudFormation – Outputs Cross-Stack Reference 125 
+
+42. Cloud Formation - Conditions 
+CloudFormation – Conditions -126 
+How to define a Condition -127 
+How to use a Condition-128 
+
+43. Cloud Formation - Intrinsic Functions [18,July -2024]
+CloudFormation – Intrinsic Functions -129 
+Intrinsic Functions – Fn::Ref -130 
+Intrinsic Functions – Fn::GetAtt -131
+Intrinsic Functions – Fn::FindInMap -132
+Intrinsic Functions – Fn::ImportValue -133
+Intrinsic Functions – Fn::Base64 -134
+Intrinsic Functions – Condition Functions -135 
+
+44. Cloud Formation - Rollbacks ##########Hands on############## 
+CloudFormation – Rollbacks -136 
++ ##########Hands on############## -Rollback check 
+upload - trigger_failure.yml 
+provide non existing ami id to simulate failure 
+Select a proper rollback option while creating stack 
+Delete stack as one of Security group got created.
+Use a proper template to create stack now .
+Update a template with faiure template.
+Will roll back to previous working state.
+Now update it with one more template.
+Delete Stack 
+
+45. Cloud Formation - Service Role 
+CloudFormation – Service Role -137 
+##########Hands on############## 
+AWS Service Role - Cloud formation - IAM 
+s3 full access 
+Role to do anything with Amazon s3 bucket .
+try ec2 template
+it will fail stack creation , as we have only s3 role  
+
+46.Cloud Formation - Capabilities
+CloudFormation Capabilities -138
+##########Hands on############## 
+capabilities .yml 
+Creating IAM Resources from Cloud Formation 
+
+47. Cloud Formation Deletion Policy 
+CloudFormation – DeletionPolicy Delete-139
+CloudFormation – DeletionPolicy Retain -140
+CloudFormation – DeletionPolicy Snapshot -141 
+##########Hands on############## - Deletion policy . yml 
+Security group  - retain
+EBS volume - snapshot 
+EBS and SG 
+EBS Snapshot logic id and then delete
+Security group is not deleted 
+Events tab check the log 
+
+48. Cloud Formation - Stack Policy 
+CloudFormation – Stack Policies--142 
+
+49.Cloud Formation - Termination Protection 
+Termination Protection enable and disable from console
+CloudFormation –Termination Protection -143
+
+
+50.Cloud Formation - Custom Resources 
+CloudFormation – Custom Resources-144
+How to define a Custom Resource?-145
+Use Case – Delete content from an S3 bucket-146 
+
+51.Cloud Formation - Custom Resources  -##########Hands on############## 
+Custom Resources – How does it work?-147 
+Hands-On: Lambda-backed Custom Resource-148
+##########Hands on############## 
+- a custom resource lambda backend.yml file is available 
+- custom resource defnation 
+- lambda function to delete content in S3
+- python code is there to perform this .
+- cfn resonse module
+-Manually try to delete this cfn stack 
+-Lambda funtion will be triggered and S3 bucket content and S3 bucket will be deleted.
+-Analyze the cloud watch logs for the same.
+
+52. Cloud Formation - Dynamic References[19,July,2024]
+CloudFormation – Dynamic References-149
+CloudFormation – Dynamic References -150
+CloudFormation, Secrets Manager & RDS
+Option 1 – ManageMasterUserPassword -151
+CloudFormation, Secrets Manager & RDS
+Option 2 – Dynamic Reference -152
+
+53.CloudFormation - User Data - 
+User Data in EC2 for CloudFormation-153
+##########Hands on############## 
+0-userdata.yml  template 
+Launch security group and ec2 instance .
+Start the web server httpd
+open the url using public ip 
+"hello world from user data " 
+perform instance connect  
+Delete Stack 
+
+54.Cloud Formaiton - cfn init 
+
+The Problems with EC2 User Data -154
+AWS::CloudFormation::Init -155
+CloudFormation – cfn-init -156 
+##########Hands on############## 
+1-cfn-init.yml 
+Here getting user data from cfn:init 
+
+55. Cloud Formaiton - cfn signal and wait condition 
+CloudFormation – cfn-signal & Wait Conditions-157 
+##########Hands on############## 
+Run the template with wait signal 
+
+56. Cloud Formation - cfn signal failures 
+Wait Condition Didn't Receive the Required 
+Number of Signals from an Amazon EC2 Instance -158
+-cfn signal failure .yml 
+##########Hands on############## 
+Configuration to keep the resources and analyzed the log failure
+Added one exit 1 command to simulate the failure .
+
+57.CloudFormation -Nested Stacks [ 20-July-2024]
+CloudFormation – Nested Stacks-159
+Cross Stacks vs. Nested Stacks -160
+##########Hands on############## 
+-Going through one of the nested stack file which is large .
+-Capability of IAM role and expand - nested stack 
+- Hello page of PHP
+-Observe outputs 
+-Never update nested stack . always update parent stack 
+- Delete only parent stack and not the nested stack 
+
+58.Cloud Formation - Depends on 
+CloudFormation – DependsOn -161
+##########Hands on############## 
+depends on .yml 
+-s3 bucket depending on ec2 instance .
+
+59.Stacksets [ High Cost Warning ] 
+
+60.Cloud Formation - Stacksets 
+CloudFormation – StackSets-162
+CloudFormation – StackSets Permission Models-163
+StackSets with AWS Organizations -164
+StackSets with AWS Organizations -165
+
+61. Cloud Formation - Create Stacksets [ 22- July -2024]
+Hands-On: StackSets-166
+##########Hands on############## 
+-Stackset Administor Role yml 
+-Stackset Admin Role[
+-Stackset Execution Role [to be executed on  All target account ]
+-enable aws config.yml
+Refer this file for complex template -aws-config.yaml
+
+62. Cloud Formation - Update Stacksets 
+##########Hands on############## 
+
+63.Cloud Formation - Delete Stacksets 
+##########Hands on############## 
+Retain or does not retain stack 
+deleting stack in regions.
+
+64.Cloud Formation - Troubleshooting
+CloudFormation –Troubleshooting -167
+CloudFormation – StackSet Troubleshooting -168 
+
+
+65. Cloud Formation Change sets 
+CloudFormation – ChangeSets -169 
+##########Hands on############## 
+
+66. Cloud Formation-cfn hup 
+cfn-hup-170
+##########Hands on############## 
+cfn hup demo .yml 
+Contents getting changed in index.html 
+post updateing yml file 
+and no replacement 
+Updating stack using New Template .
+not updating just the metadata 
+
+
+67.Cloud Formation - Drift 
+CloudFormation – Drift-171
+StackSet Drift Detection -172 
+##########Hands on############## 
+drift security group .yml 
+Creation of 2 security groups and changing it manually 
+Stack Actions - Detect Drift 
+
+
+
+Review [ [ 23- July -2024 - 25 - July 2024 ]
+Hands-On: StackSets-166
+CloudFormation – Parameters-113
+120 -Mappings 
+137 - Service Role 
+163- Stacksets 
+171 - Drift 
+
+Pipeline 
+Cloud Formation 
+
+68.Service Catalog -Overview [25-July -2024]
+AWS Service Catalog -173 
+Service Catalog diagram -174 
+Integrations with “self-service portals” such as ServiceNow
+
+AWS Service Catalog -175 
+
+69. Service Catalog - Extras 
+Service Catalog – Stack Set Constraints-176 
+Service Catalog – Launch Constraints-177
+Service Catalog – Continuous Delivery Pipeline (Syncing with CodeCommit) -178
+
+70.Elastic Beanstalk - Overview 
+Typical architecture: Web App 3-tier -179 
+Developer problems on AWS -180
+Elastic Beanstalk – Overview-181
+Elastic Beanstalk – Components-182
+Elastic Beanstalk – Supported Platforms -183
+Web Server Tier vs. Worker Tier -184 
+Elastic Beanstalk Deployment Modes -185 
+
+71.Elastic Beanstalk - Hands On 
+
+##########Hands on############## 
+Step 1 : Configure Environment .
+in EB will create first application 
+Web Server Environment 
+domain name auto generated 
+Platform - Node Js 
+Node js on linux
+5.8.1 version 
+-Sample application 
+single instance 
+and NEXT - 1:45 
+
+Step 2 : Configure Service Access 
+Create and use new service role 
+service - ec2 
+
+permission policies 
+webtier
+worker tier 
+multi container 
+aws-elastic-beanstalk-ec2 role 
+remaining steps are optional
+3,4,5 
+
+Our first beanstalk environment will be created .
+
+Cloud formation will create resources.
+one ec2 instace will created and other underlying resources .
+public ip - 3.64.24.120 
+elastic ip - 3.64.24.120
+One ASG is created .
+we will get one domain name here.
+Logs 
+Health 
+Metrics 
+
+You will see and web application at end .
+Delete application at end 
+
+
+72.Elastick Beanstalk - High Availability Environment .[26-July-2024]
+##########Hands on############## 
+
+-New WebServer Environment 
+-prod
+-Not Single Instance but High Availability now.
+- if we use load balancer no need to provide public ip for ec2 instances
+-select vpc 
+-slect Azs eu-central 1a , 1b , 1c 
+-Min 1 , Max 4 
+-t3 micro , ami id 
+-Load balance application of network
+
+73. Elastick Beanstalk-Deployment Modes  [29-July-2024]
+-Beanstalk Deployment Options for Updates -186
+-Elastic Beanstalk Deployment -All at once -187
+-Elastic Beanstalk Deployment -Rolling -188
+-Elastic Beanstalk Deployment -Rolling with additional batches -189
+-Elastic Beanstalk Deployment -Immutable 190
+-Elastic Beanstalk Deployment -Blue / Green 191
+-Elastic Beanstalk -Traffic Splitting -192
+-Elastic Beanstalk Deployment Summary -193
+from AWS Doc
+• https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/usingfeatures.deploy-existing-version.htm
+
+74. Elastick Beanstalk-Deployment Modes Hands on
+
+##########Hands on############## 
+-Enivornment - 
+-updates 
+-All at once - 
+- Rolling 
+- Batch size - Fixed or percentage 
+-Rolling with additional batch 
+- Immutable
+-Traffic splitting  
+
+4 options 
+
+-Immutable first 
+- upload a new verion of application 
+-Clone environmnet - prod2 
+-Swap environment domains .
+Immutable - related to ASG group 
+
+75.Elastick Beanstalk- - Extras 
+Web Server vs Worker Environment-194
+Elastic Beanstalk – Notifications-195
+
+-- Completed Elastic Beanstalk ---
+
+76.Serverless Application Model ( SAM ) - Overview 
+AWS SAM -196
+AWS SAM – Recipe -197
+Deep Dive into SAM Deployment -198 
+SAM Accelerate (sam sync)-199
+SAM Accelerate (sam sync) – Examples -200
+
+77.Serverless Application Model ( SAM )with Code Deploy 
+SAM – CLI Debugging -201
+SAM and CodeDeploy -202
+SAM and CodeDeploy -203
+##########Hands on##############  
+Canary Deployment of Lambda function using code deploy and SAM app 
+
+78.AWS Cloud Development Kit (CDK)-Overview [1-Aug-2024]
+AWS Cloud Development Kit (CDK)- 204
+CDK in a diagram -205 
+CDK vs SAM -206 
+CDK + SAM -207 
+CDK Hands -On -208 
+
+80.AWS Cloud Development Kit (CDK)-Hands on 
+##########Hands on##############  
+-Open cloudshell
+- Install cdk 
+sudo npm install -g aws-cdk-lib 
+mkdir cdk-app 
+cd cdk-app
+cdk init app --language javascript 
+nano text editor
+if not present install it 
+cat filename .
+cdk-app-stack.js 
+python file - detects lables in images using amazon recognition 
+cdk bootstarp 
+cdk synth
+cdk deploy 
+uploading pigeon and detect objects
+cdk destroy 
+after deleting images in S3 
+
+81. AWS Step Functions - Overview [ 1-Aug-2024]
+AWS Step Functions -209
+Step Function –Task States -210
+Example – Invoke Lambda Function -211
+Step Function - States -212 
+Visual workflow in Step Functions -213
+
+82. AWS Step Functions -Hands on [ 1-Aug-2024]
+##########Hands on##############
+Open service 
+-run hello world template
+-Action, Flow , Patterns 
+-Design code config
+-Json - Is hello world - true or false 
+
+83. AWS Step Functions -Invoke Lamda - Hands on [ 1-Aug-2024]
+##########Hands on##############
+Create new 
+Stefane is teacher or not 
+output wohoo
+create funtion.js
+paste it in lambda funcion .
+
+84. App Config - Overview 
+AWS AppConfig-214
+
+84. Systems Manger Overview ( SSM ) (85- 105)[2 -Aug-2024]
+AWS Systems Manager Overview -215 
+AWS Systems Manager Features -216
+How Systems Manager works -217 
+
+85. Start EC2 instances with SSM Agent - Hands on 
+##########Hands on##############
+-ec2 
+-amazon linux 2 or amazon 2023 
+- add iam role - 
+- a - ssm managed instance store 
+
+launch 3 instances 
+
+AWS Systems Manager - Fleet mananager - we can see 3 instances .
+-ssm agent online
+and the version 
+
+86.AWS Tags and SSM Resource Groups 
+AWS Tags -218 
+Resource Groups -219 
+##########Hands on##############
+Adding Tags 
+Added 3 tags for same instance .
+and 3 tags for all other 3 instances
+tages such as name , env, and team
+
+AWS Resource groups now .
+Create resoucrce group of ec2 instances and preview it 
+
+Dev Group 
+Fin Gropp
+Prod Group 
+
+87. SSM Documents and SSM Run command 
+SSM – Documents 220
+##########Hands on##############
+How to create documents 
+-Amazon - AWS Apply Patch Baseline 
+
+SSM – Run Command -221 
+##########Hands on##############
+Run command hands on 
+Install apache web server  
+aws ssm - run command 
+Welcome message in the website 
+Install apached document - owned by message is created 
+AWS SSM - Run command - run a command 	
+owned by me . only one document present .
+
+-tags, manually or resource group 
+Rate control - 50 ec2 concurrently 
+
+cloud watch - run command - log group output 
+On success we will see custom hello world message in website 
+
+SSH port is not open on EC2 
+
+88. SSM Automations 
+
+SSM – Automation -222
+Runbook 
+##########Hands on##############
+AWS-Restart EC2 Instance 
+Restart EC2 instances with Approval 
+Resource Group - Dev Group 
+###look at the available documents for SSM Automations ###Homework##
+
+89.SSM Parameter Store 
+SSM Parameter Store -223
+SSM Parameter Store Hierarchy -224 
+Standard and advanced parameter tiers -225 
+Parameters Policies (for advanced parameters) -226 
+
+90. SSM Parameter Hands-on 
+##########Hands on##############
+SSM - Shared resources - parameter store 
+DB url for my app in development 
+DB password for my app in development 
+simlilarly created
+
+
+commmands
+aws ssm get-parameters names --mydbpw -my dburl etc 
+aws ssm get-parameters_by_path names --mydbpw -my dburl etc 
+observe password value will be decrypted .
+
+-with decryption 
+works only when I have KMS access 
+
+we can also get parameter by path 
+
+91 : SSM Patch Manger and Maintanance Windows [3-Aug-2024]
+SSM – Patch Manager-227
+SSM – Patch Manager -228
+SSM – Patch Manager Patch Baselines -229
+SSM – Patch Manager -230
+SSM – Maintenance Windows -231 
+
+92:SSM Patch Manger and Maintanance Windows Hands on 
+##########Hands on##############
+ssm - node management - patch manager 
+-create patch policy 
+-patch baseline mapping
+-output to s3 
+-each OS what is the patch baseline 
+
+--Manintanance Window 
+-- we can register run command 
+-AWS Run patch baseline - will run only on scheduled time 
+
+93. SSM Session Manager 
+SSM – Session Manager -232 
+SSM – Session Manager -233
+SSH vs. SSM Session Manager -234 
+
+94.SSM Session Manager  -Hands on 
+##########Hands on##############
+Running sesssion from aws console on ec2 
+
+95.SSM Cleanup 
+Terminating all the instances started in SSM Session 
+
+96. SSM Default Host Management Configuration (DHMC)
+Systems Manager Default Host Management Configuration -235 
+
+97.SSM Default Host Management Configuration (DHMC)-Hands on 
+##########Hands on##############
+Fleet manager - default host management 
+EC2 Instance Management Role 
+in ec2 launch enable V2 metadata 
+dhmc to work minimum ssm agent version 3.2 something , if not available install ssm 
+sudo yum - to install latest ssm agent 
+we can see a ec2 instance under fleet manager now .
+we can observe no IAM role attached to it .
+
+98. SSM Hybrid Environments 
+Systems Manager - Hybrid Environments-236 
+Automating SSM Hybrid Activations Creation-237
+
+99. SSM Hybrid Environments -Hands on 
+##########Hands on##############
+Node Management - hybrid activiation 
+run ec2 instance and name as on premise.
+observe it will not have any iam role 
+ubuntu version 
+stop the ssm running 
+and register it to ssm 
+Now in fleet manager we can see this instance .
+
+100.SSM with Iot Greengrass 
+IoT Greengrass Instance Activation -238 
+
+101. SSM Automations - Use Cases 
+Systems Manager – Automation – Use Cases -239
+Systems Manager – Automation – Use Cases -240
+Systems Manager – Automation – Use Cases -241
+
+102.SSM Compliance 
+Systems Manager – Compliance -242
+
+103.SSM Ops Center 
+Systems Manager – OpsCenter -243
+Systems Manager – OpsCenter -244
+Systems Manager – OpsCenter – Reduce Costs by Deleting Orphaned EBS Volumes -245
+
+103. SSM Session manager with VPC Endpoints 
+VPC Endpoint – SSM Session Manager -246 
+
+
+Section 5 : Domain 3 : Resilient Cloud Solutions [ 5-Aug-2024]
+
+[248-413]-170 - pages 
+105. Lambda : Versions and Aliases 
+AWS Lambda Versions-248
+AWS Lambda Aliases -249
+
+
+106. Lambda : Versions and Aliases  -Hands on 
+
+##########Hands on 501 ##############
+Create new lambda function 
+publish version 1 
+make changes and publish version 2 
+Create a alias in lambda function 
+Create dev , prod and test alias 
+and tab version latest,1 and 2 respectively 
+prod weighted alias - 10% of traffic 
+Go to prod alias and test for 50% of traffic 
+
+107 . Lambda : Environment Varialbles 
+Lambda Environment Variables -250
+
+108.Lambda : Environment Varialbles -Hands on 
+##########Hands on 502 ##############
+lambda config demo - py 3.8 
+Deploy to save our changes - lamda 
+configurations - env variables 
+ENVIRONMENT_NAME dev 
+Test 
+
+109. Lambda : Concurrency 
+Lambda Concurrency and Throttling -251
+Lambda Concurrency Issue -252
+Concurrency and Asynchronous Invocations -253
+Cold Starts & Provisioned Concurrency -254
+Reserved and Provisioned Concurrency -255
+
+110. Lambda : Concurrency  -Hands on 
+##########Hands on 503 ##############
+
+111. Lambda : File Systems Mounting 
+Lambda – File Systems Mounting -256
+Lambda – Storage Options -257 
+
+112. Lambda : Cross Account File Systems Mounting 
+Lambda – Cross-Account EFS Mounting -258
+
+113. API-Gateway - Overview [ 6-Aug-2024]
+Example: Building a Serverless API -259
+AWS API Gateway -260
+API Gateway – Integrations High Level -261
+API Gateway – AWS Service Integration Kinesis Data Streams example -262
+API Gateway - Endpoint Types -263 
+API Gateway – Security -264 
+
+114.API Gateway - Hands on 
+##########Hands on 504 ##############
+http api 
+websocket api 
+rest api  (private or public )
+
+Rest API 
+New API 
+- New Rest API 
+- Private - Regional and - Edge Optimized 
+End point type Regional 
+-Create first method in API 
+-GET . DELEte etx 
+
+Create one lambda function for this api 
+
+one lambda function with status code 200 
+and hello from lambda 
+Deploy and test this function 
+
+Get function arn 
+Now api gateway can invoke lambda function .
+
+Test from API gateway 
+print event and check in cloudwatch logs 
+
+Create new resource - houses 
+new lamda = houses-get 
+
+Hello from my pretty house .
+Now we will deploy API and access from web browser 
+
+Invove URL
+Get the url and paste in  browser 
+get and houses - both will work 
+
+Now we have deployed api to api gateway 
+
+115.API Gateway - Stages and Deployment 
+API Gateway – Deployment Stages -265
+API Gateway – Stages v1 and v2 -266
+API breaking change
+API Gateway – Stage Variables -267
+API Gateway Stage Variables & Lambda Aliases -268 
+API Gateway – Canary Deployment -269
+
+116.API Gateway - Stages and Deployment -Hands on 
+##########Hands on 505 ##############
+lamda function
+staging versions - hello from lambda v1 
+staging versions - hello from lambda v2 - deploy - test - publish versons v1 and v2 
+ hello from lambda dev
+ v1,v2 and latest 
+ 
+ create 3 alaias for 3 versions 
+ In AWS Cloud shell execute the required  commands to provide necessary permissions.
+ 
+ 3 new stages with staging variables created
+ with 3 new URLs 
+ 
+117 . API Gateway - Open API 
+API Gateway - Open API spec -270
+REST API – Request Validation -271
+REST API – RequestValidation – OpenAPI -272
+
+118. API Gateway - Open API -Hands on 
+##########Hands on 506 ##############
+Import Open API defnition file while creating new Rest API 
+Same way Export Open API 
+2 api specification types
+-swagger 
+-open api3 
+
+119.API Gateway - Caching 
+Caching API responses -273
+API Gateway Cache Invalidation -274 
+##########Hands on 507 ##############
+
+120.API Gateway - canary deployments 
+API Gateway – Canary Deployment-269
+
+121.API Gateway - canary deployments Hands on 
+##########Hands on 508 ##############
+
+122.API Gateway -Monitoring , Logging and Tracing 
+API Gateway – Logging & Tracing-275
+API Gateway – CloudWatch Metrics -276
+API Gateway Throttling -277
+API Gateway - Errors -278
+
+123. Amazon ECS Overview - [7-Aug-2024]
+Amazon ECS - EC2 Launch Type-279
+Amazon ECS – Fargate Launch Type -280
+Amazon ECS – IAM Roles for ECS -281
+Amazon ECS – Load Balancer Integrations -282
+Amazon ECS – Data Volumes (EFS) -283 
+
+124 : Amazon ECS -Auto Scaling 
+ECS Service Auto Scaling-284 
+EC2 Launch Type – Auto Scaling EC2 Instances-285
+ECS Scaling – Service CPU Usage Example -286 
+
+125 : Amazon ECS -Solutions Architecture 
+ECS tasks invoked by Event Bridge-287 
+ECS tasks invoked by Event Bridge Schedule-288
+ECS – SQS Queue Example -289
+ECS – Intercept Stopped Tasks using EventBridge -290
+
+126.Amazon ECS Logging 
+ECS – Logging with “awslogs” driver -291
+ECS – Logging with Sidecar Container -292 
+
+127. Amazon ECR - Overview 
+Amazon ECR -293
+
+128. Amazon ECR - Extras 
+Amazon ECR – Lifecycle Policies -294 
+Amazon ECR – Uniform Pipeline -295 
+
+129.Amazon EKS Overview [ 8-Aug-2024]
+Amazon EKS Overview - 296
+Amazon EKS - Diagram -297 
+Amazon EKS – Node Types -298 
+Amazon EKS – Data Volumes  -299 
+
+130. Amazon EKS Logging 
+Amazon EKS – Control Plane Logging -300
+Amazon EKS – Nodes & Containers Logging -301
+
+131. Amazon Kinesis Overview 
+Kinesis Overview -302 
+
+132. Kinesis Data Streams - Overview 
+Kinesis Data Streams -303 
+Kinesis Data Streams -304
+Kinesis Data Streams – Capacity Modes -305 
+Kinesis Data Streams Security -306 
+
+133 .Kinesis Data Streams - Hands on 
+##########Hands on 509 ##############
+Kinesis data stream 
+- create a data stream 
+- Ondemand or Provisioned 
+- 1 shard 
+Producers 
+AWS Kinesis Agent
+AWS SDK
+AWS Kinesis Provider Library ( KPL )
+
+Consumers :
+Amazon Kinesis Data Alaytics
+Amazon Kinesis Data Firehouse
+Amazon Kinesis Client Library 
+
+Open AWS Cloudshell
+
+Send Record to Kinesis data stream using command line 
+Send few messages to Kinesis data stream 
+kinesis-data-stream.sh - shell script used 
+
+describe consumer .
+
+base 64 decode online from website 
+user sign up
+user login etc 
+
+Shard Iteratior to consume next data 
+
+
+Produced and consumed data from kinesis data stream - using cloudshell 
+
+134. Kinesis data streams - Consumers scaling 
+Kinesis Data Streams – Scaling Consumers -307 
+
+135. Kinesis data firehouse - Overview 
+Kinesis Data Firehose -307
+Kinesis Data Firehose -308 
+Kinesis Data Streams vs Firehose -309 
+
+136.Kinesis data firehose - Hands on 
+##########Hands on 510 ##############
+Delivery Steram - data firehose 
+sourcd - data stream
+destination - amazon -s3 
+Redshift - Open Source / Elastic Search - S3
+and lot of 3rd party services 
+Choose the data stream created in last hands on 
+
+1mb or 1 sec buffer 
+Compress gzip or zip 
+permissions - iam 
+send new data to kinesis data stream for firehose to capture 
+Check if data appears on amazon s3 
+after 60 seconds 
+
+137 . Kinesis data Analytics - Overview 
+Kinesis Data Analytics for SQL applications -311
+Kinesis Data Analytics (SQL application) -312
+Kinesis Data Analytics for Apache Flink - 313 Service name is changed . pls google 
+
+138 . Kinesis data Analytics  - Hands on 
+Amazon Kinesis Data Analytics is now called Amazon managed service for Apache Flink 
+##########Hands on 511 ##############
+
+139.Kinesis data Analytics - Using Machine learning 
+Machine Learning on Kinesis Data Analytics -314 
+
+140 . Route 53 Overview [9-Aug-2024]
+Amazon Route 53-315
+Route 53 – Records-316
+Route 53 – Record Types-317
+Route 53 – Hosted Zones -318
+Route 53 – Public vs. Private Hosted Zones -319
+
+141. Route 53 - Routing Policy - Weighted
+Routing Policies – Weighted -320
+##########Hands on 512 ##############
+Hosted Zones- Create Record 
+Routing policy -weighted 
+3 records 
+dig command
+dig website 
+
+142. Route 53 - Routing Policy - Latency 
+Routing Policies – Latency -based -321 
+##########Hands on 513 ##############
+Create latency record 
+3 recored in usa - asia and europe 
+user vpn  and switch to cananda and europe to test latency 
+
+143. Route 53 - Routing Policy - Failover 
+Routing Policies – Failover (Active-Passive)-322
+##########Hands on 514 ##############
+update security group for one of underlying ec2 
+
+144. RDS Read Replicas- vs Multi AZ 
+RDS Read Replicas for read scalability-323
+RDS Read Replicas – Use Cases -324
+RDS Read Replicas – Network Cost  -325
+RDS Multi AZ (Disaster Recovery)-326
+RDS – From Single-AZ to Multi-AZ -327 
+
+145.Amazon Aurora - Extras 
+Aurora Replicas - Auto Scaling -328
+Global Aurora -329
+Amazon Aurora – Unplanned Failover -330
+Amazon Aurora – Global Application -331
+
+146 . Elastic Cache Overview - 10-Aug-2024 
+Amazon ElastiCache Overview - 332
+ElastiCache Solution Architecture - DB Cache -333
+ElastiCache Solution Architecture – User Session Store -334
+ElastiCache – Redis vs Memcached -335
+
+147. Elastic Cache - Hands on 
+##########Hands on 515 ##############
+Redis cache type elastic cache 
+-Design your own cache
+-cluster cache 
+-Disable Multi AZ 
+-t2 or t3 micro 
+-replicas - 0 
+-create subnet group 
+-Encryption at rest and transit 
+-Logs and Tags configutation 
+-Delete it .
+
+148. Elastic Cache - Redis cluster modes 
+
+ElastiCache Replication: Cluster Mode Disabled -336
+Redis Scaling – Cluster Mode Disabled -337
+ElastiCache Replication: Cluster Mode Enabled -338
+ElastiCache for Redis – Auto Scaling -339
+ElastiCache – Redis Connection Endpoints -340
+
+
+149. Dynamo DB - Overview 
+Amazon DynamoDB -341
+DynamoDB - Basics -342
+DynamoDB –Table example-343
+DynamoDB – Read/Write Capacity Modes -344
+
+150. Dynamo - DB - Hands on 
+##########Hands on 516 ##############
+ Table 
+ Primary key = partition key + sort key 
+ 
+151 .Dynamo DB Advance Features 
+DynamoDB Accelerator (DAX)-345
+DynamoDB Accelerator (DAX) vs. ElastiCache -346
+DynamoDB – Stream Processing -347
+DynamoDB Streams -348
+DynamoDB Global Tables -349
+DynamoDB –Time To Live (TTL) -350
+DynamoDB – Backups for disaster recovery -351
+DynamoDB – Integration with Amazon S3 -352 
+
+152. AWS DMS - 
+DMS – Database Migration Service -353
+DMS Sources and Targets -354
+AWS Schema Conversion Tool (SCT) -355
+DMS - Continuous Replication  -356 
+AWS DMS – Multi-AZ Deployment -357 
+
+153 . AWS DMS - Hands on 
+##########Hands on 517 ##############
+
+154 . AWS DMS - Monitoring 
+AWS DMS – Replication Task Monitoring -358 
+AWS DMS – CloudWatch Metrics -359
+AWS DMS – CloudWatch Metrics -360
+
+
+155. Amazon S3 Relplication [ 12-Aug-2024]
+Amazon S3 – Replication (CRR & SRR)-361
+
+156 . Amazon S3 Relplication  Hands on 
+##########Hands on 518 ##############
+2 buckets are created in 2 regions 
+primary and secodary 
+Create replication rule 
+Replicate existing objects or not .
+Delete marker - will not delete objects in replica bucket 
+only delete markers are replicated , not permanent delete 
+
+Amazon S3 – Replication (Notes) -362 
+
+
+158.Amazon Storage Gateway -Overview 
+Hybrid Cloud for Storage-363 
+AWS Storage Cloud Native Options -364 
+AWS Storage Gateway -365
+File Gateway – RefreshCache API -366 
+File Gateway – Automating Cache Refresh -367 
+
+
+159.Auto Scaling Groups -Scaling Policies 
+Auto Scaling Groups – Scaling Policies -368
+Auto Scaling Groups – Scaling Policies -369
+Good metrics to scale on -370
+Auto Scaling Groups - Scaling Cooldowns -371 
+
+160.Auto Scaling Groups -Scaling Policies -Hands on 
+##########Hands on 519 ##############
+Scheduled scaling - running big promotion next saturday 
+Predictive 
+Dynamic [ Target , step and simple ] 
+sudo yum install stress -y 
+target tracking policy - make cpu usage 400%
+desired -1 min- 1 max -3 
+1-2 instances 
+Analyze cloud watch alarms 
+Delele Policicies 
+it will scale in - when cpu goes down to less than 28 percent.
+
+161.Auto Scaling Groups - Life Cycle Hooks [ 13-Aug-2023]
+ASG – Lifecycle Hooks -372 
+ASG -– Lifecycle Hooks -373 
+
+162. Auto Scaling Groups-Event Notifications 
+ASG – SNS Notifications -374 
+ASG – EventBridge Events -375 
+
+163 . Auto Scaling Groups - Termination Policies 
+ASG –Termination Policies -376 
+ASG – Different Termination Policies-377
+
+164. Auto Scaling Groups -Warm Pools 
+ASG – Scale-out Latency Problem-378
+ASG – Warm Pools -379
+ASG – Warm Pools Pricing: m5.large -380
+ASG – Warm Pools – Instance States -381
+ASG – Warm Pools – Instance Reuse Policy -382
+ASG – Warm Pools – Lifecycle Hooks -383
+ASG – Warm Pools – Lifecycle Hooks -384
+
+165 .Application Auto Scaling Overview [14-Aug-2024]
+AWS Application Auto Scaling -385 
+AWS Application Auto Scaling -386 
+AWS Application Auto Scaling – Integrated 
+AWS Services -387 
+
+166. Elastic Load Balancer - ALB Rules Deep Dive 
+ALB – Listener Rules -388
+Target Group Weighting -389
+
+167. Elastic Load Balancer  -Extras 
+ELB – DualStack Networking -390
+NLB – PrivateLink Integration -391 
+
+168. NAT Gateway 
+NAT Gateway -392 
+NAT Gateway-393
+NAT Gateway with High Availability -394 
+NAT Gateway vs. NAT Instance -395 
+
+169 . Multi AZ Architectures 
+Multi AZ in AWS -396
+Multi -AZ Architectures -397 
+
+
+170 . Blue Green Architectures 
+Blue-Green Architectures -398
+Blue -Green Architectures -399 
+
+171. Multi Region Architectures 
+Multi Region Services -400
+Multi Region with Route 53-401
+Multi-Region Architectures -402
+Multi-Region Architectures – Complex Routing -403 
+
+172. Disaster Recovery in AWS #####Important####
+Disaster Recovery Overview-404 
+RPO and RTO -405
+Disaster Recovery Strategies -406
+Backup and Restore (High RPO) -407
+Disaster Recovery – Pilot Light -408
+Warm Standby -409 
+Multi Site / Hot Site Approach -410 
+All AWS Multi Region -411
+Disaster Recovery Tips -412 
+Ended on 14-Aug 2024 
+
+Domain 4 :– Monitoring and Logging [414-443]-30 pages
+173.Cloud Watch Metrics [16-Aug-2024]
+Amazon CloudWatch Metrics -414
+CloudWatch Metric Streams -415 
+##########Hands on 401 ##############
+
+174:Cloud Watch Custom Metrics
+CloudWatch Custom Metrics [416]
+##########Hands on 402 ##############
+How to create custom metrics 
+
+175. Cloud Watch Anamoly Detection 
+CloudWatch Anomaly Detection -417 
+
+176.Amazon Lookout for metrics 
+Amazon Lookout for Metrics -418 
+
+177.CloudWatch Logs overview [19-Aug-2024]
+CloudWatch Logs -419
+CloudWatch Logs - Sources -420
+CloudWatch Logs Insights -421 
+CloudWatch Logs Insights -422
+CloudWatch Logs – S3 Export -423
+CloudWatch Logs Subscriptions -424
+CloudWatch Logs Aggregation
+Multi-Account & Multi Region -425 
+CloudWatch Logs Subscriptions -426 
+
+178.CloudWatch Logs Hands on 
+##########Hands on 403 ##############
+Analysis of Log Groups and log streams
+lambda, glue , run command
+search installing etc 
+Creating metrics 
+Create alarm based on metrics 
+Subscription filter - creaing it .
+Edit retention settings 
+Creating log group 
+save queries 
+export results 
+
+179.Cloud Watch Logs -Live Tail - Hands on 
+##########Hands on 404 ##############
+Create log group and log name 
+start tailing 
+we can create event and watch in live tail 
+
+180.Cloud Watch Logs -Metric Filters [20-Aug-2024]
+CloudWatch Logs Metric Filter -427 
+
+
+181 .Cloud Watch Logs -Metric Filters -Hands on 
+##########Hands on 405 ##############
+Create metric filter 
+pattern - complicated 
+Test pattern 
+Restarting application in elastic beanstalk to create metric logs 
+based on metric filter we can create alarm 
+Metric filter can be linked to alarm 
+
+182. All Kinds of Logs 
+All kind of Logs -428
+All kind of Logs -429
+AWS Managed Logs -430
+
+183.Cloud Watch Agent and Cloud Watch Logs Agent 
+CloudWatch Logs for EC2 -431
+CloudWatch Logs Agent & Unified Agent -432 
+CloudWatch Unified Agent – Metrics -433
+
+
+184. Cloud Watch Alarms - Overview [21-Aug-2024]
+CloudWatch Alarms -434 
+CloudWatch Alarm Targets -435
+CloudWatch Alarms – Composite Alarms -436 
+EC2 Instance Recovery -437 
+CloudWatch Alarm: good to know -438 
+
+185 . Cloud Watch Alarms - Hands on 
+##########Hands on 406 ##############
+select ec2 metric 
+cpu utilization 
+cpu > 95 , ec2 action - terminate the instance 
+set alarm using cli 
+initiating alarm 
+end .
+aws cloudwatch set-alarm-state --alarm-name "myalarm" --state-value 
+ALARM --state-reason "testing purposes"
+
+
+186.Cloud Watch Synthetics 
+CloudWatch Synthetics Canary -439
+CloudWatch Synthetics Canary Blueprints -440
+
+187.Amazon Athena - Overview 
+Amazon Athena -441
+Amazon Athena – Performance Improvement -442
+Amazon Athena – Federated Query -443 
+
+188.Amazon Athena -Hands on 
+##########Hands on 407 ##############
+Create bucket to store queries 
+create databases and query 
+use sample query 
+Writing diff queries 
+
+############Section 7:Domain 5 – Incident and Event Response##################
+[445-475] 30 pages 
+189 : Event Bridge Overview [22-Aug-2024]
+Amazon EventBridge
+(formerly CloudWatch Events) -445
+Amazon EventBridge Rules -446
+Amazon EventBridge -447 
+Amazon EventBridge – Schema Registry -448
+Amazon EventBridge – Resource-based Policy -449
+
+190. Event Bridge -Hands on 
+##########Hands on 701 ##############
+create own event bus 
+event sources from partners - we can configure it 
+ec2 state change notification - schema 
+target - sns topic 
+demo topic 
+archive of events 
+download code objects - java - python -etc 
+
+191. Event Bridge - Content Filtering Hands on 
+##########Hands on 702 ##############
+creating rule by looking at documentation 
+events created in my bucket 
+using prefix 
+suffix .png 
+ip address matching 
+
+192. Event Bridge -  Input Transformation Hands on 
+##########Hands on 703 ##############
+Create Rule - Demo Input transformer 
+ec2 insttance change event 
+log to cloud watch log group 
+define varialbes thanks to input transformer 
+
+193. Amazon S3 - Event Notifications 
+S3 Event Notifications -450
+S3 Event Notifications – IAM Permissions -451
+S3 Event Notifications 
+with Amazon EventBridge-452
+
+194. Amazon S3 - Event Notifications -Hands on 
+##########Hands on 704 ##############
+Create bucket and enable 
+amazon event bridge notification 
+
+another bucket 
+destination - lambda, sns and sqs 
+
+allow s3 to write to sqs 
+use policy generator help 
+to allow s3 to send messages to sqs 
+
+upload coffe image
+messge will be sent .
+
+
+195. Amazon s3 - Object Integrity 
+Amazon S3 – Object Integrity -453 
+
+196.AWS HeathDashboard -Overview [23-Aug-2024]
+AWS Health Dashboard - Service History -454
+AWS Health Dashboard –Your Account -455
+AWS Health Dashboard –Your Account -456
+
+197.AWS HeathDashboard -Hands on 
+##########Hands on 705 ##############
+Account - Event log 
+Service log
+Open and recent issue 
+
+198. AWS Health Dashboard - Events and Notifications 
+Health Event Notifications -457
+AWS Health Dashboard – Examples -458
+
+199.EC2 Instance Status Checks -Overview 
+Status Checks -459
+Status Checks - CW Metrics & Recovery -460
+
+
+200.EC2 Instance Status Checks-Hands on 
+##########Hands on 706 ##############
+ec2 
+status checks tab 
+system 
+instance 
+
+creat alarm based on status check 
+set alarm using cli 
+
+201. Cloud Trail - Overview 
+AWS CloudTrail -461
+CloudTrail Diagram -462
+CloudTrail Events -463
+CloudTrail Insights -464
+CloudTrail Events Retention -465 
+
+202 .Cloud Trail - Hands on 
+##########Hands on 707 ##############
+Event History - last 90 days 
+Terminate ec2 instance management event gets recorded 
+
+
+203.Cloud Trail - Event Bridge Integration 
+Amazon EventBridge – Intercept API Calls -466
+Amazon EventBridge + CloudTrail -467 
+
+204.Dead Letter Queues [24-Aug-2024]
+Amazon SQS – Dead Letter Queue (DLQ) -468
+SQS DLQ – Redrive to Source -469
+
+205 .Dead Letter Queues - Hands on 
+##########Hands on 708 ##############
+
+
+206 .SNS Redrive Policy
+Amazon SNS – Dead Letter Queue (DLQ)-470
+
+207. AWS X-Ray 
+AWS X
+-Ray
+Visual analysis of our applications -471
+X-Ray -472
+
+
+208.AWS X-Ray with Beanstalk 
+
+##########Hands on 709 ##############
+ X-Ray with Elastic Beanstalk-473
+ 
+ Enable x-ray daemon while creating elasting beanstalk application 
+ ec2 role to allow send data to xray 
+ 
+209.AWS Distro for Open Telemetry 
+AWS Distro for OpenTelemetry -474 
+AWS Distro for OpenTelemetry -475 
+
+
+###########Domain 6 : Security and Compliance###########
+[477-560]- 80 pages 
+210 - AWS Config -Overview [26-Aug-2024]
+
+AWS Config -477
+Config Rules -478 
+AWS Config Resources -479
+Config Rules – Remediations -480
+Config Rules – Notifications -481 
+
+
+211 - AWS Config -Hands on 
+
+##########Hands on 801 ##############
+AWS config 
+Record all resources or specic resources 
+Global resources like iam 
+Create AWS Config service linked role 
+Delivery method - aws bucket .
+AWS managed rules - 143 
+-rule approved ami by id 
+restricted ssh 
+some SGs are non compliant 
+Edit inbound ssh port22 rule
+it will trigger reevaluation .
+Resource timeline we can use s
+july 12-2021 
+
+Manual remediation - ssm rules
+Automatic remediation - automaticatlly triggers 
+AWS attach ebs volume 
+
+212 . AWS Config - Configuraton recorder and Aggregator 
+AWS Config – Configuration Recorder -482
+AWS Config – Aggregators -483 
+
+213 .AWS Config – Conformance Pack
+AWS Config – Conformance Pack-483 
+AWS Config – Conformance Pack -484 
+AWS Config – Conformance Pack – CICD -485 
+
+214.AWS Config – Organizational Rules
+AWS Config – Organizational Rules -487 
+AWS Config – Organizational Rules vs. 
+Conformance Packs -488 
+
+215 . AWS Organizations -Overview 
+AWS Organizations -489
+AWS Organizations -
+OrganizationAccountAccessRole -490
+Multi Account Strategies -491
+Organizational Units (OU) - Examples -492
+AWS Organization - Feature Modes -493
+AWS Organizations – Reserved Instances -494 
+AWS Organizations – Moving Accounts -495 
+
+216 . AWS Organizations - Service control policies ( SCPs) 
+Service Control Policies (SCP)-496 
+SCP Hierarchy -497 - 
+SCP Examples
+Blocklist and Allowlist strategies -498 
+
+
+217 . AWS Control Tower -Overview [27-Aug-2024]
+AWS Control Tower-499
+AWS Control Tower – Account Factory -500
+AWS Control Tower – Detect and Remediate 
+Policy Violations -501
+AWS Control Tower – Guardrails Levels -502 
+
+219. AWS Control Tower - hands on - 
+##########Hands on 802 ##############
+costly - not to do hands on 
+Landing zone - home region 
+Regions 
+OUs - organization 
+log archive account - new account 
+audit account 
+AWS Control Tower create lots of resource and consume lots of time 
+2 OU, 3 shared accounts 
+it takes 1 hour to set up 
+Guard rails
+account factory 
+SSO sign in 
+Multiple account set up 
+pls use control tower 
+
+219.AWS Control Tower - Landing Zones 
+AWS Control Tower – Landing Zone -503
+AWS Control Tower – Landing Zone -504
+
+
+220.AWS Control Tower - Account Factory and Migrating accounts 
+AWS Control Tower – Account Factory 
+Customization (AFC) -505
+AWS Control Tower – Account Factory-506
+Migrate an AWS Account to Control Tower -507
+
+221.Customizations for AWS Control Tower (CfCT)[28-Aug-2024]
+Customizations for AWS Control Tower (CfCT) -508 
+Customizations for AWS Control Tower (CfCT) -509 
+
+222.AWS Control Tower - Config Integration 
+
+AWS Control Tower – AWS Config Integration -510
+AWS Control Tower –
+AWS Config Conformance Packs -511
+
+223.AWS Control Tower -Account Factory for Terraform 
+AWS Control Tower –
+Account Factory for Terraform (AFT) -512
+AWS Control Tower –
+Account Factory for Terraform (AFT) -513
+
+
+224. IAM Identity Center -Overview [29-Aug-2024]
+AWS IAM Identity Center
+(successor to AWS Single Sign-On)-514
+AWS IAM Identity Center – Login Flow -515
+AWS IAM Identity Center -516
+IAM Identity Center -517 
+AWS IAM Identity Center
+Fine-grained Permissions and Assignments -518 
+
+225. IAM Identity center - Extras 
+IAM Identity Center – External IdPs -519
+IAM Identity Center –
+Attribute-Based Access Control (ABAC) -520
+IAM Identity Center – Attribute-Based Access 
+Control (ABAC) -521
+IAM Identity Center –
+Multi-Factor Authentication (MFA) -522
+
+226.AWS Web Appliation Firewall ( AWS WAF )
+AWS WAF – Web Application Firewall -523
+AWS WAF – Managed Rules -524
+WAF - Web ACL – Logging -525
+Solution Architecture – Enahnce CloudFront Origin 
+Security with AWS WAF & AWS Secrets Manager 526 
+
+227.AWS Firewall Manager - Overview 
+AWS Firewall Manager -527
+WAF vs. Firewall Manager vs. Shield -528
+
+228.AWS Firewall Manager - Policies 
+AWS Firewall Manager – Security Policies -529
+AWS Firewall Manager – Security Policies -530
+AWS Firewall Manager – Security Policies -531
+
+229. Amazon Guard Duty -Overview 
+Amazon GuardDuty -532
+Amazon GuardDuty -533 
+
+230.Amazon Guard Duty -Advanced 
+Amazon GuardDuty – Multi-Account Strategy-534
+Amazon GuardDuty – Multi-Account Strategy-535
+Amazon GuardDuty –
+Findings Automated Response-536
+Amazon GuardDuty – Findings-537
+Amazon GuardDuty – Findings Types -538
+Amazon GuardDuty – Architectures -539
+Amazon GuardDuty – Architectures-540
+Amazon GuardDuty – Architectures -541
+
+231 .Amazon GuardDuty –Cloud Formation 
+Amazon GuardDuty – CloudFormation -542 
+
+232.Amazon Detective 
+Amazon Detective-543 
+
+233.Amazon Inscpector - Overview [30-Aug-2024]
+Amazon Inspector -544
+What does Amazon Inspector evaluate? -545 
+
+234.Amazon Inspector - Hands on 
+Enable Inspector with roles 
+ECR 
+EC2
+Network Reachability 
+launch ec2 instance 
+Account Managerment 
+unmanaged ec2 instance 
+aws systems manager - use it to check the ec2 status 
+Fleet manager
+all the running instances 
+Demo instances state scanning 
+Findings all findings
+comeback to this page after few hours 
+1 medium 
+port 22 is reachable from internet gateway 
+Disable inspector after this 
+terminate ec2 instance 
+
+235 . Amazon Inspector - EC2 set up 
+Amazon Inspector – Systems Manager -546 
+
+236. EC2 Instance Migration using AMIs [31-Aug-2024]
+EC2 Instance Migration between AZ -547 
+Cross-Account AMI Sharing -548
+AMI Sharing with KMS Encryption -549
+Cross-Account AMI Copy -550
+AMI Copy with KMS Encryption -551
+
+237.AWS Trusted Advisor - Overview 
+Trusted Advisor-552
+
+238 . AWS Trusted Advisor - Architectures 
+Trusted Advisor 
+– Monitoring -553
+Trusted Advisor 
+– Service Quotas
+50+ Service Quotas are supported-554
+
+239. AWS Secrets Manager 
+AWS Secrets Manager -555
+AWS Secrets Manager – Multi-Region Secrets -556 
+
+240 . AWS Secrets Manager - Hands on 
+##########Hands on 803 ##############
+Free we can use 
+Secrets creation 
+IAM can only use this 
+
+--End of Domain -- 
+
+Section 9 : Other Services 
+
+241.AWS Tag Editor 
+AWS Tag Editor- 558 
+
+242.Amazon Quick Sight 
+Amazon QuickSight -559 
+Business 
+
+243 . AWS Glue 
+
+AWS Glue-560
+AWS Glue – Convert data into Parquet format -561
+Glue Data Catalog: catalog of datasets -562
+Glue – things to know at a high-level -563 
+
+
+Section 10 : Course Wrap up 
+GenAI_Learnathon_2024_Certificate_Aug_2024
+
+244. Exam Walkthrough and Sign up 
+
+245.Save 50% on your exam cost 
+
+246 . Get an Extra 30 minutes on your AWS Exam - Non native English Speakers only 
+
+247 .Next Steps : AWS Certified DevOps Engineer - Professional 
+
+Next steps
+• Congratulations, you have covered all the domains!
+• Make sure you revisit the lectures and practice as much as possible
+• A good extra resource to do is the AWS Exam Readiness course at:
+• https://www.aws.training/Details/eLearning?id=34146
+• Another good resource is to read the AWS DevOps blog:
+• https://aws.amazon.com/blogs/devops/
+• The DevOps exam is hard, and tests experience…
+• Practice, practice, practice
+
+248 .AWS Certification Paths 
+AWS Certification Paths – Architecture -565
+
+AWS Certification Paths – Operations -566
+
+AWS Certification Paths 
+– DevOps -567 
+
+AWS Certification Paths – Security -568 
+
+AWS Certification Paths – Data Analytics & 
+Development
+ -569 
+ 
+ AWS Certification Paths – Networking & 
+AI/ML -570
+
+
+Next steps
+• Congratulations, you have covered all the domains!
+• Make sure you revisit the lectures and practice as much as possible
+• A good extra resource to do is the AWS Exam Readiness course at:
+• https://www.aws.training/Details/eLearning?id=34146
+• Another good resource is to read the AWS DevOps blog:
+• https://aws.amazon.com/blogs/devops/
+• The DevOps exam is hard, and tests experience…
+• Practice, practice, practice
+
+249 . Congratulations 
+
+250 .Bonus Lecture .
+
+Congrats on completing the course! Here you can find links to all my courses with special discounts included.
+
+Wondering what to take next? Here are my suggestions:
+
+AWS Certified DevOps Engineer Professional Practice Exams
+
+AWS Certified Solutions Architect Professional
+
+Keep on learning:
+
+Get emails for new courses and discounts: click here to subscribe!
+Use the coupon AUG_24_GET_STARTED for special discounts on all my courses (included in the links below)
+All my courses:
+
+AWS Certifications
+AWS Certified Cloud Practitioner
+
+AWS Certified Cloud Practitioner Practice Exams
+
+AWS Certified AI Practitioner
+
+AWS Certified AI Practitioner Practice Exams
+
+AWS Certified Solutions Architect Associate
+
+AWS Certified Solutions Architect Associate Practice Exams
+
+AWS Certified Developer Associate
+
+AWS Certified Developer Associate Practice Exams
+
+AWS Certified SysOps Administrator Associate
+
+AWS Certified SysOps Administrator Associate Practice Exams
+
+AWS Certified Solutions Architect Professional
+
+AWS Certified Solutions Architect Professional Practice Exams
+
+AWS Certified DevOps Engineer Professional Practice Exams
+
+AWS Certified Security Specialty
+
+AWS Certified Security Specialty Practice Exams
+
+AWS Certified Data Engineer Associate
+
+AWS Certified Data Engineer Associate Practice Exams
+
+AWS Certified Machine Learning Specialty - Hands On!
+
+AWS Certified Advanced Networking Specialty
+
+AWS Certified Advanced Networking Specialty Practice Exams
+
+Apache Kafka Series
+Kafka for Beginners v2
+
+Kafka Connect
+
+Kafka Streams for Data Processing
+
+KSQL Hands On!
+
+Kafka Setup and Administration
+
+Confluent Schema Registry & Kafka REST Proxy
+
+Kafka Security
+
+Kafka Monitoring and Operations
+
+AWS Master Classes
+AWS CloudFormation MasterClass
+
+Resources for this lecture
+
+Practice Exam Link 
+
+AWS Certified DevOps Engineer Professinal 2024 _DOP_CO2 Raghavendra D
+
+
+####Revision ####
+##########35 ##############[2-Sep-2024-Monday]
+##########88 ##############[3-Sep-2024-Tuesday](Revise build spec , app spec - life cycle events in code deploy 
+##########101 ##############[4-Sep-2024-Wednesday]
+https://links.datacumulus.com/aws-cert-feedback
+Create a CloudWatch Event for the Lambda Deployment Monitoring and associate it with the CodeDeploy deployment - The CodeDeploy deployment must be associated with a CloudWatch Alarm and not CloudWatch Event for automated rollbacks to work.
+##########144 ##############[5-Sep-2024-Wednesday]
+service-provider::service-name::data-type-name
+300
+How do I find 
+Resources documentation?
+• I can’t teach you all the 700+ resources, but I can teach you how to 
+learn how to use them
+• All the resources can be found here: 
+https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/a
+ws-template-resource-type-ref.html
+• Then, we just read the docs J
+• Example here (for an EC2 instance): 
+https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/a
+ws-resource-ec2-instance.html
+Fn::FindInMap
+Fn::Ref
+!Ref
+!FindInMap- AMIs- regtion specific 
+##########173 ##############[6-Sep-2024-Wednesday]
+##########259 ##############[9-Sep-2024-Monday]
+##########301 ##############[10-Sep-2024-Tuesday]
+##########413 ##############[11-Sep-2024-Wednesday]
+Lambda - API Gateway-OpsWorks
+Warm Pools 
+##########499 ##############[12-Sep-2024-Wednesday]
+
+CodeBuild – buildspec.yml-40
+CodeDeploy – In-place Deployment Hooks-59,64
+
+
+Domain 1 : SDLC Automation -100-P1
+
+Domain 2 : Configuation Management and IAC [101-246] - 150 pages -P5
+service-provider::service-name::data-type-name
+AWS::EC2::subnet
+All the resources can be found here: 
+https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/a
+ws-template-resource-type-ref.html
+Example here (for an EC2 instance): 
+https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/a
+ws-resource-ec2-instance.html
+Fn::Ref
+ !Ref
+CloudFormation – Pseudo Parameters
+
+Fn::FindInMap
+!FindInMap [ MapName, TopLevelKey, SecondLevelKey ]
+Mappint AMI IDs 
+
+When would you use Mappings vs. Parameters?-122
+CloudFormation – Outputs
+• The Outputs section declares optional outputs values 
+that we can import into other stacks (if you export 
+them first)!
+
+Outputs - Export 
+Import valueCloudFormation – Outputs
+CloudFormation – Conditions
+ Conditions can be whatever you want them to 
+be, but common ones are:
+• Environment (dev / test / prod)
+• AWS Region 
+• Any parameter value
+
+The intrinsic function (logical) can be any of the following:
+• Fn::And
+• Fn::Equals
+• Fn::If
+• Fn::Not
+• Fn::Or
+
+CloudFormation – Intrinsic Functions
+
+• Fn::Ref or !Ref -MyVPC
+• Fn::GetAtt- EC2-AZ
+• Fn::FindInMap - Region - ami id 
+• Fn::ImportValue - !ImportValue - SSH Security Group 
+• Fn::Base64-Convert String to it’s Base64 representatio- ec2 user data 
+• Condition Functions (Fn::If, Fn::Not, Fn::Equals, etc…) - Creating resources based on this 
+
+CloudFormation – Rollbacks
+ContinueUpdateRollback API
+
+CloudFormation – Service Role
+User must have iam:PassRole permissions
+CloudFormation Capabilities
+CAPABILITY_NAMED_IAM and CAPABILITY_IAM
+• CAPABILITY_AUTO_EXPAND
+InsufficientCapabilitiesException
+
+CloudFormation – DeletionPolicy Delete
+DeletionPolicy=Snapshot,Delete,Retain
+
+CloudFormation – Stack Policies
+A Stack Policy is a JSON document that 
+defines the update actions that are allowed 
+on specific resources during Stack updates
+
+CloudFormation –Termination Protection
+CloudFormation – Custom Resources
+
+AWS::CloudFormation::CustomResource or 
+Custom::MyCustomResourceTypeName (recommended
+Custom::MyLabda Resource 
+SNS or Lambda
+
+CloudFormation – Dynamic References
+‘{{resolve:service-name:reference-key}}’
+
+AWS::CloudFormation::Init
+Cross Stacks- lifecycle - import -export 
+Nested Stacks-root stack 
+Stacksets -multiple regions and accounts 
+Depends on 
+CloudFormation – StackSets Permission Models
+
+Elastic Beanstalk 
+Blue green - swap urls - route 53 - weihtage 
+-not direct feature of elastic beanstalk
+Worker tier - SQS 
+• SAM = Serverless Application Model
+• Framework for developing and deploying serverless applications
+
+SAM Accelerate (sam sync)
+AWS Cloud Development Kit (CDK)
+CDK + SAM
+
+AWS Step Functions 209.
+AWS AppConfig
+AWS Systems Manager Overview
+AWS Tags
+SSM – Documents
+SSM – Run Command
+SSM – Automation
+SSM Parameter Store
+SSM – Patch Manager
+SSM – Maintenance Windows
+SSM – Session Manager
+Systems Manager – Automation – Use Cases 
+Systems Manager – OpsCenter
+
+
+Domain 3 : Resilient Cloud Solutions [248-413]-170 - pages -P6
+labmda,apigateway
+ECS - EKS , fargate,
+ASG , warm pools 
+rds,aurora,elasticache,dynamo db .
+Kinesis data stream, firehouse , analysis 
+route 53 , dms,aws auto scaling , muti az, DR, RTO -RPO,
+S3 replication 
+
+Domain 4 : Monitoring and Logging [414-443]-30 pages -P1
+CloudWatch metrics 
+Amazon Lookout for Metrics
+CloudWatch Logs
+CloudWatch Logs Insights - query engine 
+CloudWatch Logs – S3 Export
+CloudWatch Logs Subscriptions
+CloudWatch Alarm Targets[ec2 ,ASG,SNS]
+CloudWatch Synthetics Canary-439
+Amazon Athena-441
+
+Domain 5 : Incident and Event Response[445-475] 30 pages -P2
+Amazon EventBridge
+Amazon EventBridge – Schema Registry
+Amazon S3 – Object Integrity
+AWS Health Dashboard
+Health Event Notifications
+Status Checks
+AWS CloudTrail
+CloudTrail Insights
+Amazon SQS – Dead Letter Queue (DLQ)
+Amazon SNS – Dead Letter Queue (DLQ)
+AWS X -Ray
+AWS Distro for OpenTelemetry
+
+
+Domain 6 : Security and Compliance [477-560]- 80 pages -P3
+AWS Config - Per region service 
+AWS Config – Configuration Recorder
+AWS Config – Aggregators 
+AWS Config – Conformance Pack
+Lamda functions 
+AWS Config – Conformance Pack – CICD - Diagram 
+AWS Config – Organizational Rules
+AWS Config – Organizational Rules vs. 
+Conformance Packs
+
+AWS Organizations-489
+AWS Organizations -OrganizationAccountAccessRole
+AWS Organization - Feature Modes
+AWS Organizations – Moving Accounts
+
+Service Control Policies (SCP)**
+
+AWS Control Tower
+
+AWS Control Tower – Detect and Remediate Policy Violations 
+• Guardrail-preventive - scps
+-detective - config 
+AWS Control Tower – Guardrails Levels
+AWS Control Tower – Landing Zone
+Automatically provisioned, secure, and compliant multi-account 
+environment based on AWS best practices
+
+AWS Control Tower – Account Factory 
+Customization (AFC)
+AWS Control Tower – Account Factory
+Customizations for AWS Control Tower (CfCT)
+AWS Control Tower – AWS Config Integration
+AWS Control Tower –
+AWS Config Conformance Packs
+AWS Control Tower –Account Factory for Terraform (AFT)
+code pipeline 
+
+AWS IAM Identity Center (successor to AWS Single Sign-On)
+IAM Identity Center –Attribute-Based Access Control (ABAC)
+
+AWS WAF – Web Application Firewall
+AWS Firewall Manage
+WAF vs. Firewall Manager vs. Shield-528
+AWS Shield - DDOS 
+
+Amazon GuardDuty-533
+Amazon GuardDuty –Findings Automated Response
+Each finding has a severity value between 0.1 to 8+ (High, Medium, Low)
+Amazon GuardDuty – Architectures
+Amazon GuardDuty – CloudFormation
+-If GuardDuty is already enabled, the CloudFormation Stack deployment fails
+• Use CloudFormation Custom Resouce (Lambda) to conditionally enable 
+GuardDuty if it is not already enabled
+
+Amazon Detective
+GuardDuty, Macie, and Security Hub are used to identify potential 
+security issues, or findings
+Reporting & integration with AWS Security Hub
+Continuous scanning of the infrastructure, only when neede
+
+EC2 Instance Migration between AZ
+Trusted Advisor
+AWS Secrets Manager
+AWS Secrets Manager – Multi-Region Secrets
+
+Other services 
+AWS Tag Editor
+Amazon QuickSight
+AWS Glue
+
+Reserved concurrency is well suited for use cases where traffic is constant and predictable over the day.
+ 
+Create an AWS CloudFormation service role with required permissions and associate this service role to the stack. Grant the developer iam:PassRole permissions to pass the role to the service. Use this newly created service role during stack deployments
+ 
+AWS Health generates an AWS_RISK_CREDENTIALS_EXPOSED event when an IAM access key has been publicly exposed on GitHub
+ 
+Elastic beanstalk eb extensions file
+ 
+Enable Amazon Macie on the selected S3 buckets. Setup alerting using CloudWatch Events
+
+Amazon Macie is a security service that uses machine learning to automatically discover, classify, and protect sensitive data in AWS. Macie automatically detects a large and growing list of sensitive data types, including personally identifiable information (PII) such as names, addresses, and credit card numbers. It also gives you constant visibility of the data security and data privacy of your data stored in Amazon S3.
+
+AWS OpsWorks is a configuration management service that provides managed instances of Chef and Puppet. Chef and Puppet are automation platforms that allow you to use code to automate the configurations of your servers. OpsWorks lets you use Chef and Puppet to automate how servers are configured, deployed and managed across your Amazon EC2 instances or on-premises compute environments.
+
+As mentioned in the explanation above, Secrets Manager does NOT support DynamoDB, so this option is incorrect.
+ 
+You cannot modify an AWS managed IAM policy, so this option is incorrect.
+  
+When a new API route is implemented, you must create a new API Gateway stage and NOT a Lambda alias. Lambda aliases are only used to update the behavior of an existing route. Remember that one route in API Gateway is mapped to one AWS Lambda function (or another service).
+
+CloudWatch Event Rule does not support CodeDeploy as a target, therefore CodeDeploy must be invoked from your CodePipeline.
+
+ECR credentials must be acquired using IAM roles and CLI helpers on CodeBuild, not environment variables, especially not via your AWS access key ID and secret access key.
+
+Use Amazon CloudWatch cross-account observability to set up a security and operations account as the monitoring account and link it with the rest of the member accounts of the organization using AWS Organizations
+
+With Amazon CloudWatch cross-account observability, you can monitor and troubleshoot applications that span multiple accounts within a Region. Seamlessly search, visualize, and analyze your metrics, logs, and traces in any of the linked accounts without account boundaries.
+
+Set up one or more AWS accounts as monitoring accounts and link them with multiple source accounts. A monitoring account is a central AWS account that can view and interact with observability data generated from source accounts. A source account is an individual AWS account that generates observability data for the resources that reside in it. Source accounts share their observability data with the monitoring account.
+
+The shared observability data can include the following types of telemetry: 1. Metrics in Amazon CloudWatch 
+2. Log groups in Amazon CloudWatch Logs 
+3. Traces in AWS X-Ray
+
+There are two options for linking source accounts to your monitoring account. You can use one or both options. 
+1. Use AWS Organizations to link accounts in an organization or organizational unit to the monitoring account. 
+2. Connect individual AWS accounts to the monitoring account.
+
+AWS recommends that you use Organizations so that new AWS accounts created later in the organization are automatically onboarded to cross-account observability as source accounts. This is our use case requirement and hence choosing Organizations to implement the requirements.
+
+You should note that you can only set up a filter policy on an SNS subscription and NOT on the SNS topic itself. In addition, it is wasteful to set up Amazon EventBridge rule on all AWS Config managed rules, rather than only the restricted-ssh rule. Therefore, both these options are incorrect.
+
+AWS CodeGuru Profiler / Revierer 
+
+Cloudwatch logs does not stream logs directly to S3
+Use Kinesis firehoure here 
+
+Serverless Services SAM is better.
+
+Specific order means Nested Stack 
+
+171985
+https://www.youtube.com/watch?v=kmQ56Ri51iM&list=PL7GozF-qZ4KdliEjvQ34PGMAyCq1DMubu&index=5
+48
+
+Dynammo DB  - key value
+Glue Data catalogue for persitant metadata 
+AWS managed Key - might have cross account access
+Customer managed KMS key - does not have cross account restriction 
+VPC Peering - cross account - Lambda functons
+
+
+AWS Config - Auditing and Complaince 
+Per region service - athena 
+custom config rules - AWS lambda 
+AWS Config Rules does not prevent actions from happening (no deny)
+Config Rules – Remediations
+
+Remedy ssm documentation 
+custom remedy using lambda 
+
+AWS Organizations -OrganizationAccountAccessRole_Kind of Admin role in Member accouts 
+-Automatically added to all new Member accounts created with AWS Organizations
+-Must be created manually if you invite an existing Member account
+Member account - Management account 
+490
+
+AWS configuration recoreder 
+Config aggregator 
+aggregatore view 
+
+Service Control Policies (SCP)
+• Define allowlist or blocklist IAM actions
+• Applied at the OU or Account level
+• Does not apply to the Management Account
+• SCP is applied to all the Users and Roles in the account, including Root user
+• The SCP does not affect Service-linked roles
+• Service-linked roles enable other AWS services to integrate with AWS Organizations 
+and can't be restricted by SCPs.
+• SCP must have an explicit Allow (does not allow anything by default)
+• Use cases:
+• Restrict access to certain services (for example: can’t use EMR)
+497 
+
+500
+Config - conformace packs 
+config managed rules, config custom-lambda rules  -ssm remediations.
+conformatcion deploy using cloud formation 
+-stacksets
+
+Cloud trail to S3 possible
+Cloud watch to S3 not possible ( use Kineis data firehouse)
+The SCP does not affect Service-linked role
+
+AWS Control Tower - Guard rail -remediation 
+Landing zone - 503,504 
+Landing Zone consists of:
+• AWS Organization – create and manage multi-account structure
+• Account Factory – easily configure new accounts to adhere to config. and policies
+• Organizational Units (OUs) – group and categorize accounts based on purpose
+• Service Control Policies (SCPs) – enforce fine-grained permissions and 
+restrictions
+• IAM Identity Center – centrally manage user access to accounts and services
+• Guardrails – rules and policies to enforce security, compliance and best practices
+• AWS Config – to monitor and assess your resources’ compliance with Guardrails
+
+
+AWS Control Tower – Account Factory Customization (AFC)
+AWS Control Tower - Hub Account- cloud formaton templates stored here
+
+Hub Account - Blue print 
+Addition to management accou
+
+- Manangement account - Member account 
+You can react to new accounts created using EventBridge
+
+Customizations for AWS Control Tower (CfCT)
+CfCT is different from AFC (Account Factory Customization ; blueprint)
+deploying resources using github and Cloud Formation 
+
+Detective - Guardrail 
+Protective SCP 
+501
+
+
+AWS Control Tower – AWS Config Conformance Packs
+AWS Control Tower – Account Factory for Terraform (AFT)
+AWS IAM Identity Center
+
+IAM Identity Center – External IdPs
+SAML2 - SCIP
+SCIM = System for Cross-domain Identity Management
+IAM Identity Center – Attribute-Based Access Control (ABAC) 
+
+vulnerability inspector and vice versa 
+
+Cloud 9 Environment is a IDE 
+
+String Like for SCP policies not resources 
+
+Amazon lookout anamoly detection in S3
+
+Lamda Deployments use cloud formation 
+
+
+523
+
+WAF is not for DDoS protection
+• Define Web ACL (Web Access Control List):
+• Rules can include IP addresses, HTTP headers, HTTP body, or URI strings
+• Protects from common attack - SQL injection and Cross-Site Scripting (XSS)
+• Size constraints, Geo match
+• Rate-based rules (to count occurrences of events)
+• Rule Actions: Count | Allow | Block | CAPTCHA
+AWS WAF – Managed Rules
+
+WAF - Web ACL – Logging 
+• You can send your logs to an:
+• Amazon CloudWatch Logs log group – 5 MB per second
+• Amazon Simple Storage Service (Amazon S3) bucket – 5 minutes interval
+• Amazon Kinesis Data Firehose – limited by Firehose quotas
+Solution Architecture – Enahnce CloudFront Origin 
+Security with AWS WAF & AWS Secrets Manager
+
+AWS Firewall Manager:Manage rules in all accounts of an AWS Organization
+Rules are applied to new resources as they are created (good for 
+compliance) across all and future accounts in your Organization
+Diff : 528
+waf- firewall manager- shield 
+protection 
+
+Shield Advanced adds additional features on top of AWS WAF, such as dedicated support 
+from the Shield Response Team (SRT) and advanced reporting.
+• If you’re prone to frequent DDoS attacks, consider purchasing Shield Advanced
+
+WAF-ALB,API Gateway - CloudFront 
+
+Guardrail - Control Tower -Detective,SCP -Preventive
+GuardDuty - anamoly detection -unusual 
+533- Diagram of Guardduty 
+
+in an AWS Organization, you can specify a member account as the 
+Organization’s delegated administrator for GuardDuty
+GuardDuty (Delegated) Administrator Account
+
+GuardDuty pulls independent streams of data directly from CloudTrail 
+logs (management events, data events), VPC Flow Logs or EKS logs
+• Each finding has a severity value between 0.1 to 8+ (High, Medium, Low)
+
+Guard Duty Architecture - 539 
+Remdiation - Lambda - WAF 
+Remdiation - Stepfunctions- 2 Lambda + 2 SNS 
+Trusted and Threat IP Lists
+
+
+Guard Duty - Cloud Formation 
+If GuardDuty is already enabled, the CloudFormation Stack deployment fails
+--Use CloudFormation Custom Resouce (Lambda) to conditionally enable 
+GuardDuty if it is not already enabled
+
+WAF-Firewall manager - sheid - advanced shield - guard duty 
+
+AWS Detective (all  + GuardDuty) visualizations 
+GuardDuty, Macie, and Security Hub are used to identify potential 
+security issues, or findings
+Amazon Detective analyzes, investigates, and quickly identifies the 
+root cause 
+
+Amazon Inspector- Security assessment -544[ec2-ssm,lambda,ecr -container images]
+Finding to event bridge
+package vulnerability and network reachable
+• Package vulnerabilities (EC2, ECR & Lambda) – database of CVE
+• Network reachability (EC2)
+
+EC2 Instance Migration between AZ
+
+You can only share AMIs that have unencrypted volumes and volumes that are encrypted with a customer managed key
+• If you share an AMI with encrypted volumes, you must also share any customer managed keys used to encrypt them.
+
+AMI Sharing with KMS Encryption
+Cross-Account AMI Copy
+
+Trusted Advisor
+-Low utilization of EC2 Instance 
+
+AWS Secrets Manager
+Automate generation of secrets on rotation (uses Lambda)
+No Dynamo DB 
+Amazon RDS only (mysql,postgresql and aurora)
+
+AWS Secrets Manager – Multi-Region Secrets-DR 
+
+Amazon QuickSight
+Serverless machine learning-powered business intelligence service to 
+create interactive dashboards
+• Integrated with RDS, Aurora,Athena, Redshift, S3
+
+AWS Glue -RedShift Data warehouse
+Athena ,EMR 
+
+• Glue Job Bookmarks: prevent re-processing old data
+• Glue Elastic Views: 
+• Combine and replicate data across multiple data stores using SQL
+• No custom code, Glue monitors for changes in the source data, serverless
+• Leverages a “virtual table” (materialized view)
+• Glue DataBrew: clean and normalize data using pre-built transformation
+• Glue Studio: new GUI to create, run and monitor ETL jobs in Glue
+• Glue Streaming ETL (built on Apache Spark Structured Streaming): 
+compatible with Kinesis Data Streaming, Kafka, MSK (managed Kafka)
+
+https://www.youtube.com/watch?v=9K3_zt6FttI&list=PL7GozF-qZ4KdliEjvQ34PGMAyCq1DMubu&index=7
+8-Oct-2024
+port scans - amazon guard duty 
+Cetralized findings all accounts - security hub
+Network related - management - firewall 
+
+JoinServiceDirectory Runbook.- to join domains 
+Image builder settings can update launch template.
+
+https://www.youtube.com/watch?v=C3oGZKJuapU&list=PL7GozF-qZ4KdliEjvQ34PGMAyCq1DMubu&index=8
+
+• AWS CodeCommit – storing our code
+• AWS CodePipeline – automating our pipeline from code to Elastic Beanstalk
+• AWS CodeBuild – building and testing our code
+• AWS CodeDeploy – deploying the code to EC2 instances (not Elastic Beanstalk)
+• AWS CodeStar – manage software development activities in one place
+• AWS CodeArtifact – store, publish, and share software packages
+• AWS CodeGuru – automated code reviews using Machine Learning
+CI- - github+codebuild(Jenkins)
+CD- Code Deploy (Jenkins)
+
+Technology Stack for CICD-11
+Code Deploy - Does not deploy to elastic beanstalk 
+Elastic Beanstalk will deploy and provision 
+code deploy (ec2,lambda,on premise,ECS)
+
+Orchestrate using AWS  Pipeline 
+Deploy – CodeDeploy, Elastic Beanstalk, CloudFormation, ECS, S3
+Invoke – Lambda, Step Functions
+CodePipeline can Invoke lambda or step functions only - Not EventBridge
+Manual approval after code build - SNS-email 
+CodePipeline & EventBridge -EventBridge – detect and react to changes in execution states (e.g., intercept failures at certain stages)
+Detect only - Not Invoke
+
+-Actions in your pipeline can be in different regions
+-S3 Artifact Stores must be defined in each region where you have actions
+-CodePipeline handles the copying of input artifacts from one AWS Region to the other Regions when performing cross-region action
+
+CodePipeline – CloudFormation Multi Region
+
+codebuild-Compile source code, run tests, produce software packages
+Use CloudWatch Metrics to monitor build statistics
+Use EventBridge to detect failed builds and trigger notifications
+codebuildlogs - S3 or cloudwatch 
+buildspec.yml -40
+(env,phases,artifacts,caches)
+phases - install, prebuild , build ,post build 
+env - varialble-java  ,password
+
+code build agent  -desktop deep troubleshooting 
+By default, your CodeBuild containers are 
+launched outside your VPC
+
+CodeBuildServiceRole -43
+Badges - passing - failing 
+Badges are available at the branch level
+CodeBuild –Triggers(Event Bridge and Lambda can trigger codebuild )
+CodeBuild –Validate Pull Requests
+Validate proposed code changes in PRs before they get merged
+Ensure high level of code quality and avoid code conflicts-47
+
+Perform in-place deployments or blue/green deployments
+Must run the CodeDeploy Agent on the target instances
+Define deployment speed
+• AllAtOnce: most downtime
+• HalfAtATime: reduced capacity by 50%
+• OneAtATime: slowest, lowest availability impact
+• Custom: define your %
+Code deploy agent can be installed and updated  automatically if you’re using Systems Manager
+
+Lambda - Prod Alias - V1 and V2 
+Code deployFeature is integrated within the SAM framework
+(Linear,Canary,All at once )
+
+Code Deploy - ECS - blue green only 
+(Linear,Canary,All at once )
+
+Inplace deployment - ec2 or asg tags 
+
+Block Traffic- Allow Traffic - ALB
+Download Bundle - Install - code deploy reserved 
+Block Traffic ( Before after )
+Allow Traffic ( Before after )
+Install ( Before After , Appication Start , validated service )
+Application Stop before Download bundle 
+
+
+CodeDeploy – Blue/Green Deployments
+• Manually mode: provision EC2 Instances for Blue and Green and identify by Tags
+• Automatic mode: new ASG is provisioned by CodeDeploy (settings are copied) 
+• Using a Load Balancer is necessary for Blue/Green
+
+blue green 
+v2 allow traffic than v1 block traffic 
+
+CodeDeploy – Deployment Configurations
+CodeDeployDefault.AllAtOnce
+CodeDeployDefault.Halfatatime
+CodeDeployDefault.Oneata time
+
+code deploy triggers to SNS 
+ECS Task Definition,Only supports Blue/Green,service must be connected to a Load Balance
+The ECS Task Definition and new Container Images must be already 
+created
+CodeDeploy Agent is NOT required for ECS 
+Canary, Linear, or All At Once
+Hooks - validate after install 
+appspec.yml
+Canary, Linear, or All At Once
+Only Allow traffic 
+
+Redeploy and Rollbacks 
+CloudWatch Alarm thresholds are met-Rollback 
+
+If a roll back happens, CodeDeploy redeploys the last known good 
+revision as a new deployment (not a restored version)
+Deployment Error: “InvalidSignatureException – 
+Signature expired: [time] is now earlier than [time]”
+
+• CodeDeploy Agent might not be installed, running, or it can’t reach CodeDeploy
+• CodeDeploy Service Role or IAM instance profile might not have the required permissions
+• You’re using an HTTP Proxy, configure CodeDeploy Agent with :proxy_uri: 
+parameter
+• Date and Time mismatch between CodeDeploy and Agent
+ELB Healthchecks 
+
+AWS CodeArtifact
+• Developers and CodeBuild can then retrieve dependencies straight
+ as Maven, 
+Gradle, npm, yarn, twine, pip, and NuGet
+
+Code Artifacts triggers multiple but not code pipeline 
+code artifcact domains - repos 
+Code Artifact domains can contain mutliple accounts 
+
+CodeGuru
+An ML-powered service for automated code reviews and application performance recommendation
+
+• CodeGuru Reviewer: automated code reviews for static code analysis (development)
+Integrates with GitHub, Bitbucket, and 	AWS CodeCommit
+
+• CodeGuru Profiler: visibility/recommendations about application performance during runtime (production)lambda profiler 
+
+Integrate and apply CodeGuru Profiler to Lambda functions either using
+
+
+EC2 Image Builder
+Used to automate the creation of Virtual Machines or container images
+• Automate the creation, maintain, validate and test EC2 AMIs
+• Can be run on a schedule (weekly, whenever packages are updated, etc…)
+• Free service (only pay for the underlying resources)
+• Can publish AMI to multiple regions and multiple accounts
+
+EC2 Image Builder-CI/CD 
+Cloud formation can be used tobuild AMI - insted of CodeDeploy 
+
+EC2 Image Builder – Sharing using RAM
+Use AWS RAM to share Images, Recipes, and Components across 
+AWS accounts or through AWS Organization
+
+Tracking latest AMIs-sns-lambda-parameter store -cloudformation 
+
+Amplify :
+A set of tools and services that helps you develop and deploy scalable full stack web and mobile 
+applications
+amplify continuous deployment 
+
+Trusted Advisor- Service Limit 
+S3 Lives outside VPC 
+
+
+run order 1 and 2
+code build runs 1 - 1 means high priority 
+test actions run 2
+53
+
+
+Amazon FSX windows
+File storage - Linux - ontap
+Blue Green Transform - Cloud Formation - for ECS blue green deployment 
+EC2 Image build can build container images also 
+always use container images.
+
+Nested - No Independence ,Specific order 
+Amazong FSX for windows and Linux ( ontap)
+File Storage[NFS - linux, FSX] , Block Storage[EBS] and Object Storage[s3]
+Network Traffic - VPC Flow Logs
+API Calls - Cloud Trail 
+malacious behaviour - Guard Duty 
+
+
+For the given use-case, we need to use environment variables. The variable CODEBUILD_SOURCE_VERSION is exposed at runtime directly within CodeBuild and represents the branch name of the code being tested for CodeCommit. This is the best solution.
+
+
+21-Oct-2024 
+The Fn::Ref function can be leveraged to reference parameters
+pseudo parameters:
+Below is Ex : AWS::AccountId 123456789012
+Import Value Export Value ,Outputs 
+Cross Stack 
+!Ref 
+ intrinsic function (logical) -and , equals, if , not , or 
+ Fn::Ref === ! Ref
+ Attribute - EC2 AvaialbilityZone 
+ AWS::EC2::Volume 
+ FindinMap  - Ami id of specific region 
+Convert String to it’s Base64 representation
+Example: pass encoded data to EC2 Instance’s UserData property
+
+CloudFormation – Rollback
+Stack Creation Fails:
+• Default: everything rolls back (gets deleted). We can look at the log
+• Option to disable rollback and troubleshoot what happened
+
+Stack Update Fails:
+• The stack automatically rolls back to the previous known working state
+• Ability to see in the log what happened and error messages
+
+Rollback Failure? Fix resources manually then issue 
+ContinueUpdateRollback API from Console
+• Or from the CLI using continue-update-rollback API cal
+
+Capabilities- Capabilited named IAM 
+auto expand capability - nested stacks 
+
+A Stack Policy is a JSON document that defines the update actions that are allowed on specific resources during Stack updates
+
+Allow updates on all resources,except the ProductionDatabase
+
+Specify an explicit ALLOW for the resources 
+you want to be allowed to be updated
+
+Custom Resources .
+Custom::MyCustomResourceTypeName (recommended)
+Service Token - lambda or SNS - Required to be in Same region .
+
+Use case - Delete content from S3
+use lambda 
+s3 presigned URL 
+
+Dynamic Reference - Systems Manager Parameter store - secrets manager 
+
+ec2 user data 
+fn::Base64 
+/var/log/cloud-init-output.log
+very large instance configuration?
+CloudFormation Helper Scripts!-python scripts 
+cfn-init, cfn-signal, cfn-get-metadata, cfn-hup
+AWS::Cloudformation ::Init
+AWS::EC2::Instance 
+cfn-init -Used to retrieve and interpret the resource 
+metadata, installing packages, creating files and 
+starting services
+The EC2 instance will query the CloudFormation 
+service to get init data
+
+We still don’t know how to tell CloudFormation that the 
+EC2 instance got properly configured after a cfn-init
+--For this, we can use the cfn-signal script!
+Define wait 
+
+cfn - hup : Can be used to tell your EC2 instance to look for 
+Metadata changes every 15 minutes and apply the 
+Metadata configuration again
+
+Nested Stack 
+To update a nested stack, always update the parent 
+(root stack)
+
+Cross Stack (diff lifecycle)VPC ID  v/s Nested Stack(Reused)ALB  -160
+Stacksets 
+
+Stackset Drift Detection 
+AWS Service Catalogue 
+
+(((Cloud Formation Template)Products)Portfolio)-IAM users 
+– IAM StackSet Administrator 
+Role to manage target AWS accounts
+Service Catalog Continuous Delivery 
+
+179 - Diagram 
+Same architecture - So Elastic Beanstack
+Dev no need to worry about underlying environment 
+Beanstalk is free but you pay for the underlying instances
+• Immutable: zero downtime - temp ASG ,high cost .spins up new instances in a new ASG, deploys version to these instances, and then swaps all the instances when everything is healthy
+• Blue Green: create a new environment and switch over when ready
+Using Beanstalk, “swap URLs” when done with the environment test
+swap URL - DNS Change - New Environmen 
+• Traffic Splitting: canary testing – send a small % of traffic to new deploymen
+6 types - all at once, rolling , rolling with additinal batches 
+Traffice splitting is canary 
+
+worker tier - SQS 
+Event Bridge - SNS and Lambda 
+
+AWS SAM -Serverless Application Model 
+Framework for developing and deploying serverless applications
+SAM can use CodeDeploy to deploy Lambda functions
+• SAM can help you to run Lambda, API Gateway, DynamoDB locally
+sam deploy 
+
+198-Sam Deployment Diagram 
+Code pipeline - S3 - lambda, dynamo db ,api gateway 
+
+sam accelerate or sam sync 
+sam sync --watch
+• Monitor for file changes and automatically synchronize when changes are detected
+• If changes include configuration, it uses sam sync
+• If changes are code only, it uses sam sync --code
+
+AWS Toolkits: IDE plugins which allows you 
+to build, test, debug, deploy, and invoke 
+Lambda functions built using AWS SAM
+
+SAM framework natively uses 
+CodeDeploy to update Lambda functions
+Canary, Linear, AllAtOnce can be managed in cloud formation 
+-SAM 
+
+204 
+
+AWS Cloud Development Kit (CDK) 	
+Define your cloud infrastructure using a 
+familiar language: 
+• JavaScript/TypeScript, Python, Java, and .NET Great for Lambda functions 
+• Great for Docker containers in ECS / EKS 206 -- CDK vs SAM 
+CDK + SAM
+You can use SAM CLI to locally test your CDK apps
+cdk synth 
+
+AWS Step Functions
+• Model your workflows as state machines (one per workflow) 
+• Order fulfillment, Data processing
+• Web applications, Any workf
+--Visualization of the workflow and the execution of the workflow, as 
+well as history
+--Start workflow with SDK call, API 
+Gateway, Event Bridge 
+(CloudWatch Even
+
+AWS AppConfig -214
+
+AWS Systems Manager Overview
+• Helps you manage your EC2 and On-Premises systems at scale
+• Get operational insights about the state of your infrastructure
+• Easily detect problems
+• Patching automation for enhanced compliance
+• Works for both Windows and Linux OS
+• Integrated with CloudWatch metrics / dashboards
+• Integrated with AWS Config
+• Free service
+
+• Resource Groups ,Documents ,Automation ,Maintenance Windows, Parameter Store , Inventory, Session Manager
+• Run Command
+• State Manager
+• Patch Manager
+
+We need to install the SSM agent onto the systems we control
+• Installed by default on Amazon Linux 2 AMI & some Ubuntu AMI
+• If an instance can’t be controlled with SSM, it’s probably an issue with the SSM agent!
+• Make sure the EC2 instances have a proper IAM role to allow SSM actions
+
+Resource Group
+SSM – Documents-220 - Important Diagram 
+Run command - triggers document ( state manager,patch manager, automation) 
+Parameter Store 
+
+SSM – Run Command -Execute a document (= script) or just run a 
+command
+--No need for SSH
+--Command Output can be shown in the Console, 
+sent to S3 bucket or CloudWatch Logs
+
+SSM – Automation
+SSM Parameter Store
+SSM Parameter Store Hierarchy
+SSM – Patch Manager :Automates the process of patching managed instances OS updates, applications updates, security updates...
+Scan instances and generate patch compliance report (missing patches)
+• Patch compliance report can be sent to S3
+SSM – Maintenance Windows
+SSM – Session Manager
+-Allows you to start a secure shell on your EC2 and on- premises servers
+S3 or cloudwatch 
+
+Systems Manager | Default Host Management Configuration
+When enabled, it automatically configure your EC2 instances as managed instances without the use of EC2 Instance Profile
+
+Instance Identity Role – a type of IAM Role with no 
+permissions beyond identifying the EC2 instance to 
+AWS Services (e.g., Systems Manager)
+
+• EC2 instances must have IMDSv2 enabled and SSM 
+Agent installed (doesn’t support IMDSv1)
+Must be enabled per AWS Region
+• Manage IoT Greengrass Core devices using SS 
+Systems Manager – Automation – Use Cases
+Golden AMI
+start stop instance 
+downsize and increase db instance 
+
+Systems Manager – Compliance
+Displays current data about:
+• Patches in Patch Manager
+• Associations in State Manager
+
+Can sync data to an S3 bucket using Resource Data 
+Sync, and you can analyze using Athena and QuickSight
+ Can send compliance data to Security Hub
+ 
+Systems Manager – OpsCenter
+• Allows you to view, investigate, and remediate issues in one place (no 
+need to navigate across different AWS services)
+• Security issues (Security Hub), performance issues (DynamoDB 
+throttle), failures (ASG failed launch instance)..
+• Reduce meantime to resolve issues
+• OpsItems
+• Operational issue or interruption that needs investigation and remediation
+• Event, resource, AWS Config changes, CloudTrail logs, EventBridge...
+• Provides recommended Runbooks to resolve the issu
+ Supports both EC2 instances and on-premises managed nodes
+ 
+Systems Manager – OpsCenter – Reduce Costs by Deleting Orphaned EBS Volumes
+ 
+VPC Endpoint – SSM Session Manager
+Connect to EC2 instances in private subnets, without Internet access
+
+#############Domain 3 : Resiliant Cloud Solutions ##
+User logins - cloud watch agent will work / compared to cloud trail 
+
+AWS Lambda Versions
+• When you work on a Lambda function, we work on $LATEST
+• When we’re ready to publish a Lambda function, we create a version
+• Versions are immutable
+• Versions have increasing version numbers
+• Versions get their own ARN (AmazonResource Name)
+• Version = code + configuration (nothing can be changed - immutable)
+• Each version of the lambda function can be accessed
+
+alias - mutable 
+versions - immutable 
+
+AWS Lambda Aliases
+249 - Diagram 
+• Aliases are ”pointers” to Lambda function versions
+• We can define a “dev”, ”test”, “prod” aliases and have them point 
+at different lambda versions
+• Aliases are mutable
+• Aliases enable Canary deployment by assigning weights to lambda 
+functions
+• Aliases enable stable configuration of our event triggers / destinations
+• Aliases have their own ARNs 
+• Aliases cannot reference aliases
+
+Lambda Environment Variables
+• Environment variable = key / value pair in “String” form
+• Adjust the function behavior without updating code
+• The environment variables are available to your code
+• Lambda Service adds its own system environment variables as well
+• Helpful to store secrets (encrypted by KMS) 
+• Secrets can be encrypted by the Lambda service key, or your own CMK
+
+Lambda Concurrency and Throttling(251)
+• Concurrency limit: up to 1000 concurrent executions
+• Can set a “reserved concurrency” at the function level (=limit)
+• Each invocation over the concurrency limit will trigger a “Throttle”
+• Throttle behavior:
+• If synchronous invocation => return ThrottleError - 429
+• If asynchronous invocation => retry automatically and then go to DLQ
+• If you need a higher limit, open a support ticket
+
+Lambda Concurrency Issue 252 (throttle issue ) Refer Diagram 
+
+Concurrency and Asynchronous Invocations
+• If the function doesn't have enough concurrency available to process all events, additional requests are throttled. 
+• For throttling errors (429) and system errors (500-series), Lambda 
+returns the event to the queue and attempts to run the function again 
+for up to 6 hours. 
+-The retry interval increases exponentially from 1 second after 
+the first attempt to a maximum of 5 minutes.
+
+Cold Starts & Provisioned Concurrency
+• Cold Start:
+• New instance => code is loaded and code outside the handler run (init)
+• If the init is large (code, dependencies, SDK…) this process can take some time. 
+• First request served by new instances has higher latency than the rest
+
+• Provisioned Concurrency:
+• Concurrency is allocated before the function is invoked (in advance)
+• So the cold start never happens and all invocations have low latency
+• Application Auto Scaling can manage concurrency (schedule or target utilization)
+
+In Lambda, concurrency is the number of in-flight requests that your function is currently handling. There are two types of concurrency controls available:
+
+Reserved concurrency – This represents the maximum number of concurrent instances allocated to your function. When a function has reserved concurrency, no other function can use that concurrency. Reserved concurrency is useful for ensuring that your most critical functions always have enough concurrency to handle incoming requests. Configuring reserved concurrency for a function incurs no additional charges.
+
+Provisioned concurrency – This is the number of pre-initialized execution environments allocated to your function. These execution environments are ready to respond immediately to incoming function requests. Provisioned concurrency is useful for reducing cold start latencies for functions. Configuring provisioned concurrency incurs additional charges to your AWS account.
+
+
+
+Lambda – File Systems Mounting
+• Lambda functions can access EFS file systems if they are running in a VPC
+Configure Lambda to mount EFS file systems to local directory during 
+initialization Must leverage EFS Access Points
+• Limitations: watch out for the EFS connection limits (one function instance = one connection) and connection burst limits
+
+Example: Building a Serverless API -259 
+
+
+AWS API Gateway
+• AWS Lambda + API Gateway: No infrastructure to manage
+ • Support for the WebSocket Protocol 
+ • Handle API versioning (v1, v2…) 
+ • Handle different environments (dev, test, prod…) 
+ • Handle security (Authentication and Authorization)
+ • Create API keys, handle request throttling
+ • Swagger / Open API import to quickly define APIs 
+ • Transform and validate requests and responses
+ • Generate SDK and API specifications 
+ • Cache API responses
+
+API Gateway – Integrations High Level
+• Lambda Function
+	• Invoke Lambda function 
+	• Easy way to expose REST API backed by AWS Lambda
+• HTTP
+	• Expose HTTP endpoints in the backend 
+	• Example: internal HTTP API on premise, Application Load Balancer…
+	• Why? Add rate limiting, caching, user authentications, API keys, etc… 
+• AWS Service
+	• Expose any AWS API through the API Gateway
+	• Example: start an AWS Step Function workflow, post a message to SQS
+	• Why? Add authentication, deploy publicly, rate control…
+	
+API Gateway – AWS Service Integration Kinesis Data Streams example
+
+API Gateway - Endpoint Types (Edge Optimized , Regional , Private )
+
+API Gateway – Security 
+
+• User Authentication through
+	• IAM Roles (useful for internal applications)
+	• Cognito (identity for external users – example mobile users)
+	• Custom Authorizer (your own logic)
+	
+• Custom Domain Name HTTPS security through integration with AWS 
+Certificate Manager (ACM)
+	• If using Edge-Optimized endpoint, then the certificate must be in us-east-1
+	• If using Regional endpoint, the certificate must be in the API Gateway region
+	• Must setup CNAME or A-alias record in Route 53
+	
+API Gateway – Deployment Stages
+• Making changes in the API Gateway does not mean they’re effective
+• You need to make a “deployment” for them to be in effect
+• It’s a common source of confusion
+• Changes are deployed to “Stages” (as many as you want)
+• Use the naming you like for stages (dev, test, prod)
+• Each stage has its own configuration parameters
+• Stages can be rolled back as a history of deployments is kept
+stages ( dev , prod , test)
+
+API Gateway – Stage Variables 
+• Stage variables are like environment variables for API Gateway
+
+API Gateway Stage Variables & Lambda Aliases -268 diagram 
+API Gateway – Canary Deployment
+
+API Gateway - Open API spec
+• Using OpenAPI we can generate SDK for our applications
+
+REST API – Request Validation
+
+Caching API responses
+• Caching reduces the number of calls made to the backend
+• Default TTL (time to live) is 300 seconds (min: 0s, max: 3600s)
+• Caches are defined per stage
+
+API Gateway Cache Invalidation
+• Clients can invalidate the cache with header: Cache- Control: max-age=0 (with proper IAM authorization
+
+
+API Gateway – Logging & Tracing
+• CloudWatch Logs
+	• Log contains information about request/response body
+	• Enable CloudWatch logging at the Stage level (with Log Level - ERROR, DEBUG, INFO)
+	• Can override settings on a per API basis
+	
+• X-Ray
+	• Enable tracing to get extra information about requests in API Gateway 
+	• X-Ray API Gateway + AWS Lambda gives you the full picture
+
+API Gateway – CloudWatch Metrics
+• 4XXError (client-side) & 5XXError (server-side)
+
+API Gateway Throttling
+• Account Limit 
+	• API Gateway throttles requests at 10000 rps across all API
+	• Soft limit that can be increased upon request
+	• In case of throttling => 429 Too Many Requests (retriable error)
+	• Can set Stage limit & Method limits to improve performance
+	• Or you can define Usage Plans to throttle per customer
+	
+API Gateway - Errors
+Client and server errors 
+
+Amazon ECS - EC2 Launch Type
+• ECS = Elastic Container Service
+• Launch Docker containers on AWS = Launch ECS Tasks on ECS Clusters
+• EC2 Launch Type: you must provision & maintain the infrastructure (the EC2 instances)
+• Each EC2 Instance must run the ECS Agent to register in the ECS Cluster
+• AWS takes care of starting / stopping containers
+
+Amazon ECS – Fargate Launch Type
+• Launch Docker containers on AWS
+• You do not provision the infrastructure (no EC2 instances to manage)
+• It’s all Serverless!
+• You just create task definitions
+• AWS just runs ECS Tasks for you based on the CPU / RAM you need
+• To scale, just increase the number of tasks. Simple - no more EC2 instances
+
+Amazon ECS – IAM Roles for ECS
+• EC2 Instance Profile (EC2 Launch Type only): 
+	• Used by the ECS agent
+	• Makes API calls to ECS service
+	• Send container logs to CloudWatch Logs
+	• Pull Docker image from ECR
+	• Reference sensitive data in Secrets Manager or SSM Parameter Store
+	
+• ECS Task Role:
+	• Allows each task to have a specific role
+	• Use different roles for the different ECS Services you run
+	• Task Role is defined in the task definition
+	
+Amazon ECS – Load Balancer Integrations(ALB and NLB)Supported 
+
+Amazon ECS – Data Volumes (EFS)
+• Mount EFS file systems onto ECS tasks
+• Works for both EC2 and Fargate launch types
+• Tasks running in any AZ will share the same data in the EFS file system
+• Fargate + EFS = Serverless
+• Use cases: persist
+
+Amazon ECS Auto Scaling uses AWS Application Auto Scaling
+
+Fargate + EFS = Serverless 
+Lambda + EFS 
+No S3 
+• ECS Service Auto Scaling (task level) ≠ EC2 Auto Scaling (EC2 instance level)
+
+Cloudwatch metric is used here to scale 
+ECS tasks invoked by Event Bridge
+ECS – SQS Queue Example
+ECS – Intercept Stopped Tasks using EventBridge
+ECS – Logging with “awslogs” driver
+• You need to turn on awslogs log driver (for CW Logs)
+• Fargate Launch Type
+• EC2 Launch Type
+Enable logging using ECS_AVAILABLE_LOGGING_DRIVERS in 
+/etc/ecs/ecs.config
+Cloudwatch logs 
+
+ECS – Logging with Sidecar Container
+Using a sidecar container which is responsible for collecting logs from all other containers and files on the file system and send the logs to a log storage (e.g., CloudWatch Logs)
+
+Amazon ECR
+• Fully integrated with ECS, backed by Amazon S3
+Supports image vulnerability scanning, versioning,image tags, image lifecycle..
+Amazon ECR – Uniform Pipeline295 - Diagram 
+Amazon EKS Overview
+It’s an alternative to ECS, similar goal but different API
+
+Amazon EKS – Data Volumes
+• Support for…
+• Amazon EBS
+• Amazon EFS (works with Fargate)
+• Amazon FSx for Lustre
+• Amazon FSx for NetApp ONTAP
+
+Amazon EKS – Control Plane Logging
+
+• Use the Fluent Bit, or Fluentd log drivers to send logs to CloudWatch Log awslogs driver for ECS 
+• Use CloudWatch Container Insights to get a dashboarding monitoring solution for nodes, pods, tasks, and services
+
+Kinesis Overview-302
+• Kinesis Data Streams: capture, process, and store data streams
+• Kinesis Data Firehose: ##load## data streams into AWS data stores
+• Kinesis Data Analytics: analyze data streams with SQL or Apache Flink
+
+Kinesis Data Streams – Capacity Modes
+Provisioned Mode 
+Ondemand Mode 
+• IteratorAgeMilliseconds = 0, then records being read are completely caught up with the Stream
+• IteratorAgeMilliseconds > 0 means we’re not processing the records fast enough
+310 - diff 
+
+Machine Learning on Kinesis Data Analytics
+--RANDOM_CUT_FOREST
+--HOTSPOTS
+ 
+Amazon Route 53
+• Each record contains:
+	• Domain/subdomain Name – e.g., example.com
+	• Record Type – e.g., A or AAAA
+	• Value – e.g., 12.34.56.78
+	• Routing Policy – how Route 53 responds to queries
+	• TTL – amount of time the record cached at DNS Resolvers
+
+• Route 53 supports the following DNS record types:
+• (must know) A / AAAA / CNAME / NS
+
+• A – maps a hostname to IPv4
+• AAAA – maps a hostname to IPv6
+• CNAME – maps a hostname to another hostname
+• The target is a domain name which must have an A or AAAA record
+• Can’t create a CNAME record for the top node of a DNS namespace (Zone Apex)
+• Example: you can’t create for example.com, but you can create for 
+www.example.com
+• NS – Name Servers for the Hosted Zone
+• Control how traffic is routed for a domain
+
+
+Routing Policies – Weighted -320
+Routing Policies – Latency-based
+Routing Policies – Failover (Active-Passive)
+
+RDS Read Replicas for read scalability
+• Up to 15 Read Replicas
+• Within AZ, Cross AZ or Cross Region
+• Replication is ASYNC, so reads are eventually consistent
+• Replicas can be promoted to their own DB
+• Applications must update the connection string to leverage read 
+replicas
+
+RDS Read Replicas – Use Cases
+• Read replicas are used for SELECT (=read) only kind of statements 
+(not INSERT, UPDATE, DELETE)
+
+RDS Read Replicas – Network Cost 
+• In AWS there’s a network cost when data goes from one AZ to another 
+• For RDS Read Replicas within the same region, you don’t pay that fee
+
+RDS Multi AZ (Disaster Recovery)
+• One DNS name – automatic app failover to standby
+Read replica is not same DNS
+
+Aurora Replicas - Auto Scaling 328 - Diagram 
+
+Amazon ElastiCache Overview
+• The same way RDS is to get managed Relational Databases…
+• ElastiCache is to get managed Redis or Memcached
+• Using ElastiCache involves heavy application code changes
+333-Diagram 
+
+ElastiCache Solution Architecture – User Session Store 334
+334 redis vs memcached 
+redis preferred
+-redis - replication
+memcached- sharding 
+
+Redis Scaling – Cluster Mode Disabled
+Horizontal and Vertical 
+Cluster means shard 1 to shard N 
+
+ElastiCache Replication: Cluster Mode Enabled
+• Up to 500 nodes per cluster:
+• 500 shards with single master
+• 250 shards with 1 master and 1 replica
+• …
+• 83 shards with one master and 5 replicas
+
+ElastiCache for Redis – Auto Scaling
+
+ElastiCache – Redis Connection Endpoints
+
+Amazon DynamoDB
+• Fully managed, highly available with replication across multiple AZs
+• NoSQL database - not a relational database - with transaction support
+• Scales to massive workloads, distributed database
+• Millions of requests per seconds, trillions of row, 100s of TB of storage
+• Fast and consistent in performance (single-digit millisecond)
+• Integrated with IAM for security, authorization and administration
+• Low cost and auto-scaling capabilities
+• No maintenance or patching, always available
+• Standard & Infrequent Access (IA) Table Class
+343 - Diagram 
+
+Dynamo DB 
+Provisioned and ondemand mode 
+
+DAX
+• Help solve read congestion by caching
+
+DynamoDB – Stream Processing
+DynamoDB Global Tables
+Make a DynamoDB table accessible with low latency in multiple-regions
+• Active-Active replication
+• Applications can READ and WRITE to the table in any region 
+• Must enable DynamoDB Streams as a pre-requisite
+
+DynamoDB – Integration with Amazon S3
+
+DMS – Database Migration Service
+
+AWS Schema Conversion Tool (SCT)
+Oracle to Mysql 
+DMS + SCT 
+
+AWS DMS – Multi-AZ Deployment
+AWS DMS – Replication Task Monitoring
+
+AWS DMS – CloudWatch Metrics
+
+Amazon S3 – Replication (CRR & SRR)
+• Must enable Versioning in source and destination buckets
+• Cross-Region Replication (CRR)
+• Same-Region Replication (SRR)
+• Buckets can be in different AWS accounts
+• Copying is asynchronous
+• Must give proper IAM permissions to S3
+• Optionally, you can replicate existing objects using S3 Batch Replication
+
+Replication Notes 362
+
+ASG Life Cycle Hooks 
+
+ASG Termination policies 
+378
+
+ASG Warm Pools 
+ASG Warm pool - life cycle hooks 
+AWS Application Auto Scaling 
+• Monitors your apps and automatically adjusts capacity to maintain steady, predictable performance at lowest cost
+• Setup scaling for multiple resouces across multiple services from a single place 
+(no need to navigate across different services)
+• Point to your app and select the services and resources you want to scale 
+(no need to setup alarms and scaling actions for each service)
+• Search for resources/services using CloudFormation Stack, Tags, or EC2 ASG
+• Build Scaling Plans to automatically add/remove capacity from your resources in real-time as demand changes
+• Supports Target Tracking, Step, and Scheduled Scaling 
+
+ASG - Dynamo Table 
+ALB Listener Rules 
+
+ELB – DualStack Networking
+
+• Allows clients communicate with the ELB using both IPv4 and IPv6
+• Supports both ALB and NLB
+• ALB and NLB can have mixed IPv4 and IPv6 targets in separate target groups.
+• ELB DualStack ensures compatibility between client and target IP versions
+• IPv4 clients communicate with IPv4 targets, and IPv6 clients communicate with IPv6 targets.
+• If you only have IPv4 targets, the ELB automatically converts requests from IPv6 to IPv4
+• Note: AZ must be added/enabled for instances to receive traffic
+
+NLB – PrivateLink Integration
+
+Exposing Service in VPCs with Overlapping IP addresses
+(instead of VPC Peering)
+
+NAT Gateway :
+
+• AWS-managed NAT, higher bandwidth, high availability, no administration
+• Pay per hour for usage and bandwidth
+• NATGW is created in a specific Availability Zone, uses an Elastic IP
+• Can’t be used by EC2 instance in the same subnet (only from other 
+subnets)
+• Requires an IGW (Private Subnet => NATGW => IGW)
+• 5 Gbps of bandwidth with automatic scaling up to 100 Gbps
+• No Security Groups to manage / required
+393 - diagram 
+
+NAT Gateway is resilient within a single Availability Zone
+• Must create multiple NAT Gateways in multiple AZs for fault-tolerance
+• There is no cross-AZ failover needed because if an AZ goes down it doesn't need NAT
+
+Multi AZ in AWS
+397 Diagram 
+S3 - Dynamo DB - always multi AZ available
+399 - Blue green architectures 
+
+Multi Region Services
+• DynamoDB Global Tables (multi-way replication, enabled by Streams)
+• AWS Config Aggregators (multi region & multi account)
+• RDS Cross Region Read Replicas (used for Read & DR)
+• Aurora Global Database (one region is master, other is for Read & DR)
+• EBS volumes snapshots, AMI, RDS snapshots can be copied to other regions
+• VPC peering to allow private traffic between regions
+• Route53 uses a global network of DNS servers
+• S3 Cross Region Replication
+• CloudFront for Global CDN at the Edge Locations
+• Lambda@Edge for Global Lambda function at Edge Locations (A/B testing)
+
+Health Check => automated DNS failovers:
+
+Disaster recovery 
+B- p - w - multi site 
+
+Disaster Recovery – Pilot Light
+• A small version of the app is always running in the cloud
+• Useful for the critical core (pilot light)
+• Very similar to Backup and Restore
+• Faster than Backup and Restore as critical systems are already up
+
+P - small verision 
+w- full system - minium size 
+
+VPC peering - private traffic 
+
+Completed Domain 3 
+
+Domain 4 : monitoring and logging 
+Amazon CloudWatch Metrics
+• CloudWatch provides metrics for every services in AWS
+• Metric is a variable to monitor (CPUUtilization, NetworkIn…)
+• Metrics belong to namespaces
+• Dimension is an attribute of a metric (instance id, environment, etc…).
+• Up to 30 dimensions per metric
+• Metrics have timestamps
+• Can create CloudWatch dashboards of metrics***
+• Can create CloudWatch Custom Metrics (for the RAM for example)
+Metric - namespaces - dimensions - dashboards 
+
+415 
+Cloudwatch stream - firehouse - S3 - Athena 
+Option to filter metrics to only stream a subset of them
+
+CloudWatch Custom Metrics
+• Possibility to define and send your own custom metrics to CloudWatch
+• Example: memory (RAM) usage, disk space, number of logged in users …
+• Use API call PutMetricData
+• Ability to use dimensions (attributes) to segment metrics
+• Instance.id
+• Environment.name
+• Metric resolution (StorageResolution API parameter – two possible value):
+• Standard: 1 minute (60 seconds)
+• High Resolution: 1/5/10/30 second(s) – Higher cost
+• Important: Accepts metric data points two weeks in the past and two hours in the future (make sure to configure your EC2 instance time correctly)
+
+CloudWatch Anomaly Detection
+Amazon Lookout for Metrics
+
+CloudWatch Logs
+• Log groups: arbitrary name, usually representing an application
+• Log stream: instances within application / log files / containers
+• Can define log expiration policies (never expire, 1 day to 10 years…)
+• CloudWatch Logs can send logs to:
+	• Amazon S3 (exports)
+	• Kinesis Data Streams
+	• Kinesis Data Firehose
+	• AWS Lambda(Notice here logs are sent to Lambda as well )
+	• OpenSearch
+	•	 Logs are encrypted by default
+	• Can setup KMS-based encryption with your own keys
+
+CloudWatch Logs 
+- Sources
+• SDK, CloudWatch Logs Agent, CloudWatch Unified Agent 
+• Elastic Beanstalk: collection of logs from application 
+• ECS: collection from containers 
+• AWS Lambda: collection from function logs 
+• VPC Flow Logs: VPC specific logs 
+• API Gateway 
+• CloudTrail based on filter 
+• Route53: Log DNS queries
+
+CloudWatch Logs Insights
+
+CloudWatch Logs Insights
+• Search and analyze log data stored in CloudWatch Logs
+• It’s a query engine, not a real-time engine
+
+CloudWatch Logs – S3 Export
+• Log data can take up to 12 hours to become available for export
+• The API call is CreateExportTask 
+• Not near-real time or real-time… use Logs Subscriptions instead
+
+CloudWatch Logs Subscriptions
+• Subscription Filter – filter which logs are events delivered to your destination
+
+CloudWatch Logs Aggregation
+Multi-Account & Multi Region- in S3 
+425 ,426 
+CloudWatch Logs Metric Filter
+
+All kind of Logs
+• Application Logs
+• Operating System Logs (Event Logs, System Logs)
+• Access Logs
+
+AWS Managed Logs
+load balancer, cloud trail,vpc,routr 53 , s3 access logs , cloud front access logs 8905
+
+CloudWatch Logs for EC2
+431 
+
+CloudWatch Logs Agent & Unified Agent
+• For virtual servers (EC2 instances, on-premise servers…)
+• CloudWatch Logs Agent
+	• Old version of the agent
+	• Can only send to CloudWatch Logs
+• CloudWatch Unified Agent
+	• Collect additional system-level metrics such as RAM, processes, etc… 
+	• Collect logs to send to CloudWatch Logs
+	• Centralized configuration using SSM Parameter Store
+	
+CloudWatch Alarms
+CloudWatch Alarm Targets
+• Stop, Terminate, Reboot, or Recover an EC2 Instance
+• Trigger Auto Scaling Action
+• Send notification to SNS (from which you can do pretty much anything)
+
+CloudWatch Alarms – Composite Alarms
+
+EC2 Instance Recovery
+
+• Status Check:
+	• Instance status = check the EC2 VM
+	• System status = check the underlying hardware
+	
+• Alarms can be created based on CloudWatch Logs Metrics Filters
+• To test alarms and notifications, set the alarm state to Alarm using CLI
+aws cloudwatch set-alarm-state --alarm-name "myalarm" --state-value 
+ALARM --state-reason "testing purposes"
+
+CloudWatch Synthetics Canary-439 
+• Configurable script that monitor your APIs, URLs, Websites...
+• Reproduce what your customers do programmatically to find issues before customers are impacted
+• Checks the availability and latency of your endpoints and can store load time data and screenshots of the UI
+• Integration with CloudWatch Alarms
+• Scripts written in Node.js or Python
+• Programmatic access to a headless Google Chrome browser
+• Can run once or on a regular schedule
+
+CloudWatch Synthetics Canary Blueprints
+• Heartbeat Monitor – load URL, store screenshot and an HTTP archive file
+• API Canary – test basic read and write functions of REST APIs
+• Broken Link Checker – check all links inside the URL that you are testing
+• Visual Monitoring – compare a screenshot taken during a canary run with a baseline screenshot
+• Canary Recorder – used with CloudWatch Synthetics Recorder (record your actions on a website and automatically generates a script for that)
+• GUI Workflow Builder – verifies that actions can be taken on your webpage (e.g., test a webpage with a login form
+
+Amazon Athena+Quiclsight 
+Serverless Query -S3 -SQL 
+
+Use cases: Business intelligence / analytics / reporting, analyze & 
+query VPC Flow Logs, ELB Logs, CloudTrail trails, etc... 
+• Exam Tip: analyze data in S3 using serverless SQL, use Athena
+
+Amazon Athena – Performance Improvement
+• Use columnar data for cost-savings (less scan)
+• Apache Parquet or ORC is recommended
+• Huge performance improvement
+• Use Glue to convert your data to Parquet or ORC
+• Compress data for smaller retrievals (bzip2, gzip, lz4, snappy, zlip, zstd…)
+• Partition datasets in S3 for easy querying on virtual columns
+• s3://yourBucket/pathToTable /<PARTITION_COLUMN_NAME>=<VALUE> /<PARTITION_COLUMN_NAME>=<VALUE> /<PARTITION_COLUMN_NAME>=<VALUE>
+ /etc…
+• Example: s3://athena-examples/flight/parquet/year=1991/month=1/day=1/
+• Use larger files (> 128 MB) to minimize overhead
+
+Amazon Athena – Federated Query
+
+#########Domain 5 – Incident and Event Response
+Amazon EventBridge(formerly CloudWatch Events)
+445-cron jobs, event pattern ,
+trigger lambda functions , SQS and SNS 
+446 - source and destinations 
+
+Event Bridge Schema Registry 
+The Schema Registry allows you to generate code for your application, that will know in advance how data is structured in the event bus
+
+• Example: allow/deny events from another AWS account or AWS region
+• Use case: aggregate all events from your AWS Organization in a single AWS
+
+S3 Event Notifications
+• S3:ObjectCreated, S3:ObjectRemoved, 
+S3:ObjectRestore, S3:Replication…
+451
+
+• EventBridge Capabilities – Archive, Replay Events, Reliable delivery
+
+Amazon S3 – Object Integrity 
+--Using MD5
+--Other supported checksums: SHA-1, SHA-256, CRC32, CRC32C
+
+AWS Health Dashboard - Service History
+• Shows all regions, all services health
+• Shows historical information for each day
+• Has an RSS feed you can subscribe to
+• Previously called AWS Service Health Dashboard
+
+454
+
+AWS Health Dashboard –Your Account
+• Previously called AWS Personal Health Dashboard (PHD)
+• AWS Account Health Dashboard provides alerts and remediation 
+guidance when AWS is experiencing events that may impact you.
+Service Health Dashboard
+Account Health Dashboard
+
+Health Event Notifications
+Example: receive email notifications when EC2 instances in your AWS account are scheduled for updates
+
+AWS Health Dashboard – Examples
+458 
+
+Status Checks
+• Automated checks to identify hardware and software issues
+459 
+system - new host 
+instance - software issues 
+
+Status Checks - CW Metrics & Recovery
+
+AWS CloudTrail
+• Provides governance, compliance and audit for your AWS Account
+• CloudTrail is enabled by default!
+• Get an history of events / API calls made within your AWS Account by:
+• Console
+• SDK
+• CLI
+• AWS Services
+• Can put logs from CloudTrail into CloudWatch Logs or S3
+• A trail can be applied to All Regions (default) or a single Region.
+• If a resource is deleted in AWS, investigate CloudTrail first!
+
+Inspect and audit - S3 or Cloudwatch logs -462 
+
+CloudTrail Events
+• Management Events
+• Data Events
+• CloudTrail Insights Events
+
+• Enable CloudTrail Insights to detect unusual activity in your account:
+• inaccurate resource provisioning 
+• hitting service limits
+• Bursts of AWS IAM actions
+• Gaps in periodic maintenance activity
+• CloudTrail Insights analyzes normal management events to create a baseline
+• And then continuously analyzes write events to detect unusual patterns
+• Anomalies appear in the CloudTrail console
+• Event is sent to Amazon S3
+• An EventBridge event is generated (for automation needs)
+
+• Events are stored for 90 days in CloudTrail
+• To keep events beyond this period, log them to S3 and use Athena
+
+466 
+Amazon EventBridge + CloudTrail
+467 
+
+Amazon SQS – Dead Letter Queue (DLQ)-468 
+• If a consumer fails to process a message within the Visibility Timeout…
+the message goes back to the queue!
+• We can set a threshold of how many times a message can 
+go back to the queue 
+• After the MaximumReceives threshold is exceeded, the message goes into a Dead Letter Queue (DLQ)
+• Useful for debugging!
+• DLQ of a FIFO queue must also be a FIFO queue
+• DLQ of a Standard queue must also be a Standard queue
+• Make sure to process the messages in the DLQ before they expire: 
+• Good to set a retention of 14 days in the DLQ
+
+SQS DLQ – Redrive to Source
+• DLQ is attached to SNS Subscription-level (rather than the SNS Topic) 
+DLQ ( HTTP and Lambda ) - 470 
+
+AWS X -Ray -471 
+Visual analysis of our applications
+• Tracing requests across your microservices (distributed systems)
+• Integrations with:
+• EC2 – install the X-Ray agent
+• ECS – install the X-Ray agent or Docker container
+• Lambda
+• Beanstalk - agent is automatically installed
+• API Gateway – helpful to debug errors (such as 504)
+• The X-Ray agent or services need IAM permissions to X-Ray
+
+X-Ray with Elastic Beanstalk
+• AWS Elastic Beanstalk platforms include the X-Ray daemon
+• You can run the daemon by setting an option in the Elastic Beanstalk console or with a configuration file (in .ebextensions/xray-daemon.config)
+
+Xray ==== Distro 
+AWS Distro for OpenTelemetry
+• Collects distributed traces and metrics from your apps
+Migrate from X-Ray to AWS Distro for Temeletry if you want to standardize with open-source APIs from Telemetry or send traces to multiple destinations simultaneousy
+
+475 
+End of Domain 5 : 
+
+SCP allow list is easy to control
+API gateway - canary deployment is possible 
+Code build report group - to visualize the results.
+Amazon Lookout for metrics - Network VPC Flowlogs etc over Kinetics data anamoly 
+random cut forest.
+OrganizationAccountAccessRole is already created when invited from other account 
+AWS Control Tower Blue print Role to access service catalogues 
+Immutable deployment in EB provides rollback safety 
+S3 Batch operations - Initial sync 
+CRR - for later 
+SCP permission - broad organization wise policy - not individual resources like EC2 
+Least privilige | best practice |means iam role | Temp credentials 
+xray - troubleshoot - trace 
+we can use amazon efs utils pacakge to mount EFS - 
+insted of NFS mount 
+EC2 image builder can also be used for container images .
+Use replicate ecr images insted of copying to diff regions due to security concerns.
+Basic scanning covers only OS vulnerabilities and not package vulnerabilities
+ECS can also be incuded in code pipeline
+There is no such thing as a SecureString value in AWS Secrets Manager.
+Secure string in only AWS Systems manager 
+
+It is considered a bad practice to store hard-coded database credentials in code, configuration, or build files such as the buildspec.yaml file. As a security best practice, AWS recommends using the database password as a SecureString value in AWS Systems Manager Parameter Store which can then be referenced in the buildspec file like so:
+
+Amazon FSx for NetApp ontap
+Multi-protocol access to data using the Network File System (NFS), Server Message Block (SMB), Internet Small Computer Systems Interface (iSCSI), and Non-Volatile Memory Express (NVMe) protocols
+
+Terminate Wait is correct not pending 
+Use most common wait status 
+ 
+X-Ray is for Distributed Tracing 
+NAT Gateway - Private Link or VPC Endpoints for private connections 
+AWS Ops Work - COnfig mgmt service 
+ASG using lifecycle events updates about failed ec2 launch 
+AWS Config can deploy AWS config performance packs
+Systems Manager Invetory to identify softwares in ec2 
+Assumption is done only by execution role and not by pricipal 
+potentialy compromized ec2 instances, suspecious nw activity and unusual api activity - GuardDuty 
+Explicit allow are easy to maintaing then deny policies 
+VPC peering required for cross account connections for lambda to perform functions - EFS connection 
+Code deploy does not support canary deployments for lambda 
+
+
+AWS Certified DevOps Engineer - Professional certificate
+
+Well Architected Framework 
+1. Operational Excellence-1
+2. Security
+3. Reliability
+4. Performance Efficiency -1
+5. Cost Optimization-1
+6. Sustainability
+
+
+
+###Youtube preps :: 4- Feb -2025####
+Cloud formation error trouble shoot
+check stack events
+command - aws cloud formation stack-events
+aws cloudformation validate template
+change set 
+aws cloudformation deploy 
+
+Route53, IAM , CloudFront are global services 
+
+AWS Direct connect - A dedicated high Bandwidth link for private connection 
+VPN - An encrypted connection over the internet to secure data transmission 
+
+Services to manage cost
+-Cost Exporer 
+-AWS Budgets
+-AWS Trusted Advisor 
+_AWS cost and usage report
+-AWS savings plan 
+
+
+-Different ways to access AWS
+-mgmt console
+-cli 
+-SDKs
+-Cloud Formation 
+-Terraform
+
+
+Load balancer -4 
+ALB - HTTP and HTTPS
+NLB - TCP udp
+Gateway Load balancer - direct connect 
+Classic Load Balancer 
+
+Restricted Access AWS : 
+IAM - Manager access by defining policies for users, groups and roles 
+Resourec policies-Controll access at resource level like S3 and SQS
+NACLs-Subnet firewall, defining rules for inbound and outbound traffic 
+Security Groups -Virtual firewalls at instance level , controlling inbound and outbound traffic 
+SCPs-Control access across multiple accounts in AWS organizations
+VPC Endpoints
+
+On Premise Migration 
+-Accessing current infrastructure
+-selecting migration strategy [lift and shift , replatforming ,re-architecting ]
+-estimating costs
+-planning for data migration , testing 
+-and executing the migration with minimal downtime 
+
+Process of rollback deployment
+-Identify failure
+-stop deployment 
+-investigate cause
+-rollback plan 
+-execute rollback 
+-verify 
+-communicate
+-learn and improve 
+
+
+###AWS VPC Explained 
+To securely isolate and control network environments
+
+VPC CIDR Block 
+When you create a VPC , you specify a CIDR block that defined the IP Address range for the Entire VPC 
+For Example  : 
+
+10.0.0.0/16
+This blocks allows for 65536 IP Addresses, But in reality 65,531 are usable addresses
+CIDR [Classless InterDomain Routing] is a method for allocating IP Addresses and routing Internet protocol packets 
+
+A subnet is a smaller , segmented part of a larger network that isolates and organizes devices within a specific IP address range 
+
+instances will be created inside subnet 
+
+public subnet 10.0.0.0/24
+private subnet 10.0.1.0/24
+
+subnet will be created in AZ 
+
+Subnet CIDR Blocks 
+
+Routing Table 
+Routing table is set of rules called routes .that are used to dertermine whether network traffic from your subnets or gateway is directed 
+Each subnet from your VPC  must be associated with a route table , which controls ther routing of the subnet .
+
+Internet Gateway : 
+An Internet gateway is a component that allows communication between instances in your VPC and the internet .
+
+Security Groups:-works on instance level 
+Network firewall rules that control inbound and outbound traffic for instances .
+
+Security group contains inbound and outbound rules 
+inbound - enable http and https 
+
+Network ACLs ( Access Control Lists)- works on subnet level 
+Optional layer of security for your VPC that acts as a firewall for controlling traffic in and out of one or more subnets 
+
+Allow or Deny Rule 
+
+NAT ( Network Address Translator ) Gateway :
+Enables instances in a private subnet to connect to the internet or other AWS Services .but prevents the internet from initiating 
+connection to those instances 
+
+VPC Peering 
+A networking connection between 2 VPCs that enables you to route traffic between them privately 
+
+VPC Endpoints 
+Allows you to privately connect your VPC to supported AWS services and VPC endpoint services powered by AWS Private Link 
+
+Bastion Hosts : 
+A special purpose instance that provides secure access to your instances in private subnet 
+
+
+Elastic IP Addresses : 
+Static IP Addresses designed for dynamic cloud computing 
+
+VPC Flow Logs : 
+Captures Information about the IP Traffic going to and from network interfaces in your VPC 
+
+Direct Connect : 
+Establishes a dedicated network connection from your premises to AWS 
+
+AWS Client VPN : 
+Managed VPN service that enables secure remote access to AWS resurces and on premise networks using Open VPN based clients 
+
+####Manual VPC Cretion 
+Create new VPC
+created 2 subnets
+1 public and another private .
+
+Create route table 
+Create Internet Gateway 
+
+####VPC Creation using TF
+A VPC with CIDR Block of 10.0.0.0/16
+One public subnet with CIDR block of 10.0.1.0/24
+One private subnet with CIDR block of 10.0.2.0/24 
+One Internet Gateway 
+One public route table with a route to the Internet Gateway , and the correct association between public subnet and public route table 
+
+everything will be created in aws-vpc folder 
+In new folder will perform terraform init 
+
