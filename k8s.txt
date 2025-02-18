@@ -86,7 +86,8 @@ Worker Machine in k8s cluster :
 -Worker node do the actual work 
 
 
-1-Container runtime 
+1-Container runtime :When the kubelet wants to process pod specs, it needs a container runtime to create the actual containers. The runtime is then responsible for managing the container lifecycle and communicating with the operating system kernel
+
 2-kubelet 
 -kublet interacts with both container and node 
 
@@ -128,6 +129,9 @@ Cluster changes gets stored in key value store
 
 Application data is not stored in etcd .
 it is only clusters information .
+
+To mark a Node unschedulable, run:
+kubectl cordon $NODENAME
 
 Example cluster set up :
 
@@ -948,3 +952,9 @@ Kubernetes Node Not Ready
 A node displays a NotReady status when it shuts down or crashes and the stateful pods inside it are unavailable. If this error persists for longer than five minutes, the status of the scheduled pods will become Unknown. Kubernetes will then attempt to reschedule the pods on a different node, assigning it a status of
 
 
+taint and tolerations k8s : maverick 
+creating yaml file 
+Taints are the opposite -- they allow a node to repel a set of pods.
+Tolerations are applied to pods. Tolerations allow the scheduler to schedule pods with matching taints. Tolerations allow scheduling but don't guarantee scheduling: the scheduler also evaluates other parameters as part of its function.
+
+https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/

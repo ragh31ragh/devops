@@ -11,6 +11,8 @@ Jenkins - admin-da8a1223a4794359a5418f2aec806e38
 raghavendra/raghavendra
 raksha/raksha
 
+General - Souce code management- build triggers - build environment - build - postbuild actions 
+
 Github actions 
 --Running jenkins 
 go to location 
@@ -45,6 +47,7 @@ delete workspace
 Invoke top level maven targets 
 maven goal
 ***clean compile package 
+package to war file 
 
 
 --Post build actions 
@@ -66,6 +69,10 @@ runnig job
 jeniks workspace will be deleted 
 
 now war file will be available in web apps folder 
+
+Apache Tomcat is an open-source web server and servlet container that runs Java-based applications. It's a popular choice for developers because it's lightweight, easy to set up, and works with many operating systems. 
+
+Spring Boot is a Java framework that helps developers create and run applications more easily. It's an extension of the Spring framework, which is an open-source application framework for building Java applications. 
 
 
 Step 1: Install & Configure Jenkins
@@ -306,7 +313,7 @@ restrict where this project can be run
 #####9. Backing up Jenkins
 -back up program files - jenkins folder
 or use plugin 
-Manage jenking 
+Manage jenkins 
 - install one of backup plugin 
 backup - restrore hudson configuration 
 
@@ -348,7 +355,7 @@ copy the jobs directory from old server to new one
 
 5. Hot to deploy custom build of core plugin 
 
-temorarily we can disable jenkins security 
+temporarily we can disable jenkins security 
 
 --ways in which build can be scheduled in jenkins 
 -by source code management commits 
