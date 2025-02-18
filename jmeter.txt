@@ -24,3 +24,17 @@ $1$
 
 We can also add debug sampler 
 
+####Beanshell Scripting ####
+concatenation of username with country 
+username_china 
+Beanshell preprocesor 
+
+String newusername ;
+
+log.info = vars.get("country)
+string country = vars.get("country)
+if (country.equals("china"))
+{
+	newUsername = vars.get("username")+"china"
+	vars.put("username",newUsername)
+}
