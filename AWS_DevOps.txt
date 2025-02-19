@@ -3967,3 +3967,162 @@ One public route table with a route to the Internet Gateway , and the correct as
 everything will be created in aws-vpc folder 
 In new folder will perform terraform init 
 
+
+
+AWS Certified DevOps Engineer - Professional certificate
+
+Well Architected Framework 
+1. Operational Excellence-1
+2. Security
+3. Reliability
+4. Performance Efficiency -1
+5. Cost Optimization-1
+6. Sustainability
+
+
+
+###Youtube preps :: 4- Feb -2025####
+Cloud formation error trouble shoot
+check stack events
+command - aws cl
+aws cloudformation validate templateoud formation stack-events
+change set 
+aws cloudformation deploy 
+
+Route53, IAM , CloudFront are global services 
+
+AWS Direct connect - A dedicated high Bandwidth link for private connection 
+VPN - An encrypted connection over the internet to secure data transmission 
+
+Services to manage cost
+-Cost Exporer 
+-AWS Budgets
+-AWS Trusted Advisor 
+_AWS cost and usage report
+-AWS savings plan 
+
+
+-Different ways to access AWS
+-mgmt console
+-cli 
+-SDKs
+-Cloud Formation 
+-Terraform
+
+
+Load balancer -4 
+ALB - HTTP and HTTPS
+NLB - TCP udp
+Gateway Load balancer - direct connect 
+Classic Load Balancer 
+
+Restricted Access AWS : 
+IAM - Manager access by defining policies for users, groups and roles 
+Resourec policies-Controll access at resource level like S3 and SQS
+NACLs-Subnet firewall, defining rules for inbound and outbound traffic 
+Security Groups -Virtual firewalls at instance level , controlling inbound and outbound traffic 
+SCPs-Control access across multiple accounts in AWS organizations
+VPC Endpoints
+
+On Premise Migration 
+-Accessing current infrastructure
+-selecting migration strategy [lift and shift , replatforming ,re-architecting ]
+-estimating costs
+-planning for data migration , testing 
+-and executing the migration with minimal downtime 
+
+Process of rollback deployment
+-Identify failure
+-stop deployment 
+-investigate cause
+-rollback plan 
+-execute rollback 
+-verify 
+-communicate
+-learn and improve 
+
+
+###AWS VPC Explained 
+To securely isolate and control network environments
+
+VPC CIDR Block 
+When you create a VPC , you specify a CIDR block that defined the IP Address range for the Entire VPC 
+For Example  : 
+
+10.0.0.0/16
+This blocks allows for 65536 IP Addresses, But in reality 65,531 are usable addresses
+CIDR [Classless InterDomain Routing] is a method for allocating IP Addresses and routing Internet protocol packets 
+
+A subnet is a smaller , segmented part of a larger network that isolates and organizes devices within a specific IP address range 
+
+instances will be created inside subnet 
+
+public subnet 10.0.0.0/24
+private subnet 10.0.1.0/24
+
+subnet will be created in AZ 
+
+Subnet CIDR Blocks 
+
+Routing Table 
+Routing table is set of rules called routes .that are used to dertermine whether network traffic from your subnets or gateway is directed 
+Each subnet from your VPC  must be associated with a route table , which controls ther routing of the subnet .
+
+Internet Gateway : 
+An Internet gateway is a component that allows communication between instances in your VPC and the internet .
+
+Security Groups:-works on instance level 
+Network firewall rules that control inbound and outbound traffic for instances .
+
+Security group contains inbound and outbound rules 
+inbound - enable http and https 
+
+Network ACLs ( Access Control Lists)- works on subnet level 
+Optional layer of security for your VPC that acts as a firewall for controlling traffic in and out of one or more subnets 
+
+Allow or Deny Rule 
+
+NAT ( Network Address Translator ) Gateway :
+Enables instances in a private subnet to connect to the internet or other AWS Services .but prevents the internet from initiating 
+connection to those instances 
+
+VPC Peering 
+A networking connection between 2 VPCs that enables you to route traffic between them privately 
+
+VPC Endpoints 
+Allows you to privately connect your VPC to supported AWS services and VPC endpoint services powered by AWS Private Link 
+
+Bastion Hosts : 
+A special purpose instance that provides secure access to your instances in private subnet 
+
+
+Elastic IP Addresses : 
+Static IP Addresses designed for dynamic cloud computing 
+
+VPC Flow Logs : 
+Captures Information about the IP Traffic going to and from network interfaces in your VPC 
+
+Direct Connect : 
+Establishes a dedicated network connection from your premises to AWS 
+
+AWS Client VPN : 
+Managed VPN service that enables secure remote access to AWS resurces and on premise networks using Open VPN based clients 
+
+####Manual VPC Cretion 
+Create new VPC
+created 2 subnets
+1 public and another private .
+
+Create route table 
+Create Internet Gateway 
+
+####VPC Creation using TF
+A VPC with CIDR Block of 10.0.0.0/16
+One public subnet with CIDR block of 10.0.1.0/24
+One private subnet with CIDR block of 10.0.2.0/24 
+One Internet Gateway 
+One public route table with a route to the Internet Gateway , and the correct association between public subnet and public route table 
+
+everything will be created in aws-vpc folder 
+In new folder will perform terraform init 
+

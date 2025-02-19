@@ -206,19 +206,23 @@ Subdirectories include /usr/bin,user/sbin,usr/local,usr/share among others
 
 
 ###Change ownership 
-chown 
-chgrp 
+File ownership commands 
+chwon , chgrp
+chown - to change user owenership 
+chgrp - to change group ownership 
 
 user, group , other user 
 rw rw rw 
 
 chown -c nick testfile 
+ownership will be chaged from paul to nick 
+
 chgrp -c nick testfile 
+group will be changed to nick of testfile 
  
 
-####FTP###7 Feb 2025 
-The file transfer protocol is a comminication protocol user for transfer of computer files between a 
-client and server on a computer network 
+####FTP###7 Feb 2025 #############
+The file transfer protocol is a communication protocol user for transfer of computer files between a client and server on a computer network 
 Uses TCP IP 
 
 -to upload and download files from servers 
@@ -268,8 +272,8 @@ userdel <name of user>
 userdel -r (will remove home dierectory)
 userdel -f (force delete even if the user logged in)
 
-How to modify a user in LInux with usermod command
-TO add user to new group, default group will remain same 
+How to modify a user in Linux with usermod command
+To add user to new group, default group will remain same 
 usermod -G <groupname> <username>
 
 to change default group 
@@ -303,7 +307,7 @@ enter password
 d directory 
 l Link
 c Device file 
-s sockert
+s socket
 p FIFO or Named pipe 
 d Block Device 
 
@@ -325,11 +329,11 @@ c character device file
 -File and Directory Management 
 -Network Mangement
 -Process mgmt commands
-user mgmt commands
-system control commands
-application mgmt commands
-environment variables commands
-console and output mgmt commands 
+-user mgmt commands
+-system control commands
+-application mgmt commands
+-environment variables commands
+-console and output mgmt commands 
 
 -File and Directory Management 
 cd,cp , less ,more , vi ,cat ,mkdir ,rm 
@@ -369,8 +373,6 @@ env
 printenv 
 export 
 source 
-
-
 
 console and output mgmt commands 
 cat 
@@ -426,7 +428,7 @@ we will change config version links
 as configs will be changing 
 
 
-###File permissions
+########File permissions
 rwx - read, write , executable 
 
 (user)(group)(other)

@@ -68,7 +68,7 @@ Continuous Monotoring
  Adding new API keys 
  Server Admin 
  
-  ###############Grafana Dashboard  ##################
+###############Grafana Dashboard  ##################
   install influx db time series database
   sudo lsof -i -p 
   
@@ -80,9 +80,9 @@ Continuous Monotoring
   
   grafana cli plugins install world-map panel 
   
-  import pandas as pd 
-  from influxdb import influxdb client 
+import pandas as pd 
+from influxdb import influxdb client 
   
-  need to install pandas and influx db 
+need to install pandas and influx db 
   
-   ###############Grafana Variables   ##################
+###############Grafana Variables   ##################
