@@ -962,5 +962,73 @@ zgrep Sara users.csv.gz
 
 pdfgrep "dummy" dummy.pdf
 
+#########################18-Feb #################################
+-Linux redirects 
+Meging mutliple files into a single file 
+cat data1 data2
+cat data1 data2 > data3 
+
+Split a big file into small file with relevent data 
+grep doctors users.csv > doctors.data 
+
+Redirection :
+standard input -file descriptor 0 
+standard output --1
+standard error --2 
+
+> overwrite
+>> append 
+
+ls > files.txt 
+output is redirected to files.txt 
+
+errors will get printed in terminal 
+
+cd /root/ 2> error.tct
+ls &>> error.txt 
+
+
+#########################19-Feb #################################
+file compression 
+File compression reduces the size of files by encoding their data more efficiently 
+	
+This is especially used for backup , storage and transfer 
+
+gzip data.txt
+1.9gb to 1.9mb 
+
+gunzip data.txt.gz
+it will get uncompressed 
+
+#create a tar archive 
+tar -cvf archive_name.tar file1.txt file2.txt 
+
+tar -cvf backup.tar backup [tar for folder backup]
+we can compress folder using above command 
+
+gzip backup.tar now 
+
+again compressing newly generated file .
+backup.tar.gz 
+
+commonly used format 
+c - compress
+extract 
+z for extract 
+
+tar -xvf backup.tar.gz
+
+tar -czvf backup - archive and zip in single command 
+tar -xzvf - to decompress 
+
+one more command 
+zip command 
+zip files.zip file1 file2 
+unzip archive_name.zip 
+
+better to use tar compared to gz . as it saves files modified date and ownership etc .
+
+how to read compreseed and uncompressed files 
+
 
 

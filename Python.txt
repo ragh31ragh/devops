@@ -431,4 +431,7 @@ running some code before each test
 @pytest.mark.parameterize 
 
 @pytest.fixture 
-@pytest.mark.skip 
+@pytest.mark.skip 	
+
+set path using os module 
+and import path using os module 
