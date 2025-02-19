@@ -25,6 +25,7 @@ $1$
 We can also add debug sampler 
 
 ####Beanshell Scripting ####
+updating user name based on country in spreadsheet 
 concatenation of username with country 
 username_china 
 Beanshell preprocesor 
@@ -55,7 +56,7 @@ prev.getresponscode .
 
 we can convert to string 
 
-Beanshell preprocessor and post processore , both are avaialble 
+Beanshell preprocessor and post processor , both are avaialble 
 
 One test plan can contain multiple threadgroup 
 we can define varaibles at test plan level so that it can be accessed at thread group level 
@@ -65,3 +66,26 @@ property
 
 bean shell post processor can be used to print logs and analyze the response 
 ctx,vars,props,prev,sampler,log 
+
+
+####Non GUI Mode ####
+running tests in command prompt . 
+gives better performance .
+running using jenkins 
+Navigate to bin directory 
+jmeter -n -t testfile.jmx 
+
+to monitor results we need to add one more command 
+
+jmeter -n -t testfile.jmx -l C:\Results.jtl
+drag -drop your file into excel 
+
+Blazemeter - is good for understanding jmeter 
+
+Taurau for viewing jmeter results 
+Blazemeter cloud 
+we can run scripts on blazemeter cloud 
+
+###Importance of Blazemeter for cloud execution 
+upload jmeter scripts in blazemeter 
+Blazemeter provides infra to run our scripts 
