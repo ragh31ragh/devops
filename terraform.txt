@@ -70,7 +70,7 @@ terraform validate
 terraform graph 
 
 Mutable infrastructure - inplace deployment
-Immutable infrastructure - commplete diff hardware from v2 to v3 
+Immutable infrastructure - complete diff hardware from v2 to v3 
 
 
 lifecycle rule
@@ -82,7 +82,7 @@ meta arguments - depends on
 
 ####30 Jan ####
 
-Tool for Infratructure profisioning 
+Tool for Infratructure provisioning 
 
 1.private network space 
 2.ec2 servers 
