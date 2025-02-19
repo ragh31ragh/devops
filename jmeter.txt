@@ -24,3 +24,68 @@ $1$
 
 We can also add debug sampler 
 
+####Beanshell Scripting ####
+updating user name based on country in spreadsheet 
+concatenation of username with country 
+username_china 
+Beanshell preprocesor 
+
+String newusername ;
+
+log.info = vars.get("country)
+string country = vars.get("country)
+if (country.equals("china"))
+{
+	newUsername = vars.get("username")+"china"
+	vars.put("username",newUsername)
+}
+
+ctx.variables - it will get all variables 
+int thread_num = ctx.getthreadnum()
+Adding thread number + 15 
+
+prefix.tostring()
+
+prev variables
+
+post processor step 
+
+ctx prev variables 
+
+prev.getresponscode .
+
+we can convert to string 
+
+Beanshell preprocessor and post processor , both are avaialble 
+
+One test plan can contain multiple threadgroup 
+we can define varaibles at test plan level so that it can be accessed at thread group level 
+
+if we declare varialbes at test plan level it is called props.
+property 
+
+bean shell post processor can be used to print logs and analyze the response 
+ctx,vars,props,prev,sampler,log 
+
+
+####Non GUI Mode ####
+running tests in command prompt . 
+gives better performance .
+running using jenkins 
+Navigate to bin directory 
+jmeter -n -t testfile.jmx 
+
+to monitor results we need to add one more command 
+
+jmeter -n -t testfile.jmx -l C:\Results.jtl
+drag -drop your file into excel 
+
+Blazemeter - is good for understanding jmeter 
+
+Taurau for viewing jmeter results 
+Blazemeter cloud 
+we can run scripts on blazemeter cloud 
+
+###Importance of Blazemeter for cloud execution 
+upload jmeter scripts in blazemeter 
+Blazemeter provides infra to run our scripts 
