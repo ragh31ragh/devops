@@ -89,3 +89,27 @@ we can run scripts on blazemeter cloud
 ###Importance of Blazemeter for cloud execution 
 upload jmeter scripts in blazemeter 
 Blazemeter provides infra to run our scripts 
+
+#########jmeter distributed mode #########
+20-Feb-2025 
+-select and start the jmeter slave server 
+-note the ip address of slave and update it in jmeter properties of master machine
+-restart the jmeter in master machine and run the test on selected nodes 
+-same version of jemeter 
+
+5000 cpu users 
+bin-jmeter.properties file 
+server.rmi.ssi.disable=true
+we are disabling ssl here 
+start jmeter server  batch file 
+
+configure slave IP in master 
+
+remote hosts = 127.0.0.1
+by default it will be local host 
+Run Remote start - you will get slave IP now 
+
+Results will be displayed in master, but test will be run on different machine.
+
+same jmeter version , same subnet , same OS 	
+no antivirus 

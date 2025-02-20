@@ -12,3 +12,28 @@ to send weithed traffic
 ################18-Feb-2025############
 Reserved - Free
 Provisioned - cost 
+
+Domain 5 : Multi AZ architecture 
+Blue - Green architecture 
+Mutli Region with Route 53  	
+
+Route 53 ( latency , geoproximity , etc ) 
+Multi Region architecture - complex routing 
+aliases 
+eu.example.com
+us.example.com 
+pointing to example.com 
+
+Disaster Recovery : 
+RPO RTO
+Dataloss , Downtime 
+
+Strategis of disaster recovery 
+-Backup and restore ( High RPO - cheap)
+-pilot light -small versions 
+-warm standby -full system - minimum size 
+-Hot site / mutlisite (very expensive)
+
+Chaos 
+: to simulate disaster 
+randomly terminate ec2 
