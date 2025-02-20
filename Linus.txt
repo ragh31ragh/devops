@@ -1032,5 +1032,21 @@ better to use tar compared to gz . as it saves files modified date and ownership
 
 how to read compreseed and uncompressed files 
 
+#########################20-Feb #################################
+cron jobs 
+schedules tasks at specific intervals 
+crond 
+systemctl status cron 
+
+crontab -e 
+crontab -l (lists all crontab functions)
+crontab -r 
+
+* * * * * /usr/bin/python3 /path/to/task.py 
+minute hour day month day 
+
+logs /
+/var/log/cron 
+
 
 
