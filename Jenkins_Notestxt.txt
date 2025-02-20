@@ -144,7 +144,7 @@ writing code - compiling to form a build
  
  #####jenkins ############5-Feb-2025
  
- https://www.youtube.com/watch?v=QaDNk1a8xFU&list=PLEiEAq2VkUUKGrfcoNYRgqam5YBERN8xa&index=4
+https://www.youtube.com/watch?v=QaDNk1a8xFU&list=PLEiEAq2VkUUKGrfcoNYRgqam5YBERN8xa&index=4
 1. Prerequisites and installation
 2. Jenkins typical configurations
 3. Create new users and manage permissions
@@ -275,7 +275,7 @@ mvn package
 it is a target 
 warfile will get generated in a location 
 
-grap this war file and deploy it to tomcat server 
+grab this war file and deploy it to tomcat server 
 
 Download Deploy to conatainer plugin 
 
