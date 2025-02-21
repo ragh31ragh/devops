@@ -359,3 +359,4 @@ One public route table with a route to the Internet Gateway , and the correct as
 everything will be created in aws-vpc folder 
 In new folder will perform terraform init 
 
+Step1 change:
