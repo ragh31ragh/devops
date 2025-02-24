@@ -251,3 +251,28 @@ git stash apply@{2}
 git stash clear 
 
 #####
+############21-Feb###########
+git config --list
+git clean -f - to remove files
+git reset - backword
+gets all changes moved from staging to working directory
+git commit -forward
+
+git reset - mixed
+mixed and soft data is not lost
+gets all changes moved from staging to working directory
+
+
+git reset --soft HEAD~1
+git reset --soft HEAD de3385a56bb5b02e18abcec0c66fd1c2fff315af
+all changes fall back to staging and commit is removed
+
+git reset --hard HEAD~1
+all changes are permanently gone
+
+git reflog : to check all that has happened
+
+3:07
+
+read permission only , writ permission only
+
