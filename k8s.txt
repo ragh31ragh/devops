@@ -795,7 +795,7 @@ Need Storage that does not depend on pod life cycle
 we dont know on which node ,the pod restarts 
 
 Persistant volume 
-- a custer resource 
+- a cluster resource 
 - created via YAML file 
 
 spec 
@@ -873,7 +873,7 @@ in pvc we mention storage class name
 
 -pod claims storage via pvc
 -PVC requests storage from SC
--SC creates PV that meets the nees of the claim 
+-SC creates PV that meets the need of the claim 
 
 
 #######Deploying Stateful Apps with StatefulSet
@@ -940,7 +940,9 @@ Resolving the error
 Here are some of the main causes of the CrashLoopBackOff error and how to address them:
 
 Lack of resources: If the node lacks the required resources, you can manually eject some of its existing pods from or scale up the cluster to ensure more nodes are available for the pods.
+
 Volume mounting errors: If there was a problem when mounting the storage volume, you can check the volume’s manifest to ensure its definition is correct. You should also verify that a storage volume exists matching this definition.
+
 Pods bound to a hostPort: When using a hostPort, only one node can be scheduled for each node. You can usually avoid this by using a Service object instead of a hostPort to enable the pod to communicate.
 
 ImagePullBackOff
