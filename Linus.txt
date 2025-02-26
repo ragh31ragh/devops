@@ -608,11 +608,14 @@ i means interactive
 
 aliases are temporary 
 
+ls -la 
  to make it permanent 
  save in .bash_profile 
  
+ 
  to immediately make it work 
  use source command
+source .bashrc
  
  to make it global change update in 
  /etc/bashrc 
