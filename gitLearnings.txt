@@ -276,3 +276,158 @@ git reflog : to check all that has happened
 
 read permission only , writ permission only
 
+############21-Feb###########
+git config --list
+git clean -f - to remove files
+git reset - backword
+gets all changes moved from staging to working directory
+git commit -forward
+
+git reset - mixed
+mixed and soft data is not lost
+gets all changes moved from staging to working directory
+
+
+git reset --soft HEAD~1
+git reset --soft HEAD de3385a56bb5b02e18abcec0c66fd1c2fff315af
+all changes fall back to staging and commit is removed
+
+git reset --hard HEAD~1
+all changes are permanently gone
+
+git reflog : to check all that has happened
+
+3:07
+
+read permission only , writ permission only
+
+############24-Feb###########
+We can enable merge button only after 3 approval
+creating pull request using UI
+
+
+#####Merging the branches and solving resolve conflicts in multiple ways
+We can create pull request from UI
+Add assignee,
+reject PRs
+accept it
+
+17
+0:20 screenshot available
+when all the changes in our code occurs on diff lines or in different files
+Git will successfully merge commits without your help
+Git auto merge or manual merge
+
+But you will run into merge conficts when same lines of code which you changed are already changed
+by others after you cut that branch
+manaul merge is the solution
+
+
+git push origin master -f
+when you forcefully go behind few commits .
+
+manual merge - we can merge feature branch to master and master to feature - vice versa
+
+###Merge conflict and how to resolve them
+Merge commit
+Squash
+Fast Forward
+
+
+
+############24-Feb###########
+creating merge conflict
+in branch edit the same file
+in master /main edit the same file
+create PR- , you will not be able to create merge request
+
+
+############24-Feb###########
+Git rebase
+and squash
+Instead of direct merge , how to rebase and merge the branch
+-Git Merge and Git Rebase serve the same purpose
+-They are desinged to integrate changes from multiple branches into one .
+Although the final goal is same , those two methods achieve it in different ways
+-Rebasing is the process of moving or combining a sequence of commits to a new base commit
+-the primary reason for rebasing is to maintain a linear project history
+
+
+git checkout master
+git pull
+git checkout branch
+git rebase master
+insted of
+git merge master
+
+we can do rebase or normal merge
+varies from company to company
+
+Scenario 4 :
+How to squash the commit with rebase
+"squash" in git means to combine multiple commits into one
+
+git rebase -i HEAD~2
+squashing 2 or more commits into 1
+
+when we change commit history
+we need to forcefully push using -f command
+
+24.End to end example on applying git rebase and squash together on working branch
+
+you can better learn merge only -
+rebase and squash you can learn once you master merge command
+
+S9 : Advanced Git workflows
+
+Scenario 6 : How to edit last commit
+git commit --amend
+git commit --amend -m "new commit message"
+
+Scanario 7 : How to move the commit from one branch to another ?
+git cherrypick commit id
+git cherrypick continue
+
+
+
+#####git bisect
+Scenaro 8 :
+If application fails after pusing many commits , how to identify which commit caused the issue ?
+git bisect start
+git bisect bad commitid
+git bisect good commitid
+git bisect bad
+git bisect good
+
+git bisect reset
+
+Travelling to some old commit :
+git checkout commitid
+git checkout -b bugfixbranch
+git cherry-pick commitid
+
+####stash changes - revert code in git public repo
+make changes in 2 files - 2 branches
+account
+profile
+git stash
+git stash pop
+when you are asked to work on diff branch , we can stash the changes
+work on another branch . complete it
+and comeback and continue working on this
+git diff
+to know the changes in content of file
+
+git blame filename
+
+diff between git status and git diff
+
+######revert commits in public repo
+revert - history will remain
+reset - history will not be there
+revert - use in public repo
+reset - use in private local repo
+
+diff between revert and hard reset :*****
+
+
