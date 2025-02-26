@@ -431,3 +431,27 @@ reset - use in private local repo
 diff between revert and hard reset :*****
 
 
+###bit bucket build pipeline and auto trigger
+
+Difference between gitpull and git fetch
+git fetch downloads all the latest commits from all branches and all the new branches from the remote and saves it in local repo , but it wont merge it to the local branch you are working on
+
+It means git fetch will never change your working state
+
+Latest content can be viewed by below command
+git checkout origin/branchname
+
+Git pull  on the other hand downloads all the latest commits from all branches and all new branches from the remote and merge(copy) those changes to the local branch you are working on
+
+git pull is combination of git fetch and merge
+
+####Git tagging #####
+Tagging lets developer mark important checkpoing in the course of their projects development
+Create git tag - git tag <tagname>
+Verify git tag - git tag
+Create tag with message - git tag -a <tagname> -m "message"
+Push tag - git push --tags
+
+tagging another commit id
+
+git tag v2_release commitid 
