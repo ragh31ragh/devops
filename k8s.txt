@@ -1,10 +1,23 @@
 k8s:
-Open source container orchestration tool to manage 100s and 1000s of containers 
+Open source container orchestration tool to manage 100s and 1000s of containers
+
+--Automatic Deployment
+--Management of containerized apps
+--scaling
+
+--Consider heavy load on webapp s
 
 ###Features:
 High Avaialbility or no downtime.
 Scalablity or high performance 
-Disaster recovery - backup and restore 
+Disaster recovery - backup and restore
+
+-Create a k8s cluster
+-Deploy an app
+-Explore your app
+-Expose your app publically
+-Scale up your app
+-update your app
 
 ###k8s components : 21-Jan 
 --Node and Pod 
@@ -17,7 +30,7 @@ Disaster recovery - backup and restore
 --Service and Ingress :
 -permanent ip address for pod 
 -lifecycle of pod and service not connected 
--evenif pod dies service and ip address will stay 
+-even if pod dies service and ip address will stay
 
 Service [ External and Internal ]
 External web app - : Internal - database 
