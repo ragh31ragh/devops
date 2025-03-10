@@ -372,3 +372,15 @@ Rebuild, using the Rebuilder plugin allows a completed job to be re-executed whi
 
 Replay does something similar, except it doesn't show you parameters. Instead, it shows the pipeline code directly. This is helpful when wanting to test changes iteratively as you can click Replay, change one or two lines of code, then let it execute. The job will run using the same parameters as it did the first time it ran/completed.
 
+-mavan project 
+-we can give secret key instead of credentials to pull the code 
+-branch name 
+-web hook trigger 
+-Configure maven home 
+-test p Regression 
+
+####web hook trigger 
+-github webhook trigger jenkins 
+-payload URL - you will get from jenkins 
+-cannot be tested in local 
+-ngrok - to expose local ip to public 

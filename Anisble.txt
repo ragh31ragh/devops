@@ -22,3 +22,14 @@ one or more plays
 
 playbook orchestrates module execution 
 anible inventory : host ip mapping 
+
+##########7-Mar-2025########
+--provisioning 
+--configuration mgmt
+--continuos delivery
+---application deployment 
+--
+
+--simple , powerful , agentless 
+
+##Configuration and basic concepts : 
