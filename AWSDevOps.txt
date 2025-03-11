@@ -36,4 +36,18 @@ Strategis of disaster recovery
 
 Chaos 
 : to simulate disaster 
-randomly terminate ec2 
+randomly terminate ec2
+
+##########AWS IAM###################
+##########4 -March ###################
+
+service control access to AWS services
+it allows to manage users , roles and permissions to define who can access what within your aws environment
+IAM- free and global service
+root user should not be used or shared
+
+learn pandas and numpy
+956 policies are already created
+"Effect ":Allow
+"Action":*
+"Resource"*
