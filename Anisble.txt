@@ -1,9 +1,9 @@
 Anisble - 
 Tool to automate IT Tasks 
 updating docker versions on 10 servers .
-need to ssh and peform operations 
+need to ssh and perform operations
 Anisble is agentless - it just require ssh access 
-can be only instaled in control machine 
+can be only installed in control machine
 Ansible Modules 
 Module - one small specific task 
 Ansible uses YAML 
@@ -21,6 +21,7 @@ which task  -which host - which user ---> playbook
 one or more plays 
 
 playbook orchestrates module execution 
+<<<<<<< Updated upstream
 anible inventory : host ip mapping 
 
 ##########7-Mar-2025########
@@ -33,3 +34,6 @@ anible inventory : host ip mapping
 --simple , powerful , agentless 
 
 ##Configuration and basic concepts : 
+=======
+ansible inventory : host ip mapping
+>>>>>>> Stashed changes

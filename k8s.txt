@@ -290,7 +290,8 @@ kubectl get services
 kubectl get replicaset
 kubectl get deployments
 
-
+docker build
+docker push
 ###debugging pods 
 kubectl logs podname 
 kubectl exec-it [pod name ] --bin/bash 
@@ -1048,3 +1049,41 @@ Taints are the opposite -- they allow a node to repel a set of pods.
 Tolerations are applied to pods. Tolerations allow the scheduler to schedule pods with matching taints. Tolerations allow scheduling but don't guarantee scheduling: the scheduler also evaluates other parameters as part of its function.
 
 https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/
+
+kubectl get pods
+STATUS- Image pull back off-wrong image
+
+pods diff status
+
+kubectl rollout status deployment my-web-app
+kubectl rollout undo deployment my-web-app
+
+###Self healing
+
+Control Plane - Worker Node
+Master - Slave
+etcd - kv store - database
+actual workloads run on worker node
+https://www.youtube.com/watch?v=a-nWPre5QYI
+Actual workload runs in container runtime interface
+
+Container Runtime :
+--Podman
+--CRI O
+--containered
+--linux containers
+--kata containers
+--firecrackers ( Lambda)
+
+Cloud Control Manager
+
+
+
+#########7-Mar#########
+manifests folder -
+contains all yaml files
+https://www.youtube.com/watch?v=pTmIoKUeU-A&t=15s
+eks cluster created
+ec2
+installed kubectl
+git  to pull code and manifests
