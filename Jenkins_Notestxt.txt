@@ -383,4 +383,14 @@ Replay does something similar, except it doesn't show you parameters. Instead, i
 -github webhook trigger jenkins 
 -payload URL - you will get from jenkins 
 -cannot be tested in local 
--ngrok - to expose local ip to public 
+-ngrok - to expose local ip to public
+
+
+###Build with parameters
+string parameter
+choice parameter
+Hello Firstname , Second name , Last name
+basic logic
+boolean parameters
+
+
