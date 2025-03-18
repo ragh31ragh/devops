@@ -393,4 +393,46 @@ Hello Firstname , Second name , Last name
 basic logic
 boolean parameters
 
+Docker file is to create image
+docker compose to create container
+
+
+FROM fedora:41
+
+RUN yum -y install openssh-server
+
+RUN useradd remote_user && \
+    echo "1234" | passwd remote_user  --stdin && \
+    mkdir /home/remote_user/.ssh && \
+    chmod 700 /home/remote_user/.ssh
+
+
+RUN ssh-keygen -A
+
+###############################docker compose file ##################
+services:
+  jenkins:
+    container_name: jenkins
+    image: jenkins/jenkins
+    ports:
+      - "8080:8080"
+    volumes:
+      - $PWD/jenkins_home:/var/jenkins_home
+    networks:
+      - net
+  remote_host:
+    container_name: remote-host
+    image: remote-host
+    build:
+      context: centos7
+    networks:
+      - net
+networks:
+  net:
+###############################docker compose file ##################
+docker compose build
+docker compose up -d ( to create services )
+docker compose stop
+
+docker restart jenkins
 
