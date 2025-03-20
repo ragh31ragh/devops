@@ -51,3 +51,12 @@ learn pandas and numpy
 "Effect ":Allow
 "Action":*
 "Resource"*
+
+HTTP : 80
+SSH: 22
+https : 443
+mysql : 3306
+
+ec2 types :
+ec2 purchasing options
+
