@@ -40,3 +40,10 @@ pytest
 yield keyword 
 
 returning values from functions 
+@pytest.mark.skip
+
+python -m platwright install 
+
+@pytest.mark.smoke
+pytest -m smoke 
+to run tests with smoke tag 
