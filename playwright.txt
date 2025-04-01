@@ -1,0 +1,42 @@
+##############31-Mar-2025##########
+Why Playwright 
+pip - package installer 
+C:\Users\bgh51043>where python
+C:\Users\bgh51043\AppData\Local\Programs\Python\Python37-32\python.exe
+C:\Users\bgh51043\AppData\Local\Microsoft\WindowsApps\python.exe
+
+
+C:\Users\bgh51043\PycharmProjects\PytestPython
+S C:\Users\bgh51043\PycharmProjects\PytestPython>
+
+
+
+jar  - java world packages 
+pip install -U pytest 
+
+pip install pytest-playwright
+
+Install browsers : 
+playwright install 
+
+Fixtures : 
+About Pytest fixtures
+defining 
+
+-Prefixing function name with test_
+-@pytest.fixture
+-@pytest.fixture(scope="module")
+-Defining scope of pytest fixture as module or function 
+-Sending pytest fixture function name as argument 
+
+conftest.py
+
+session scope 
+
+How to run all tests together ?
+pytest -s 
+pytest 
+
+yield keyword 
+
+returning values from functions 
