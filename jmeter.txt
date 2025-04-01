@@ -67,6 +67,7 @@ property
 bean shell post processor can be used to print logs and analyze the response 
 ctx,vars,props,prev,sampler,log 
 
+ctx,vars,props,prev
 
 ####Non GUI Mode ####
 running tests in command prompt . 
