@@ -34,7 +34,7 @@ conftest.py
 session scope 
 
 How to run all tests together ?
-pytest -s 
+pytest -s ( to display output)
 pytest 
 
 yield keyword 
