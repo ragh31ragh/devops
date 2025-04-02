@@ -15,7 +15,7 @@ Provisioned - cost
 
 Domain 5 : Multi AZ architecture 
 Blue - Green architecture 
-Mutli Region with Route 53  	
+Multi Region with Route 53
 
 Route 53 ( latency , geoproximity , etc ) 
 Multi Region architecture - complex routing 
@@ -28,7 +28,7 @@ Disaster Recovery :
 RPO RTO
 Dataloss , Downtime 
 
-Strategis of disaster recovery 
+Strategies of disaster recovery
 -Backup and restore ( High RPO - cheap)
 -pilot light -small versions 
 -warm standby -full system - minimum size 
