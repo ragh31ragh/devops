@@ -47,3 +47,62 @@ python -m platwright install
 @pytest.mark.smoke
 pytest -m smoke 
 to run tests with smoke tag 
+
+Below covers section 5 : 
+Launching browser.
+finding elements and writing code for it 
+
+#########Chromium engine browser with playwright fixture 
+-created a simple function to launce browser : 
+def test_playwrightBasics(playwright):
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page = context.new_page()
+    page.goto("https://rahulshettyacademy.com")
+	
+def test_playwrightShortCut(page:Page):
+    page.goto("https://rahulshettyacademy.com")
+	
+running test using commandline : 
+ pytest test_playwrightBasics.py::test_playwrightShortCut --headed
+ 
+ 
+passing --headed arguments for test 
+
+
+def test_coreLocators(page:Page):
+    page.goto("https://rahulshettyacademy.com/loginpagePractise")
+    page.get_by_label("Username:").fill("rahulshettyacademy")
+    page.get_by_label("Password:").fill("learning")
+    page.get_by_role("combobox").select_option("teach")
+    time.sleep(5)
+	
+get_by_role for dropbox , combobox etc 
+
+label will not work in all cases 
+-it should have input
+-or id associated .
+
+css #id
+css .classname 
+
+def test_coreLocators(page:Page):
+    page.goto("https://rahulshettyacademy.com/loginpagePractise")
+    page.get_by_label("Username:").fill("rahulshettyacademy")
+    page.get_by_label("Password:").fill("learning")
+    page.get_by_role("combobox").select_option("teach")
+    page.locator("#terms").check()
+    page.get_by_role("link",name="terms and conditions")
+    page.get_by_role("button",name="Sign In").click()
+    time.sleep(5)
+	
+	
+s6: Playwright ui methods with real time examples 
+TC : enter wrong creds and capture error message 
+
+Autowait example 
+ 1 lecture explained about autowait .
+ and this code 
+ from playwright.sync_api import Page, expect
+ 
+ expect(page.get_by_text("Incorrect username/password.")).to_be_visible()
