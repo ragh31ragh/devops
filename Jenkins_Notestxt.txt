@@ -11,14 +11,14 @@ Jenkins - admin-da8a1223a4794359a5418f2aec806e38
 raghavendra/raghavendra
 raksha/raksha
 
-General - Souce code management- build triggers - build environment - build - postbuild actions 
+General - Source code management- build triggers - build environment - build - postbuild actions
 
 Github actions 
 --Running jenkins 
 go to location 
 run command
 java -jar jenkins -war -httpport=8081 
-tomat server : port 5050 
+tomcat server : port 5050
 login to jenkins 
 admin - admin 
 
@@ -33,7 +33,7 @@ package is war
 spring framework package
 
 springboot job
-fresstyple project 
+fresstyle project
 --Sourcecode managemt - git , bit bucket 
 credentials 
 
@@ -65,8 +65,8 @@ URL
 
 Build now to run jenkins job 
 
-runnig job 
-jeniks workspace will be deleted 
+running job
+jenkins workspace will be deleted
 
 now war file will be available in web apps folder 
 
@@ -251,7 +251,7 @@ logout and login with developer user
 Git repo
 Configure url to pull code 
 provide credentials 
-exeucte windows batch command
+execute windows batch command
 java -c hellojava 
 java hello 
 
@@ -277,7 +277,7 @@ warfile will get generated in a location
 
 grab this war file and deploy it to tomcat server 
 
-Download Deploy to conatainer plugin 
+Download Deploy to container plugin
 
 Now we will add post build step : 
 Tomcat is a container ( you can check the list in jenkins ) 
@@ -342,13 +342,13 @@ key aspects
 - scripting [ groovy script ] 
 - delclarative 
 
-3 . Backu up Jenkins_Home directory 
+3 . Backup up Jenkins_Home directory
 or back up plugin 
 
 4. How to copy job from one server to other ?
 copy the jobs directory from old server to new one 
 
-4.Security mecahaism to authencate jenkins user 
+4.Security mechanism to authenticate jenkins user
 -it uses internal DB to store credentials
 -LDAP server 
 -authentication mechanism of application server 
@@ -372,7 +372,7 @@ Rebuild, using the Rebuilder plugin allows a completed job to be re-executed whi
 
 Replay does something similar, except it doesn't show you parameters. Instead, it shows the pipeline code directly. This is helpful when wanting to test changes iteratively as you can click Replay, change one or two lines of code, then let it execute. The job will run using the same parameters as it did the first time it ran/completed.
 
--mavan project 
+-maven project
 -we can give secret key instead of credentials to pull the code 
 -branch name 
 -web hook trigger 
