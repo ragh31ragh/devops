@@ -115,7 +115,8 @@ Autowait example
     page = browser.new_page()
     page.goto("https://rahulshettyacademy.com/loginpagePractise")
 	
-	
+
+################April 2 , 2025##########	
 ##Filter working on dynamic selection of card items in the list 
 select given 2 products and add to the cart 
 css selector - id , tag and classname 
@@ -157,3 +158,42 @@ def test_childWindowHandles(page:Page):
 		
 		
 ###python string methods for assertion 
+
+        text = childPage.locator(".red").text_content()
+        print(text)
+        #Please email us at mentor@rahulshettyacademy.com with below template to receive response
+        words = text.split("at")
+        email = words[1].strip().split(" ")[0]
+        print("Email")
+        print(email)
+        assert email == "mentor@rahulshettyacademy.com"
+
+######S7 : UI functional validations with assersions using playwright python 
+https://rahulshettyacademy.com/AutomationPractice/
+getting attribute by placeholder 
+Clicking on Hide and checking if hiding or not .
+using assertion to verify it 
+
+
+def test_UIChecks(page:Page):
+    page.goto("https://rahulshettyacademy.com/AutomationPractice/")
+    expect(page.get_by_placeholder("Hide/Show Example")).to_be_visible()
+    page.get_by_role("button",name="Hide").click()
+    expect(page.get_by_placeholder("Hide/Show Example")).to_be_hidden()
+    time.sleep(5)
+	
+Handling Alerts and Pop ups 
+lambda functions - functions without name - anonymous functions 
+This section is regarding handling alerts using listener 
+    page.on("dialog", lambda dialog: dialog.accept())
+    page.get_by_role("button",name="Confirm")
+	
+Handling Frames : 
+   ##Frame Handling
+    pageFrame = page.frame_locator("#courses-iframe")
+    pageFrame.get_by_role("link",name="All Access plan").click()
+    expect(pageFrame.locator("body")).to_contain_text("Happy Subscibers")
+reference will go from page to pageFrame 
+
+Handling Web Tables automation : 
+
