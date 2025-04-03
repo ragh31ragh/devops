@@ -14,6 +14,15 @@ git :
 /i/Learnings/Raghavendra/2025_DevOps
 /i/Learnings/Raghavendra/PythonProjects/playwright
 
+https://rahulshettyacademy.com
+https://rahulshettyacademy.com/loginpagePractise
+https://rahulshettyacademy.com/seleniumPractise/#/offers
+https://rahulshettyacademy.com/AutomationPractice/
+https://rahulshettyacademy.com/client
+https://rahulshettyacademy.com/client/
+rahulshetty@gmail.com
+Iamking@000
+
 
 
 jar  - java world packages 
@@ -230,3 +239,100 @@ Iamking@000
 ###Recording and Playback 
 write the below command in pycharm terminal to start recording 
 playwright codegen https://rahulshettyacademy.com/client
+
+
+###3-Apr-2025############
+API Testing 
+https://rahulshettyacademy.com/client/
+we will use above website 
+rahulshetty@gmail.com
+Iamking@000
+
+In this section from 44 to 49 
+Creating order by API 
+Login 
+checking orders page
+cliking on the order and verifying the thankyou text code is written.
+
+44:Analyzed how to create apis by looking into console
+how to create orders order id etc 
+
+45 . Creating Login function in UI writing code for same
+creating utils and API utils class 
+
+46 . we will see how to make api call with playwright 
+create script to give deatils 
+like url 
+header info etc  
+created createOrder API - methods
+
+47 . we will create login api 
+in python json is dictionary  
+in this lecture we created get token method 
+analyze the code .
+
+from playwright.sync_api import Playwright
+
+ordersPayload = {orders: [{country: "India", productOrderedId: "67a8df1ac0d3e6622a297ccb"}]}
+class APIUtils:
+
+    def getToken(self,playwright:Playwright):
+        api_request_context = playwright.request.new_context(base_url="https://rahulshettyacademy.com")
+        response = api_request_context.post("/api/ecom/auth/login",
+                                 data = {  "userEmail": "rahulshetty@gmail.com",  "userPassword": "Iamking@000"}
+                                 )
+        assert = response.ok
+        print(response.json())
+        responseBody = response.json()
+        return responseBody["token "]
+
+    def createOrder(self,playwright:Playwright):
+        token = self.getToken(playwright)
+        api_request_context = playwright.request.new_context(base_url="https://rahulshettyacademy.com")
+        response = api_request_context.post("/api/ecom/order/create-order",
+                                 data = ordersPayload,
+                                 headers={"Authorization" : token
+                                          "Content-Type" : "application/json"})
+        print(response.json())
+		
+48. Refactor API Utils methods and call them from Tests in generating data
+Running and checkink test
+getting order id in main function 
+
+
+49. Dynamically find the order Id from the order History table with easy logic
+selector hub
+Identifying order details clicking on view button 
+and applying assert statement 
+
+import time
+
+from playwright.sync_api import Playwright, expect
+
+from utils.api_base import APIUtils
+
+
+def test_e2e_web_api(playwright:Playwright):
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page = context.new_page()
+    page.goto("https://rahulshettyacademy.com/client")
+    #create order and grab order id
+
+    api_utils = APIUtils()
+    orderId = api_utils.createOrder(playwright)
+
+    #login
+    page.get_by_placeholder("email@example.com").fill("rahulshetty@gmail.com")
+    page.get_by_placeholder("enter your passsword").fill("Iamking@000")
+    page.get_by_role("button",name="Login").click()
+    time.sleep(5)
+    page.get_by_role("button",name="ORDERS").click()
+    row_item = page.locator("tr").filter(has_text=orderId)
+    row_item.get_by_role("button",name="View").click()
+    expect(page.locator(".tagline")).to_contain_text("Thank you for Shopping With Us")
+    time.sleep(5)
+
+
+    #orders page . order is present .
+    #order history page - order is present
