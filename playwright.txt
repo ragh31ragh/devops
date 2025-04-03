@@ -144,7 +144,7 @@ def test_UIValidationsDynamicScript(page:Page):
 
 https://rahulshettyacademy.com/loginpagePractise/
 page.get_by_label("Username:").fill("rahulshettyacademy")
-    page.get_by_label("Password:").fill("learning")
+page.get_by_label("Password:").fill("learning")
 	
 ###child windows and tabs 
 
@@ -196,4 +196,32 @@ Handling Frames :
 reference will go from page to pageFrame 
 
 Handling Web Tables automation : 
+https://rahulshettyacademy.com/seleniumPractise/#/offers
+check price of rice is 37 
+#identify price column
+#identify rice column 
+#extract the price 
+    page.goto("https://rahulshettyacademy.com/seleniumPractise/#/offers")
+    page.locator("th")
+    for index in range(page.locator("th").count()):
+        if page.locator("th").nth(index).filter(has_text="Price").count() > 0 :
+            colValue = index
+            print(f"Price column value{colValue}")
+            break
+    riceRow = page.locator("tr").filter(has_text="Rice")
+    expect(riceRow.locator("td").nth(colValue)).to_contain_text("37")
+	
+	
+About mouse hover : 
+    #Mouse Hover
+    page.locator("#mousehover").hover()
+    page.get_by_role("link",name="Top").click()
 
+About hovering 
+
+rahulshetty@gmail.com
+Iamking@000
+
+###Recording and Playback 
+write the below command in pycharm terminal to start recording 
+playwright codegen https://rahulshettyacademy.com/client
