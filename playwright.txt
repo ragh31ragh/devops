@@ -336,3 +336,97 @@ def test_e2e_web_api(playwright:Playwright):
 
     #orders page . order is present .
     #order history page - order is present
+	
+#####Section 9: Intercepting Network requests & responses to test Edge cases with Playwright
+50.Concept of intercepting network 
+Intercept api response for sake of testing 
+No orders page validation 
+we can mock request and response using route methods
+fulfil -for response
+and continue for request 
+
+51. Intercepting response calls with route->fulfil methods to test edge cases
+rahulshetty@gmail.com
+Iamking@000
+
+import time
+
+from playwright.sync_api import Playwright, Page
+
+fakePayloadOrderResponse = {"data": [], "message": "No Orders"}
+
+
+def intercept_response(route):
+    route.fulfill(
+        json=fakePayloadOrderResponse
+    )
+    print ( " In intercept_response function ")
+
+
+def test_Network(page: Page):
+    page.goto("https://rahulshettyacademy.com/client")
+    page.route("https://rahulshettyacademy.com/api/ecom/user/get-cart-count/*", intercept_response)
+    # login
+    page.get_by_placeholder("email@example.com").fill("rahulshetty@gmail.com")
+    page.get_by_placeholder("enter your passsword").fill("Iamking@000")
+    page.get_by_role("button", name="Login").click()
+    time.sleep(5)
+    page.get_by_role("button", name="ORDERS").click()
+    order_text = page.locator(".mt-4").text_content()
+    print("##########order_text")
+    print(order_text)
+
+
+Loading is displayed instead of other text 
+
+
+
+52. Intercepting request calls with route->continue methods to test edge cases
+Here we are creating new request and checking edge case scenario
+giving diff order id and checking for message you are not authorized 
+
+import time
+
+from playwright.sync_api import Playwright, Page
+def interceptRequest(route):
+    route.continue_(url="https://rahulshettyacademy.com/api/ecom/order/get-orders-details?id=6711e249ae2afd4c0b9f6fb0")
+    print ( " In intercept_response function ")
+
+def test_Network2(page: Page):
+    page.goto("https://rahulshettyacademy.com/client")
+    page.route("https://rahulshettyacademy.com/api/ecom/order/get-orders-details?id=*", interceptRequest)
+    page.get_by_placeholder("email@example.com").fill("rahulshetty@gmail.com")
+    page.get_by_placeholder("enter your passsword").fill("Iamking@000")
+    page.get_by_role("button", name="Login").click()
+    time.sleep(5)
+    page.get_by_role("button", name="ORDERS").click()
+    page.get_by_role("button", name="View").first.click()
+    time.sleep(5)
+    message = page.locator(".blink_me").text_content()
+    print(message)
+	
+53. save and inject the session cookies into browser at run time with playwright
+discussing about bypassing login 
+using browser local storage token 
+java script injection in tripe quotes 
+
+page.add_init_script(f"""localStorage.setItem('token','{getToken}')""")
+
+
+def test_sessionStorage(playwright: Playwright):
+    api_utils = APIUtils()
+    getToken = api_utils.getToken(playwright)
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page = context.new_page()
+    # script to inject token in session local storage
+    page.add_init_script(f"""localStorage.setItem('token','{getToken}')""")
+    page.goto("https://rahulshettyacademy.com/client")
+    page.get_by_role("button", name="ORDERS").click()
+    time.sleep(4)
+    expect(page.get_by_text('Your Orders')).to_be_visible()
+	
+	
+	
+#############	Section 10: Playwright Pytest Framework- Part 1 (Pageobject, Data Driven,Parameterization)
+	########4-Apr -2025 #####
