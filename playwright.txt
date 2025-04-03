@@ -5,9 +5,13 @@ C:\Users\bgh51043>where python
 C:\Users\bgh51043\AppData\Local\Programs\Python\Python37-32\python.exe
 C:\Users\bgh51043\AppData\Local\Microsoft\WindowsApps\python.exe
 
-
+git:
 C:\Users\bgh51043\PycharmProjects\PytestPython
 S C:\Users\bgh51043\PycharmProjects\PytestPython>
+
+git : 
+/i/Learnings/Raghavendra/2025_DevOps
+/i/Learnings/Raghavendra/PythonProjects/playwright
 
 
 
