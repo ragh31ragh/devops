@@ -9,6 +9,8 @@ C:\Users\bgh51043\AppData\Local\Microsoft\WindowsApps\python.exe
 git:
 C:\Users\bgh51043\PycharmProjects\PytestPython
 S C:\Users\bgh51043\PycharmProjects\PytestPython>
+cd /c/Users/bgh51043/PycharmProjects/PytestPython/playwright
+/c/RD/Trainings/gitrepos/devops/devops
 
 git : 
 /i/Learnings/Raghavendra/2025_DevOps
@@ -430,3 +432,99 @@ def test_sessionStorage(playwright: Playwright):
 	
 #############	Section 10: Playwright Pytest Framework- Part 1 (Pageobject, Data Driven,Parameterization)
 	########4-Apr -2025 #####
+	
+54. overview of  the Best practices for Playwright framework design
+Word document on framework :
+1.Avoid hard coding test data 
+2.Externalize test data
+3.Implement Page Object Model
+4.Cenralize reusable code 
+5.Define global environment variables
+6.Apply grouping /tags to run targeted tests
+7.Generate HTML Reports
+8.Capture Logs and Screenshots
+9.CI-CD Integration wit Jenkins
+10. Integrate cucumber BDD
+
+55. Drive the test data externally from Json files into Playwright fixtures
+convert json file to python object 
+one of the earliar standalone will create framework for it 
+creating crendentials file in data directory 
+
+json explanation 
+reading dictionary using python 
+load is a method which convert json file to python object 
+{
+  "user_credentials": [{
+    "userEmail" : "rahulshetty@gmail.com",
+    "password" : "Iamking@000"
+  },
+{
+    "userEmail" : "anshika@gmail.com",
+    "password" : "Iamking@000"
+  }
+]
+}
+
+    with open ('data/credentials.json') as f:
+        test_data = json.load(f)
+    page.goto("https://rahulshettyacademy.com/client")
+	https://en.wikipedia.org/wiki/Wikipedia
+("https://rahulshettyacademy.com/client")
+    "userEmail" : "rahulshetty@gmail.com",
+    "password" : "Iamking@000"
+	
+56. Parameterize the Test with multiple data sets with python dictionaries
+we will make sure that the test wil run the nubmer of times we have user credentials data 
+dict , list 
+pytest takes fixtures as arguments 
+
+playwright is one of inbuild fixture 
+introducted conftest.py global file 
+Added conf file 
+modified framework file to take input as username and password 
+page.get_by_placeholder("email@example.com").fill(user_creds["userEmail"])
+    page.get_by_placeholder("enter your passsword").fill(user_creds["password"])
+	
+Ran the test with 2 user credentials 
+
+57. Understand the page object design pattern and how to apply for the tests
+modifications in utils file also API utils 
+to get dynamic user credentials 
+now test should pass with both credentials 
+
+For URLs and locators we will use POM 
+created new dir page object 
+and new py files
+to create 2 new classes
+Login and Dashboard 
+
+expaling how to use construction 
+sending page object from framework code 
+as default constructor 
+
+
+58. Implement Page object design  to end to end test - example
+login method updates
+ def login(self,userEmail,userPassword):
+        self.page.get_by_placeholder("email@example.com").fill(userEmail)
+        self.page.get_by_placeholder("enter your passsword").fill(userPassword)
+        self.page.get_by_role("button", name="Login").click()
+		
+class DashboardPage:
+    def __init__(self,page):
+        self.page = page
+
+    def seletOrderNavigationLink(self):
+        self.page.get_by_role("button", name="ORDERS").click()
+		
+		
+59. Optimize Test by avoiding object creation in tests and move into PO classes
+as we are landing on dashboard page after clicking login 
+we can create object in login method only 
+creating PO for for order history 
+and returning objects 
+
+creating order detail page
+creating python file for all pages.
+now we have created page object .
