@@ -528,3 +528,66 @@ and returning objects
 creating order detail page
 creating python file for all pages.
 now we have created page object .
+
+######Section 11: Playwright Pytest Framework- Part 2 (Global config, Parallelization, Tagging)
+
+60. How to configure and drive global run time variables into Playwright framework
+creating a fixture in conftest.py file 
+def pytest_addoption(parser):
+    parser.addoption(
+        "--browser_name",
+        action="store",
+        default="chrome",
+        help="Browser selection",
+        type=type_checker,
+    )
+
+
+@pytest.fixture(scope="session")
+def browserInstance(playwright,request):
+    browser_name = request.config.getoption("browser_name")
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page = context.new_page()
+    context.close() 
+    browser.close()
+
+61. Understand how browser value is decided at run time with global value and ifelse
+#gettinb page by calling browser Instance fixture 
+@pytest.fixture(scope="session")
+def browserInstance(playwright,request):
+    browser_name = request.config.getoption("browser_name")
+    if browser_name == "chrome":
+        browser = playwright.chromium.launch(headless=False)
+    elif browser_name == "firefox":
+        browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page = context.new_page()
+    context.close()
+    browser.close()
+	
+pytest .\test_framework_web_api.py --browser-name firefox
+Running test from command line by providing browser parameter 
+session scope only once 
+run and test code in firefox and chrome 
+
+URL changes for diff environments .
+url name also we can parameteize 
+
+62. Running selected tests in the framework with pytest tag annotations
+over the time we have updated some files -, so some tests might fail 
+created API Base framework file to revert the changes done during framework lectures 
+
+Run all tests using pytest command 
+IDE level --headed arguments wont reflect if we run all tests using command pytest 
+how to run only one test now
+tag it as smoketest 
+
+@pytest.mark.smoke 
+pytest -m smoke 
+
+Runnint tests with keyworkd having web_api 
+
+pytest -k web_api
+
+63. Running tests in playwright framework in parallel and sequence modes
