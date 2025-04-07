@@ -590,4 +590,217 @@ Runnint tests with keyworkd having web_api
 
 pytest -k web_api
 
+##############7-Apr-2025############
 63. Running tests in playwright framework in parallel and sequence modes
+plugin is required to run tests in parallel mode 
+pip install pytest-xdist 
+
+-n number of threads to open parallely 
+3 workers
+pytest -n 3 
+
+
+64. Generae HTML reports with pytest plugin for tests in framework
+For HTML Report also we have plugin 
+pytest-html 
+
+pytest -n 3 --html=report1.html
+file:///C:/Users/bgh51043/PycharmProjects/PytestPython/playwright/report1.html
+
+65. Playwright Trace viewer - to generate logs, screenshots of the tests in zip file
+python --tracing on 
+to capture screenshots 
+on 
+off 
+retain-on-failure 
+
+pytest --browser-name=chrome -n 3 --tracing on --html=report2.html
+testresutls folder will be created and screenshots will be saved 
+ we have to view in traceviewer online 
+ 
+ https://playwright.dev/python/docs/trace-viewer
+ 
+Section 12: Playwright Pytest Framework- Part 3 (Cucumber BDD, CI/CD Jenkins, HTML report)
+
+66. Introduction to BDD  framework and how Pytest framework compliment it
+pytest bdd documentation available 
+Given , when , then keywords 
+
+pip install pytest-bdd 
+Gherkin file 
+Non technical person should understand the testcase 
+.feature extension 
+Step Defnation - heart of BDD 
+
+67. Install pytest plugin and build gherkin feature file for test implemetation
+pip install pytest-bdd 
+can also be installed from pytest bdd 
+
+Feature- Test Suite
+Scenario - Test case 
+Gherkin Plugin installed 
+
+
+Feature:Order Transaction
+  Tests related to oder Transactions
+
+  Scenario: Verify Order success message is shown in details page
+    Given place the item order with username and password
+    And user is on landing page
+    When I login to portal with username and password
+    And Navigate to order page
+    And Select the OrderId
+    Then Order message is successfully displayed
+	
+	
+sending username and password - test data 
+
+Scenario vs Scenario Outline 
+
+when sending data , we should mark it as scanrio outline 
+
+# content of scenario_outlines.feature
+
+Feature: Scenario outlines
+    Scenario Outline: Outlined given, when, then
+        Given there are <start> cucumbers
+        When I eat <eat> cucumbers
+        Then I should have <left> cucumbers
+
+        Examples:
+        | start | eat | left |
+        |  12   |  5  |  7   |
+		
+Now we have created feature file 
+
+    Examples:
+      | username              | password    |
+      | rahulshetty@gmail.com | Iamking@000 |
+	  
+68. Implement Pytest Step definition implementation for the feature file
+
+from pytest_bdd import given
+
+
+@given('place the item order with <username> and <password>')
+def place_item_order():
+	write implementation here 
+	
+@given('place the item order with {username} and {password}')
+
+@given('place the item order with {username} and {password}')
+def place_item_order(playwright,username,password):
+    user_creds = {
+        "userEmail":username,
+        "userPassword": password
+    }
+    apiUtils2 =APIUtils2()
+    apiUtils2.createOrder(playwright,user_creds)
+
+@given('user is on landing page')
+def user_on_Landing_Page(browserInstance):
+    loginPage = LoginPage(browserInstance)
+    loginPage.navigate()
+	
+	
+
+69. How to share data across multiple step methods with in step definition file
+
+fixture :
+@pytest.fixture
+def shared_data()
+    return {}
+
+
+
+@when('Navigate to order page')
+def navigate_to_orders_page(shared_data):
+
+
+@when('Select the OrderId')
+def select_order_id(shared_data):
+
+@then('Order message is successfully displayed')
+def order_message_displayed(shared_data):
+
+Now mapped gherkins steps to related functions 
+
+completed implementation 
+
+70. Fix the issues and Run the Pytest BDD tests end to end from terminal
+Running and debugging now 
+Run file 
+test_pytest_bdd_Test.py
+
+71. Set up the Jenkins with required configurations from scratch
+check java compatible version before installing jenkins 
+clean up jenkins
+c- user- .jenkins file 
+take backup and jobs 
+.jenkins folder should be empty to install new jenkins 
+java -jar jenkins.war 
+
+new admin password 
+install suggested plugins 
+create user 
+
+72. Create Jenkin parameterized Job to run Playwright Python Framework
+Pyhon Playwright test 
+repo - github or local 
+BUild step - to execute commands 
+pytest --browser-name=chrome -n 3 --tracing on --html=report2.html
+
+Section 13: Most commonly asked Python and Pytest Programming Interview Questions
+
+
+74. How the Interview questions video is designed?
+00:00 - What is the difference between a list and a tuple?
+Lists are mutable , tuples are immutable 
+List - array in java and java script
+python it is list 
+
+list - updated , modified or changed 
+tuple ()
+list [] 
+
+appending , modifying index 
+
+05:04 - What are Python’s built-in data types?
+
+06:27 - How do you implement inheritance and super keyword in Python?
+
+10:37 - What is init() in python?
+
+15:16 - How do you read and write files in Python?
+
+17:54 - What are Fixtures in Pytest? when they are used?
+
+22:02 - How do you use yield for WebDriver Setup and Teardown in pytest?
+
+25:51 - How do you create a list of dictionaries in Python?
+
+30:32 - What is lambda function in Python?
+
+33:46 - How Lambda function applies to map() & filter() functions?
+
+41:42 - How do you sort a list in Python?
+
+43:07 - Is python asynchronous or Synchronous? What is the default type? and what is asyncio?
+
+52:07 - Why is the Self convention used in Python? Explain with an example.
+
+55:46 - How do you reverse the elements of a list?
+
+57:17 - Explain the difference between @classmethod and instance methods.
+
+01:01:15 - What is the use of conftest.py file in Python pytest?
+
+01:03:51 - How do you execute only failed test cases in pytest?
+
+01:04:55 - How do you apply a custom marker to a test case in pytest?
+
+01:06:25 - What is the Python “with” statement designed for?
+
+01:08:07 - How to Handle Exceptions in Python? Where does the finally keyword come into play with exceptions?
+
+76. 75 Mins In detail discussion on most commonly asked Python Interview Questions
