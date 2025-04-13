@@ -871,26 +871,153 @@ list of dictionaries is nothing but json
 
 30:32 - What is lambda function in Python?
 
+###A lambda function in python is a small ,anonymous function 
+that can have muliple arguments but only one expression 
+It is written in a single line 
+It is used where a short function is needed temporarily 
+Dont use lambda function if the the function is complex , use def instead .###
+
+anonymous function 
+multiple arguments 
+written in one single line 
+def add(x,y):
+    return x+y
+
+print(add(3,3))
+addition = lambda (x,y : x + y)
+
+
 33:46 - How Lambda function applies to map() & filter() functions?
+
+numbers=[1,2,3,4,5]
+squared_numbers = map(lambda x : x*3 ,numbers)
+print(list(squared_numbers))
+
+###filter####
+even_numbers = list(filter(lambda x : x%2 == 0,numbers))
+print(even_numbers)
+
 
 41:42 - How do you sort a list in Python?
 
+sorting = [3,2,6,7,9]
+print(sorted(sorting))
+
+
+
 43:07 - Is python asynchronous or Synchronous? What is the default type? and what is asyncio?
+its both 
+default sync 
+Synchronous execution - default 
+
+Pythons default behaviour : Synchronous execution 
+-Python executes code line by line in blocking manner 
+-Each operation must complete before the next one starts 
+-This is how python normally works unless explicitly told to run asynchronously
+
+Python supports asynchronous exectuion using asynchio 
+-Python can run non-blocking tasks using asyncio 
+-Instaed of wating for one task to finish ,multiple tasks run cuncurrently 
+
+def task(name):
+    print(f"starting {name}")
+    time.sleep(2)
+    print(f"finished {name}")
+
+task("Ghanika")
+task("Hamsika")
+
+
+Aync example :async def task(name):
+    print(f"starting {name}")
+    await asyncio.sleep(2)
+    print(f"finished {name}")
+
+
+async def main():
+    await asyncio.gather((task("Ghanika"), task("Hamsika")))
+
+
+asyncio.run(main())
+
+Ex web page loading 
+
 
 52:07 - Why is the Self convention used in Python? Explain with an example.
+Self is not keyword but self convention in python .
+It referst to current instance of the class 
+It must be first parameter in instance methods 
+though you dont need to pass it explicitly when calling methods .
+
+self - same class
+super - parent class 
+
+java we have this keyword 
+
 
 55:46 - How do you reverse the elements of a list?
 
+numbers=[2,4,53,2,232,32]
+print(numbers[::-1])
+[32, 232, 2, 53, 4, 2]
+
 57:17 - Explain the difference between @classmethod and instance methods.
+class method - can be accessed without creating object .
+class MyClass:
+    @classmethod
+    def class_method(cls):
+        return "Class"
+
+    def instance_method(self):
+        return "Instance"
+
+obj=MyClass()
+print(obj.instance_method()) #Instance
+print(MyClass.class_method()) #Class
+
+
+use @classmethod annotation 
 
 01:01:15 - What is the use of conftest.py file in Python pytest?
 
+conftest.py is used to define fixtures and hooks that are shared across multiple test files 
+
 01:03:51 - How do you execute only failed test cases in pytest?
+
+pytest --last-failed 
 
 01:04:55 - How do you apply a custom marker to a test case in pytest?
 
+@pytest.mark.sanity 
+pytest -m sanity 
+
 01:06:25 - What is the Python “with” statement designed for?
+The with statement is used for exception handling to make code cleaner and simpler .
+It is generally used for the management of common resources like creating, editing , and saving a file .
+
+Example : 
+Instead of writing multiple lines to open, try ,finally and close  , you can create and text file 
+using with statement it is simle .
+
+concept of resources use with 
+file ,database etc 
 
 01:08:07 - How to Handle Exceptions in Python? Where does the finally keyword come into play with exceptions?
+
+finally execution is guaranteed :
+
+try:
+    with open("file223.txt", "r") as f:
+        content = f.read()
+        print(content)
+
+except Exception as e:
+    print(e)
+
+finally:
+    print("close db connection")
+	
+finally block to close db connection 
+
 
 76. 75 Mins In detail discussion on most commonly asked Python Interview Questions
