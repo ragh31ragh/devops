@@ -1,0 +1,43 @@
+def test_1():
+    x = 10
+    y = 10
+    assert x == y
+
+def test_2():
+    name = "Selenium"
+    title = "Selenium is used for web automation"
+    assert name in title
+	
+	
+def test_3():
+    name = "Jenkins"
+    title = "Jenkins is CI server"
+    assert name is title, "Title does not match "
+	
+message print when test fails 
+message print when test pass 
+
+pytest -rA 
+-rA flags
+A means All 
+gives updates on passed testcases as well 
+by default -fE
+fail errors 
+
+
+pytest --help 
+to get information about all flags 
+
+pytest -k login 
+giving keyword 
+
+-v verbose 
+
+pytest -rA --junitxml="Result.xml"
+
+pytest html report 
+install pytest-html package 
+
+pytest --html=myhtmlreport.html
+allure report 
+markers and fixtures 

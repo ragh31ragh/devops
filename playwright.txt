@@ -25,6 +25,8 @@ https://rahulshettyacademy.com/client/
 rahulshetty@gmail.com
 Iamking@000
 
+pytest
+pytest-playwright 
 
 
 jar  - java world packages 
@@ -113,6 +115,16 @@ def test_coreLocators(page:Page):
     time.sleep(5)
 	
 	
+Locators : 
+page.get_by_role() to locate by explicit and implicit accessibility attributes.
+page.get_by_text() to locate by text content.
+page.get_by_label() to locate a form control by associated label's text.
+page.get_by_placeholder() to locate an input by placeholder.
+page.get_by_alt_text() to locate an element, usually image, by its text alternative.
+page.get_by_title() to locate an element by its title attribute.
+page.get_by_test_id() to locate an element based on its data-testid attribute (other attributes can be configured).
+
+
 s6: Playwright ui methods with real time examples 
 TC : enter wrong creds and capture error message 
 
@@ -479,7 +491,7 @@ we will make sure that the test wil run the nubmer of times we have user credent
 dict , list 
 pytest takes fixtures as arguments 
 
-playwright is one of inbuild fixture 
+playwright is one of inbuilt fixture 
 introducted conftest.py global file 
 Added conf file 
 modified framework file to take input as username and password 
@@ -552,7 +564,7 @@ def browserInstance(playwright,request):
     context.close() 
     browser.close()
 
-61. Understand how browser value is decided at run time with global value and ifelse
+61. Understand how browser value is decided at run time with global value and if else
 #gettinb page by calling browser Instance fixture 
 @pytest.fixture(scope="session")
 def browserInstance(playwright,request):
@@ -586,7 +598,7 @@ tag it as smoketest
 @pytest.mark.smoke 
 pytest -m smoke 
 
-Runnint tests with keyworkd having web_api 
+Runnint tests with keyword having web_api 
 
 pytest -k web_api
 
@@ -877,6 +889,12 @@ It is written in a single line
 It is used where a short function is needed temporarily 
 Dont use lambda function if the the function is complex , use def instead .###
 
+lambda arguments : expression
+
+z = lambda x,y : x+y
+print(z(4,5))
+
+
 anonymous function 
 multiple arguments 
 written in one single line 
@@ -915,7 +933,7 @@ Pythons default behaviour : Synchronous execution
 -Each operation must complete before the next one starts 
 -This is how python normally works unless explicitly told to run asynchronously
 
-Python supports asynchronous exectuion using asynchio 
+Python supports asynchronous exectuion using asyncio 
 -Python can run non-blocking tasks using asyncio 
 -Instaed of wating for one task to finish ,multiple tasks run cuncurrently 
 
@@ -945,7 +963,7 @@ Ex web page loading
 
 52:07 - Why is the Self convention used in Python? Explain with an example.
 Self is not keyword but self convention in python .
-It referst to current instance of the class 
+It refers to current instance of the class 
 It must be first parameter in instance methods 
 though you dont need to pass it explicitly when calling methods .
 
@@ -1021,3 +1039,16 @@ finally block to close db connection
 
 
 76. 75 Mins In detail discussion on most commonly asked Python Interview Questions
+
+
+
+
+
+
+####################Pytest############################
+https://www.tutorialspoint.com/pytest/index.htm
+
+http://localhost:8080/
+
+Hi Sreekanth ,
+just I would like to know latest update on Oracle Jmeter project . do we have any update on project kick off date ?  
