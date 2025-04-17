@@ -1,3 +1,4 @@
+file name and method name should start with : test_
 def test_1():
     x = 10
     y = 10
@@ -18,8 +19,10 @@ message print when test fails
 message print when test pass 
 
 pytest -rA 
+
 -rA flags
 A means All 
+
 gives updates on passed testcases as well 
 by default -fE
 fail errors 
@@ -41,3 +44,81 @@ install pytest-html package
 pytest --html=myhtmlreport.html
 allure report 
 markers and fixtures 
+
+in pytest fixture 
+default scope is function 
+scope = class - runs only once before all methods 
+scope = session 
+autouse= True or False 
+
+pytest-dependency
+
+pytest markers 
+
+register marker inside pytest.ini file
+
+pytest testfilename.py -m "smoke"
+pytest testfilename.py -m "smoke or regression"
+
+
+[pytest]
+addopts = -rA
+markers =
+    smoke: smoke scenarios
+    regression: regression scenarios
+update ini file with addopts 
+
+ini is like config file 
+
+skip 
+skip if
+default markers 
+
+xfail marker 
+PASSED test_markers_demo2.py::test_addproduct
+SKIPPED [1] test_markers_demo2.py:5: unconditional skip
+XFAIL test_markers_demo2.py::test_logout
+
+use fixtures : 
+
+##parameterize 
+@pytest.mark.parametrize("username,password",[
+    ("Selenium","Webdriver"),
+    ("Python","Pytest"),
+    ("Java","TestNG"),
+])
+def test_login(username,password):
+    print(username)
+    print(password)
+
+
+
+list of tuple and parameters 
+
+#######fixtures .
+
+pytest filename -s 
+sometimes if you dont see yield getting executed
+
+import pytest
+
+
+@pytest.fixture
+def setup():
+    print("Start Browser")
+    yield
+    print("Close Browser")
+
+def test_1(setup):
+    print("test 1 executed")
+
+def test_2(setup):
+    print("test 2 executed")
+
+def test_3(setup):
+    print("test 3 executed")
+	
+	#####run test in parallel ####
+	xdist 
+	pytest -n 3 
+	 pytest .\test_fixtures.py -n 3
