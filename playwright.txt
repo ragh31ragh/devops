@@ -630,7 +630,7 @@ pytest --browser-name=chrome -n 3 --tracing on --html=report2.html
 testresutls folder will be created and screenshots will be saved 
  we have to view in traceviewer online 
  
- https://playwright.dev/python/docs/trace-viewer
+ 
  
 Section 12: Playwright Pytest Framework- Part 3 (Cucumber BDD, CI/CD Jenkins, HTML report)
 
@@ -1039,6 +1039,7 @@ finally block to close db connection
 
 
 76. 75 Mins In detail discussion on most commonly asked Python Interview Questions
+<<<<<<< Updated upstream
 
 
 
@@ -1052,3 +1053,27 @@ http://localhost:8080/
 
 Hi Sreekanth ,
 just I would like to know latest update on Oracle Jmeter project . do we have any update on project kick off date ?  
+=======
+NewString@123
+>>>>>>> Stashed changes
+uploading and downloading files
+screenshot 
+wait 
+removing duplicate element from list 
+
+################OOPS###########3
+4 Pillars 
+Abstraction 
+Encapsulation
+Inheritance 
+Polymorphism
+
+ https://www.w3schools.com/Python/python_polymorphism.asp
+The word "polymorphism" means "many forms", and in programming it refers to methods/functions/operators with the same name that can be executed on many objects or classes.
+Function Polymorphism - : len applied on string , tuple , dictionary , list 
+
+Class Polymorphism
+Polymorphism is often used in Class methods, where we can have multiple classes with the same method name.
+
+For example, say we have three classes: Car, Boat, and Plane, and they all have a method called move():
+
