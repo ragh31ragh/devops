@@ -1,0 +1,46 @@
+P1 : Json parsers with python module 
+Read and write json files with python 
+API Automation using requests library 
+Understand CRUD operations GET , POST , DELETE, PUT API methods for automation 
+Parsing API responses with Python utilities 
+
+##24.Parsing json strings in python###
+import json
+courses = '{"name" : "RahulShetty" , "Languages" : ["Java","Python"]}'
+dict_courses = json.loads(courses)
+print(dict_courses["name"])
+
+json.loads --converts json to dictionary object 
+
+##25.parsing json file in python####
+C:\RD\Trainings\2025_API_Testing\course.json
+
+import json
+#loads method for string
+#load for json file object 
+courses = '{"name" : "RahulShetty" , "Languages" : ["Java","Python"]}'
+dict_courses = json.loads(courses)
+print(dict_courses["name"])
+print(dict_courses["Languages"][0])
+
+with open ('C:\\RD\\Trainings\\2025_API_Testing\\course.json') as f :
+    data = json.load(f)
+    print(data)
+    print(data['dashboard']['website'])
+    print(data['courses'][1]['title'])
+	
+##26.Finding price of RPA course ####
+	
+	##finding price of course RPA
+    for course in data['courses']:
+        print(course)
+        if course['title'] == "RPA" :
+            print(f"Price of course RPA {course['price']}")
+			
+##27.Compare 2 json schema using python dictionary  ####
+2 file objects
+get content into dictionary and then compare it 
+
+
+
+###########Section 4: API Automation Testing with Python Requests Library
