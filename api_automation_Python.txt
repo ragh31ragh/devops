@@ -43,4 +43,140 @@ get content into dictionary and then compare it
 
 
 
-###########Section 4: API Automation Testing with Python Requests Library
+###########Section 4: API Automation Testing with Python Requests Library###
+documentaion is available in goolge drive 
+#Url should be: http://216.10.245.166/Library/Addbook.php
+
+
+https://reqres.in/
+https://reqres.in/
+https://reqres.in/api/users?page=2
+response.status_code
+response.json
+response.text
+response.content 
+
+for get http method : 
+import requests
+#response=requests.get("https://reqres.in/api/users?page=2")
+response = requests.get("http://216.10.245.166/Library/GetBook.php",
+             params={"AuthorName":"Rahul Shetty2"},)
+json_response = response.json()
+print(type(json_response))
+print(json_response)
+assert  response.status_code == 200
+print(response.headers)
+assert response.headers['Content-Type'] == 'application/json;charset=UTF-8' , "ExpectedValueDidNotMatch"
+#Retrieve the book details with bnid3473
+#print(json_response[6]['book_name'])
+for items in json_response:
+    #print(items)
+    #print(items['book_name'])
+    if items['isbn'] == '0108':
+        print(items['book_name'])
+        break
+
+
+for post http method .
+
+import requests
+payload={
+    "name":"Raghavendra",
+    "job" : "Automation"
+}
+response = requests.post("https://reqres.in/api/users",data=payload)
+print(response.json())
+
+requests.post("URL",data=payload)
+payload is dictionary object 
+
+
+URLs will change based on environment we are testing 
+utilities - properties.ini 
+hosts - API, SQL and SSH 
+
+Utilities will have config, properties and resources 
+properties.ini file contains 
+[API]
+endpoint = https://reqres.in
+
+[HOST]
+[DB]
+
+config python file contains details of config parser 
+import configparser
+def getConfig():
+    config = configparser.ConfigParser()
+    config.read('utilities/properties.ini')
+    return config
+	
+import requests
+from utilities.configurations import getConfig
+payload={
+    "name":"Raghavendra",
+    "job" : "Automation"
+}
+response = requests.post(getConfig()['API']['endpoint']+'/api/users',data=payload)
+
+Resources also we can add in config files 
+
+Above is like optimizing the code
+
+##########now we will look at authentication########
+requests.get("url",data={dict object} , auth ( user= abc , password = rd)
+use the exposed github apis 
+##uploading files using api 
+https://httpbin.org/post
+
+
+#####Section 6: API Testing Request Library Miscellaneous Concepts
+
+---How to create session manager for API requests call 
+BaseURL / Resource 
+401 - unauthorized 
+Consider if we are hitting multiple APIs we need to authenticate everytime . so only creating sessions 
+import requests
+se = requests.session()
+se.auth = ("username",getPassword())
+response = se.get(url, params= )
+
+--Send and manage cookies through API Requests 
+cookies to be sent in dictionary format 
+cookie = {'visit-month':'Febraury'}
+request.get("url", cookies = cookie)
+website will be loaded for stored cookies from browser for feb month 
+if we get back cookies in response , that means we have successfully submitted cookies during request 
+we can give session manager capabilities for adding cookies 
+se.cookies.update('visit-month':'Febraury')
+
+###39. Time out and Redirection attributes in making request calls
+redirection - 302
+response.history 
+allow redirect= False 
+response can be delayed in realtime  in ecom websites 
+timeout attribute 
+timeout = 1 second 
+
+cookie = {'visit-month': 'February'}
+response = requests.get('http://rahulshettyacademy.com', allow_redirects=False, cookies=cookie, timeout=1)
+# 301,200
+# print(response.history)
+print(response.status_code)
+
+
+
+40. Sending Attachments through Post request call using Files Dictionary object
+https://petstore.swagger.io/
+to upload image use this sample url 
+
+Python RestAPI Interview Questions
+
+# Attachments
+url = "https://petstore.swagger.io/v2/pet/9843217/uploadImage"
+files = {'file': open('C:\\Users\\Owner\\Documents\\ra.png', 'rb')}
+r = requests.post(url, files=files)
+print(r.status_code)
+print(r.text)
+
+
+
