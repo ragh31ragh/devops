@@ -180,3 +180,127 @@ print(r.text)
 
 
 
+###############Build SQL Utility to interact with Database Tables from Python Code
+#####29-Apr-2025####
+42. Setting up MYSQL Instance to drive the data from Python Code
+mysql installer 
+Set up mysql server and open workbench 
+Create 2 tables and add some data 
+package 
+mysql-connector-python 
+
+43.43. Setup Database with the Example Table Data and start Connection
+
+import mysql.connector
+#host,databases,username,password
+#connection string  ,connection object
+conn = mysql.connector.connect(host='localhost',database='PythonAutomation',
+                        user='raga',password = ' root ')
+result = conn.is_connected()#it will return true or false
+print(result)
+
+
+44.Start SQL Queries download
+
+45. Executing Queries on to Database from Python Code
+SQL database results are returned in form of tuples 
+
+cursor = conn.cursor()
+cursor.execute('select * from customerInfo')
+row = cursor.fetchone(),fetchall()
+print(row )
+#the printed row will be tuple
+#('selenium',datetime.date(2020,6,7),120,'Africa')
+print(row[3])
+#Africa
+fetchall - will return result in format of list of tuples 
+fetch one - cursor will move one by one line 
+
+rowsall= cursor.fetchall()#list of tuples 
+
+
+46. Iterate over database table results set from Python and parse the results
+allrows = cursor.fetchall()
+iterate over list of tuples now 
+sum = 0 
+for row in rows: 
+	sum = sum + row[2]#get amount row by row
+
+now will will check update query :
+
+query= " update * write update %scourse %place query here"
+data("UK","query")
+
+use cursor.query('query',data) 
+conn.commit()
+conn.close()
+
+Next example is on delete method 
+	
+47. Create Connection utility and pass the SQL connection externally into test
+properties.ini file 
+[SQL]
+host=localhost
+db=pythondb
+username=raghu
+password=raghu 
+in conifgurations.py file 
+create method 
+def getConnection : 
+
+connect_config= {
+user = getconfig['SQL']['user]
+host
+password
+db 
+}
+giving ** represents dictionary ( **connect_config) 
+import mysql error package to understand sql error 
+
+#########Section 8: Integrate Database utilities to API Test for End to end Automation
+48. Integrate Database results into API Test Data to build functional flow
+def BuildPayloadFromDB():
+	tuple = getQuery(query)#will right one method 
+	addBody = {}
+	addBody['name'] = ragha
+	#addBody['name'] = tp[0]
+	return addBody()
+	
+def getQuery(query) #method 
+
+
+#########Section 9: BDD Framework Development for API Automation from Scratch
+
+#########Section 10: Read and Write to CSV files with Parsing using Python methods
+61. Parsing and reading the CSV files using Python csv package
+Yes, you can read/write excel file using openpyxl package. Here is a link if you want to read about it: https://openpyxl.readthedocs.io/en/stable/
+
+import csv
+with open('C:\\--\\loanapp.csv') as csvFile:
+    csvReader = csv.reader(csvFile,delimiter=',')
+    print(list(csvReader))
+	
+[['Name', 'Status'], ['Tim', 'approved'], ['sam', 'rejected'], ['Ram', 'approved'], ['Joe', 'rejected']]
+
+
+import csv
+with open('C:\\Users\\bgh51043\\PycharmProjects\\PytestPython\\BackendAutomation\\utilities\\loanapp.csv') as csvFile:
+    csvReader = csv.reader(csvFile,delimiter=',')
+    #print(list(csvReader))
+    names = []
+    status = []
+    for row in csvReader:
+        #print(row)
+        #print(row[0])
+        names.append(row[0])
+        status.append(row[1])
+    print(names)
+    print(status)
+	
+62. Building a logic to get the data from CSV based on conditional query
+names.index['sam'] will return index of sam.
+
+63.Parsing and writing back to CSV files using Python csv package
+with open('C:\\Users\\bgh51043\\PycharmProjects\\PytestPython\\BackendAutomation\\utilities\\loanapp.csv','a') as wFile:
+    write = csv.writer(wFile)
+    write.writerow(["bob","rejected"])
