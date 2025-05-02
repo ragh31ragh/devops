@@ -46,6 +46,7 @@ kubeadm join <control-plane-host>:<control-plane-port> --token <token> --discove
 export KUBECONFIG=/etc/kubernetes/admin.conf
 
 #####4-Feb-2025
+Distributions : 
 Redhad RHEL - RedHat Enterprize linux 
 Suse 
 Debian
