@@ -11,6 +11,7 @@ dict_courses = json.loads(courses)
 print(dict_courses["name"])
 
 json.loads --converts json to dictionary object 
+json.load - convert file object to dictionary 
 
 ##25.parsing json file in python####
 C:\RD\Trainings\2025_API_Testing\course.json
@@ -40,6 +41,7 @@ with open ('C:\\RD\\Trainings\\2025_API_Testing\\course.json') as f :
 ##27.Compare 2 json schema using python dictionary  ####
 2 file objects
 get content into dictionary and then compare it 
+dict 1 == dict2 
 
 
 
