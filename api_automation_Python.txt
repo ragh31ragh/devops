@@ -188,8 +188,7 @@ print(r.text)
 mysql installer 
 Set up mysql server and open workbench 
 Create 2 tables and add some data 
-package 
-mysql-connector-python 
+package : mysql-connector-python 
 
 43.43. Setup Database with the Example Table Data and start Connection
 

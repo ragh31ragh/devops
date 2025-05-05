@@ -1,1 +1,54 @@
 #############5-May-2025#############
+Section 1: Introduction to Robot Framework and its advantages
+
+
+
+1. What is Robot Framework and its advantages
+
+Data Driven , 
+Behvaiour Driven ,
+Keyword Driven 
+
+
+2. Course objectives- What you will learn from this tutorial
+
+Selenium Library - 70%
+API Testing Library - 20%
+Database Test Library  - 10%
+
+
+Section 2: Install and Configure  Robot Framework with Python for Local setup
+
+4. Install Python and its related configurations in Global variables
+5.mac related
+
+6. Install Robot Framework & Selenium Libraries to setup the Project
+Robot Framework setup and configurations
+-Install Python 
+-Set Python Environment Varialbles
+-Install Robot Framework
+ pip install robotframework 
+-Install Selenium Library 
+ pip install upgrade robotframework-selenium library 
+-Install Pycharm 
+-Create new project in pycharm 
+-Add Robot extension to pycharm 
+ HyperRobot Plugin 
+-Create file with robot.extension 
+
+File Settings-> Python interpreter 
+
+8. Getting started with .robot file syntaxes and its templates
+testDemo1.robot file creation 
+https://rahulshettyacademy.com/loginpagePractise/
+testCases - is collection of keywords in robot framework 
+
+*** Settings ***
+Documentation     To validate the Login form
+Library    SeleniumLibrary
+
+*** Test Cases ***
+Validate successful Login
+    Open Mortgage browser and provide Login credentials 
+     
+############Section 3: Getting Started with Robot Framework Tests with Keywords & Variables
