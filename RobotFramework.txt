@@ -52,3 +52,28 @@ Validate successful Login
     Open Mortgage browser and provide Login credentials 
      
 ############Section 3: Getting Started with Robot Framework Tests with Keywords & Variables
+Download Chrome Driver 
+
+9. Invoking Browsers for Web Automation with Selenium using Robot Keyword
+https://robotframework.org/SeleniumLibrary/SeleniumLibrary.html#Open%20Browser
+Create Webdriver executable_path=c/user/driverpath
+above is outdated now
+Selenium itself will find driver and execute it now 
+RobotFramework supports  id, xpath and css 
+Input Password can be used , it will not generate password in log files 
+
+Added Below code 
+
+*** Keywords ***
+Open the browser with Mortgage Payment URL
+    Create Webdriver    Chrome
+    Go To    https://rahulshettyacademy.com/loginpagePractise/
+
+Fill the login form
+    Input Text    id:username    rahulshettyacademy
+    Input Password    id:password
+    Click Button    signInBtn
+	
+Running the test 
+go to folder location and execute command .
+robot filename.robot 
