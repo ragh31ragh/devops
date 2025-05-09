@@ -228,7 +228,7 @@ Library String
  Select the link of Child window
     Verify the user is Switched to Child window
     Grab the Email id in the Child Window
-   Switch to Parent window and enter the Email
+    Switch to Parent window and enter the Email
    
 *** Keywords ***
 Select the link of Child window
@@ -317,5 +317,155 @@ Demo5 file name .
 25. Monitoring the Reports and Logs for parameterized tests in the Framwork
 Run Demo5 file 
 
-Section 6: Create custom Selenium keywords from Python Libraries in the Robot Framework
-8-May-2025
+######Section 6: Create custom Selenium keywords from Python Libraries in the Robot Framework
+Date###8-May-2025
+
+27. What are Custom User defined keywords? and why should we need them
+for python code , we will give custom keyword name .
+created customLibraries folder 
+Shop.py file 
+method name will be converted to keyword 
+file name and class name should be same .
+Library     ../customLibraries/Shop.py
+
+from robot.api.deco import library, keyword
+
+
+@library
+class Shop:
+    @keyword
+    def hello_world(self):
+        print("Hello")
+		
+we can use this keyword in our file 
+and print we can see in log file 
+
+Now we can use hello_world as keyword
+
+28. How to access Selenium Library instance to Python custom library files
+add_items
+add items
+underscore will be replace with space in robot framework
+
+*** Variables ***
+@{listofProducts}           Blackberry      Nokia Edge
+Use Built in Robot class 
+
+from robot.api.deco import library, keyword
+from robot.libraries.BuiltIn import BuiltIn
+class Shop:
+
+    def __init__(self):
+        self.selLib = BuiltIn().get_library_instance("SeleniumLibrary")
+		
+	@keyword
+    def add_items_to_cart_and_checkout(self, productsList):
+		self.selLib.get_webelements(" css:.card-title")
+        
+29. Step by step procedure to create custom Python library keywords with example
+Usually architects will write custom keywords
+ @keyword
+    def add_items_to_cart_and_checkout(self, productsList):
+        # Get WebElements
+        i = 1
+        productsTitles = self.selLib.get_webelements(" css:.card-title")
+        for productsTitle in productsTitles:
+            if productsTitle.text in productsList:
+                self.selLib.click_button("xpath:(//*[@class='card-footer'])["+str(i)+"]/button")
+
+            i = i + 1
+
+        self.selLib.click_link("css:li.active a")
+
+Section 7: Implementing Page object Design Pattern to organize the Robot Test files
+Date###8-May-2025
+
+30. How to implement Page objects for Robot framework tests
+Generic.robot - replaced with (resource.robot)
+PO folder - LandingPage.robot 
+ShopPage.robot 
+
+31. Writing page objects for Robot Selenium tests and moving objects to PO folders
+
+32. Build end to end Scenario of Ecommerce app with Robot Selenium framework
+
+Section 8: Parallel Test execution & reporting in the Robot Framework with Pabot plugin
+
+33. How to run all the tests from the folder from Robot command Line
+robot .
+it will run all the testcases in the folder 
+it will get executed in sequence 
+pip install robotframework-pabot 
+
+to run execute command
+pabot [path to test file]
+In parallel we will save time 
+
+
+34. How to run all the Robot files tests parallel in framework - pabot plugin
+running testcases in single file in parallel
+pabot --testlevelsplit [path to tests]
+firefox --geckodriver 
+edge driver 
+
+
+Section 9: Implement Tagging , filters and CI/CD Jenkins Integration for Automation tests
+
+35. How to implement tagging to Robot tests and execute test by its name
+to run specific testcase 
+robot -t "Validate unsuccessful login" testDemo2.robot 
+using regular expression 
+robot -t "Validate*" testDemo2.robot 
+
+Below keyword add tags
+Validate Successful Login 
+	[Tags]	Smoke	Regression 
+	
+robot --inclued Smoke .
+to run all Smoke testcases in current folder 
+
+36. Execute Robot test cases with Multiple tag controls AND OR for better control
+robot --include <tagname1> AND <tagname2>
+robot --include <tagname1> OR <tagname2>
+
+Exclude the tests by tag 
+robot --exclude <tagname>
+
+Execute only failed testcases 
+robot --rerunfailed output.xml
+
+
+37. How to set variable values from Run time command arguments to Robot framework
+********Interview Questions mentioned in this lecture *******
+robot --variable browser_name firefox
+robot --variable browser_name firefox --include SMOKE testfile.robot
+How do you share data between one keyword and another keyword ?
+
+Set Global Variable	${Email}
+Changing the scope of variable 
+
+
+Section 10: Guideline to perform API Testing with Robot Framework
+Date###9-May-2025
+
+41. What are Dictionaries in Python? How robot framework creates Dict
+*** Settings ***
+Library       Collections
+Library       RequestsLibrary
+
+*** Variables ***
+${base_url}         https://rahulshettyacademy.com
+${book_id}
+${book_name}        RobotFramework
+
+*** Test Cases ***
+Play around with Dictinoary
+    [Tags]      API
+    &{data}=    Create Dictionary      name=rahulshetty     course=robot       website=rahulshettyacademy.com
+    log     ${data}
+    Dictionary Should Contain Key     ${data}     name
+    log     ${data}[name]
+    ${url}=     Get From Dictionary     ${data}     website
+    log   ${url}
+	
+42. Performing API Testing POST call with Robot Framework keywords
