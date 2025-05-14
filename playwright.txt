@@ -222,6 +222,8 @@ Handling Frames :
     pageFrame.get_by_role("link",name="All Access plan").click()
     expect(pageFrame.locator("body")).to_contain_text("Happy Subscibers")
 reference will go from page to pageFrame 
+for frame locator we can use method
+page.frame_locator 
 
 Handling Web Tables automation : 
 https://rahulshettyacademy.com/seleniumPractise/#/offers
@@ -244,6 +246,9 @@ About mouse hover :
     #Mouse Hover
     page.locator("#mousehover").hover()
     page.get_by_role("link",name="Top").click()
+	
+for mouse hover we can use locator.hover() method 
+
 
 About hovering 
 
@@ -253,7 +258,8 @@ Iamking@000
 ###Recording and Playback 
 write the below command in pycharm terminal to start recording 
 playwright codegen https://rahulshettyacademy.com/client
-
+python -m playwright codegen 'https://reqres.in'
+https://rahulshettyacademy.com/AutomationPractice/
 
 ###3-Apr-2025############
 API Testing 

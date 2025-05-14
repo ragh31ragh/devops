@@ -1,0 +1,281 @@
+DBMS 
+2 types - SQL and NonSQL 
+Non SQL Ex - mongo db 
+SQL Example - mysql , orace , mssql
+
+SQL - Structured Query Language 
+CRUD Operation - create , read, Update , Delete s
+
+
+Installed mysql for windows
+root -root
+create database dbname
+delete database dbname
+
+create database temp1;
+create database temp2;
+CREATE DATABASE collage;
+drop database temp1;
+drop database temp2;
+use collage ;
+
+CREATE TABLE table_name ( 
+column_name1 datatype constraint,
+ column_name2 datatype constraint,
+ column_name2 datatype constraint
+ )
+ 
+ create table student(
+id INT PRIMARY KEY ,
+name VARCHAR(50),
+age INT NOT NULL
+);
+
+######SQL DataTypes :
+ They define the type of values that can be stored in a column
+ char, varchar, blob, int , date etc 
+ 
+ SQL Datatypes
+ Signed & Unsigned
+ TINYINT UNSIGNED (0 to 255)
+ TINYINT (-128 to 127)
+ 
+Types of SQL Commands
+ DDL (Data Definition Language) : create, alter, rename, truncate & drop
+ DQL (Data Query Language) : select
+ DML (Data Manipulation Language) : select, insert, update & delete
+ DCL (Data Control Language) : grant & revoke permission to users
+ TCL (Transaction Control Language) : start transaction, commit, rollback etc.
+ 
+ 
+Database related Queries
+ CREATE DATABASE db_name;
+ CREATE DATABASE IF NOT EXISTS db_name;
+ DROP DATABASE db_name;
+ DROP DATABASE IF EXISTS db_name;
+ SHOW DATABASES;
+ APNA
+ SHOW TABLES;
+ 
+Table related Queries
+ Create
+ CREATE TABLE table_name ( 
+column_name1 datatype constraint,
+ column_name2 datatype constraint,
+ );
+ 
+ CREATE TABLE student ( 
+rollno INT PRIMARY KEY ,
+name VARCHAR(50)
+);
+
+Table related Queries
+ Select & View ALL columns
+ SELECT * FROM table_name;
+select * from student ;
+
+Table related Queries
+ Insert
+ INSERT INTO table_name 
+(colname1, colname2);
+ VALUES 
+(col1_v1, col2_v1), 
+(col1_v2, col2_v2)
+
+INSERT INTO student 
+(rollno,name)
+VALUES 
+(101,"karan"),
+(102,"Arjun");
+
+INSERT INTO student VALUES (104,"shyam");
+51:50
+
+Keys : 
+Keys
+Primary Key
+Foreign Key
+It is a column (or set of columns) in a table that uniquely identifies each row. (a unique id)
+There is only 1 PK & it should be NOT null.
+
+Foreign Key
+It is a column (or set of columns) in a table that uniquely identifies each row. (a unique id)
+There is only 1 PK & it should be NOT null.
+A foreign key is a column (or set of columns) in a table that refers to the primary key in another table.
+FKs can have duplicate & null values.
+There can be multiple FKs.
+
+
+Constraints
+SQL constraints are used to specify rules for data in a table.
+
+NOT NULL columns cannot have a null value col1 int NOT NULL 
+UNIQUE columns cannot have a null value col2 int UNIQUE
+PRIMARY KEY all values in column are different id int PRIMARY KEY 
+CREATE TABLE temp (
+id int not null 
+PRIMARY KEY (id)
+);
+
+Primary key can be comination of two keys name and id PRIMARY KEY ( id ,name ) 
+
+Constraints
+FOREIGN KEY prevent actions that would destroy links between tables
+CREATE TABLE temp(
+cust_id INT 
+FOREIGN KEY (cust_id) references customer(id)
+);
+
+DEFAULT sets the default value of a column
+salary INT DEFAULT 25000
+
+CHECK it can limit the values allowed in a column_name1
+age check >=18 
+
+CREATE DATABASE college1;
+use college1;
+
+CREATE TABLE student(
+rollno INT PRIMARY KEY,
+name VARCHAR(50),
+marks INT NOT NULL,
+grade VARCHAR(1),
+city VARCHAR(20)
+);
+
+INSERT INTO student 
+(rollno,name,marks,grade,city) VALUES
+(101,"anil",78,"C","Pune")
+(102,"bhumika",93,"C","Mumbai")
+(103,"chetan",85,"C","Mumbai")
+(104,"dhruv",96,"C","Delhi")
+(105,"emanuel",12,"C","Delhi")
+(106,"farah",82,"C","Delhi")
+
+Select in Detail:
+used to select any data from the database
+
+Basic Syntax
+SELECT col1, col2 FROM table_name;
+
+To Select ALL
+SELECT * FROM table_name;
+
+SELECT * from student ;
+SELECT name,marks from student ;
+SELECT DISTINCT city from student ;
+
+Where Clause
+To define some conditions
+
+SELECT col1, col2 FROM table_name
+WHERE conditions
+
+SELECT * from student where marks > 80 ;
+select all from ;
+
+SELECT * from student where city = "Mumbai" ;
+
+SELECT * from student where marks > 80 city = "Mumbai" ;
+
+SELECT * from student where marks > 80 AND city = "Mumbai";
+
+
+Where Clause
+Using Operators in WHERE
+
+Arithmetic Operators : +(addition) , -(subtraction),
+*(multiplication), /(division), %(modulus)
+
+Comparison Operators : = (equal to), != (not equal to), > , >=
+, <, <=
+
+Logical Operators : AND, OR , NOT, IN, BETWEEN, ALL, LIKE, ANY
+
+Bitwise Operators : & (Bitwise AND), | (Bitwise OR)
+
+
+SELECT * from student where marks > 90 OR city = "Mumbai";
+SELECT * from student 
+where city IN ("Delhi","Mumbai");
+
+IN and NOT IN 
+
+LIMIT Clause :
+Sets an upper limit on number of (tuples)rows to be returned
+select * from student limit 3 
+
+ORDER BY Clause : 
+To sort in ascending (ASC) or descending order (DESC)
+
+SELECT * from student ORDER by city ASC ;
+SELECT col1, col2 FROM table_name
+ORDER BY col_name(s) ASC;
+
+Aggregate Functions
+Aggregare functions perform a calculation on a set of values, and return a single value.
+
+count()
+max()
+min()
+sum()
+avg()
+
+select max(marks)  from student;
+
+
+Group By Clause
+
+Groups rows that have the same values into summary rows.
+It collects data from multiple records and groups the result by one or more column.
+
+*Generally we use group by with some aggregation function.
+
+SELECT city , count(rollno)
+FROM STUDENT 
+GROUP BY city ;
+
+Having Clause
+Similar to Where i.e. applies some condition on rows.
+Used when we want to apply any condition after grouping.
+Count number of students in each city where max marks cross 90
+
+
+
+
+General Order
+SELECT column(s)
+FROM table_name
+WHERE condition
+GROUP BY column(s)
+HAVING condition
+ORDER BY column(s) ASC;
+
+SELECT city , AVG(marks)
+FROM STUDENT 
+GROUP BY city ;
+
+Table related Queries
+Update (to update existing rows)
+UPDATE table_name
+SET col1 = val1, col2 = val2
+WHERE condition;
+
+safe mode - 
+SET SQL_SAFE_UPDATES=0;
+
+Delete (to delete existing rows)
+DELETE FROM table_name
+WHERE condition;
+DELETE from student 
+WHERE marks < 33 ;
+
+Revisiting forign key 
+dept table and teacher table 
+forign key (dept id) refences dept ;
+
+Reverse Engineer 
+EER Table 
+How tables are linked to each other 
+parent table 
+child table 

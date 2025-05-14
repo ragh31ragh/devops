@@ -12,7 +12,7 @@ Continuous Monotoring
  -Minimizes system downtime 
  -Assists with healty business performance 
  
- It is automated proces by which one can observe and detect complaince issues and security threats during each phase of devops pipeline 
+ It is automated process by which one can observe and detect complaince issues and security threats during each phase of devops pipeline 
  
  Continuous monitoring tools in devops 
  -Monitoring tools 
