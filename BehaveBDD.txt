@@ -1,0 +1,126 @@
+#########L1:Intro
+
+BDD - Behvaiour Driven development is an agile sw development technique
+that encourages collaboration between deveopers , QA and non-technical or business 
+participants in a software project 
+
+what is behave ?
+-Behave is BDD , Python style 
+-Behave operates on directories containing 
+-"feature files " written by your BA / Sponsor / whoever with your behaviour scenarios in it and 
+-a "steps" directory with Python step implementation for the scenarios.
+
+Feature: Orange HRM Logn 
+	Scenario : Logo presence on HRM Orange Page 
+		Given I launch chrome browser 
+		When I open orange HRM page
+		Then I verify the logo present on page 
+		
+	
+Feature file .feature
+Scenario: 
+	Steps 
+	
+	
+#########L2:Environment Set up 
+-Install Python 
+-Pycharm IDE
+-Selenium Library
+-Behave 
+
+pip list
+pip freeze > requirements.txt
+pip install -r file_name_to-requirements.txt 
+pip install behave 
+OR 
+pip install -U behave 
+
+pip install -Iv mysql-python==1.2.2
+
+-I ignore installed 
+
+Gherkin keywords 
+
+#########L3:Project set up 
+1)Project Creation 
+2)First selenium test 
+
+Install selenium package
+Install behave package
+
+Selenium browser drivers 
+
+Create 'feature' directory 
+in feature create 'steps' directory 
+create orangehrm feature file in feature directory 
+
+Project Location > behave features\orangehrm.feature
+It generated placeholder step defnitions file
+
+in orangehrmsteps.py 
+paste step defnitions
+from behave import *
+from selenium import webdriver 
+
+@given (launch chrome browser)
+def launchBrowser(context):
+	#context.driver = Webdriver.chrome("path to driver)
+	context.driver = Webdriver.chrome()
+	context.driver.get("URL")
+	
+C-users-admin-appdata-local-programs-python-python38-32-Scripts
+
+
+#########L4:Step Parameters 
+Enter username 'admin' and password 'admin@123'
+
+
+#########L5:Scenario Outline 
+Scenario - 1 time execution 
+Scenario Outline - Execute number of times input is provided 
+Enter username "<username>" and password "<password>"
+Examples:
+	| username  | password | 
+	| admin		| admin123 |
+	| test      | test123  |
+try catch block 
+
+
+
+#########L6:Background 
+Executing number of steps before each scenario 
+scenariobg.feature 
+
+Step defnitions can be implemented in one file or multiple files
+when we execute it will look for all files and match the step defnition 
+
+Background like test set up
+Add common steps 
+
+Feature : 
+	Background : common steps
+		Given 
+		When 
+		
+	Scenario:
+		Then 
+		
+#########L7:Allure Reports 
+pre-requisite
+allure-behave package
+pip install allure-behave
+pip uninstall allure-behave 
+
+execute feature files 
+behave ./features 
+install package in pycharm as well 
+
+to generate report 
+behave -f allure_behave.formatter:AllureFormatter -o reports/ features/featurefile.feature
+json files will be created in reports directory 
+
+allure serve reports/
+
+it will generate allure report and give a link
+
+you can open the report in browser 
