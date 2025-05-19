@@ -457,7 +457,7 @@ driver.find_element(By.LINKED_TEXT,"username")
 driver.find_element(By.PARTIAL_LINKED_TEXT,"user")
 This is case sensitive 
 
-Find number of links in all page 
+Int-Qns###########Find number of links in all page 
 Find all links
 links = driver.find_element(By.TAG_NAME,"a")
 print(len(links)
@@ -499,7 +499,8 @@ Ex://*[@id="navbarSupportedContent"]/ul/li[4]/a
 xpath
 ------
 --XPath is defined as XML path.
---It is a syntax or language for finding any element on the web page using XML path expression. --XPath is used to find the location of any element on a webpage using HTML DOM structure. 
+--It is a syntax or language for finding any element on the web page using XML path expression.
+--XPath is used to find the location of any element on a webpage using HTML DOM structure. 
 --XPath can be used to navigate through elements and attributes in DOM.
 --XPath is an address of the element.
 
@@ -520,7 +521,7 @@ Diff between relative and absolute xpath:
 	
 How to writh xpath manaully 
 ---------------------------
-bottom to approach
+bottom to top approach
 /html/body/div[6]/div[1]/div[1]/div[2]/div[1]/ul/li[1]/a
 
 syntax of writing relative xpath
@@ -555,9 +556,53 @@ text()
 //tag[@attribute1='value1' or @attribute2='value2']
 //tag[@attribute1='value1' and @attribute2='value2']
 //input[contains(@id,'search')]
-//button[starts-with(@name='submit)]
+//button[starts-with(@name='submit')]
 //a[text()='Women'] 
+//a[contains(text(),'India')]
 
 -------------------------
-L4---------------
+L4---------------19 May 2025
+--------------------------
+Xpath axes - to traverse in the dom 
+
+self 
+parent 
+child 
+ancestor 
+descendent 
+
+
+5:20 Good explanation diagram 
+https://www.youtube.com/watch?v=XL2pU5y3Kf8&t=3603s
+
+
+following 
+following sibling 
+preceding 
+preceding sibling 
+
+
+14:06 - Tabular explanation 
+
+child - //tagname[@attribute='value']/child::tagname 
+parent - //tagname[@attribute='value']/parent::tagname 
+
+following //tagname[@attribute='value']/following::tagname 
+preceding //tagname[@attribute='value']/preceding::tagname 
+
+ancestor //tagname[@attribute='value']/ancestor::tagname
+descendent //tagname[@attribute='value']/descendent::tagname
+
+following sibling //tagname[@attribute='value']/following-sibling::sibling
+					tag[@attribute='value']
+preceding sibling //tagname[@attribute='value']/preceding-sibling::sibling
+					tag[@attribute='value']
+					
+https://money.rediff.com/indices/nse/nifty-50
+
+Print all row date from table 
+
+
+-------------------------
+L5---------------19 May 2025
 --------------------------
