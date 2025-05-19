@@ -1,6 +1,8 @@
 -Project creation 
 maven project 
-
+https://demo.nopcommerce
+https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
+.com/
 
 -Create New maven project .
 -archetype.
@@ -346,3 +348,216 @@ Different componenets we have in automation framework
 --Runnin tool - CI - Jenkins 
 --Version Control - Jenkins 
 --
+
+######Python###########
+17-May-2025
+
+What is WebDriver?
+--Webdriver is one of the component of selenium
+--Webdriver is module
+
+--WebDriver is API Interface 
+ 
+ Firfox browser - Firefox()
+Edge Browser - Edge()
+Chrome - Chrome
+
+
+ Selenium client Library ( Java,Python , Ruby , C#)
+ Json
+ W3C
+ 
+---------------
+Architecture of WebDriver
+----------------
+Selenium 3
+--------
+Selenium Language bindings - JSON wire protocol - browser drivers - w3c - Browsers
+
+
+Selenium 4	
+--------
+Selenium Language bindings - w3c - browser drivers - w3c - Browsers
+
+
+Setup and configure webdriver in pycharm 
+-----------------------------------------
+pre-req
+------
+	python
+	pycharm 
+	Download browser specific drivers 
+	set up selenium webdriver 
+	installing packages- 2 ways
+	--in project setttin
+	--using pip command line 
+
+Service object 
+
+find_element(By.ID, "id")
+find_element(By.NAME, "name")
+find_element(By.XPATH, "xpath")
+find_element(By.LINK_TEXT, "link text")
+find_element(By.PARTIAL_LINK_TEXT, "partial link text")
+find_element(By.TAG_NAME, "tag name")
+find_element(By.CLASS_NAME, "class name")
+find_element(By.CSS_SELECTOR, "css selector")
+
+---------------
+Session 1 code :
+-----------------
+def test_chrome():
+    driver = webdriver.Chrome()
+    driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login")
+    time.sleep(20)
+    driver.find_element(By.NAME,"username").send_keys("Admin")
+    driver.find_element(By.NAME,"password").send_keys("admin123")
+    driver.find_element(By.XPATH, '//button[text()=" Login "]').click()
+    act_title=driver.title
+    time.sleep(5)
+    exp_title="OrangeHRM"
+    driver.close()	
+	
+	
+	
+Service object 
+
+------------------
+Locators
+----------------
+id,
+name,
+LinkText,
+PartialLinkText,
+class name,
+tag name
+
+Customized Locators :
+css selector : tag and id,tag and class ,tag and attribute , tag-class and attribute 
+xpath : absolute xpath , relative xpath 
+
+Links - a - anchor tag - href - hyperlink reference
+Image - img
+Dropdown - select 
+input - input 
+
+https://demo.nopcommerce.com/
+
+--Identify Element
+--Action 
+
+Inner Text 
+Link Text will be there whenever there is anchor tag
+
+Register - LinkText
+Partial LinkText "Reg"
+Partial LinkText "ter"
+
+driver.find_element(By.LINKED_TEXT,"username")
+driver.find_element(By.PARTIAL_LINKED_TEXT,"user")
+This is case sensitive 
+
+Find number of links in all page 
+Find all links
+links = driver.find_element(By.TAG_NAME,"a")
+print(len(links)
+
+automationpractice.com/index.php
+
+Int-Qns############How to find multiple locatores 
+Ans: Either class name or tag name
+
+def test_locators():
+    #driver = webdriver.Firefox()
+    driver = webdriver.Chrome()
+    driver.get("https://demo.nopcommerce.com/")
+    time.sleep(20)
+    links=driver.find_elements(By.TAG_NAME,"a")
+    print("######Links#######")
+    print(len(links))
+    #sublist - toggle
+    sub_titles=driver.find_elements(By.CLASS_NAME,"first-level")
+    print("######SubTitles#######")
+    print(len(sub_titles))
+	
+CSS Selectors :
+--------------
+1)tag id 	tagname#valueofId	input#email #email
+2)tag class		tagname.valueofClass 	input.inputtext .class
+3)tag attribute tagname[attribute=value]
+
+--------------------
+L3 - XPATH |18 May 2025
+----------------------
+-Absolute(Full)
+Ex:/html/body/nav/div/div/ul/li[4]/a
+-Relative(Partial)
+Ex://*[@id="navbarSupportedContent"]/ul/li[4]/a
+
+
+
+xpath
+------
+--XPath is defined as XML path.
+--It is a syntax or language for finding any element on the web page using XML path expression. --XPath is used to find the location of any element on a webpage using HTML DOM structure. 
+--XPath can be used to navigate through elements and attributes in DOM.
+--XPath is an address of the element.
+
+
+
+Int-Qns############
+Diff between relative and absolute xpath:
+---------------------------------------
+1)Absolute xpath starts from root html
+  Relative xpath directly jumps to element on DOM 
+  
+2)Absolute xpath starts with /
+	Relative xpath starts with //
+	
+3)In absolute xpath we specify only tags / nodes 
+	In relative xpath we use attributes 
+	
+	
+How to writh xpath manaully 
+---------------------------
+bottom to approach
+/html/body/div[6]/div[1]/div[1]/div[2]/div[1]/ul/li[1]/a
+
+syntax of writing relative xpath
+--------------------------------
+//tagname[@attribute='value]
+//*[@attribute='value]
+
+How to capture xpath automatically
+-----------------------------------
+1)Right click on element - inspect -hightlight html code - right click - copy xpath
+2)Selector hub - extension 
+
+2 reasons to prefer relative xpath:
+------------------------------------
+1)if developer introduces new element then absolute xpath will be broken
+/html/body/div[6]/div[1]/div[1]/div[2]/div[1]/ul/li[1]/a
+2)if developer change the location then absolute xpath will be broken
+absolute xpath is unstable 
+ 
+Int-Qns###########
+Which xpath is preferred ? why 
+relatitve 
+
+xpath options
+---------------
+and
+or 
+contains()
+starts-with()
+text()
+
+//tag[@attribute1='value1' or @attribute2='value2']
+//tag[@attribute1='value1' and @attribute2='value2']
+//input[contains(@id,'search')]
+//button[starts-with(@name='submit)]
+//a[text()='Women'] 
+
+-------------------------
+L4---------------
+--------------------------

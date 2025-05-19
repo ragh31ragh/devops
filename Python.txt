@@ -435,3 +435,30 @@ running some code before each test
 
 set path using os module 
 and import path using os module 
+
+Slicing string
+string=indiaisgood[2:3]
+.upper
+.lower
+
+b="Hello World"
+print(b.upper())
+
+print(b.lower())
+#Remove whitespace
+c=" Hel lo World "
+print(c.strip())
+
+#Replace method
+print(c.replace("H","J"))
+
+#sorting without built in function 
+list1=[5,6,7,34,56,64,21,7,2,56,4]
+print ("Original list",list1)
+for i in range(0,len(list1)):
+    for j in range(i+1,len(list1)):
+        if list1[i]<=list1[j]:
+            list1[i],list1[j] = list1[j],list1[i]
+
+#sorted order
+print("sorted list",list1)
