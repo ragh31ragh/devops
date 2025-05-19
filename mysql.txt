@@ -279,3 +279,145 @@ EER Table
 How tables are linked to each other 
 parent table 
 child table 
+
+Cascading for FK
+On Delete Cascade
+
+When we create a foreign key using this option, it deletes the referencing rows in the child table
+when the referenced row is deleted in the parent table which has a primary key.
+
+On Update Cascade
+When we create a foreign key using UPDATE CASCADE the referencing rows are updated in the child
+table when the referenced row is updated in the parent table which has a primary key.
+
+CREATE TABLE student (
+id INT PRIMARY KEY,
+courseID INT,
+FOREIGN KEY (courseID) REFERENCES course(id)
+ON DELETE CASCADE
+ON UPDATE CASCADE
+);
+
+#######Table related Queries
+Alter (to change the schema)
+
+ADD Column
+ALTER TABLE table_name
+ADD COLUMN column_name datatype constraint;
+
+DROP Column
+ALTER TABLE table_name
+DROP COLUMN column_name;
+
+RENAME Table
+ALTER TABLE table_name
+RENAME TO new_table_name;
+
+CHANGE Column (rename)
+ALTER TABLE table_name
+CHANGE COLUMN old_name new_name new_datatype new_constraint;
+
+MODIFY Column (modify datatype/ constraint)
+ALTER TABLE table_name
+MODIFY col_name new_datatype new_constraint;
+
+DROP  - deletes table
+TRUNCATE deletes table data 
+
+TRUNCATE TABLE table_name ;
+
+Joins in SQL
+Join is used to combine rows from two or more tables, based on a related column between them.
+
+Venn Diagram 
+Inner Join 
+
+Outer Join 3 types : 
+Left Join 
+Right Join 
+Full Join 
+
+Inner Join : 
+SELECT columns
+ FROMtable1
+ INNER JOIN table2
+ ONtable1.column = table2.column;
+ 
+ alais
+ 
+SELECT * 
+FROM student as s 
+INNER JOIN course as c 
+ON s.id = course.id;
+
+Left Join
+Returns all records from the left table, and the matched records from
+the right table
+
+
+SELECT column(s)
+FROM tableA
+LEFT JOIN tableB
+ON tableA.col_name = tableB.col_name;
+
+when overlaps it prints nul 
+
+Right Join
+Returns all records from the right table, and the matched records
+from the left table
+
+Syntax
+SELECT column(s)
+FROM tableA
+RIGHT JOIN tableB
+ON tableA.col_name = tableB.col_name;
+
+ 
+ Full Join
+Returns all records when there is a match in either left or right table
+use right and left join 
+and use Union keyword
+
+in mysql 
+Left Exclusive Join 
+Right Exclusive Join 
+
+
+Self Join
+It is a regular join but the table is joined with itself.
+SELECT column(s)
+FROM table as a
+JOIN table as b
+ON a.col_name = b.col_name;
+
+Union
+It is used to combine the result-set of two or more SELECT statements.
+Gives UNIQUE records.
+
+To use it :
+every SELECT should have same no. of columns
+columns must have similar data types
+columns in every SELECT should be in same order
+
+Syntax
+SELECT column(s) FROM tableA
+UNION
+SELECT column(s) FROM tableB
+
+UNION ALL - will give duplicates as well 
+
+SQL Sub Queries : 
+SQL Sub Queries
+ A Subquery or Inner query or a Nested query is a query within another SQL query.
+ It involves 2 select statements.
+ Syntax 
+SELECT column(s)
+ FROM table_name 
+WHERE col_name operator
+ ( subquery )
+ 
+MySQL Views
+ A view is a virtual table based on the result-set of an SQL statement.
+ 
+ we can also drop views 
+ like tables 
