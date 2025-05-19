@@ -606,3 +606,97 @@ Print all row date from table
 -------------------------
 L5---------------19 May 2025
 --------------------------
+1)Application commands
+2)Conditional commands 
+3)browser commands
+4)navigational commands
+5)wait commands 
+
+1)Application commands:
+--------------------
+get - get application url 
+title - to capture current title 
+current url - 
+page source - 
+driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login")
+print(driver.title)
+print(driver.current_url)
+
+
+2)Conditional commands :
+-------------------------
+is_displayed()
+is_enabled()
+is_selected()--for radio buttons and checkboxes 
+
+driver.get("https://demo.nopcommerce.com/register?returnUrl=%2F")
+searchbox = driver.find_element(By.XPATH,"//input[@id='small-searchterms']")
+print("enable status",searchbox.is_enabled())
+print("selected status",searchbox.is_selected())
+
+#Radio buttons 
+driver.get("https://demo.nopcommerce.com/register?returnUrl=%2F")
+male_radio_button = driver.find_element(By.XPATH,"//input[@id='gender-male']")
+female_radio_button = driver.find_element(By.XPATH,"//input[@id='gender-female']")
+time.sleep(3)
+print("Before radio button click ")
+print(male_radio_button.is_selected())
+print(female_radio_button.is_selected())
+time.sleep(3)
+male_radio_button.click()
+print("After radio button click ")
+print(male_radio_button.is_selected())
+print(female_radio_button.is_selected())
+
+3)Browser commands 
+----------------------
+Close - closes one browser at a time - parent (where driver focused)
+Quit  - closes all browser window -killing the driver process)
+
+4)Navigational commands
+----------------------------
+Back 
+Forward 
+Refresh 
+
+driver.back()
+driver.forward()
+driver.refresh()
+try with amazon and flipkart com 
+
+
+find element (vs) find elements 
+find element - return single web element
+find elements - return list of web elements 
+
+1)Locator matching with single element
+2)Locator maching with multipe elements
+3)Element not available throws - No such element exception 
+
+find all links in footer section 
+elements = driver.find_elements.(By.XPath."//div[@class='footer']a")
+print(elements.text)
+
+
+Int-Qns###########
+Exceptions : 
+No such element exception . If unable to locate element 
+
+find_elements will not return any exception , as it returns 0 lenght list 
+
+text vs get_attribute('value')
+to clear value in text box use element.clear() method 
+when to use text and when to use get_attribute()
+
+text will always return inner text of the element .
+Most of the times links will have inner text 
+get_attribute('value') - practice 
+here 'value' is attribute , it can be name , id or value anything !
+
+web_element.text
+web_element.get_attribute('value')
+
+
+-------------------------
+L6---------------19 May 2025
+--------------------------
