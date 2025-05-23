@@ -788,8 +788,8 @@ External -
 Broken link 
 
 website : nopcommerce
---a 
--href - hyperlink
+--a  - link 
+-href means  hyperlink
 
 Int-Qns###########
 How to handle broken links ?
@@ -837,3 +837,46 @@ L8---------------22 May 2025
 4.Browser Windows.
 
 https://the-internet.herokuapp.com/javascript_alerts
+
+https://demo.automationtesting.in/Frames.html
+
+Alerts/Popups
+--------------
+myalert = driver.switch_to.alert
+myalert.text
+myalert.accept()
+myalert.dismiss()
+
+Authentication popup
+--------------------
+http://the-internet.herokuapp.com/basic_auth
+
+Syntax : http://username:password@test.com
+
+Example : http://admin:admin@the-internet.herokuapp.com/basic_auth
+
+automationpractice.blogspot.com
+
+
+3.Frames/ iFrames
+------------------
+
+frame 
+iframe
+form 
+inner frames 
+
+4.Browser Windows.
+------------------
+windowIDs = driver.window_handles
+parentwindowid = windowIDs[0]
+childwindowid  = windowIDs [1]
+driver.switch_to.window(childwindowID)
+driver.stitch_to_window(parentwindowID)
+
+switchto window based on page title .
+use orangehrm demo website for practice 
+
+-------------------------
+L9---------------23 May 2025
+--------------------------

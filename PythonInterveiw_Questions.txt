@@ -83,3 +83,13 @@ print(list3[len(list3)-2])
 pip install pipreqs
 pip freeze >
 pip install -r requirements.txt 
+
+#sorting without built in function
+my_list = [ 1,23,43,21,34,53,45,23,45,56]
+for i in range(0,len(my_list)):
+    for j in range(i+1,len(my_list)):
+        if my_list[i] >= my_list[j]:
+            my_list[i],my_list[j]= my_list[j],my_list[i]
+
+print("my_List")
+print(my_list)
