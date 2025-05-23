@@ -2,6 +2,22 @@
 maven project 
 https://demo.nopcommerce
 https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
+http://www.deadlinkcity.com/
+https://www.opencart.com/-register page 
+https://rahulshettyacademy.com
+https://rahulshettyacademy.com/loginpagePractise
+https://rahulshettyacademy.com/seleniumPractise/#/offers
+https://rahulshettyacademy.com/AutomationPractice/
+https://rahulshettyacademy.com/client
+https://rahulshettyacademy.com/client/
+https://the-internet.herokuapp.com/login
+https://the-internet.herokuapp.com/login
+
+testautomationpractice.blogspot.com
+itera-qa-azurewebsites.net/home
+
+https://testautomationpractice.blogspot.com/
+
 .com/
 
 -Create New maven project .
@@ -698,5 +714,126 @@ web_element.get_attribute('value')
 
 
 -------------------------
-L6---------------19 May 2025
+L6---------------20 May 2025
 --------------------------
+Synchronization Related
+Wait - 2 types
+Implicit wait
+Explicit wait 
+IN java there is fluent wait also , but not avaialble in python 
+
+driver.implicitly_wait(15)
+
+wait commands
+time.sleep(time in seconds) Adv
+1) simpel to use
+DisAdv
+1) performance of the script is very poor
+2) If the element is not available within the time mentioned still there is a chance of getting exception.
+
+
+1) implicit wait
+Adv
+1) Single statement
+2) Performance will not be reduced. (If the element is available within the time it proceed to execute further statements.
+
+Dis
+|---
+2) If the element is not available within the time mentioned, still there is a chance of getting exception.
+2) explicit wait
+
+Explicit wait works based on condition...
+Adv
+More effectively works.
+Dis
+---
+Multiple places
+feel some difficulty
+
+
+
+expected conditions as EC 
+
+mywait-WebDriverWait (driver, 10) # explicit wait declaration # basic
+driver.get("https://www.google.com/")
+driver.maximize_window()
+searchbox=driver.find_element(By.NAME, 'q')
+searchbox.send_keys("Selenium")
+searchbox.submit()
+searchlink=mywait.until(EC.presence_of_element_located((By.XPATH, "//h3[text()='Selenium']")))|
+searchlink.click()
+driver.quit()
+T
+
+mywait-WebDriverWait (driver, 10,poll frequency = 2 ,ignoredExceptions = No Such Element Exception,
+				Element not visible exception,
+				Element not selectable exception ,
+				Element not visible exception,
+				Exception)
+			
+			
+itera-qa.azurewebsites.net/home
+
+-------------------------
+L7---------------22 May 2025
+--------------------------
+Chekcbox
+is selected 
+get all checkboxes and conditionally select using if loop and for loop
+
+Links:
+--------
+Internal-same page
+External - 
+Broken link 
+
+website : nopcommerce
+--a 
+-href - hyperlink
+
+Int-Qns###########
+How to handle broken links ?
+
+use deadlinkcity.com for broken links testing 
+http://www.deadlinkcity.com/
+
+import request module to package 
+to test apis
+
+
+dropdown :
+------------
+test with opencart.com
+tagname of link - a
+tagname of image - img
+tagname of dropdown - select 
+tagname of label - label 
+select contains options : 
+
+https://www.opencart.com/-register page 
+
+element = driver.find_element(By.XPATH,"")
+drop_down_object = select(element)
+
+#select option from dropdown 
+drop_down_object.select_by_visible_text("case sensitiev")
+
+print all the options : 
+select particular option 
+
+testautomationpractice.blogspot.com
+itera-qa-azurewebsites.net/home
+
+
+https://testautomationpractice.blogspot.com/
+
+
+-------------------------
+L8---------------22 May 2025
+--------------------------
+1,Alerts/Popups
+2.Authentication pop up
+3.Frames/ iFrames
+4.Browser Windows.
+
+https://the-internet.herokuapp.com/javascript_alerts
