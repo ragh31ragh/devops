@@ -12,9 +12,12 @@ https://rahulshettyacademy.com/client
 https://rahulshettyacademy.com/client/
 https://the-internet.herokuapp.com/login
 https://the-internet.herokuapp.com/login
-
+https://the-internet.herokuapp.com/javascript_alerts`
+https://demo.automationtesting.in/Frames.html
+https://money.rediff.com/indices/nse/nifty-50
 testautomationpractice.blogspot.com
 itera-qa-azurewebsites.net/home
+
 
 https://testautomationpractice.blogspot.com/
 
@@ -374,14 +377,14 @@ What is WebDriver?
 
 --WebDriver is API Interface 
  
- Firfox browser - Firefox()
+Firfox browser - Firefox()
 Edge Browser - Edge()
 Chrome - Chrome
 
 
- Selenium client Library ( Java,Python , Ruby , C#)
- Json
- W3C
+Selenium client Library ( Java,Python , Ruby , C#)
+Json
+W3C
  
 ---------------
 Architecture of WebDriver
@@ -438,6 +441,7 @@ def test_chrome():
 	
 Service object 
 
+C:\Drivers\Chromedriver\chrome-win32\chrome.exe
 ------------------
 Locators
 ----------------
@@ -475,7 +479,7 @@ This is case sensitive
 
 Int-Qns###########Find number of links in all page 
 Find all links
-links = driver.find_element(By.TAG_NAME,"a")
+links = driver.find_elements(By.TAG_NAME,"a")
 print(len(links)
 
 automationpractice.com/index.php
@@ -572,9 +576,11 @@ text()
 //tag[@attribute1='value1' or @attribute2='value2']
 //tag[@attribute1='value1' and @attribute2='value2']
 //input[contains(@id,'search')]
-//button[starts-with(@name='submit')]
-//a[text()='Women'] 
 //a[contains(text(),'India')]
+//a[text()='Women'] 
+//button[starts-with(@name='submit')]
+
+
 
 -------------------------
 L4---------------19 May 2025
@@ -754,7 +760,7 @@ feel some difficulty
 
 expected conditions as EC 
 
-mywait-WebDriverWait (driver, 10) # explicit wait declaration # basic
+mywait=WebDriverWait (driver, 10) # explicit wait declaration # basic
 driver.get("https://www.google.com/")
 driver.maximize_window()
 searchbox=driver.find_element(By.NAME, 'q')
@@ -768,7 +774,6 @@ T
 mywait-WebDriverWait (driver, 10,poll frequency = 2 ,ignoredExceptions = No Such Element Exception,
 				Element not visible exception,
 				Element not selectable exception ,
-				Element not visible exception,
 				Exception)
 			
 			
@@ -880,3 +885,4 @@ use orangehrm demo website for practice
 -------------------------
 L9---------------23 May 2025
 --------------------------
+
