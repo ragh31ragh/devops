@@ -604,7 +604,7 @@ tag it as smoketest
 @pytest.mark.smoke 
 pytest -m smoke 
 
-Runnint tests with keyword having web_api 
+Running tests with keyword having web_api 
 
 pytest -k web_api
 
@@ -927,6 +927,16 @@ print(even_numbers)
 sorting = [3,2,6,7,9]
 print(sorted(sorting))
 
+#sorting without built in function
+my_list = [ 1,23,43,21,34,53,45,23,45,56]
+for i in range(0,len(my_list)):
+    for j in range(i+1,len(my_list)):
+        if my_list[i] >= my_list[j]:
+            my_list[i],my_list[j]= my_list[j],my_list[i]
+
+print("my_List")
+print(my_list)
+
 
 
 43:07 - Is python asynchronous or Synchronous? What is the default type? and what is asyncio?
@@ -1084,3 +1094,23 @@ Polymorphism is often used in Class methods, where we can have multiple classes 
 For example, say we have three classes: Car, Boat, and Plane, and they all have a method called move():
 
 https://www.geeksforgeeks.org/python-oops-concepts/
+
+file upload :
+with page.expect_file_chooser() as fc_info:
+    page.get_by_label("Upload file").click()
+file_chooser = fc_info.value
+file_chooser.set_files("myfile.pdf")
+
+file download : 
+# Start waiting for the download
+with page.expect_download() as download_info:
+    # Perform the action that initiates download
+    page.get_by_text("Download file").click()
+download = download_info.value
+
+# Wait for the download process to complete and save the downloaded file somewhere
+download.save_as("/path/to/save/at/" + download.suggested_filename)
+
+
+page.on("dialog", lambda dialog: dialog.accept())
+page.get_by_role("button").click()
