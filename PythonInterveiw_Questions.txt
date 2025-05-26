@@ -93,3 +93,60 @@ for i in range(0,len(my_list)):
 
 print("my_List")
 print(my_list)
+
+Decorator : add extra features into existing functions
+Pre-req for decorator:
+-------------------------
+-In python everything is treated as object
+-Function aliasing - give another reference name 
+-Nested Functions - a function inside another function 
+-Function as return value --> function can return another function 
+-Function as an Argument --> function can be passed as an argument to another function 
+
+Decorators:
+----------
+A decorator is function that takes another function as input,adds extra functionality ,
+and returns modified function without changing its original code .
+
+inner function --> wrapper function 
+
+Decorator Chaining : 
+--------------------
+Decorator chaining means applying mutliple decorators to the same function ,where each decorator enhances or modified the function in some way 
+
+#calling the function with decorator
+def (func):
+	def inner (name):
+		if name == "Sunny Leone":
+	else:
+		print("Hello Sunny Leone Bad Morning")
+	func (name)
+return inner
+
+
+@decor
+#decorator function 2 usages
+def wish (name):
+	print("Hello", name, "Good Morning")
+wish ("Sunny Leone")
+wish ("Deleep")	
+
+uses:
+#authentication of APIs 
+
+one more decoraor example : 
+def smart_div(func):
+    def wrapper(a,b):
+        if a < b:
+            a,b, = b,a
+            func(a, b)
+        else:
+            func(a,b)
+    return wrapper
+
+
+@smart_div
+def div(a,b):
+    print ( a/b )
+
+div(12,36)
