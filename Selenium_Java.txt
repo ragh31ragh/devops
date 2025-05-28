@@ -16,6 +16,8 @@ https://the-internet.herokuapp.com/javascript_alerts`
 https://demo.automationtesting.in/Frames.html
 https://money.rediff.com/indices/nse/nifty-50
 https://jqueryui.com/datepicker/
+https://www.countries-ofthe-world.com/
+https://www.sitepoint.com/mime-types-complete-list/
 
 testautomationpractice.blogspot.com
 itera-qa-azurewebsites.net/home
@@ -985,7 +987,7 @@ act.drag_and_drop_by_offset(min_slider,100,0).perform()
 act.drag_and_drop_by_offset(element,100,0).perform()
 act.drag_and_drop_by_offset(min_slider,-39,0).perform()
 
-3- Scrolling Page	
+3- Scrolling Page	- driver.execute_script("java script commands")
 
 
 a- Mouse Hover
@@ -1040,3 +1042,113 @@ act.drag_and_drop_by_offset(min_slider,100,0).perform()
 act.drag_and_drop_by_offset(min_slider,-39,0).perform()
 
 3- Scrolling Page	
+https://www.countries-ofthe-world.com/
+Scroll cannot be done in application 
+or browser 
+Scroll is java script statement 
+3 ways :
+##1)based on pixel
+driver.execute_script("window.scrollby(0,3000)" ,"")
+driver.execute_script("return window.pageofset)
+we can also check how much scrollbar is moved 
+
+###2)based on element
+Scroll down element till page is visible 
+element=driver.findelement()
+driver.execute_script("arguments[0].scrollintoview();",element) 
+
+###3)scroll element till end of page 
+driver.execute_script("window.scrollby(0,document.body.ScrollHeight)" ,"")
+
+###4)scroll element till top of page 
+driver.execute_script("window.scrollby(0,-document.body.ScrollHeight)" ,"")
+
+
+-------------------------
+L12---------------28 May 2025
+--------------------------
+Keyboard actions , it uses same ActionChains class
+--------------------------------------------------
+How to download files 
+How to upload files 
+#ctrl + A
+#ctrl + C
+#tab
+#ctrl + V
+Create ActionsChains object 
+act = ActionChains(driver)
+
+#ctrl + A
+act.keys_down(Keys.Control)
+act.send_keys("a")
+act.key_up(Keys.CONTOL)
+act.perform()
+
+we can also write above statements in single statement.
+
+#ctrl + C
+act.keys_down(Keys.CONTROL)
+act.send_keys("c")
+act.key_up(Keys.CONTOL)
+act.perform()
+
+#tab 
+act.send_keys("tab").perform()
+
+How to download files 
+-------------------------
+element.click()
+downloads file in default location configured in browser
+
+-if we need to download in specific path 
+
+below code is to download file in desired location
+import os
+location = os.getcwd()
+
+def chrome_setup():
+	driver set up code 
+	#preferences = {"download.default_directory": "path where you want to download"}
+	preferences = {"download.default_directory": location}
+	ops = webdriver.Chromeoptions()
+	ops.add_experimental_option("prefs",preferences)
+	driver = webdriver.chromeoptions(service=serv_obj,options=ops)
+	return driver
+
+chrome and edge is same 
+in firefox we need to specify mime type 
+
+How to download pdf file ?
+----------------------------
+modify preference 
+preferences = {"download.default_directory": location,"plugins.always_open_pdf_file_externally": True}
+
+mime type "application/pdf" we need to handle in firefox
+
+chrome and edge is same .
+but firefox it is slightly different 
+
+Mimetype:
+https://www.sitepoint.com/mime-types-complete-list/
+https://www.sitepoint.com/mime-types-complete-list/
+
+upload files:
+-------------
+click on upload button .
+agian find element of upoad link . 
+use.
+element.send_keys("Locaiton of file ")
+
+Manual testing is recommended for file upload and file download
+as we need to verify file contents also 
+
+
+-------------------------
+L13---------------28 May 2025
+--------------------------
+session contents:
+1- how to handle bootstrap Dropdown
+2- how to capture Screenshots
+3- how to open new tab& new window
+4- how to handle cookies
+5- Headless Mode Execution
