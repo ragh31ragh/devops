@@ -18,6 +18,7 @@ https://money.rediff.com/indices/nse/nifty-50
 https://jqueryui.com/datepicker/
 https://www.countries-ofthe-world.com/
 https://www.sitepoint.com/mime-types-complete-list/
+https://www.dummyticket.com/dummy-ticket-for-visa-application/
 
 testautomationpractice.blogspot.com
 itera-qa-azurewebsites.net/home
@@ -1152,3 +1153,109 @@ session contents:
 3- how to open new tab& new window
 4- how to handle cookies
 5- Headless Mode Execution
+
+1- how to handle bootstrap Dropdown
+---------------------------------------
+dropdown which does not have select class 
+https://www.dummyticket.com/dummy-ticket-for-visa-application/
+li - list item 
+Get the locator :
+of dropdown 
+find all the li elements using find_elements method 
+loop over contries 
+and select the required country 
+web_element.text = toget the country name 
+
+2- how to capture Screenshots
+------------------------------
+driver.save_screenshot("file location you want to save")
+driver.save_screenshot(os.getcwd+"homepage.png")
+driver.get_screenshot_as_file(os.getcwd+"homepage.png")
+python is easy - selenium has 5-6 lines of code 
+
+3- how to open new tab& new window
+-------------------------------------
+like open link in new tab
+nopcommerce register link 
+
+element 
+reglink = Keys.CONTROL+Keys.RETURN
+element.send_keys(reglink) 
+
+#Selenium 4 - opens a new tab and switches to it 
+driver.get("url1")
+driver.get("url2")
+it will load 1st url and then the second url 
+
+driver.get("url1")
+driver.switch_to_new_window('tab')
+driver.get("url2")
+
+driver.get("url1")
+driver.switch_to_new_window('window')
+driver.get("url2")
+
+swith_to_widow is diff method  where we need to provide id 
+
+4- how to handle cookies
+--------------------------
+cookie name 
+cookie expiry 
+cookie info will be dynamic 
+
+nopcommerce website used here 
+cookie info we need to store in dictionary object 
+
+printing details of cookies in website 
+cookies= driver.get_cookies()
+len(cookies) = 4 
+print info of cookie using for loop 
+get name of cookie 
+
+#Add new cookie to the browser : 
+driver.add_cookie({name:mycookie,value=somevalue})
+
+get size of cookies after adding cookie 
+
+#Delete specific cookie from browser : 
+driver.delete_cookie()
+
+#delete all cookies 
+driver.delete_all_cookies()
+
+
+5- Headless Mode Execution
+----------------------------
+1-we can do other activities , and script will be running in background
+2-Performance will be good 
+
+create 2 new files for firefox,chrome and firefox 
+drive.gettitle
+driver.current_url 
+
+def headless_chrome():
+	serv_object = Service("path")
+	ops = webdriver.ChromeOptions()
+	ops.headless=True
+	driver=webdriver.Chrome(service=serv_object,options=ops)
+	
+driver = headless_chrome()
+try this 
+get url 
+and current title 
+
+we can try for edge also 
+
+-------------------------
+L14---------------28 May 2025
+--------------------------
+Data driven testing : 
+Session Contents:
+1- Read Data from Excel
+2- Write Data into Excel
+3- Data Driven Test
+
+-------------------------
+L15---------------28 May 2025
+--------------------------
+mysql database connection related 
