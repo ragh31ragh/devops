@@ -15,6 +15,8 @@ https://the-internet.herokuapp.com/login
 https://the-internet.herokuapp.com/javascript_alerts`
 https://demo.automationtesting.in/Frames.html
 https://money.rediff.com/indices/nse/nifty-50
+https://jqueryui.com/datepicker/
+
 testautomationpractice.blogspot.com
 itera-qa-azurewebsites.net/home
 
@@ -440,6 +442,9 @@ def test_chrome():
 	
 	
 Service object 
+#serv_object = Service("C:\\Drivers\\Chromedriver\\chrome-win32\\chrome.exe")
+#driver = webdriver.Chrome(service=serv_object)
+
 
 C:\Drivers\Chromedriver\chrome-win32\chrome.exe
 ------------------
@@ -885,4 +890,153 @@ use orangehrm demo website for practice
 -------------------------
 L9---------------23 May 2025
 --------------------------
+Disable in app notifications 
+--------------------------------
+ops = webdriver.ChromeOptions()
+ops.add_argument("--disable notifications")
+serv_object = Service("C"\\Drivers\\Chromedriver\\chrome-win32\\chrome.exe")
+driver.webdriver.chrome(service = serv_object,options = ops )
+driver.get("https://whatmylocation.com/")
+driver.maximize.window()
 
+
+webtable
+---------
+static -same data 
+dyanmaic -diff data 
+https://money.rediff.com/indices/nse/nifty-50
+table
+thead
+tbody
+tr - means table row 
+th - header of table 
+td - table data 
+
+#Count number of rows and columns in table 
+#Read specific row and column data 
+#Read all the rows and column data 
+#Read data based on conditions (List book names whose author is Mukesh)
+
+def test_3_number_of_rows():
+    driver = webdriver.Chrome()
+    driver.implicitly_wait(10)
+    driver.get("https://money.rediff.com/indices/nse/nifty-50")
+    time.sleep(10)
+    text_var=driver.find_elements(By.XPATH,"//table[@class='dataTable']//tr")
+    print(len(text_var))
+    for ele in text_var:
+        print(ele.text)
+		
+Dynamic Table :
+----------------
+https://opensource-demo.orangehrmlive.com/
+Admin - usermanagement - we have dynamic table 
+
+
+-------------------------
+L10---------------27 May 2025
+--------------------------
+Date Picker  
+--------------------------------
+1)Standard [radio button , checkbox ]
+2)Non Standard (customized ) - Datepicker 
+According to design we have to write date picker 
+https://jqueryui.com/datepicker/
+we can use sendkeys method sometimes [ 90% of time it works ]
+#mm/dd/yyyy format 
+driver.find_element(By.XPATH,"").click()
+month=march
+year = 2024
+day = 12
+
+while True:
+	month_ele = driver.findElement().text
+	year_ele= driver.findElement().text 
+	if month_ele==month and year == year_ele :
+		break ; 
+	else :
+		click next arrow 
+		
+#
+Now capture all dates from table : 
+use for and if loop to match with expected date 
+
+#In travel websites 
+we have to select onlyfuture dates so > keyword
+# In date of birth we have to select old dates only so we click on < 
+
+Date picker one more example : 
+----------------------------
+Drop down type date picker 
+
+
+-------------------------
+L11---------------27 May 2025
+--------------------------
+Mouse operations  
+--------------------------------
+a- Mouse Hover - move to elemene(element).click().perform()
+    b- Right Click -act.context_click(button).perform()
+    c- Double Click-act.double_click(button).perform()
+    d- Drag&Drop -act.drag_and_drop(source_ele,target_ele).perform()
+	
+2- Sliders
+act.drag_and_drop_by_offset(min_slider,100,0).perform()
+act.drag_and_drop_by_offset(element,100,0).perform()
+act.drag_and_drop_by_offset(min_slider,-39,0).perform()
+
+3- Scrolling Page	
+
+
+a- Mouse Hover
+--------------
+ActionsChains class 
+
+demo orange hrm website 
+Admin options for mouse hover 
+
+act = ActionChains(driver)
+act.draganddrop
+act.doubleclick
+act.movetoelemenet
+act.clickandhold
+act.move_to_element(admin).move_to_element(usermanagement).moveToElement(users).click().perform()
+
+Create an action 
+and then perform()
+
+
+RightClick
+-----------
+button=some_element
+act = ActionChains(driver)
+act.context_click(button).perform()
+
+DoubleClick
+-----------
+button=some_element
+act = ActionChains(driver)
+act.double_click(button).perform()
+
+DragAndDrop
+-----------
+source_ele=element
+target_ele=element
+act = ActionChains(driver)
+act.drag_and_drop(source_ele,target_ele).perform()
+
+
+2- Sliders
+----------
+min_slider  = element
+max_slider  =element 
+print location of slider before and after moving 
+min_slider.location
+max_slider.location 
+it will give x and y co -ordinates 
+
+act = ActionChains(driver)
+act.drag_and_drop_by_offset(min_slider,100,0).perform()
+act.drag_and_drop_by_offset(min_slider,-39,0).perform()
+
+3- Scrolling Page	
