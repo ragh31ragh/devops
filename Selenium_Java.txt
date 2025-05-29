@@ -1,6 +1,7 @@
 -Project creation 
 maven project 
-https://demo.nopcommerce
+
+https://demo.nopcommerce.com/
 https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
 http://www.deadlinkcity.com/
 https://www.opencart.com/-register page 
@@ -777,6 +778,11 @@ searchbox.submit()
 searchlink=mywait.until(EC.presence_of_element_located((By.XPATH, "//h3[text()='Selenium']")))|
 searchlink.click()
 driver.quit()
+
+Try Launching : 
+https://demo.nopcommerce.com/
+Click on Login Link -wait for this element and then click 
+
 T
 
 mywait-WebDriverWait (driver, 10,poll frequency = 2 ,ignoredExceptions = No Such Element Exception,
@@ -786,6 +792,24 @@ mywait-WebDriverWait (driver, 10,poll frequency = 2 ,ignoredExceptions = No Such
 			
 			
 itera-qa.azurewebsites.net/home
+
+import time
+
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+#from selenium.webdriver.support.select import Select
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC, select
+
+driver = webdriver.Chrome()
+driver.get("https://demo.nopcommerce.com/")
+mywait = WebDriverWait(driver,20)
+searchbox = mywait.until(EC.presence_of_element_located((By.XPATH,"//*[@id='small-searchterms']")))
+searchbox.send_keys("Test")
+time.sleep(5)
+driver.close()
+
+
 
 -------------------------
 L7---------------22 May 2025
@@ -824,6 +848,7 @@ tagname of label - label
 select contains options : 
 
 https://www.opencart.com/-register page 
+https://www.opencart.com/
 
 element = driver.find_element(By.XPATH,"")
 drop_down_object = select(element)
@@ -979,9 +1004,9 @@ L11---------------27 May 2025
 Mouse operations  
 --------------------------------
 a- Mouse Hover - move to elemene(element).click().perform()
-    b- Right Click -act.context_click(button).perform()
-    c- Double Click-act.double_click(button).perform()
-    d- Drag&Drop -act.drag_and_drop(source_ele,target_ele).perform()
+b- Right Click -act.context_click(button).perform()
+c- Double Click-act.double_click(button).perform()
+d- Drag&Drop -act.drag_and_drop(source_ele,target_ele).perform()
 	
 2- Sliders
 act.drag_and_drop_by_offset(min_slider,100,0).perform()
@@ -1148,7 +1173,7 @@ as we need to verify file contents also
 L13---------------28 May 2025
 --------------------------
 session contents:
-1- how to handle bootstrap Dropdown
+1- how to handle bootstrap Dropdown[ not like select class it contains other tag]
 2- how to capture Screenshots
 3- how to open new tab& new window
 4- how to handle cookies
@@ -1157,6 +1182,7 @@ session contents:
 1- how to handle bootstrap Dropdown
 ---------------------------------------
 dropdown which does not have select class 
+https://www.dummyticket.com/dummy-ticket-for-visa-application/
 https://www.dummyticket.com/dummy-ticket-for-visa-application/
 li - list item 
 Get the locator :
@@ -1177,6 +1203,7 @@ python is easy - selenium has 5-6 lines of code
 -------------------------------------
 like open link in new tab
 nopcommerce register link 
+https://demo.nopcommerce.com/
 
 element 
 reglink = Keys.CONTROL+Keys.RETURN
@@ -1211,7 +1238,7 @@ cookies= driver.get_cookies()
 len(cookies) = 4 
 print info of cookie using for loop 
 get name of cookie 
-
+https://demo.nopcommerce.com/
 #Add new cookie to the browser : 
 driver.add_cookie({name:mycookie,value=somevalue})
 
@@ -1245,6 +1272,8 @@ get url
 and current title 
 
 we can try for edge also 
+
+ChromeOptions[service,headless,preferences to save screenshot]
 
 -------------------------
 L14---------------28 May 2025
