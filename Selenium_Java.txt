@@ -1310,3 +1310,23 @@ def browserInstance():
 filename = test_e2eTestFramework.py
 def test_e2e(browserInstance);
 	driver = browserInstance
+	
+89. Command line options to drive the environment variables at run time into test
+pytest test_e2e.python --browser_name firefox 
+def browserInstance(request):
+
+this parameter if default which will hold browser_name from command line 
+
+def browserInstance(request):
+	request.config.getoption("--browser_name")
+	it will run code and give data back 
+	launch browser 
+	implicit wait here
+	yield driver 
+	
+we need to register this options 
+pytest in conf test file .
+
+def pytest_addoption(parser):
+
+90. Understand how setup and teardown works with Pytest fixtures for Browser tests
