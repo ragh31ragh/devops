@@ -1,0 +1,1116 @@
+##############31-Mar-2025##########
+ /c/RD/Trainings/gitrepos/devops/devops (main)
+Why Playwright 
+pip - package installer 
+C:\Users\bgh51043>where python
+C:\Users\bgh51043\AppData\Local\Programs\Python\Python37-32\python.exe
+C:\Users\bgh51043\AppData\Local\Microsoft\WindowsApps\python.exe
+
+git:
+C:\Users\bgh51043\PycharmProjects\PytestPython
+S C:\Users\bgh51043\PycharmProjects\PytestPython>
+cd /c/Users/bgh51043/PycharmProjects/PytestPython/playwright
+/c/RD/Trainings/gitrepos/devops/devops
+
+git : 
+/i/Learnings/Raghavendra/2025_DevOps
+/i/Learnings/Raghavendra/PythonProjects/playwright
+
+https://rahulshettyacademy.com
+https://rahulshettyacademy.com/loginpagePractise
+https://rahulshettyacademy.com/seleniumPractise/#/offers
+https://rahulshettyacademy.com/AutomationPractice/
+https://rahulshettyacademy.com/client
+https://rahulshettyacademy.com/client/
+rahulshetty@gmail.com
+Iamking@000
+
+pytest
+pytest-playwright 
+
+
+jar  - java world packages 
+pip install -U pytest 
+
+pip install pytest-playwright
+
+Install browsers : 
+playwright install 
+
+Fixtures : 
+About Pytest fixtures
+defining 
+
+-Prefixing function name with test_
+-@pytest.fixture
+-@pytest.fixture(scope="module")
+-Defining scope of pytest fixture as module or function 
+-Sending pytest fixture function name as argument 
+
+conftest.py
+
+session scope 
+
+How to run all tests together ?
+pytest -s ( to display output)
+pytest 
+
+yield keyword 
+
+returning values from functions 
+@pytest.mark.skip
+
+python -m platwright install 
+
+@pytest.mark.smoke
+pytest -m smoke 
+to run tests with smoke tag 
+
+Below covers section 5 : 
+Launching browser.
+finding elements and writing code for it 
+
+#########Chromium engine browser with playwright fixture 
+-created a simple function to launce browser : 
+def test_playwrightBasics(playwright):
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page = context.new_page()
+    page.goto("https://rahulshettyacademy.com")
+	
+def test_playwrightShortCut(page:Page):
+    page.goto("https://rahulshettyacademy.com")
+	
+running test using commandline : 
+ pytest test_playwrightBasics.py::test_playwrightShortCut --headed
+ 
+ 
+passing --headed arguments for test 
+
+
+def test_coreLocators(page:Page):
+    page.goto("https://rahulshettyacademy.com/loginpagePractise")
+    page.get_by_label("Username:").fill("rahulshettyacademy")
+    page.get_by_label("Password:").fill("learning")
+    page.get_by_role("combobox").select_option("teach")
+    time.sleep(5)
+	
+get_by_role for dropbox , combobox etc 
+
+label will not work in all cases 
+-it should have input
+-or id associated .
+
+css #id
+css .classname 
+
+def test_coreLocators(page:Page):
+    page.goto("https://rahulshettyacademy.com/loginpagePractise")
+    page.get_by_label("Username:").fill("rahulshettyacademy")
+    page.get_by_label("Password:").fill("learning")
+    page.get_by_role("combobox").select_option("teach")
+    page.locator("#terms").check()
+    page.get_by_role("link",name="terms and conditions")
+    page.get_by_role("button",name="Sign In").click()
+    time.sleep(5)
+	
+	
+Locators : 
+page.get_by_role() to locate by explicit and implicit accessibility attributes.
+page.get_by_text() to locate by text content.
+page.get_by_label() to locate a form control by associated label's text.
+page.get_by_placeholder() to locate an input by placeholder.
+page.get_by_alt_text() to locate an element, usually image, by its text alternative.
+page.get_by_title() to locate an element by its title attribute.
+page.get_by_test_id() to locate an element based on its data-testid attribute (other attributes can be configured).
+
+
+s6: Playwright ui methods with real time examples 
+TC : enter wrong creds and capture error message 
+
+Autowait example 
+ 1 lecture explained about autowait .
+ and this code 
+ from playwright.sync_api import Page, expect
+ 
+ expect(page.get_by_text("Incorrect username/password.")).to_be_visible()
+ 
+ 
+ ###Running test in firefox browser 
+ def test_firefoxBrowser(playwright):
+    firefoxBrowser = playwright.firefox
+    browser = firefoxBrowser.launch(headless=False)
+    page = browser.new_page()
+    page.goto("https://rahulshettyacademy.com/loginpagePractise")
+	
+
+################April 2 , 2025##########	
+##Filter working on dynamic selection of card items in the list 
+select given 2 products and add to the cart 
+css selector - id , tag and classname 
+selector hub -plugin
+here we selected iphone x and nokia edge and added to cart
+clicked on checkout
+verified whether 2 items are present in checkout 
+
+def test_UIValidationsDynamicScript(page:Page):
+    page.goto("https://rahulshettyacademy.com/loginpagePractise")
+    page.get_by_label("Username:").fill("rahulshettyacademy")
+    page.get_by_label("Password:").fill("learning")
+    page.get_by_role("combobox").select_option("teach")
+    page.locator("#terms").check()
+    page.get_by_role("button", name="Sign In").click()
+    #expect(page.get_by_text("Incorrect username/password.")).to_be_visible()
+    #adding items and verifying if its showing in cart
+    iphoneProduct = page.locator("app-card").filter(has_text="iphone X")
+    iphoneProduct.get_by_role("button").click()
+    nokiaEdge = page.locator("app-card").filter(has_text="Nokia Edge")
+    nokiaEdge.get_by_role("button").click()
+    page.get_by_text("Checkout").click()
+    expect(page.locator(".media-body")).to_have_count(2)
+    time.sleep(5)
+
+https://rahulshettyacademy.com/loginpagePractise/
+page.get_by_label("Username:").fill("rahulshettyacademy")
+page.get_by_label("Password:").fill("learning")
+	
+###child windows and tabs 
+
+def test_childWindowHandles(page:Page):
+    page.goto("https://rahulshettyacademy.com/loginpagePractise")
+    with page.expect_popup() as newPageInfo:
+        page.locator(".blinkingText").click()
+        childPage = newPageInfo.value
+        text = childPage.locator(".red").text_content()
+        print(text)
+		
+		
+###python string methods for assertion 
+
+        text = childPage.locator(".red").text_content()
+        print(text)
+        #Please email us at mentor@rahulshettyacademy.com with below template to receive response
+        words = text.split("at")
+        email = words[1].strip().split(" ")[0]
+        print("Email")
+        print(email)
+        assert email == "mentor@rahulshettyacademy.com"
+
+######S7 : UI functional validations with assersions using playwright python 
+https://rahulshettyacademy.com/AutomationPractice/
+getting attribute by placeholder 
+Clicking on Hide and checking if hiding or not .
+using assertion to verify it 
+
+
+def test_UIChecks(page:Page):
+    page.goto("https://rahulshettyacademy.com/AutomationPractice/")
+    expect(page.get_by_placeholder("Hide/Show Example")).to_be_visible()
+    page.get_by_role("button",name="Hide").click()
+    expect(page.get_by_placeholder("Hide/Show Example")).to_be_hidden()
+    time.sleep(5)
+	
+Handling Alerts and Pop ups 
+lambda functions - functions without name - anonymous functions 
+This section is regarding handling alerts using listener 
+    page.on("dialog", lambda dialog: dialog.accept())
+    page.get_by_role("button",name="Confirm")
+	
+Handling Frames : 
+   ##Frame Handling
+    pageFrame = page.frame_locator("#courses-iframe")
+    pageFrame.get_by_role("link",name="All Access plan").click()
+    expect(pageFrame.locator("body")).to_contain_text("Happy Subscibers")
+reference will go from page to pageFrame 
+for frame locator we can use method
+page.frame_locator 
+
+Handling Web Tables automation : 
+https://rahulshettyacademy.com/seleniumPractise/#/offers
+check price of rice is 37 
+#identify price column
+#identify rice column 
+#extract the price 
+    page.goto("https://rahulshettyacademy.com/seleniumPractise/#/offers")
+    page.locator("th")
+    for index in range(page.locator("th").count()):
+        if page.locator("th").nth(index).filter(has_text="Price").count() > 0 :
+            colValue = index
+            print(f"Price column value{colValue}")
+            break
+    riceRow = page.locator("tr").filter(has_text="Rice")
+    expect(riceRow.locator("td").nth(colValue)).to_contain_text("37")
+	
+	
+About mouse hover : 
+    #Mouse Hover
+    page.locator("#mousehover").hover()
+    page.get_by_role("link",name="Top").click()
+	
+for mouse hover we can use locator.hover() method 
+
+
+About hovering 
+
+rahulshetty@gmail.com
+Iamking@000
+
+###Recording and Playback 
+write the below command in pycharm terminal to start recording 
+playwright codegen https://rahulshettyacademy.com/client
+python -m playwright codegen 'https://reqres.in'
+https://rahulshettyacademy.com/AutomationPractice/
+
+###3-Apr-2025############
+API Testing 
+https://rahulshettyacademy.com/client/
+we will use above website 
+rahulshetty@gmail.com
+Iamking@000
+
+In this section from 44 to 49 
+Creating order by API 
+Login 
+checking orders page
+cliking on the order and verifying the thankyou text code is written.
+
+44:Analyzed how to create apis by looking into console
+how to create orders order id etc 
+
+45 . Creating Login function in UI writing code for same
+creating utils and API utils class 
+
+46 . we will see how to make api call with playwright 
+create script to give deatils 
+like url 
+header info etc  
+created createOrder API - methods
+
+47 . we will create login api 
+in python json is dictionary  
+in this lecture we created get token method 
+analyze the code .
+
+from playwright.sync_api import Playwright
+
+ordersPayload = {orders: [{country: "India", productOrderedId: "67a8df1ac0d3e6622a297ccb"}]}
+class APIUtils:
+
+    def getToken(self,playwright:Playwright):
+        api_request_context = playwright.request.new_context(base_url="https://rahulshettyacademy.com")
+        response = api_request_context.post("/api/ecom/auth/login",
+                                 data = {  "userEmail": "rahulshetty@gmail.com",  "userPassword": "Iamking@000"}
+                                 )
+        assert = response.ok
+        print(response.json())
+        responseBody = response.json()
+        return responseBody["token "]
+
+    def createOrder(self,playwright:Playwright):
+        token = self.getToken(playwright)
+        api_request_context = playwright.request.new_context(base_url="https://rahulshettyacademy.com")
+        response = api_request_context.post("/api/ecom/order/create-order",
+                                 data = ordersPayload,
+                                 headers={"Authorization" : token
+                                          "Content-Type" : "application/json"})
+        print(response.json())
+		
+48. Refactor API Utils methods and call them from Tests in generating data
+Running and checkink test
+getting order id in main function 
+
+
+49. Dynamically find the order Id from the order History table with easy logic
+selector hub
+Identifying order details clicking on view button 
+and applying assert statement 
+
+import time
+
+from playwright.sync_api import Playwright, expect
+
+from utils.api_base import APIUtils
+
+
+def test_e2e_web_api(playwright:Playwright):
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page = context.new_page()
+    page.goto("https://rahulshettyacademy.com/client")
+    #create order and grab order id
+
+    api_utils = APIUtils()
+    orderId = api_utils.createOrder(playwright)
+
+    #login
+    page.get_by_placeholder("email@example.com").fill("rahulshetty@gmail.com")
+    page.get_by_placeholder("enter your passsword").fill("Iamking@000")
+    page.get_by_role("button",name="Login").click()
+    time.sleep(5)
+    page.get_by_role("button",name="ORDERS").click()
+    row_item = page.locator("tr").filter(has_text=orderId)
+    row_item.get_by_role("button",name="View").click()
+    expect(page.locator(".tagline")).to_contain_text("Thank you for Shopping With Us")
+    time.sleep(5)
+
+
+    #orders page . order is present .
+    #order history page - order is present
+	
+#####Section 9: Intercepting Network requests & responses to test Edge cases with Playwright
+50.Concept of intercepting network 
+Intercept api response for sake of testing 
+No orders page validation 
+we can mock request and response using route methods
+fulfil -for response
+and continue for request 
+
+51. Intercepting response calls with route->fulfil methods to test edge cases
+rahulshetty@gmail.com
+Iamking@000
+
+import time
+
+from playwright.sync_api import Playwright, Page
+
+fakePayloadOrderResponse = {"data": [], "message": "No Orders"}
+
+
+def intercept_response(route):
+    route.fulfill(
+        json=fakePayloadOrderResponse
+    )
+    print ( " In intercept_response function ")
+
+
+def test_Network(page: Page):
+    page.goto("https://rahulshettyacademy.com/client")
+    page.route("https://rahulshettyacademy.com/api/ecom/user/get-cart-count/*", intercept_response)
+    # login
+    page.get_by_placeholder("email@example.com").fill("rahulshetty@gmail.com")
+    page.get_by_placeholder("enter your passsword").fill("Iamking@000")
+    page.get_by_role("button", name="Login").click()
+    time.sleep(5)
+    page.get_by_role("button", name="ORDERS").click()
+    order_text = page.locator(".mt-4").text_content()
+    print("##########order_text")
+    print(order_text)
+
+
+Loading is displayed instead of other text 
+
+
+
+52. Intercepting request calls with route->continue methods to test edge cases
+Here we are creating new request and checking edge case scenario
+giving diff order id and checking for message you are not authorized 
+
+import time
+
+from playwright.sync_api import Playwright, Page
+def interceptRequest(route):
+    route.continue_(url="https://rahulshettyacademy.com/api/ecom/order/get-orders-details?id=6711e249ae2afd4c0b9f6fb0")
+    print ( " In intercept_response function ")
+
+def test_Network2(page: Page):
+    page.goto("https://rahulshettyacademy.com/client")
+    page.route("https://rahulshettyacademy.com/api/ecom/order/get-orders-details?id=*", interceptRequest)
+    page.get_by_placeholder("email@example.com").fill("rahulshetty@gmail.com")
+    page.get_by_placeholder("enter your passsword").fill("Iamking@000")
+    page.get_by_role("button", name="Login").click()
+    time.sleep(5)
+    page.get_by_role("button", name="ORDERS").click()
+    page.get_by_role("button", name="View").first.click()
+    time.sleep(5)
+    message = page.locator(".blink_me").text_content()
+    print(message)
+	
+53. save and inject the session cookies into browser at run time with playwright
+discussing about bypassing login 
+using browser local storage token 
+java script injection in tripe quotes 
+
+page.add_init_script(f"""localStorage.setItem('token','{getToken}')""")
+
+
+def test_sessionStorage(playwright: Playwright):
+    api_utils = APIUtils()
+    getToken = api_utils.getToken(playwright)
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page = context.new_page()
+    # script to inject token in session local storage
+    page.add_init_script(f"""localStorage.setItem('token','{getToken}')""")
+    page.goto("https://rahulshettyacademy.com/client")
+    page.get_by_role("button", name="ORDERS").click()
+    time.sleep(4)
+    expect(page.get_by_text('Your Orders')).to_be_visible()
+	
+	
+	
+#############	Section 10: Playwright Pytest Framework- Part 1 (Pageobject, Data Driven,Parameterization)
+	########4-Apr -2025 #####
+	
+54. overview of  the Best practices for Playwright framework design
+Word document on framework :
+1.Avoid hard coding test data 
+2.Externalize test data
+3.Implement Page Object Model
+4.Cenralize reusable code 
+5.Define global environment variables
+6.Apply grouping /tags to run targeted tests
+7.Generate HTML Reports
+8.Capture Logs and Screenshots
+9.CI-CD Integration wit Jenkins
+10. Integrate cucumber BDD
+
+55. Drive the test data externally from Json files into Playwright fixtures
+convert json file to python object 
+one of the earliar standalone will create framework for it 
+creating crendentials file in data directory 
+
+json explanation 
+reading dictionary using python 
+load is a method which convert json file to python object 
+{
+  "user_credentials": [{
+    "userEmail" : "rahulshetty@gmail.com",
+    "password" : "Iamking@000"
+  },
+{
+    "userEmail" : "anshika@gmail.com",
+    "password" : "Iamking@000"
+  }
+]
+}
+
+    with open ('data/credentials.json') as f:
+        test_data = json.load(f)
+    page.goto("https://rahulshettyacademy.com/client")
+	https://en.wikipedia.org/wiki/Wikipedia
+("https://rahulshettyacademy.com/client")
+    "userEmail" : "rahulshetty@gmail.com",
+    "password" : "Iamking@000"
+	
+56. Parameterize the Test with multiple data sets with python dictionaries
+we will make sure that the test wil run the nubmer of times we have user credentials data 
+dict , list 
+pytest takes fixtures as arguments 
+
+playwright is one of inbuilt fixture 
+introducted conftest.py global file 
+Added conf file 
+modified framework file to take input as username and password 
+page.get_by_placeholder("email@example.com").fill(user_creds["userEmail"])
+    page.get_by_placeholder("enter your passsword").fill(user_creds["password"])
+	
+Ran the test with 2 user credentials 
+
+57. Understand the page object design pattern and how to apply for the tests
+modifications in utils file also API utils 
+to get dynamic user credentials 
+now test should pass with both credentials 
+
+For URLs and locators we will use POM 
+created new dir page object 
+and new py files
+to create 2 new classes
+Login and Dashboard 
+
+expaling how to use construction 
+sending page object from framework code 
+as default constructor 
+
+
+58. Implement Page object design  to end to end test - example
+login method updates
+ def login(self,userEmail,userPassword):
+        self.page.get_by_placeholder("email@example.com").fill(userEmail)
+        self.page.get_by_placeholder("enter your passsword").fill(userPassword)
+        self.page.get_by_role("button", name="Login").click()
+		
+class DashboardPage:
+    def __init__(self,page):
+        self.page = page
+
+    def seletOrderNavigationLink(self):
+        self.page.get_by_role("button", name="ORDERS").click()
+		
+		
+59. Optimize Test by avoiding object creation in tests and move into PO classes
+as we are landing on dashboard page after clicking login 
+we can create object in login method only 
+creating PO for for order history 
+and returning objects 
+
+creating order detail page
+creating python file for all pages.
+now we have created page object .
+
+######Section 11: Playwright Pytest Framework- Part 2 (Global config, Parallelization, Tagging)
+
+60. How to configure and drive global run time variables into Playwright framework
+creating a fixture in conftest.py file 
+def pytest_addoption(parser):
+    parser.addoption(
+        "--browser_name",
+        action="store",
+        default="chrome",
+        help="Browser selection",
+        type=type_checker,
+    )
+
+
+@pytest.fixture(scope="session")
+def browserInstance(playwright,request):
+    browser_name = request.config.getoption("browser_name")
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page = context.new_page()
+    context.close() 
+    browser.close()
+
+61. Understand how browser value is decided at run time with global value and if else
+#gettinb page by calling browser Instance fixture 
+@pytest.fixture(scope="session")
+def browserInstance(playwright,request):
+    browser_name = request.config.getoption("browser_name")
+    if browser_name == "chrome":
+        browser = playwright.chromium.launch(headless=False)
+    elif browser_name == "firefox":
+        browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page = context.new_page()
+    context.close()
+    browser.close()
+	
+pytest .\test_framework_web_api.py --browser-name firefox
+Running test from command line by providing browser parameter 
+session scope only once 
+run and test code in firefox and chrome 
+
+URL changes for diff environments .
+url name also we can parameteize 
+
+62. Running selected tests in the framework with pytest tag annotations
+over the time we have updated some files -, so some tests might fail 
+created API Base framework file to revert the changes done during framework lectures 
+
+Run all tests using pytest command 
+IDE level --headed arguments wont reflect if we run all tests using command pytest 
+how to run only one test now
+tag it as smoketest 
+
+@pytest.mark.smoke 
+pytest -m smoke 
+
+Running tests with keyword having web_api 
+
+pytest -k web_api
+
+##############7-Apr-2025############
+63. Running tests in playwright framework in parallel and sequence modes
+plugin is required to run tests in parallel mode 
+pip install pytest-xdist 
+
+-n number of threads to open parallely 
+3 workers
+pytest -n 3 
+
+
+64. Generae HTML reports with pytest plugin for tests in framework
+For HTML Report also we have plugin 
+pytest-html 
+
+pytest -n 3 --html=report1.html
+file:///C:/Users/bgh51043/PycharmProjects/PytestPython/playwright/report1.html
+
+65. Playwright Trace viewer - to generate logs, screenshots of the tests in zip file
+python --tracing on 
+to capture screenshots 
+on 
+off 
+retain-on-failure 
+
+pytest --browser-name=chrome -n 3 --tracing on --html=report2.html
+testresutls folder will be created and screenshots will be saved 
+ we have to view in traceviewer online 
+ 
+ 
+ 
+Section 12: Playwright Pytest Framework- Part 3 (Cucumber BDD, CI/CD Jenkins, HTML report)
+
+66. Introduction to BDD  framework and how Pytest framework compliment it
+pytest bdd documentation available 
+Given , when , then keywords 
+
+pip install pytest-bdd 
+Gherkin file 
+Non technical person should understand the testcase 
+.feature extension 
+Step Defnation - heart of BDD 
+
+67. Install pytest plugin and build gherkin feature file for test implemetation
+pip install pytest-bdd 
+can also be installed from pytest bdd 
+
+Feature- Test Suite
+Scenario - Test case 
+Gherkin Plugin installed 
+
+
+Feature:Order Transaction
+  Tests related to oder Transactions
+
+  Scenario: Verify Order success message is shown in details page
+    Given place the item order with username and password
+    And user is on landing page
+    When I login to portal with username and password
+    And Navigate to order page
+    And Select the OrderId
+    Then Order message is successfully displayed
+	
+	
+sending username and password - test data 
+
+Scenario vs Scenario Outline 
+
+when sending data , we should mark it as scanrio outline 
+
+# content of scenario_outlines.feature
+
+Feature: Scenario outlines
+    Scenario Outline: Outlined given, when, then
+        Given there are <start> cucumbers
+        When I eat <eat> cucumbers
+        Then I should have <left> cucumbers
+
+        Examples:
+        | start | eat | left |
+        |  12   |  5  |  7   |
+		
+Now we have created feature file 
+
+    Examples:
+      | username              | password    |
+      | rahulshetty@gmail.com | Iamking@000 |
+	  
+68. Implement Pytest Step definition implementation for the feature file
+
+from pytest_bdd import given
+
+
+@given('place the item order with <username> and <password>')
+def place_item_order():
+	write implementation here 
+	
+@given('place the item order with {username} and {password}')
+
+@given('place the item order with {username} and {password}')
+def place_item_order(playwright,username,password):
+    user_creds = {
+        "userEmail":username,
+        "userPassword": password
+    }
+    apiUtils2 =APIUtils2()
+    apiUtils2.createOrder(playwright,user_creds)
+
+@given('user is on landing page')
+def user_on_Landing_Page(browserInstance):
+    loginPage = LoginPage(browserInstance)
+    loginPage.navigate()
+	
+	
+
+69. How to share data across multiple step methods with in step definition file
+
+fixture :
+@pytest.fixture
+def shared_data()
+    return {}
+
+
+
+@when('Navigate to order page')
+def navigate_to_orders_page(shared_data):
+
+
+@when('Select the OrderId')
+def select_order_id(shared_data):
+
+@then('Order message is successfully displayed')
+def order_message_displayed(shared_data):
+
+Now mapped gherkins steps to related functions 
+
+completed implementation 
+
+70. Fix the issues and Run the Pytest BDD tests end to end from terminal
+Running and debugging now 
+Run file 
+test_pytest_bdd_Test.py
+
+71. Set up the Jenkins with required configurations from scratch
+check java compatible version before installing jenkins 
+clean up jenkins
+c- user- .jenkins file 
+take backup and jobs 
+.jenkins folder should be empty to install new jenkins 
+java -jar jenkins.war 
+
+new admin password 
+install suggested plugins 
+create user 
+
+72. Create Jenkin parameterized Job to run Playwright Python Framework
+Pyhon Playwright test 
+repo - github or local 
+BUild step - to execute commands 
+pytest --browser-name=chrome -n 3 --tracing on --html=report2.html
+
+Section 13: Most commonly asked Python and Pytest Programming Interview Questions
+
+
+74. How the Interview questions video is designed?
+00:00 - What is the difference between a list and a tuple?
+Lists are mutable , tuples are immutable 
+List - array in java and java script
+python it is list 
+
+list - updated , modified or changed 
+tuple ()
+list [] 
+
+appending , modifying index 
+
+05:04 - What are Python’s built-in data types?
+int 
+float
+dictionary -key value pair {"a":1 , "b:2}
+String 
+boolean 
+
+
+
+06:27 - How do you implement inheritance and super keyword in Python?
+
+super keyword used to call parent method or attributes within child class 
+keep method name same .
+
+
+class Parent:
+    def greet(self):
+        print("Hello from parent")
+
+class Child(Parent):
+
+    def __init__(self,title):
+        self.title = title
+
+    def greetChild(self):
+        print("Hello from child " + self.title)
+        #print("####Super####")
+        super().greet()
+        #print("####Super####")
+
+
+p = Parent()
+p.greet()
+
+print("Child Related ")
+c = Child()
+c.greetChild()
+c.greet()
+
+
+10:37 - What is init() in python?
+self is class instance 
+we can send variable to class methods using constructor 
+
+parameterized constructor 
+
+15:16 - How do you read and write files in Python?
+
+
+with open("test.txt","w") as f:
+    f.write("Hello world!")
+
+with open("test.txt","r") as f:
+    content = f.read()
+    print(content)
+
+17:54 - What are Fixtures in Pytest? when they are used?
+
+import pytest
+
+
+@pytest.fixture
+def sample_data():
+    print("\n Setup : Creating Test Data ") #Runs before the test
+    data = {"name" : "Alice","age" :30 }
+    return data # Provides data to the test
+
+def test_example(sample_data):
+    assert sample_data["name"] == "Alice"
+    assert sample_data["age"] == 30
+    print ("Test Executed Successfully")
+	
+	
+
+22:02 - How do you use yield for WebDriver Setup and Teardown in pytest?
+
+closing db connection 
+closing browser etc 
+webdriver setup and tear down 
+
+driver.close 
+browser.close 
+
+@pytest.fixture
+def sample_data():
+    print("\n Setup : Creating Test Data ") #Runs before the test
+    data = {"name" : "Alice","age" :30 }
+    yield data # Provides data to the test
+    print ("cleaning up test data ")
+	
+yield insted or return 
+
+25:51 - How do you create a list of dictionaries in Python?
+
+list1 = [{"name":"Alice","age":32},
+         {"name":"Paul","age":22}]
+
+#dict1 ={"name":"Alice","age":32}
+print(list1[1]["name"])
+
+Paul
+
+list of dictionaries is nothing but json 
+
+30:32 - What is lambda function in Python?
+
+###A lambda function in python is a small ,anonymous function 
+that can have muliple arguments but only one expression 
+It is written in a single line 
+It is used where a short function is needed temporarily 
+Dont use lambda function if the the function is complex , use def instead .###
+
+lambda arguments : expression
+
+z = lambda x,y : x+y
+print(z(4,5))
+
+
+anonymous function 
+multiple arguments 
+written in one single line 
+def add(x,y):
+    return x+y
+
+print(add(3,3))
+addition = lambda (x,y : x + y)
+
+
+33:46 - How Lambda function applies to map() & filter() functions?
+
+numbers=[1,2,3,4,5]
+squared_numbers = map(lambda x : x*3 ,numbers)
+print(list(squared_numbers))
+
+###filter####
+even_numbers = list(filter(lambda x : x%2 == 0,numbers))
+print(even_numbers)
+
+
+41:42 - How do you sort a list in Python?
+
+sorting = [3,2,6,7,9]
+print(sorted(sorting))
+
+#sorting without built in function
+my_list = [ 1,23,43,21,34,53,45,23,45,56]
+for i in range(0,len(my_list)):
+    for j in range(i+1,len(my_list)):
+        if my_list[i] >= my_list[j]:
+            my_list[i],my_list[j]= my_list[j],my_list[i]
+
+print("my_List")
+print(my_list)
+
+
+
+43:07 - Is python asynchronous or Synchronous? What is the default type? and what is asyncio?
+its both 
+default sync 
+Synchronous execution - default 
+
+Pythons default behaviour : Synchronous execution 
+-Python executes code line by line in blocking manner 
+-Each operation must complete before the next one starts 
+-This is how python normally works unless explicitly told to run asynchronously
+
+Python supports asynchronous exectuion using asyncio 
+-Python can run non-blocking tasks using asyncio 
+-Instaed of wating for one task to finish ,multiple tasks run cuncurrently 
+
+def task(name):
+    print(f"starting {name}")
+    time.sleep(2)
+    print(f"finished {name}")
+
+task("Ghanika")
+task("Hamsika")
+
+
+Aync example :async def task(name):
+    print(f"starting {name}")
+    await asyncio.sleep(2)
+    print(f"finished {name}")
+
+
+async def main():
+    await asyncio.gather((task("Ghanika"), task("Hamsika")))
+
+
+asyncio.run(main())
+
+Ex web page loading 
+
+
+52:07 - Why is the Self convention used in Python? Explain with an example.
+Self is not keyword but self convention in python .
+It refers to current instance of the class 
+It must be first parameter in instance methods 
+though you dont need to pass it explicitly when calling methods .
+
+self - same class
+super - parent class 
+
+java we have this keyword 
+
+
+55:46 - How do you reverse the elements of a list?
+
+numbers=[2,4,53,2,232,32]
+print(numbers[::-1])
+[32, 232, 2, 53, 4, 2]
+
+57:17 - Explain the difference between @classmethod and instance methods.
+class method - can be accessed without creating object .
+class MyClass:
+    @classmethod
+    def class_method(cls):
+        return "Class"
+
+    def instance_method(self):
+        return "Instance"
+
+obj=MyClass()
+print(obj.instance_method()) #Instance
+print(MyClass.class_method()) #Class
+
+
+use @classmethod annotation 
+
+01:01:15 - What is the use of conftest.py file in Python pytest?
+
+conftest.py is used to define fixtures and hooks that are shared across multiple test files 
+
+01:03:51 - How do you execute only failed test cases in pytest?
+
+pytest --last-failed 
+
+01:04:55 - How do you apply a custom marker to a test case in pytest?
+
+@pytest.mark.sanity 
+pytest -m sanity 
+
+01:06:25 - What is the Python “with” statement designed for?
+The with statement is used for exception handling to make code cleaner and simpler .
+It is generally used for the management of common resources like creating, editing , and saving a file .
+
+Example : 
+Instead of writing multiple lines to open, try ,finally and close  , you can create and text file 
+using with statement it is simle .
+
+concept of resources use with 
+file ,database etc 
+
+01:08:07 - How to Handle Exceptions in Python? Where does the finally keyword come into play with exceptions?
+
+finally execution is guaranteed :
+
+try:
+    with open("file223.txt", "r") as f:
+        content = f.read()
+        print(content)
+
+except Exception as e:
+    print(e)
+
+finally:
+    print("close db connection")
+	
+finally block to close db connection 
+
+
+76. 75 Mins In detail discussion on most commonly asked Python Interview Questions
+<<<<<<< Updated upstream
+
+
+
+
+
+
+####################Pytest############################
+https://www.tutorialspoint.com/pytest/index.htm
+
+http://localhost:8080/
+
+Hi Sreekanth ,
+just I would like to know latest update on Oracle Jmeter project . do we have any update on project kick off date ?  
+=======
+NewString@123
+>>>>>>> Stashed changes
+uploading and downloading files
+screenshot 
+wait 
+removing duplicate element from list 
+
+################OOPS###########3
+4 Pillars 
+Abstraction 
+Encapsulation
+Inheritance 
+Polymorphism
+
+ https://www.w3schools.com/Python/python_polymorphism.asp
+The word "polymorphism" means "many forms", and in programming it refers to methods/functions/operators with the same name that can be executed on many objects or classes.
+Function Polymorphism - : len applied on string , tuple , dictionary , list 
+
+Class Polymorphism
+Polymorphism is often used in Class methods, where we can have multiple classes with the same method name.
+
+For example, say we have three classes: Car, Boat, and Plane, and they all have a method called move():
+
+https://www.geeksforgeeks.org/python-oops-concepts/
+
+file upload :
+with page.expect_file_chooser() as fc_info:
+    page.get_by_label("Upload file").click()
+file_chooser = fc_info.value
+file_chooser.set_files("myfile.pdf")
+
+file download : 
+# Start waiting for the download
+with page.expect_download() as download_info:
+    # Perform the action that initiates download
+    page.get_by_text("Download file").click()
+download = download_info.value
+
+# Wait for the download process to complete and save the downloaded file somewhere
+download.save_as("/path/to/save/at/" + download.suggested_filename)
+
+
+page.on("dialog", lambda dialog: dialog.accept())
+page.get_by_role("button").click()
