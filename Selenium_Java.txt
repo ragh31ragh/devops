@@ -1288,3 +1288,25 @@ Session Contents:
 L15---------------28 May 2025
 --------------------------
 mysql database connection related 
+
+
+##################Framework Releated#######################
+Part 1 : pytest : unit testing framework for python 
+Part 2 : Framework Design overview and setting up browser instance fixtures 
+
+88. Understand implementing Browser Instance fixture from global conftest file
+
+conftest.py file - pytest will always listens to this file 
+create conftest.py file in directory 
+it should contain 
+
+@pytest.fixture(scope=function)
+def browserInstance():
+	it will run code and give data back 
+	launch browser 
+	implicit wait here
+	yield driver 
+	
+filename = test_e2eTestFramework.py
+def test_e2e(browserInstance);
+	driver = browserInstance
