@@ -2,6 +2,10 @@
 maven project 
 
 https://demo.nopcommerce.com/
+https://www.saucedemo.com/
+
+(//a[contains(text(),'Digital downloads')])[1]
+
 https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
 http://www.deadlinkcity.com/
 https://www.opencart.com/-register page 

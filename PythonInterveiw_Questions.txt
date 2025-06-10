@@ -150,3 +150,21 @@ def div(a,b):
     print ( a/b )
 
 div(12,36)
+#######################################
+def smartwish(func):
+    def wrapper(name):
+        if name == "rd":
+            print ("hi Very Very goodmorning rd" )
+        else:
+            func(name)
+    return  wrapper
+
+
+@smartwish
+def wish(name):
+    print("hi goodmorning " + name)
+
+wish("ghanika")
+wish("hamsika")
+wish("rd")
+

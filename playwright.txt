@@ -33,10 +33,21 @@ jar  - java world packages
 pip install -U pytest 
 
 pip install pytest-playwright
+pip install pytest-playwright
 
+to install browsers , firefox , chromium , webkit , use the following command 
 Install browsers : 
 playwright install 
+python -m playwright install 
 
+Removing unused browser at C:\Users\bgh51043\AppData\Local\ms-playwright\chromium-1067
+Removing unused browser at C:\Users\bgh51043\AppData\Local\ms-playwright\ffmpeg-1009
+Removing unused browser at C:\Users\bgh51043\AppData\Local\ms-playwright\firefox-1408
+Removing unused browser at C:\Users\bgh51043\AppData\Local\ms-playwright\webkit-1860
+Downloading Chromium 136.0.7103.25 (playwright build v1169) from https://cdn.playwright.dev/dbazure/download/playwright/builds/chromium/1169/chromium-win64.zip
+144.4 MiB [========            ] 40% 134.8s
+
+the above command will download the required browsers one by one 
 Fixtures : 
 About Pytest fixtures
 defining 
