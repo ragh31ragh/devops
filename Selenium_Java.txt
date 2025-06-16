@@ -1300,7 +1300,7 @@ conftest.py file - pytest will always listens to this file
 create conftest.py file in directory 
 it should contain 
 
-@pytest.fixture(scope=function)
+@pytest.fixture(scope="function")
 def browserInstance():
 	it will run code and give data back 
 	launch browser 
