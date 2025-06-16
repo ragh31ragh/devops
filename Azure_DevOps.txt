@@ -1,0 +1,19 @@
+https://www.youtube.com/watch?v=4BibQ69MD8c&t=471s
+
+00:00 - Intro and Overview
+00:42 - What is Azure DevOps?
+03:16 - Azure Boards
+05:35 - Azure Repos
+03:16 - Azure Boards
+07:52 - Azure Pipelines (Build Pipeline - CI)
+15:09 - Azure Artifacts
+16:44 - Stages in Azure Pipelines
+18:44 - Templates in Azure Pipelines
+20:09 - Environments in Azure Pipelines
+21:17 - Release Pipelines (CD)
+23:17 - Test Plans
+24:44 - Azure DevOps Architecture
+26:35 - Pricing Model
+26:56 - Service Connections
+29:20 - Comparison with other platforms
+33:51 - Which technology to learn?
