@@ -25,9 +25,9 @@ https://rahulshettyacademy.com/client/
 rahulshetty@gmail.com
 Iamking@000
 
-pytest
-pytest-playwright 
-
+1.pytest
+2.pytest-playwright 
+3.playwright install 
 
 jar  - java world packages 
 pip install -U pytest 
@@ -778,6 +778,34 @@ Pyhon Playwright test
 repo - github or local 
 BUild step - to execute commands 
 pytest --browser-name=chrome -n 3 --tracing on --html=report2.html
+
+https://trace.playwright.dev/
+
+def test_UIValidationsDynamicScript(playwright:Playwright):
+    browser = playwright.chromium.launch(headless=False)
+    #browser = playwright.webkit.launch(headless=False)
+    context = browser.new_context()
+    context.tracing.start(screenshots=True, snapshots=True)
+    page = context.new_page()
+    page.goto("https://rahulshettyacademy.com/loginpagePractise")
+    #page.get_by_label("Username:").fill("rahulshettyacademy")
+    #page.get_by_label("Password:").fill("learning")
+    page.locator("//input[@name='username']").fill("rahulshettyacademy")
+    page.locator("//input[@name='password']").fill("learning")
+    page.get_by_role("combobox").select_option("stud")
+    #time.sleep(5)
+    page.get_by_role("button",name="Sign In").click()
+    #time.sleep(15)
+    iphoneProduct = page.locator("app-card").filter(has_text="iphone X")
+    iphoneProduct.get_by_role("button").click()
+    #time.sleep(5)
+    page.get_by_text("Checkout").click()
+    #time.sleep(5)
+    expect(page.locator(".media-body")).to_have_count(1)
+    #time.sleep(5)
+    page.get_by_role("button", name="Checkout").click()
+    #time.sleep(10)
+    context.tracing.stop(path="trace.zip")
 
 Section 13: Most commonly asked Python and Pytest Programming Interview Questions
 
