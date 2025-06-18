@@ -226,9 +226,16 @@ Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-
 
 profit = 0 
 list1 =  [7,1,5,3,6,4]
-for i in (0,len(list1)):
-	for j in range(i+1,len(list1)):
-		if ( (list[j] - list[i]) > profit):
-			profit = list[j] - list[i]
-print(profit)
- 
+
+def max_profit(list1):
+    profit=0
+    n=len(list1)
+    for i in range(n):
+        for j in range(i+1,n):
+            profit_made = list1[j]-list1[i]
+            if profit_made > profit :
+                profit = profit_made
+    return profit
+
+profit1 = max_profit(list1)
+print(profit1)
