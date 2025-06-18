@@ -198,12 +198,23 @@ Explanation: The answer is "wke", with the length of 3.
 Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.
  
 
-s="abcabcbb"
-substr=''
-for char in s :
-	if char is not in substr:
-		substr.append[char]
-print(len(substr)
+def longest_substring(s):
+    longest=0
+    char_set=set()
+    n=len(s)
+    l=0
+    for right in range(n):
+        while s[right] in char_set:
+            char_set.remove(s[l])
+            l=l+1
+        w = (right-l) + 1
+        longest = max(longest,w)
+        char_set.add(s[right])
+    print(char_set)
+    return longest
+
+value=longest_substring("pwwkew")
+print(value)
 #################################################
 - You are given an array prices, where prices[i] represents the price of a stock on the ith day.
 - You need to determine the maximum profit you can achieve by buying on one day and selling on another later day.
