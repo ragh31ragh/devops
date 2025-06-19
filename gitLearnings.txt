@@ -1,4 +1,4 @@
-git config --globlal user.name "StudentApnaCollage"s
+git config --global user.name "StudentApnaCollage"s
 git config --global user.email " officialEmaid@id.com"
 git config --list 
 
@@ -149,7 +149,7 @@ so we can compare code with main branch
 
 git merge <branchname> (to merge 2 branches )
 
-Way 1
+Way 2
 Create a PR 
 Pull request 
 -It lets you tell others about changes you have pushed to a branch in a repo in github 
@@ -161,6 +161,8 @@ to retrieve the new features
 pull command 
 
 git pull origin main 
+
+--what if there is merge conflict 
 
 ############Resolving Merge confilicts ##############
 in same index file 
@@ -182,7 +184,7 @@ switch to main
 then 
 git merge feature1
 
-############undoing changes #############
+############undoing changes -apna collage #############
 
 Case 1 : Staged Changes 
 git reset <filename>
@@ -199,7 +201,10 @@ last commit screnshot is head1
 
 git log 
 to check all commits history 
+######
 
+git hard - local changes also wiped
+soft - only repo changes 
 
 ############Fork  #############
 A fork is new repo that shares code and visibility settings with the original "upstream" repo.
