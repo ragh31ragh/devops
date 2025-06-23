@@ -1,4 +1,9 @@
 ##############31-Mar-2025##########
+https://rahulshettyacademy.com/client/auth/login
+rdplaywright@python.com
+Rdplaywright@123
+
+
  /c/RD/Trainings/gitrepos/devops/devops (main)
 Why Playwright 
 pip - package installer 

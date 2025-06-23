@@ -4,6 +4,12 @@ http://www.automationpractice.pl/index.php
 https://demo.nopcommerce.com/
 https://www.saucedemo.com/
 
+https://rahulshettyacademy.com/client/auth/login
+rdplaywright@python.com
+Rdplaywright@123
+
+
+
 (//a[contains(text(),'Digital downloads')])[1]
 
 https://opensource-demo.orangehrmlive.com/web/index.php/auth/login

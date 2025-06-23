@@ -88,7 +88,60 @@ docker build -t nodeapp:1.0
 
 Docker in completer software development lifecycle 
 
+File name should be Dockerfile
+Format : Instruction Argument 
+Instructions should be in capital letters 
+FROM python:3.11-bookworm
+FROM alpine:3.18 
+command : docker build -t myimage .
 
+docker images
+image - myimage will be created 
+cat /etc/osrelease - to know the OS 
+
+RUN command 
+RUN echo hello 
+RUN apk add curl 
+
+docker history myimage
+we will get number of layers in image 
+
+WORKDIR setting work directory path 
+add WORKDIR command rebuild image myimage 
+docker build -t myimage .
+
+now
+docker run myimage pwd 
+will show /downloads dir 
+
+RUN adduser -D cloudchamp
+USER cloudchamp
+
+this is about image creation in linux environments
+we will see windows docker image creation now 
+
+docker run newimage cat /demo/message.txt
+it will contain hello world message 
+
+ENV key=value pair 
+ENV app_port = 8989 \
+	ABC = xyz 
+	
+docker build -t mynewimage .
+
+docker run mynewimage env 
+
+COPY source destination 
+COPY app.py /code/ 
+
+ADD copies files from s3 to local folder 
+
+EXPOSE 5000
+expose 5000 port 
+
+docker inspect command to check the open ports 
+
+https://docs.docker.com/reference/dockerfile/
 
 ###AWS VPC Explained 
 To securely isolate and control network environments
