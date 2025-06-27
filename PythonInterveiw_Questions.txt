@@ -239,3 +239,29 @@ def max_profit(list1):
 
 profit1 = max_profit(list1)
 print(profit1)
+
+zip function in python 
+l1=[1,2,3]
+l2=[a,b,c]
+dict(zip(l1,l2))
+
+
+Should know Design Pattern ( Singleton and PageFactory)
+ 
+ 
+They should know File Handling( excel ,property and CSV )
+ 
+regEx
+ 
+CI/CD tool /pipeline
+ 
+PyRest
+ 
+Overloading
+ 
+panda 
+numpy 
+
+Cucumber 
+Behave
+	

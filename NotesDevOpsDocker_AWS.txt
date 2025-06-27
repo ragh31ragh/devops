@@ -89,7 +89,7 @@ docker build -t nodeapp:1.0
 Docker in completer software development lifecycle 
 
 File name should be Dockerfile
-Format : Instruction Argument 
+Format : INSTRUCTION Argument 
 Instructions should be in capital letters 
 FROM python:3.11-bookworm
 FROM alpine:3.18 
