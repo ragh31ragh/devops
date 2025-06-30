@@ -1183,3 +1183,9 @@ locator.select_option()	Select option in the drop down
 
 --browser-channel msedge 
 https://playwright.dev/python/docs/chrome-extensions
+
+
+# Chromium, Firefox, or WebKit
+chromium.launch(headless=False, slow_mo=100)
+
+Clock API 
