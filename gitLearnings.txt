@@ -318,6 +318,10 @@ Git will successfully merge commits without your help
 
 But you will run into merge conflicts when same lines of the code which you changed 
 are already changed by others after you cut the branch
+Git Auto merge 
+Git Manaul merge 
+git push origin master -f
+force push 
  
 We can create pull request from UI
 Add assignee,
