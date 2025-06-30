@@ -16,3 +16,12 @@ add changes in merge_conflict.txt file
 git add merge_conflict.txt 
 git commit -m "some message"
 git push origin test2
+
+git checkout main 
+git pull 
+
+git checkout test2
+git merge main 
+git merge test2
+git push origin main 
+git pull 
