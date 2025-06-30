@@ -9,3 +9,10 @@ Add some contents in file
 
 #added some lines from thin1 ########
 #end#
+
+#steps to add new feature by creating branch###
+git checkout -b test2
+add changes in merge_conflict.txt file 
+git add merge_conflict.txt 
+git commit -m "some message"
+git push origin test2
