@@ -312,6 +312,13 @@ creating pull request using UI
 
 
 #####Merging the branches and solving resolve conflicts in multiple ways
+
+When all the changes in the code occur in different lines or in different files 
+Git will successfully merge commits without your help 
+
+But you will run into merge conflicts when same lines of the code which you changed 
+are already changed by others after you cut the branch
+ 
 We can create pull request from UI
 Add assignee,
 reject PRs
