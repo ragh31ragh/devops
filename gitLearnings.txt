@@ -471,3 +471,9 @@ Push tag - git push --tags
 tagging another commit id
 
 git tag v2_release commitid
+
+#######
+git checkout master 
+git pull 
+git checkout branch
+git merge master 
