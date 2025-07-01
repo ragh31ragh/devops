@@ -510,3 +510,23 @@ using above commands commits will be linear
 How to squash commits with rebase
 --------------------------------------------------------------
 git rebase -i HEAD~2
+
+
+made 2 commit changes in diff files - new branch - rebase squash 
+make master outdated
+add some comments in master file 
+git checkout master 
+git rebase main/master
+--to squash commits
+git rebase -i HEAD~2
+interactive mode --squash one of the commit 
+again give commit name .
+
+now agin execute command 
+git push origin rebaseSquash
+commits will be linear now 
+
+
+either you can lean merge or rebase - defers from company to company 
+practice merge 
+and practice rebase .
