@@ -501,4 +501,12 @@ git checkout master
 git pull 
 git checkout branch
 git merge master ----> git rebase master 
+
 using above commands commits will be linear 
+
+
+####Scenario4 ##############
+23. How to squash the commits into single commit with Git rebase
+How to squash commits with rebase
+--------------------------------------------------------------
+git rebase -i HEAD~2
