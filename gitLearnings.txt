@@ -477,3 +477,18 @@ git checkout master
 git pull 
 git checkout branch
 git merge master 
+
+
+####Scenario3 ##############
+21. What is the rebase in the GIT and importance of rebasing the branch
+Instead of direct merge,how to rebase and merge the branch 
+--------------------------------------------------------------
+-Git merge and git rebase merge serves the same purpose 
+-they are desined to integrate changes from multiple branches 	into one.
+Althought the final goal is the same , those 2 methods achieve it in different ways 
+-Rebasing is the process of moving or combining a sequence of commits to a new base commit
+-the primary reason for rebasing is to maintain a linear project history 
+
+-commit history is linear 
+
+22. Real time example on how to rebase the master changes to working branch
