@@ -496,3 +496,9 @@ git checkout -b rebasedemo
 make changes in 2 files 
 changed 2 files in rebasedemo
 changed 1 diff file in master
+
+git checkout master 
+git pull 
+git checkout branch
+git merge master ----> git rebase master 
+using above commands commits will be linear 
