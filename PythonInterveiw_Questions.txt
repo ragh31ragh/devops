@@ -265,3 +265,43 @@ numpy
 Cucumber 
 Behave
 	
+Polymorphism in Python
+----------------------------
+--Polymorphism in Built-in Functions 
+len on string,list 
+max on string,list 
+
+--Polymorphism in  Functions 
+def add(a,b):
+	return a+b
+	
+apply on string, integers, and list 
+
+--Polymorphism in  Functions
+In Python, operators like + behave polymorphically, performing addition, concatenation or merging based on the data type.
+print(5 + 10)  # Integer addition
+print("Hello " + "World!")  # String concatenation
+print([1, 2] + [3, 4])  # List concatenation
+
+--Polymorphism in Object-Oriented Programming (OOP)
+
+--Types of Polymorphism
+
+Compile-time Polymorphism
+-------------------------
+-Found in statically typed languages like Java or C++, where the behavior of a function or operator is resolved during the program's compilation phase.
+-Examples include method overloading and operator overloading, where multiple functions or operators can share the same name but perform different tasks based on the context.
+-In Python, which is dynamically typed, compile-time polymorphism is not natively supported. Instead, Python uses techniques like dynamic typing and duck typing to achieve similar flexibility.
+
+Runtime Polymorphism
+---------------------
+Occurs when the behavior of a method is determined at runtime based on the type of the object.
+In Python, this is achieved through method overriding: a child class can redefine a method from its parent class to provide its own specific implementation.
+Python's dynamic nature allows it to excel at runtime polymorphism, enabling flexible and adaptable code.
+
+
+--Inheritance Class Polymorphism
+
+##persistant systems##1-July 
+string="i love code in python"
+output = i =[0,8]
