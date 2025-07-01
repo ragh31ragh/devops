@@ -492,3 +492,13 @@ Althought the final goal is the same , those 2 methods achieve it in different w
 -commit history is linear 
 
 22. Real time example on how to rebase the master changes to working branch
+git checkout -b rebasedemo 
+make changes in 2 files 
+changed 2 files in rebasedemo
+changed 1 diff file in master
+
+git checkout master 
+git pull 
+git checkout branch
+git merge master ----> git rebase master 
+using above commands commits will be linear 
