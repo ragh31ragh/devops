@@ -1189,3 +1189,4 @@ https://playwright.dev/python/docs/chrome-extensions
 chromium.launch(headless=False, slow_mo=100)
 
 Clock API 
+slomo
