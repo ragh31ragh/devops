@@ -25,7 +25,7 @@ git merge main
 git merge test2
 git push origin main 
 git pull 
-HEAD
+HEAD-rebasedemochanges
 ##28##i am in test3 branch
 =======
 ###28###I am in main branch

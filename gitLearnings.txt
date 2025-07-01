@@ -492,3 +492,5 @@ Althought the final goal is the same , those 2 methods achieve it in different w
 -commit history is linear 
 
 22. Real time example on how to rebase the master changes to working branch
+git checkout -b rebasedemo 
+make changes in 2 files 
