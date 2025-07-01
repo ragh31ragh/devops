@@ -509,3 +509,7 @@ using above commands commits will be linear
 How to squash commits with rebase
 --------------------------------------------------------------
 git rebase -i HEAD~3
+
+
+24.
+24. End to end example on applying Git rebase and Squash together on working branch
