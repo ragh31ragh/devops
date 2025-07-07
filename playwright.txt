@@ -68,7 +68,7 @@ conftest.py
 session scope 
 
 How to run all tests together ?
-pytest -s ( to display output)
+pytest -s ( to display output)console output 
 pytest 
 
 yield keyword 
@@ -1142,8 +1142,8 @@ https://www.geeksforgeeks.org/python-oops-concepts/
 file upload :
 with page.expect_file_chooser() as fc_info:
     page.get_by_label("Upload file").click()
-file_chooser = fc_info.value
-file_chooser.set_files("myfile.pdf")
+	file_chooser = fc_info.value
+	file_chooser.set_files("myfile.pdf")
 
 file download : 
 # Start waiting for the download
@@ -1190,3 +1190,18 @@ chromium.launch(headless=False, slow_mo=100)
 
 Clock API 
 slomo
+
+Playwright can be used to test PDF content by extracting text or images from the PDF and comparing them against expected values. This can be achieved by leveraging libraries like pdf-parse or pdf-lib in conjunction with Playwright's browser automation capabilities. 
+Here's a breakdown of how to test PDF content using Playwright:
+1. Navigate to the PDF: 
+Use page.goto() to navigate to the URL of the PDF file.
+Optionally, if the PDF is downloaded, use page.waitForEvent('download') to handle the download and save the file.
+2. Extract PDF Content:
+Text Extraction: Use a library like pdf-parse to parse the PDF and extract the text content. 
+Image Extraction: Use libraries like pdf-lib and sharp to extract images from the PDF. 
+3. Compare Content:
+Text Comparison:
+Use expect(extractedText).toEqual(expectedText) to compare the extracted text with the expected text. 
+Visual Comparison:
+For more complex PDFs, you can take screenshots of the PDF and compare them using Playwright's built-in visual comparison capabilities. 
+
