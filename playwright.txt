@@ -1,8 +1,12 @@
 ##############31-Mar-2025##########
 https://rahulshettyacademy.com/client/auth/login
+https://rahulshettyacademy.com/client/auth/login
 rdplaywright@python.com
 Rdplaywright@123
+https://rahulshettyacademy.com/client
+https://rahulshettyacademy.com/client
 
+https://rahulshettyacademy.com/loginpagePractise
 
  /c/RD/Trainings/gitrepos/devops/devops (main)
 Why Playwright 
@@ -1205,3 +1209,415 @@ Use expect(extractedText).toEqual(expectedText) to compare the extracted text wi
 Visual Comparison:
 For more complex PDFs, you can take screenshots of the PDF and compare them using Playwright's built-in visual comparison capabilities. 
 
+########################July 11#################
+Section 1: Introduction to Playwright Automation & Course expectations
+1. Introduction to Playwright and its features
+Why Playwright ?
+-Reliable end to end testing 
+-Cross browser compatibility 
+-Multiplatform support 
+-Multilingual flexibility 
+
+Autowaiting 
+https://playwright.dev/docs/actionability
+
+Playwright Advanced Features  : 
+-Tracing and debugging 
+-Network Interception 
+-Browser context management 
+-Codegen tool 
+
+2. How this Course is designed? Topics Breakup
+-JavaScript/TypeScript Focus 
+-comprehensive coverage 
+-beginer friendly approach 
+-Practical hands on 
+
+3. Install Node.js & Visual Studio for setting up Playwright Environment
+what is node.js
+just like java - as we download java 
+
+Run from your projects root directory 
+npm init playwright 
+
+Section 3: Getting started with Playwright Automation Core concepts
+-----------------------------------------------------------------------
+5. Download the complete course code as zip file
+-------------------
+"C:\RD\Trainings\2025_playwright_js\PlayWrightAutomation.zip"
+
+6. Create npm  Project and install Playwright dependencies for testing
+-------------------
+Create folder and select that folder 
+-npm init playwright 
+node js path should be configured and installed in system .
+java script is selected .
+
+package.json etc files are created
+browsers are downloaded in below path 
+
+C:\Users\bgh51043\AppData\Local\ms-playwright
+
+in nodemodules all playwright related jars are installed 
+playwright.config.js - important file
+tests folder will create one example testcase 
+Inside that directory, you can run several commands:
+
+  npx playwright test
+    Runs the end-to-end tests.
+
+  npx playwright test --ui
+    Starts the interactive UI mode.
+
+  npx playwright test --project=chromium
+    Runs the tests only on Desktop Chrome.
+
+  npx playwright test example
+    Runs the tests in a specific file.
+
+  npx playwright test --debug
+    Runs the tests in debug mode.
+
+  npx playwright codegen
+    Auto generate tests with Codegen.
+
+We suggest that you begin by typing:
+
+    npx playwright test
+
+
+7. Importance of Playwright Test Annotation and async await understanding
+------------------------------
+UIBasicstest.spec.js
+const {test} = require('@playwright/test')
+
+test('First Playwright Test',function{
+
+});
+await. - keyword explanation.
+else it will try to execute , all steps at once 
+async function 
+async and await is combination .
+
+=> fat operator 
+
+anonymous function ()=>
+
+const {test} = require('@playwright/test')
+
+test('First Playwright Test',async () => {
+
+});
+
+8. What is browser context and Page fixtures in Playwright ? - Example
+-----------------------------------------------------------------------
+Global fixture - {browser } 
+browser context like - plugins and cookies 
+
+test('First Playwright Test',async ({browser}) => {
+    const context = await browser.newContext();
+    const page = await context.newPage();
+    await page.goto("https://rahulshettyacademy.com/loginpagePractise")
+
+});
+
+if we are not injecting anything we can simply call page fixture 
+
+test('Brwoser Playwright Test',async ({browser}) => {
+    const context = await browser.newContext();
+    const page = await context.newPage();
+    await page.goto("https://rahulshettyacademy.com/loginpagePractise")
+
+});
+
+test('Page Playwright Test',async ({page}) => {
+    await page.goto("https://rahulshettyacademy.com/loginpagePractise")
+
+});
+
+9. Importance of Playwright configuration file and its details to run the tests
+-------------------------------------------------------------------------------
+going through playwright.config.js file 
+config file editing 
+timout : 40 * 1000
+Assertion timeouts 
+
+expect : {
+    timeout : 40 * 1000
+  },
+  
+npx playwright test --headed
+when we send test - playwright will executed playwright.config.ts file 
+
+test.only - only run a particular test 
+Modification of config file 
+
+run the tests 
+
+10. Setup Assertions in Playwright tests &  multiple browsers Configuration
+---------------------------------------------------------------------------
+Assertion documentation.
+verifiying title 
+running tests in different browsers .
+
+const {test, expect} = require('@playwright/test')
+//require(expect)
+
+test ('Brwoser Playwright Test',async ({browser}) => {
+    const context = await browser.newContext();
+    const page = await context.newPage();
+    await page.goto("https://rahulshettyacademy.com/loginpagePractise");
+    console.log(await page.title());
+    await expect(page).toHaveTitle("LoginPage Practise | Rahul Shetty Academy")
+
+});
+
+test ('Page Playwright Test',async ({page}) => {
+    await page.goto("https://google.com"); 
+    console.log(await page.title());
+    await expect(page).toHaveTitle("Google")
+
+});
+
+Section 4: Playwright Basic methods for Web Automation testing with examples
+---------------------------------------------------------------------------
+---------------------------------------------------------------------------
+11. Locators supported by playwright and how to type into elements on page
+---------------------------------------------------------------------------
+predominantly it supports css selectors 
+Selector hub plugin / chropath - to verify the element locators 
+//type,fill - two methods available to enter text into edit box 
+//type is depricated now 
+    await page.locator("#username").fill("learning")
+    //rahulshetty
+    await page.locator("[type='password']").fill("learning")
+    await page.locator("#signInBtn").click()
+-spoke about diff type of locators .
+
+12. Extracting the text from browser and inserting valid expect assertions in test
+---------------------------------------------------------------------------
+After entering wrong username and password .
+blinking error is displayed .
+checking that 
+HTML body - dynamically changes to display : block or none 
+[style*='none'] css regular expression style*
+
+Methods used till now,(fill,click,textcontent)
+
+No wait statement is created.but still with intelligence of playwright we could achieve it .
+run this test 
+expect(locator)toContainText
+
+const {test, expect} = require('@playwright/test')
+//require(expect)
+
+test.only ('Browser Playwright Test',async ({browser}) => {
+    const context = await browser.newContext();
+    const page = await context.newPage();
+    await page.goto("https://rahulshettyacademy.com/loginpagePractise");
+    console.log(await page.title());
+    await expect(page).toHaveTitle("LoginPage Practise | Rahul Shetty Academy")
+    await page.locator("#username").fill("learning")
+    //rahulshetty
+    await page.locator("[type='password']").fill("learning")
+    await page.locator("#signInBtn").click()
+    console.log(await page.locator("[style*='block']").textContent())
+	await expect(page.locator("[style*='block']")).toContainText('Incorrect')
+
+});
+
+In above 2 sections , we only entered wrong username and password.
+And captured the blinking text and asserted using expect statement.
+
+13. How to work with locators which extract multiple webelements in page
+---------------------------------------------------------------------------
+Give valid login 
+verify elements are present in dashboard 
+
+   const userName  = page.locator("#username")
+    const password  = page.locator("#username")
+	
+	 await userName.fill("")
+    await password.fill("")
+    await userName.fill("rahulshettyacademy")
+    await password.fill("learning")
+    await page.locator("#signInBtn").click()
+	
+	login and get the content of iphoneX
+.cart-body a 
+parent child traversing in css 
+four elements will be returned 
+you get the first element iphonex 
+
+console.log(await page.locator(".cart-body a").nth(0).textContent)
+    console.log(await page.locator(".cart-body a").first.textContent)
+    //nth,first,last
+	run code .
+	
+##code##
+const {test, expect} = require('@playwright/test')
+//require(expect)
+
+test.only ('Browser Playwright Test',async ({browser}) => {
+
+    const context = await browser.newContext();
+    const page = await context.newPage();
+    const userName  = page.locator("#username")
+    const password  = page.locator("#password")
+    await page.goto("https://rahulshettyacademy.com/loginpagePractise");
+    console.log(await page.title());
+    await expect(page).toHaveTitle("LoginPage Practise | Rahul Shetty Academy")
+    await userName.fill("learning")
+    //rahulshetty
+    //(username is rahulshettyacademy and Password is learning)
+    await password.fill("learning")
+    await page.locator("#signInBtn").click()
+    console.log(await page.locator("[style*='block']").textContent())
+    await expect(page.locator("[style*='block']")).toContainText('Incorrect')
+    await userName.fill("")
+    await password.fill("")
+    await userName.fill("rahulshettyacademy")
+    await password.fill("learning")
+    await page.locator("#signInBtn").click()
+    //console.log(await page.locator(".cart-body a").nth(0).textContent)
+    console.log(await page.locator(".card-body a").nth(2).textContent())
+    //nth,first,last
+    //.card-body a
+
+});
+
+
+14. Understanding how wait mechanism works if list of elements are returned
+---------------------------------------------------------------------------
+How to grab text of 40+ products 
+method used .alltextcontents()
+
+ const allTitles = await cardTitles.allTextContents()
+    console.log(allTitles)
+	
+LoginPage Practise | Rahul Shetty Academy
+Incorrect username/password.
+Nokia Edge
+[ 'iphone X', 'Samsung Note 8', 'Nokia Edge', 'Blackberry' ]
+  1 passed (23.0s)
+  
+flaky - test fails intermittently
+if we remove waiting for single element test will fail
+because auto wait is supported for textcontent and not all textcontents.
+array returns 0 elements , but still it is valid 
+
+8:38 continue 
+rahulshettyacademy.com/client/auth/register
+https://rahulshettyacademy.com/client/auth/login
+
+exercise .
+
+15. Techniques to wait dynamically for new page in  Service based applications
+------------------------------------------------------------------------------
+running specific test 
+--nps playwright test UIBasicExercise.spec.js
+
+page.waitForLoadState("networkidle") - flaky 
+will wair for all elements to be loaded 
+
+await cardTitles.waitFor()
+
+as the above step is flaky
+cardTitles.first().waitFor() - works fine
+cardTitles.last().waitFor()
+
+code : const {test, expect} = require('@playwright/test')
+//require(expect)
+
+test.only ('Exercise Playwright Test',async ({browser}) => {
+
+    const context = await browser.newContext();
+    const page = await context.newPage();
+    const userName  = page.locator("#userEmail")
+    const password  = page.locator("#userPassword")
+    const cardTitles  = page.locator(".card-body b")
+    await page.goto("https://rahulshettyacademy.com/client");
+    console.log(await page.title());
+    await expect(page).toHaveTitle("Let's Shop")
+    await userName.fill("rdplaywright@python.com")
+    //rahulshetty
+    //(username is rahulshettyacademy and Password is learning)
+    await password.fill("Rdplaywright@123")
+    await page.locator("#login").click()
+    //console.log(await page.locator(".cart-body a").nth(0).textContent)
+    //console.log(await page.locator(".card-body b").nth(1).textContent())
+    //nth,first,last
+    //.card-body a
+    //await page.waitForLoadState("networkidle")
+    //await cardTitles.waitFor()
+    await cardTitles.first().waitFor()
+    const allTitles = await cardTitles.allTextContents()
+    console.log(allTitles)
+
+});
+
+
+16. Code download
+-------------------
+
+
+Section 5: Handling UI Components(Dropdowns ,Radio Buttons, Childwindows) with Playwright
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+
+17. Handling static Select dropdown options with Playwright
+-------------------------------------------------------------
+Static dropdown - options already available - select dropdown 
+tagname.classname
+Playwright inspector will open 
+selecting elements , first ,last , nth 
+
+web based popups
+java based popups 
+
+    const dropdown = page.locator("select.form-control")
+    //const cardTitles  = page.locator(".card-body a")
+    await page.goto("https://rahulshettyacademy.com/loginpagePractise");
+    await dropdown.selectOption("consult")
+    await page.locator(".radiotextsty").last().click()
+	//As u need to select 'user' radio button 
+    //okayBtn
+    await page.locator("#okayBtn").click()
+	
+Only above 4 lins in this lecture .
+
+test('@Child windows hadl', async ({browser})=>
+ {
+    const context = await browser.newContext();
+    const page =  await context.newPage();
+    const userName = page.locator('#username');
+    await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
+    const documentLink = page.locator("[href*='documents-request']");
+ 
+    const [newPage]=await Promise.all(
+   [
+      context.waitForEvent('page'),//listen for any new page pending,rejected,fulfilled
+      documentLink.click(),
+   
+   ])//new page is opened
+   
+ 
+   const  text = await newPage.locator(".red").textContent();
+    const arrayText = text.split("@")
+    const domain =  arrayText[1].split(" ")[0]
+    console.log(domain);
+    await page.locator("#username").fill(domain);
+    console.log(await page.locator("#username").textContent());
+ 
+ })
+ 
+18. Selecting radio buttons,  Checkboxes and implement expect assertions
+-----------------------------------------------------------------------
+
+await expect(page.locator(".radiotextsty").last()).toBeChecked()
+verify the assertions .
+checked 
+unchecked 
+checked unchecked .
+tobefalsely . to be truly 
+checkbox and radio button assertions.
