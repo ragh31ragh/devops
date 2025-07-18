@@ -1,0 +1,24 @@
+##############
+JS is java programming language . we use to give instructions to computer 
+can write scripts on browser 
+In browser console we can write javascript code 
+Ctrl + L to clear console 
+alert("RD");
+
+VS code - free - by microsoft 
+--VS code installation 
+
+###Variable datatype##
+console.log issue is used to print the message .
+console.log("My name")
+
+HTML file required to connect to browser from JavaScript file 
+HyperTextMarkupLanguage
+Shift+! -> autogenerate code
+To autogenerate HTML code in index.js 
+launch the index file and check code .
+
+
+
+Variables in JS:
+---------------

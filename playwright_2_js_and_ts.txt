@@ -1,0 +1,253 @@
+Section 6: Learn  Playwright Inspectors , Trace Viewers & Codegen tools with Demo examples
+-----------------------------------------------------------------------------------
+File upload download examples
+https://rahulshettyacademy.com/upload-download-test/index.html
+
+
+22. What is Playwright Inspector? And how to debug the playwright script
+----------------------------------------------------------------------------
+npx playwright test tests/UIBasicstest.spec.js --debug 
+
+debug command is not working due to some issue. issue with playwright
+
+23. Codegen tool to record & Playback with generated automation script
+----------------------------------------------------------------------------
+npx playwright codegen "website"
+
+24. Detailed view of Test Traces, HTML reports, logs & Screenshots for test results
+----------------------------------------------------------------------------
+config changes :
+screenshot : 'on'
+trace : 'on'
+trace : 'retain on faiule'
+playwright-report/index.html
+test results 
+"C:\RD\Trainings\2025_playwright_js\PlaywrightAutomation\test-results\UIBasicstest-Browser-Playwright-Test\trace.zip"
+
+
+Section 13: Build Excel Utils and drive uploads downloads using Playwright
+16-July-2025
+-----------------------------------------------------------------------------------
+70. Strategy to handle download & uploading files using Playwright
+----------------------------------------------------------------------------------
+
+upload -> set_input_files(path_to_file_method)
+attribute value should be type=file, if not ask dev to updated it to file 
+
+download - > 
+
+ await page.goto("https://rahulshettyacademy.com/upload-download-test/index.html");
+  const downloadPromise = page.waitForEvent('download');
+  await page.getByRole('button',{name:'Download'}).click();
+  await downloadPromise;
+  
+Section 16: Test Retries , Serial & Parallel execution & Tagging Tests in Playwright
+-----------------------------------------------------------------------------------
+85. how to fix flaky tests with test retry option in playwright config file
+-----------------------------------------------------------------------------------
+retries : 1 in config file 
+command 
+npx playwright test filename.spec.js --config config1.js --project=chrome 
+
+
+86. Understand how playwright run tests in serial & parallel mode and update setting
+-----------------------------------------------------------------------------------
+//test files will trigger parallel
+//individual tests in the file will run in sequence 
+./current folder 
+../previous folder 
+By default test will run in parallel in playwright 
+workers : 1
+workers : 3 
+--project=chrome 
+
+87. How to run tests parallely from the same file by extending test option behaviour
+-----------------------------------------------------------------------------------
+test.describe.configure({mode:'parallel')
+add this line in test file 
+3 workers 
+1 worker 
+
+test.describe.configure({mode:'serial')
+runs the test one after another 
+
+88. Reason for test failures - Race condition - Fix them
+--------------------------------------------------------
+same usecases in multiple tests 
+test.skip 
+website inconsistency - no issue with script 
+
+
+89. How to tag tests and control the execution from the command line parameters
+-----------------------------------------------------------------------------------
+We can tage using below syntax
+test(@Web ui_testcases)
+test(@mobile ui_testcases)
+
+Run using below command 
+npx playwright test --grep @Web
+npx playwright test --grep @API
+
+Section 17: HTMl & Allure Reporting & CI/CD Jenkins Integration
+-----------------------------------------------------------------------------------
+
+
+93. Integrate the Playwright framework with Jenkins and create parameterized Job
+
+-----------------------------------------------------------------------------------
+Create Playwright  -freestyle project 
+
+To pull code 
+GIT URL 
+custom workspace - 
+C:\RD\Trainings\2025_playwright_js\PlaywrightAutomation
+
+build 
+- Execute shell 
+- Execute windows 
+
+npm run regression 
+BUild now 
+
+check console output 
+
+configs 
+scripts:{
+"Regression": " npx playwright test"
+"WebTest" : "npx playwright test --grep @Web"
+}
+
+To build with parameters:
+------------------------
+
+Choice : Parameter 
+Script : 
+
+now it will be 
+npm run "$Scripts"
+$Scripts is jenkins variable 
+for mac 
+
+npm run "%Scripts%"
+$Scripts is jenkins variable 
+for windows 
+
+End 
+
+
+Section 20: E2E Playwright Devops Solution using Azure Cloud Parallel hosting & CI/CD
+------------------------------------------------------------------------------------------
+110. Introduction to Azure & Playwright cloud workspace resource creation steps
+------------------------------------------------------------------------------------------
+17-July-2025
+Create azure account .
+Service - Microsoft Playwright Testing ( Preview ) 
+-creating workspace in cloud machine 
+
+111. Running tests in Parallel in Azure cloud hosted browsers using commands
+------------------------------------------------------------------------------------------
+pre-requisite :
+-azure account 
+-owner or contributer account
+-playwright project 
+-azure cli 
+
+playwright.microsoft.com 
+
+in workspace - install playwright testing project 
+npm init @azure/microsoft-playwright-testing 
+
+package.json - we can see this dependency 
+
+playwright.service.config file is created .
+
+az login 
+above command will login to azure 
+
+configure PLAYWRIGHT_SERVICE_URL
+
+npx playwright test --config playwright.service.config.js 
+above config file should be referred 
+--workers 20 
+
+reports will be generated automatically 
+you can debugging with video 
+
+112. Intro to Azure CI/CD Pipelines , Repos and setting up Playwright repo in cloud
+----------------------------------------------------------------------------------
+-create new organization 
+-git init ( after navigating to the project) 
+-git remote add origin git_repo_url
+-git push -u origin -all 
+-git add 
+-git commit -m "first commit"
+-git push 
+
+Now our local code in azure repo 
+
+to create pipeline .
+we need to have .yml file 
+
+Task1 - Install dependencies 
+where is playwright directory 
+where to store reports
+
+we need to update yml file and keep in project .
+
+jobs:
+  - job: Build
+    steps:
+      - task: PowerShell@2
+        enabled: true
+        displayName: "Install dependencies"
+        inputs:
+          targetType: 'inline'
+          script: 'npm ci'
+          workingDirectory: tests/ # update accordingly
+ 
+      - task: AzureCLI@2
+        displayName: Run Playwright Test
+        env:
+          PLAYWRIGHT_SERVICE_URL: $(PLAYWRIGHT_SERVICE_URL)
+          PLAYWRIGHT_SERVICE_RUN_ID: $(Build.DefinitionName) - $(Build.BuildNumber) - $(System.JobAttempt)
+        inputs:
+          azureSubscription: 'rahulshettyacademy' # Service connection used to authenticate this pipeline with Azure to use the service
+          scriptType: 'pscore'
+          scriptLocation: 'inlineScript'
+          inlineScript: |
+            npx playwright test  --config=playwright.service.config.js           
+          addSpnToEnvironment: true
+          
+ 
+      - task: PublishPipelineArtifact@1
+        displayName: Upload Playwright report
+        inputs:
+          targetPath: tests/playwright-report/ # update accordingly
+          artifact: 'Playwright tests'
+          publishLocation: 'pipeline'
+ 
+114. Running Playwright CI/CD pipelines with detailed understanding of .yml file
+--------------------------------------------------------------------------------
+3 tasks 
+pipleline explanaition
+Playwright is azure resource [Azure Resource Manager]
+Service connection to be created 
+we can give service connection name : testpipeline
+
+give the npx command to run in yml
+--workers=20 to run tests in parallel
+
+push this yml file to repository 
+will select existing yml file from repo 
+in azure repo 
+
+add variables for pipeline 
+
+Number of browsers we can trigger based on azure subscription 
+subscription verification 
+
+playwright.microsoft.com - here you can view the reports 
+
+Azure DevOps and Playwright Integration 
+
+Seamless Integration 
