@@ -1,4 +1,5 @@
 ##############
+ C:\RD\Trainings\2025_JavaScript\JavaScript_Project1> 
 JS is java programming language . we use to give instructions to computer 
 can write scripts on browser 
 In browser console we can write javascript code 
@@ -22,3 +23,213 @@ launch the index file and check code .
 
 Variables in JS:
 ---------------
+18-July-2025
+------------
+Variables are containers for data 
+
+age = 24 
+in console
+name = 'test'
+-age 
+
+x = null ; 
+y = undefined ; 
+
+Dynamically typed . 
+No need to declare the variable type first 
+fullname = "raghavendra"
+fullname = 40 
+we can store diff type of value in javascript for same variable 
+
+Variable Rules :
+---------------
+-variables are case sensitive 
+apple Apple
+varialbes 
+camelcase 
+fullName
+
+let , var and const : 
+---------------------
+var - you can redclare 
+var age = 40
+var age = 45 
+
+let - you cannot redeclare 
+let age = 45
+but can update 
+
+global scope = var 
+block scope = let , const 
+
+const = cannot be redeclared or updated 
+
+
+Data types in JS
+-----------------
+Number, string , boolean , undefined , null , BigInt, Symbol
+Primitive ( 7 ) 
+Non Primitive --objects [ Arrays , Functions ] 
+object = collection of values 
+
+Student object 
+name  - string 
+marks - number 
+is pass - boolean 
+
+object : 
+key - value pair 
+
+const student = { name = 'rahul',
+cgpa = 9,
+isPass  = True
+
+}
+
+to access values we can use 
+student("name")
+student.name
+
+
+###############Udemy################
+node basic.js
+console.log("Hello world")
+//
+/*
+----
+*/
+
+variables are loosely typed 
+
+ES6 standard engine 
+
+##############11 min + ####################
+ String, Number , Boolean 
+ var, let , const 
+ 
+ ##############21 min + ####################
+ 
+ Loops 
+ const flag  = true 
+if (!flag)
+{
+console.log("condition satisfied")
+}
+else
+{
+console.log("condition not satisfied")
+}
+variable values will still be true 
+but expression is getting negated to false 
+
+
+do while - 1 round of loop will run 
+while - 1 round will also not run 
+
+let i=0
+while ( i < 10)
+{
+    i++
+    console.log(i)
+}
+
+ ##############32 min + ####################
+ for loop 
+  C:\RD\Trainings\2025_JavaScript\JavaScript_Project1> 
+  
+  console.log("#######")
+for ( k=0;k<10;k++){
+    console.log(k)
+}
+
+initialization , condition check , increment 
+
+known number - for loop 
+unknown number - while loop 
+
+//2 and 5 common mutliple
+
+for ( k=1;k<=10;k++){
+    if ( k%2 == 0 && k%5 == 0 ){
+    console.log(k)
+    }
+
+}
+ ##############45 min + ####################
+ Arrays and its detailed methods 
+ array is collection of elements 
+ basics3.js 
+
+//let marks = Array(6)
+let marks = [20,30,40,50,60,70 ]
+console.log(marks[2])
+marks[3]=87
+console.log(marks)
+console.log(marks.length)
+
+
+marks.push(45)//append new element 
+console.log(marks)
+marks.pop()//delete last element from array
+console.log(marks)
+
+push , pop , unshift 
+
+marks.unshift(112)//Add element at start of array 
+console.log(marks)/*[
+  112, 20, 30, 40,
+   87, 60, 70
+]*/
+
+///digit 120 is present in array or not .
+console.log(marks.includes(132))
+
+slicing 
+submarks = marks.slice(2,5)
+console.log(submarks)
+
+for ( let i = 0;i<marks.length;i++){
+    console.log(marks[i])
+}
+
+//Get sum of all elements in array 
+
+let sum = 0 
+for ( let i = 0;i<marks.length;i++){
+    sum = sum + marks[i]
+    }
+console.log(sum)
+
+
+ ##############1:05 min + ####################
+ reduce , filter , map 
+ 
+ let total = marks.reduce((sum,mark) => sum+mark,0)
+console.log(total)
+
+//sum is accumulator here 
+
+
+//print only even number 
+let scores = [ 23,45,32,12,121,23,34]
+let even_scores = scores.filter(score => score%2==0)
+console.log(even_scores)
+[ 32, 12, 34 ]
+
+ ##############1:17 + ####################
+map 
+
+//print only even number 
+let scores = [ 23,45,32,12,121,23,34]
+let even_scores = scores.filter(score => score%2==0)
+console.log(even_scores)
+
+//map - multiply numbers by 2
+multiply_by_3 = even_scores.map(score => score*3)
+console.log(multiply_by_3)
+
+
+[ 32, 12, 34 ]
+[ 96, 36, 102 ]
+
+1:22
