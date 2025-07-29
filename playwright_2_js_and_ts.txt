@@ -251,3 +251,54 @@ playwright.microsoft.com - here you can view the reports
 Azure DevOps and Playwright Integration 
 
 Seamless Integration 
+
+
+Section 18: Understand TypeScript Basics and Refactor Playwright Framework to TypeScript
+------------------------------------------------------------------------------------------
+
+95. Understand the differences between TypeScript & JavaScript
+-----------------------------------------------------------------
+Javascript vs Typescript 
+--superset of javascript 
+--all valid javascript code is also valid typescript code 
+
+demo.ts => tsc demo.ts -> demo.js 
+
+readablity 
+maintainablitly 
+code quality 
+
+96. Deep dive into TypeScript type syntaxes and their usage - 1
+-----------------------------------------------------------------
+Install typescript module 
+npm install typescript 
+npm install --save-dev typescript
+to save dependency info in package.json 
+
+created demo files in tests folder 
+any datatype 
+
+we can also use any type , 
+like page , Locator, String  in typescript 
+
+98. Build Playwright Pageobject TypeScript files and enforce the typing standards
+----------------------------------------------------------------------------------------------
+
+export class LoginPage
+import {LoginPage} from './LoginPageFileName '
+data type 
+page:any 
+page:Page 
+
+import {Page} from '@playwright/test'
+
+Add export before class 
+
+
+99. Build Playwright Utility TypeScript files with  enforcing the typing standards
+----------------------------------------------------------------------------------------------
+Mention the type for each of the variable 
+
+100. Refactor Playwright tests into TypeScript compatible and run the E2E Test
+----------------------------------------------------------------------------------------------
+page objects , utils 

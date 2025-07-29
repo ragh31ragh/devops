@@ -233,3 +233,137 @@ console.log(multiply_by_3)
 [ 96, 36, 102 ]
 
 1:22
+
+################Sorting array####################
+let fruits = [ "manago","banana","apple","pomogranite"]
+console.log(fruits.sort())
+[ 'apple', 'banana', 'manago', 'pomogranite' ]
+
+var scores1 = [12,003,19,16,14]
+console.log(scores1.sort())
+console.log(scores1.sort((a,b)=> a-b))//more accurate way
+
+fruits.reverse() //descending order 
+
+
+################Functions in java script ####################
+21-July-2025
+function add(a,b){
+ return a+b
+}
+
+let sum = add(3,14)
+
+console.log(sum)
+
+//anonymous functions - no name 
+
+let sum_of_intergers = (c,d)=> c+d
+console.log(sum_of_intergers(30,4))
+
+################scope ####################
+var ES5 
+let, var , const 
+
+################strings and its methods  ####################
+Array and string are similar 
+
+
+let day = 'monday'
+console.log(day.length)
+console.log(day.slice(1,4))
+
+split method 
+trim method 
+
+parseInt(nubmer)
+
+converts string to number 
+
+concatenate string 
+
+
+################Java script objects   ####################
+object 
+properties - Key value pairs 
+
+let person = {
+    firstname : 'Tim',
+    lastname : 'Joe'
+}
+
+console.log(person.firstname)
+person.gender = 'male'
+console.log(person)
+
+delete person.gender 
+
+we can also delete properties 
+
+property exists 
+
+for ( let key in person ){
+    console.log(person[key])
+}
+
+//print all the values in java script object 
+//interview 
+output : 
+Tim
+Joe
+male
+
+################classe in Java  script   ####################
+
+class Person
+{
+    age = 25 
+}
+let person = new Person()
+console.log(person.age)
+
+--
+class Person
+{
+    age = 25 
+    get location(){
+        return "cananda"
+    }
+}
+let person = new Person()
+console.log(person.age)
+console.log(person.location)
+---
+25
+cananda
+
+2:28 
+
+
+Class Property 
+Instance Property 
+
+################classe in Java  script   ####################
+module exports class Person 
+require 
+
+playwright - javascript project 
+automation project 
+
+###########inheritance ##############
+const Person = require(./basics7.js)
+class pet extends Person {
+
+get location(){
+return "redcross"
+}
+constructor(firstname,lastname){
+//call parent class constructor 
+super(firstname,lastname)
+this.firstname = firstname
+this.lastname = lastname 
+
+}
+
+For child and parent constructor should be same.
+super keyword will call parent class constructor 
