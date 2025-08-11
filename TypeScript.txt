@@ -87,12 +87,19 @@ index.ts
 command to compile - tsc and filename 
 tsc index.js 
 
+or -: tsc --outDir js app.ts 
+Execution : go to output directory and execute command
+--node app.ts
+
+typescript watch mode - you can compile files in watch mode 
+like you will change something and it recompiles 
+
 we should add this path to path variable.
 C:\Users\bgh51043\AppData\Roaming\npm
 else it will not detect tsc version 
 
 0:13:20 Configuring the TypeScript Compiler
-tsc --init
+tsc --init : Executing this command will create 
 a tsconfig.json file will be created
 ES2016
 
@@ -122,10 +129,43 @@ if ( age < 50 )
 console.log(age)
 
 
+Some configurations required to run the program by just pressing F5
+configurations of config.json and task.json in .vs code directory 
+
+Official Typescript Documentation 
+
 Section 2 : Fundamentals :
 --------------------------
 0:22:55 Fundamentals
+
 0:23:23 Built-In Types
+
+Boolean, Number , String , Array , Enum 
+--Declarations with let and const 
+--Type annothations and Type Inference 
+
+const  movieTitle: string = 'A new hope';
+console.log(`Movie Title : ${movieTitle}`)
+
+
+src / app2.ts 
+
+Additional Built in types : 
+Void, Null , Undefined ,Never , Any 
+
+Union Types : 
+let somevalue : number | string ;
+somevalue = 42 ;
+somevalue = "Hello World" ;
+
+for - definite number 
+while : expression evaluation 
+switch statement 
+
+movie review related code 
+
+
+let mysteryString : string | null | undefined ;
 
 let sales : number = 123_456_789 ;
 let course : string = "TypeScript" ;
@@ -142,6 +182,9 @@ ________________
 
 java script arrays are dynamic 
 and each element can be of different type .
+let stringArray1 : string[] = ['here','are','strings']
+let stringArray1 : Array<string> = ['here','are','strings']
+let stringArray3 : Any[] = [42,true,'banana']
 
 0:30:24 Tuples
 ---------------
@@ -168,6 +211,8 @@ let mysize = Size.Medium
 
 0:36:31 Functions
 ---------------------
+Adding Type Annotations to functions :
+
 function calculateTax(income:number):number{
     return 0 
 }
@@ -176,6 +221,60 @@ in tsconfig you can modify various configurations
     "noUnusedLocals": true,                       
     "noUnusedParameters": true,   
     "noImplicitReturns": true, 
+	
+--Optional , Default and Rest Parameters 
+
+optional : 
+function CreateCustomer(name:string,age?:number){}
+
+default 
+function GetBookByTitle(title:string='The C programming language'){}
+
+Rest Parameters : 
+function GetBooksReadForCust(name:string,...bookIDS:number[]){}
+let books = GetBooksReadForCust('Leigh',2,5);
+let books = GetBooksReadForCust('Danial',2,5,43,23,45);
+
+--Annotating functions and using parameter
+function printMovieInfo(title: string ,yearReleased?:number){
+    console.log(`Title : ${title}`)
+    if (yearReleased){
+        console.log(`YearReleased:${yearReleased}`)
+    }
+}
+
+printMovieInfo('A New Hope',1998);
+
+#######################
+function GetReview3(title:string):string|number{
+    if (title ==  'A new hope'){
+        return 'An insant classic';
+    }
+    else{
+        return Math.floor(Math.random()*10);
+    }
+}
+
+function printMovieInfo3(title: string ,yearReleased:number=2024,...cast:string[]){
+    console.log(`Title : ${title}`)
+    console.log(`YearReleased:${yearReleased}`)
+    console.log('Cast:')
+    for (const name of cast ){
+        console.log(`  ${name}`)
+    }
+}
+
+printMovieInfo3('A New Hope',1998,'Paul','Jim','Tony');
+#############################
+
+Arrow Function( Lambda function )
+parameters => function body 
+
+Function overloads : 
+----------------------
+
+
+
 	
 0:43:22 Objects
 ------------------
@@ -268,3 +367,66 @@ greet(null);
 
 0:59:06 Optional Chaining
 -----------------------------
+
+Interfaces 
+Control + Space bar - visual studio - to get the options 
+Interfaces for Function Types 
+Extending Interfaces 
+Implementing Interfaces with classes 
+-Implements - for Interface 
+class Employee implements Basics (
+
+Classes : creating own type for developer 
+Constructor : 
+
+Static Propery - Class name 
+Instance property - this keyword 
+
+-Parent Class - Super Class 
+extends keyword 
+
+Abstract classes 
+
+abstract class Video{
+abstract printCredits(): void ;
+}
+subclasses to provide implementation 
+
+Abstract class cant be intantiated ( like new class)
+only subclasses of abstract class can be intantiated.
+subclass power 
+
+Class Expressions : 
+
+##########Organizing code with modules################
+export 
+import 
+export interfaces 
+export {Movie, ReviewLogger as logger,Person } 
+import { Movie,logger } from './Interfaces'
+import * as Utility from './Functions'
+
+
+Debugging with SourceMap 
+-----------------------
+Enable sourcemap to true in tsconfig.
+-Sourcemaps are your friends 
+
+-terminal selection - java script debug terminal 
+-add breakpoint
+-navigate to location and execute command - node app1.js
+-you can step over and step into 
+
+Creating and using Generics :
+------------------------------
+New feature in typescript 
+Type Parameters <> Array<Books> 
+Function Parameters ()
+
+
+Type Declaration files :
+------------------------
+d.ts file extension 
+next phenomenol microbrewery 
+
+Decorators : 

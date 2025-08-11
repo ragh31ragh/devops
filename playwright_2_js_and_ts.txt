@@ -302,3 +302,15 @@ Mention the type for each of the variable
 100. Refactor Playwright tests into TypeScript compatible and run the E2E Test
 ----------------------------------------------------------------------------------------------
 page objects , utils 
+
+
+30. Dynamically find the order from OrderHistory page using Playwright Script logic
+
+PageObjects Working code .
+C:RD\Trainings\2025_playwright_js_ts\playwrightSourceCode\tests\
+command npx playwright test .\ClientAppPO.js --headed 
+
+various configs 
+npx playwright test .\ClientAppPO.js --config playwright.config1.js
+
+Debugging with SourceMap 
